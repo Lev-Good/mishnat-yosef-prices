@@ -23,6 +23,9 @@ jobs:
           python-version: '3.11'
 
       - name: Run Price Update Automation
+        env:
+          MISHNAT_EMAIL: ${{ secrets.MISHNAT_EMAIL }}
+          MISHNAT_PASSWORD: ${{ secrets.MISHNAT_PASSWORD }}
         run: |
           python update_prices.py
 
