@@ -1097,5 +1097,397 @@
       "yeshHesed": 64.9
     },
     "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "fairy_1_5l",
+    "name": "סבון כלים פיירי 1.5 ליטר",
+    "aliases": [
+      "פיירי 1.5",
+      "סבון כלים פיירי - 1.5",
+      "פיירי 1.5 ליטר"
+    ],
+    "supermarketPrice": 18.9,
+    "chains": {
+      "osherAd": 17.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 19.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_maxima_softener",
+    "name": "מרכך כביסה מרוכז סנו מקסימה 1 ליטר",
+    "aliases": [
+      "סנו מקסימה",
+      "מרכך סנו מקסימה",
+      "מקסימה מרוכז"
+    ],
+    "supermarketPrice": 15.9,
+    "chains": {
+      "osherAd": 14.9,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "persil_gel_3_8l",
+    "name": "ג'ל כביסה פרסיל 3.8 ליטר",
+    "aliases": [
+      "פרסיל 3.8",
+      "ג'ל כביסה פרסיל - 3.8",
+      "גל כביסה פרסיל 3.8"
+    ],
+    "supermarketPrice": 47.57,
+    "chains": {
+      "osherAd": 44.9,
+      "ramiLevy": 47.9,
+      "yeshHesed": 49.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "delipekan_telma",
+    "name": "דגני בוקר דליפקאן תלמה 400-500 גרם",
+    "aliases": [
+      "דליפקאן",
+      "דלי פקאן",
+      "דליפקאן תלמה"
+    ],
+    "supermarketPrice": 23.43,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.5,
+      "yeshHesed": 24.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "shugi_bars",
+    "name": "מארז חטיף דגנים שוגי תלמה (שוקולד/וניל)",
+    "aliases": [
+      "חטיף דגנים שוגי",
+      "שוגי תלמה",
+      "חטיפי שוגי"
+    ],
+    "supermarketPrice": 14.9,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 14.9,
+      "yeshHesed": 15.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "quaker_oats",
+    "name": "קוואקר שיבולת שועל להכנה מהירה 500 גרם",
+    "aliases": [
+      "קווקר",
+      "קוואקר",
+      "שיבולת שועל להכנה מהירה"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "soup_almonds_osem",
+    "name": "שקדי מרק אסם 400 גרם",
+    "aliases": [
+      "שקדי מרק",
+      "שקדי מרק אסם"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {
+      "osherAd": 11.9,
+      "ramiLevy": 12.9,
+      "yeshHesed": 13.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sweet_chili_sauce",
+    "name": "רוטב צ'ילי מתוק 700 מ\"ל",
+    "aliases": [
+      "רוטב צ'ילי מתוק",
+      "רוטב צילי מתוק",
+      "צילי מתוק"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "silan_pure_squeeze",
+    "name": "סילאן תמרים טבעי 100% בקבוק לחיץ",
+    "aliases": [
+      "סילאן טבעי",
+      "סילאן לחיץ",
+      "סילאן תמרים"
+    ],
+    "supermarketPrice": 16.77,
+    "chains": {
+      "osherAd": 15.5,
+      "ramiLevy": 16.9,
+      "yeshHesed": 17.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "honey_squeeze",
+    "name": "דבש טהור בקבוק לחיץ / צנצנת (יד מרדכי/עמק חפר)",
+    "aliases": [
+      "דבש טבעי",
+      "דבש בבקבוק לחיץ",
+      "דבש לחיץ"
+    ],
+    "supermarketPrice": 23.57,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.9,
+      "yeshHesed": 24.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_clear_windows",
+    "name": "נוזל לניקוי חלונות סנו קליר 1 ליטר",
+    "aliases": [
+      "סנו קליר",
+      "נוזל לניקוי חלונות 1 ליטר",
+      "ניקוי חלונות סנו"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_ratzpaz",
+    "name": "רצפז נוזל רצפות לשואב שוטף / מרוכז סנו",
+    "aliases": [
+      "רצפז",
+      "נוזל רצפות לשואב שוטף",
+      "רצפז נוזל"
+    ],
+    "supermarketPrice": 18.9,
+    "chains": {
+      "osherAd": 17.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 19.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "dr_fischer_baby_shampoo",
+    "name": "שמפו אל דמע לתינוקות ד\"ר פישר 750 מ\"ל - 1 ליטר",
+    "aliases": [
+      "אל דמע לתינוקות",
+      "שמפו אל דמע",
+      "ד\"ר פישר לתינוקות"
+    ],
+    "supermarketPrice": 20.57,
+    "chains": {
+      "osherAd": 18.9,
+      "ramiLevy": 20.9,
+      "yeshHesed": 21.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_anti_calc",
+    "name": "תרסיס אנטי קאלק 4 ב-1 סנו 1 ליטר",
+    "aliases": [
+      "אנטי קאלק",
+      "תרסיס אנטי קאלק",
+      "אנטיקאלק סנו"
+    ],
+    "supermarketPrice": 15.77,
+    "chains": {
+      "osherAd": 14.5,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_javel_spray",
+    "name": "תרסיס ז'אוול קצף ניקוי בתוספת אקונומיקה סנו 750 מ\"ל",
+    "aliases": [
+      "ז'אוול קצף",
+      "זאוול סנו",
+      "תרסיס ז'אוול"
+    ],
+    "supermarketPrice": 15.77,
+    "chains": {
+      "osherAd": 14.5,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "chocolate_chips_baking",
+    "name": "שוקולד צ'יפס לאפייה (אופנהיימר / מיה / כרמית)",
+    "aliases": [
+      "שוקולד צ'יפס",
+      "שוקולד ציפס אמיתי",
+      "נטיפי שוקולד מריר"
+    ],
+    "supermarketPrice": 11.9,
+    "chains": {
+      "osherAd": 10.9,
+      "ramiLevy": 11.9,
+      "yeshHesed": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "pizza_snacks_maadanot",
+    "name": "חטיפי פיצה קפואים מעדנות 700 גרם",
+    "aliases": [
+      "חטיפי פיצה",
+      "פיצה מעדנות",
+      "חטיפי פיצה קפואים"
+    ],
+    "supermarketPrice": 25.43,
+    "chains": {
+      "osherAd": 23.9,
+      "ramiLevy": 25.5,
+      "yeshHesed": 26.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "green_beans_cut",
+    "name": "שעועית ירוקה חתוכה קפואה 800 גרם",
+    "aliases": [
+      "שעועית ירוקה חתוכה",
+      "שעועית ירוקה קפואה"
+    ],
+    "supermarketPrice": 13.9,
+    "chains": {
+      "osherAd": 12.9,
+      "ramiLevy": 13.9,
+      "yeshHesed": 14.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bread_crumbs_golden",
+    "name": "פירורי לחם מוזהבים 400-500 גרם",
+    "aliases": [
+      "פירורי לחם מוזהבים",
+      "פירורי לחם אסם"
+    ],
+    "supermarketPrice": 7.2,
+    "chains": {
+      "osherAd": 6.5,
+      "ramiLevy": 7.2,
+      "yeshHesed": 7.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "axe_deodorant_spray",
+    "name": "דאודורנט ספריי אקס AXE לגברים 150-200 מ\"ל",
+    "aliases": [
+      "דאודורנט אקס",
+      "אקס לגברים",
+      "ספריי אקס"
+    ],
+    "supermarketPrice": 14.77,
+    "chains": {
+      "osherAd": 13.5,
+      "ramiLevy": 14.9,
+      "yeshHesed": 15.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "marshmallow_carmit",
+    "name": "מרשמלו 150 גרם כרמית",
+    "aliases": [
+      "מרשמלו 150",
+      "מרשמלו כרמית"
+    ],
+    "supermarketPrice": 5.43,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": 5.5,
+      "yeshHesed": 5.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "frozen_mango_chunks",
+    "name": "קוביות מנגו קפוא 1 ק\"ג / מוגדלת",
+    "aliases": [
+      "קוביות מנגו",
+      "מנגו קפוא"
+    ],
+    "supermarketPrice": 23.43,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.5,
+      "yeshHesed": 24.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "frozen_strawberries",
+    "name": "תות שדה קפוא נקי 1 ק\"ג",
+    "aliases": [
+      "תות שדה קפוא",
+      "תות קפוא"
+    ],
+    "supermarketPrice": 23.43,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.5,
+      "yeshHesed": 24.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "canned_peach_halves",
+    "name": "חצאי אפרסק בסירופ שימורים 820 גרם",
+    "aliases": [
+      "חצאי אפרסק",
+      "אפרסק שימורים"
+    ],
+    "supermarketPrice": 9.2,
+    "chains": {
+      "osherAd": 8.5,
+      "ramiLevy": 9.2,
+      "yeshHesed": 9.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "chocolate_spread_mehadrin",
+    "name": "רביעיית שוקולד מריר כרמית 400 גרם",
+    "aliases": [
+      "רביעיית שוקולד",
+      "שוקולד מריר כרמית"
+    ],
+    "supermarketPrice": 14.9,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 14.9,
+      "yeshHesed": 15.9
+    },
+    "lastVerified": "2026-11-09"
   }
 ]
