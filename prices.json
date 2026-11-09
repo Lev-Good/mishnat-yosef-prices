@@ -1,0 +1,1101 @@
+[
+  {
+    "id": "milk_3",
+    "name": "חלב תנובה 3% 1 ליטר",
+    "aliases": [
+      "חלב 3",
+      "חלב תנובה 3"
+    ],
+    "supermarketPrice": 7.11,
+    "chains": {
+      "osherAd": 7.11,
+      "ramiLevy": 7.11,
+      "yeshHesed": 7.11
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "milk_1",
+    "name": "חלב תנובה 1% 1 ליטר",
+    "aliases": [
+      "חלב 1",
+      "חלב תנובה 1"
+    ],
+    "supermarketPrice": 6.55,
+    "chains": {
+      "osherAd": 6.55,
+      "ramiLevy": 6.55,
+      "yeshHesed": 6.55
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "eggs_l30",
+    "name": "ביצים L תבנית 30",
+    "aliases": [
+      "ביצים l",
+      "ביצים גודל l",
+      "תבנית 30"
+    ],
+    "supermarketPrice": 38.0,
+    "chains": {
+      "osherAd": 37.24,
+      "ramiLevy": 38.0,
+      "yeshHesed": 38.0
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "eggs_m30",
+    "name": "ביצים M תבנית 30",
+    "aliases": [
+      "ביצים m",
+      "ביצים גודל m"
+    ],
+    "supermarketPrice": 34.5,
+    "chains": {
+      "osherAd": 33.81,
+      "ramiLevy": 34.5,
+      "yeshHesed": 34.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "eggs_l12",
+    "name": "ביצים L מארז 12",
+    "aliases": [
+      "מארז 12",
+      "12 ביצים"
+    ],
+    "supermarketPrice": 15.2,
+    "chains": {
+      "osherAd": 14.9,
+      "ramiLevy": 15.2,
+      "yeshHesed": 15.2
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "cheese_white_5",
+    "name": "גבינה לבנה 5% תנובה 250 גרם",
+    "aliases": [
+      "גבינה לבנה 5",
+      "לבנה 5% תנובה"
+    ],
+    "supermarketPrice": 5.75,
+    "chains": {
+      "osherAd": 5.75,
+      "ramiLevy": 5.75,
+      "yeshHesed": 5.75
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "cottage_5",
+    "name": "קוטג' תנובה 5% 250 גרם",
+    "aliases": [
+      "קוטג 5",
+      "קוטג' 5"
+    ],
+    "supermarketPrice": 6.87,
+    "chains": {
+      "osherAd": 6.8,
+      "ramiLevy": 6.9,
+      "yeshHesed": 6.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "yellow_emek",
+    "name": "גבינה צהובה עמק תנובה 400 גרם",
+    "aliases": [
+      "עמק 28",
+      "צהובה עמק",
+      "עמק 400"
+    ],
+    "supermarketPrice": 23.77,
+    "chains": {
+      "osherAd": 22.9,
+      "ramiLevy": 23.9,
+      "yeshHesed": 24.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "yellow_gilboa",
+    "name": "גבינה צהובה גלבוע 200 גרם",
+    "aliases": [
+      "גלבוע 200",
+      "צהובה גלבוע"
+    ],
+    "supermarketPrice": 13.43,
+    "chains": {
+      "osherAd": 12.9,
+      "ramiLevy": 13.5,
+      "yeshHesed": 13.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "butter_100",
+    "name": "חמאה תנובה 100 גרם",
+    "aliases": [
+      "חמאה 100",
+      "חמאה תנובה"
+    ],
+    "supermarketPrice": 5.1,
+    "chains": {
+      "osherAd": 5.1,
+      "ramiLevy": 5.1,
+      "yeshHesed": 5.1
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sour_cream",
+    "name": "שמנת חמוצה 15% תנובה 200 מ\"ל",
+    "aliases": [
+      "שמנת חמוצה 15",
+      "חמוצה 15"
+    ],
+    "supermarketPrice": 3.05,
+    "chains": {
+      "osherAd": 3.05,
+      "ramiLevy": 3.05,
+      "yeshHesed": 3.05
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sweet_cream",
+    "name": "שמנת מתוקה 38% השף הלבן 250 מ\"ל",
+    "aliases": [
+      "שמנת מתוקה 38",
+      "השף הלבן 38"
+    ],
+    "supermarketPrice": 8.43,
+    "chains": {
+      "osherAd": 7.9,
+      "ramiLevy": 8.5,
+      "yeshHesed": 8.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "milky",
+    "name": "מילקי שוקולד שטראוס",
+    "aliases": [
+      "מילקי שוקולד",
+      "מילקי"
+    ],
+    "supermarketPrice": 3.37,
+    "chains": {
+      "osherAd": 3.2,
+      "ramiLevy": 3.4,
+      "yeshHesed": 3.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "shoko_1l",
+    "name": "שוקו תנובה 1 ליטר",
+    "aliases": [
+      "שוקו 1 ליטר",
+      "שוקו תנובה"
+    ],
+    "supermarketPrice": 11.67,
+    "chains": {
+      "osherAd": 10.9,
+      "ramiLevy": 11.9,
+      "yeshHesed": 12.2
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "oil_canola",
+    "name": "שמן קנולה מזוכך 1 ליטר",
+    "aliases": [
+      "שמן קנולה",
+      "קנולה 1 ליטר"
+    ],
+    "supermarketPrice": 9.43,
+    "chains": {
+      "osherAd": 8.9,
+      "ramiLevy": 9.5,
+      "yeshHesed": 9.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "oil_soy",
+    "name": "שמן סויה 1 ליטר",
+    "aliases": [
+      "שמן סויה",
+      "סויה 1 ליטר"
+    ],
+    "supermarketPrice": 8.43,
+    "chains": {
+      "osherAd": 7.9,
+      "ramiLevy": 8.5,
+      "yeshHesed": 8.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "oil_olive",
+    "name": "שמן זית כתית מעולה 750 מ\"ל",
+    "aliases": [
+      "שמן זית",
+      "כתית מעולה 750"
+    ],
+    "supermarketPrice": 38.57,
+    "chains": {
+      "osherAd": 36.9,
+      "ramiLevy": 38.9,
+      "yeshHesed": 39.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sugar_white",
+    "name": "סוכר לבן סוגת 1 ק\"ג",
+    "aliases": [
+      "סוכר לבן",
+      "סוכר 1 קג",
+      "סוכר סוגת"
+    ],
+    "supermarketPrice": 4.97,
+    "chains": {
+      "osherAd": 4.8,
+      "ramiLevy": 4.9,
+      "yeshHesed": 5.2
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "flour_white",
+    "name": "קמח לבן בהיר 1 ק\"ג",
+    "aliases": [
+      "קמח לבן",
+      "קמח בהיר 1"
+    ],
+    "supermarketPrice": 4.53,
+    "chains": {
+      "osherAd": 4.2,
+      "ramiLevy": 4.5,
+      "yeshHesed": 4.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "flour_raising",
+    "name": "קמח תופח 1 ק\"ג",
+    "aliases": [
+      "קמח תופח",
+      "תופח 1 קג"
+    ],
+    "supermarketPrice": 6.43,
+    "chains": {
+      "osherAd": 5.9,
+      "ramiLevy": 6.5,
+      "yeshHesed": 6.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "salt_fine",
+    "name": "מלח שולחן דק 1 ק\"ג",
+    "aliases": [
+      "מלח שולחן",
+      "מלח דק 1"
+    ],
+    "supermarketPrice": 2.6,
+    "chains": {
+      "osherAd": 2.6,
+      "ramiLevy": 2.6,
+      "yeshHesed": 2.6
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "rice_persian",
+    "name": "אורז פרסי סוגת 1 ק\"ג",
+    "aliases": [
+      "אורז פרסי",
+      "פרסי סוגת"
+    ],
+    "supermarketPrice": 10.43,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.5,
+      "yeshHesed": 10.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "rice_basmati",
+    "name": "אורז בסמטי סוגת 1 ק\"ג",
+    "aliases": [
+      "אורז בסמטי",
+      "בסמטי 1 קג"
+    ],
+    "supermarketPrice": 14.1,
+    "chains": {
+      "osherAd": 13.5,
+      "ramiLevy": 13.9,
+      "yeshHesed": 14.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "rice_jasmine",
+    "name": "אורז יסמין סוגת 1 ק\"ג",
+    "aliases": [
+      "אורז יסמין",
+      "יסמין 1 קג"
+    ],
+    "supermarketPrice": 12.2,
+    "chains": {
+      "osherAd": 11.5,
+      "ramiLevy": 12.2,
+      "yeshHesed": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "pasta_osem_spaghetti",
+    "name": "פסטה ספגטי אסם 500 גרם",
+    "aliases": [
+      "ספגטי אסם",
+      "פסטה ספגטי"
+    ],
+    "supermarketPrice": 5.97,
+    "chains": {
+      "osherAd": 5.5,
+      "ramiLevy": 5.9,
+      "yeshHesed": 6.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "pasta_osem_penne",
+    "name": "פסטה פנה אסם 500 גרם",
+    "aliases": [
+      "פסטה פנה",
+      "פנה אסם",
+      "פסטה נוצה"
+    ],
+    "supermarketPrice": 5.97,
+    "chains": {
+      "osherAd": 5.5,
+      "ramiLevy": 5.9,
+      "yeshHesed": 6.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "pasta_osem_fusilli",
+    "name": "פסטה מסולסלת (בורגי) אסם 500 גרם",
+    "aliases": [
+      "פסטה בורגי",
+      "פסטה מסולסלת",
+      "פסטה פוזילי"
+    ],
+    "supermarketPrice": 5.97,
+    "chains": {
+      "osherAd": 5.5,
+      "ramiLevy": 5.9,
+      "yeshHesed": 6.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "ptitim_osem",
+    "name": "פתיתים אפויים אסם 500 גרם",
+    "aliases": [
+      "פתיתים אפויים",
+      "פתיתים עגולים",
+      "פתיתים כוכבים",
+      "פתיתים אסם"
+    ],
+    "supermarketPrice": 6.43,
+    "chains": {
+      "osherAd": 5.9,
+      "ramiLevy": 6.5,
+      "yeshHesed": 6.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "tuna_fillet_4",
+    "name": "טונה בהירה בשמן מארז רביעייה",
+    "aliases": [
+      "טונה 4",
+      "שימורי טונה רביעיה",
+      "טונה בשמן רביעיה",
+      "מארז טונה"
+    ],
+    "supermarketPrice": 23.57,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.9,
+      "yeshHesed": 24.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "corn_can",
+    "name": "גרגרי תירס מתוק שימורים 550 גרם",
+    "aliases": [
+      "תירס מתוק",
+      "שימורי תירס",
+      "גרגרי תירס"
+    ],
+    "supermarketPrice": 6.2,
+    "chains": {
+      "osherAd": 5.5,
+      "ramiLevy": 6.2,
+      "yeshHesed": 6.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "peas_can",
+    "name": "אפונה עדינה שימורים 550 גרם",
+    "aliases": [
+      "אפונה עדינה",
+      "שימורי אפונה"
+    ],
+    "supermarketPrice": 6.2,
+    "chains": {
+      "osherAd": 5.5,
+      "ramiLevy": 6.2,
+      "yeshHesed": 6.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "pickles_cucumbers",
+    "name": "מלפפונים חמוצים במלח 7-9 שימורים",
+    "aliases": [
+      "מלפפונים בחומץ",
+      "מלפפונים במלח",
+      "שימורי מלפפונים",
+      "מלפפונים 7-9"
+    ],
+    "supermarketPrice": 6.87,
+    "chains": {
+      "osherAd": 6.2,
+      "ramiLevy": 6.9,
+      "yeshHesed": 7.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "olives_green",
+    "name": "זיתים ירוקים טבעות שימורים",
+    "aliases": [
+      "זיתים ירוקים",
+      "זיתים טבעות",
+      "זיתים מושחלים",
+      "זיתים חרוזים"
+    ],
+    "supermarketPrice": 8.1,
+    "chains": {
+      "osherAd": 7.5,
+      "ramiLevy": 7.9,
+      "yeshHesed": 8.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "tomato_paste_100",
+    "name": "רסק עגבניות 28-30% 100 גרם (שלישייה/יחידה)",
+    "aliases": [
+      "רסק עגבניות",
+      "רסק 100 גרם"
+    ],
+    "supermarketPrice": 2.03,
+    "chains": {
+      "osherAd": 1.9,
+      "ramiLevy": 2.0,
+      "yeshHesed": 2.2
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "ketchup_osem",
+    "name": "קטשופ אסם בקבוק לחיץ 750 גרם",
+    "aliases": [
+      "קטשופ אסם",
+      "קטשופ 750"
+    ],
+    "supermarketPrice": 12.2,
+    "chains": {
+      "osherAd": 11.5,
+      "ramiLevy": 12.2,
+      "yeshHesed": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "mayo_telma",
+    "name": "מיונז אמיתי תלמה 500 גרם",
+    "aliases": [
+      "מיונז תלמה",
+      "מיונז אמיתי"
+    ],
+    "supermarketPrice": 12.03,
+    "chains": {
+      "osherAd": 11.2,
+      "ramiLevy": 12.0,
+      "yeshHesed": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "tahini_raw",
+    "name": "טחינה גולמית טהורה 1 ק\"ג",
+    "aliases": [
+      "טחינה גולמית",
+      "טחינה 1 קג",
+      "טחינה הנסיך",
+      "טחינה ירושלים"
+    ],
+    "supermarketPrice": 22.9,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 22.9,
+      "yeshHesed": 23.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "challah",
+    "name": "חלת שבת מהודרת 500 גרם",
+    "aliases": [
+      "חלת שבת",
+      "חלה מהודרת",
+      "חלה לשבת"
+    ],
+    "supermarketPrice": 7.2,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 7.2,
+      "yeshHesed": 7.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bread_wholewheat",
+    "name": "לחם 100% חיטה מלאה פרוס (דגנית עין בר/ברמן/אנגל)",
+    "aliases": [
+      "חיטה מלאה",
+      "דגנית עין בר",
+      "לחם מלא",
+      "מחיטה מלאה"
+    ],
+    "supermarketPrice": 12.43,
+    "chains": {
+      "osherAd": 11.9,
+      "ramiLevy": 12.5,
+      "yeshHesed": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bread_sliced",
+    "name": "לחם אחיד כהה פרוס 750 גרם",
+    "aliases": [
+      "לחם אחיד",
+      "אחיד פרוס",
+      "אחיד כהה"
+    ],
+    "supermarketPrice": 7.91,
+    "chains": {
+      "osherAd": 7.91,
+      "ramiLevy": 7.91,
+      "yeshHesed": 7.91
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "cornflakes_telma",
+    "name": "קורנפלקס תלמה אלופים 750 גרם",
+    "aliases": [
+      "קורנפלקס תלמה",
+      "קורנפלקס של אלופים"
+    ],
+    "supermarketPrice": 19.3,
+    "chains": {
+      "osherAd": 18.5,
+      "ramiLevy": 19.5,
+      "yeshHesed": 19.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "kariot_telma",
+    "name": "כריות שוקולד תלמה 750 גרם",
+    "aliases": [
+      "כריות תלמה",
+      "כריות נוגט",
+      "כריות שוקולד"
+    ],
+    "supermarketPrice": 25.9,
+    "chains": {
+      "osherAd": 24.9,
+      "ramiLevy": 25.9,
+      "yeshHesed": 26.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "petiber_osem",
+    "name": "ביסקוויט פטיבר אסם 500 גרם",
+    "aliases": [
+      "פטי בר",
+      "פטיבר אסם"
+    ],
+    "supermarketPrice": 13.2,
+    "chains": {
+      "osherAd": 12.5,
+      "ramiLevy": 13.2,
+      "yeshHesed": 13.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bamba_osem",
+    "name": "במבה אסם 80 גרם",
+    "aliases": [
+      "במבה אסם",
+      "במבה 80"
+    ],
+    "supermarketPrice": 4.53,
+    "chains": {
+      "osherAd": 4.2,
+      "ramiLevy": 4.5,
+      "yeshHesed": 4.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bisli_osem",
+    "name": "ביסלי אסם 70 גרם (גריל/ברביקיו/בצל)",
+    "aliases": [
+      "ביסלי גריל",
+      "ביסלי ברביקיו",
+      "ביסלי בצל",
+      "ביסלי אסם"
+    ],
+    "supermarketPrice": 4.53,
+    "chains": {
+      "osherAd": 4.2,
+      "ramiLevy": 4.5,
+      "yeshHesed": 4.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "shahar_hashahar",
+    "name": "ממרח שוקולד השחר העולה 450 גרם",
+    "aliases": [
+      "השחר העולה",
+      "ממרח השחר"
+    ],
+    "supermarketPrice": 12.97,
+    "chains": {
+      "osherAd": 12.5,
+      "ramiLevy": 12.9,
+      "yeshHesed": 13.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "coca_cola_6",
+    "name": "קוקה קולה 1.5 ליטר מארז שישייה",
+    "aliases": [
+      "קוקה קולה שישיה",
+      "קולה שישיה",
+      "קוקה קולה 1.5"
+    ],
+    "supermarketPrice": 43.57,
+    "chains": {
+      "osherAd": 41.9,
+      "ramiLevy": 43.9,
+      "yeshHesed": 44.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "coca_zero_6",
+    "name": "קוקה קולה זירו 1.5 ליטר מארז שישייה",
+    "aliases": [
+      "קולה זירו שישיה",
+      "זירו שישיה",
+      "קוקה קולה זירו"
+    ],
+    "supermarketPrice": 43.57,
+    "chains": {
+      "osherAd": 41.9,
+      "ramiLevy": 43.9,
+      "yeshHesed": 44.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "mineral_water_6",
+    "name": "מים מינרליים 1.5 ליטר מארז שישייה",
+    "aliases": [
+      "מים מינרליים שישיה",
+      "שישיית מים",
+      "עין גדי שישיה"
+    ],
+    "supermarketPrice": 13.97,
+    "chains": {
+      "osherAd": 13.5,
+      "ramiLevy": 13.9,
+      "yeshHesed": 14.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "grape_juice",
+    "name": "מיץ ענבים תירוש כרמל 1 ליטר",
+    "aliases": [
+      "תירוש כרמל",
+      "מיץ ענבים תירוש"
+    ],
+    "supermarketPrice": 18.2,
+    "chains": {
+      "osherAd": 17.5,
+      "ramiLevy": 18.2,
+      "yeshHesed": 18.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "coffee_elite",
+    "name": "קפה נמס עלית פחית 200 גרם",
+    "aliases": [
+      "קפה נמס עלית",
+      "נמס עלית 200"
+    ],
+    "supermarketPrice": 20.9,
+    "chains": {
+      "osherAd": 19.9,
+      "ramiLevy": 20.9,
+      "yeshHesed": 21.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "tasters_choice",
+    "name": "קפה מגורען טסטרס צ'ויס 200 גרם",
+    "aliases": [
+      "טסטרס צויס",
+      "טסטרס צ'ויס"
+    ],
+    "supermarketPrice": 33.9,
+    "chains": {
+      "osherAd": 32.9,
+      "ramiLevy": 33.9,
+      "yeshHesed": 34.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "tea_wissotzky",
+    "name": "תה ויסוצקי קלאסי 100 שקיקים",
+    "aliases": [
+      "ויסוצקי קלאסי",
+      "תה ויסוצקי 100"
+    ],
+    "supermarketPrice": 19.2,
+    "chains": {
+      "osherAd": 18.5,
+      "ramiLevy": 19.2,
+      "yeshHesed": 19.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "fairy_dish",
+    "name": "נוזל כלים פיירי 650 מ\"ל",
+    "aliases": [
+      "פיירי",
+      "נוזל כלים פיירי"
+    ],
+    "supermarketPrice": 12.2,
+    "chains": {
+      "osherAd": 11.5,
+      "ramiLevy": 12.2,
+      "yeshHesed": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "persil_gel",
+    "name": "ג'ל כביסה פרסיל / אריאל 2.5 ליטר",
+    "aliases": [
+      "ג'ל כביסה",
+      "גל כביסה",
+      "פרסיל כביסה",
+      "אריאל ג'ל"
+    ],
+    "supermarketPrice": 35.57,
+    "chains": {
+      "osherAd": 33.9,
+      "ramiLevy": 35.9,
+      "yeshHesed": 36.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "badin_softener",
+    "name": "מרכך כביסה מרוכז בדין 1 ליטר",
+    "aliases": [
+      "מרכך בדין",
+      "בדין מרוכז"
+    ],
+    "supermarketPrice": 15.9,
+    "chains": {
+      "osherAd": 14.9,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_bleach",
+    "name": "אקונומיקה סנו ג'ל 750 מ\"ל",
+    "aliases": [
+      "אקונומיקה סנו",
+      "סנו ג'ל"
+    ],
+    "supermarketPrice": 10.97,
+    "chains": {
+      "osherAd": 10.5,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.5
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "toilet_paper_30",
+    "name": "נייר טואלט דו-שכבתי 30 גלילים",
+    "aliases": [
+      "נייר טואלט 30",
+      "לילי 30",
+      "מולט 30"
+    ],
+    "supermarketPrice": 33.43,
+    "chains": {
+      "osherAd": 31.9,
+      "ramiLevy": 33.5,
+      "yeshHesed": 34.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "garbage_bags",
+    "name": "שקיות אשפה עם שרוך מארז 50-60 יח'",
+    "aliases": [
+      "שקיות אשפה שרוך",
+      "שקיות לפח"
+    ],
+    "supermarketPrice": 18.9,
+    "chains": {
+      "osherAd": 17.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 19.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "colgate_total",
+    "name": "משחת שיניים קולגייט טוטאל 100 מ\"ל",
+    "aliases": [
+      "קולגייט טוטאל",
+      "משחת שיניים קולגייט"
+    ],
+    "supermarketPrice": 13.9,
+    "chains": {
+      "osherAd": 12.9,
+      "ramiLevy": 13.9,
+      "yeshHesed": 14.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "hand_soap_1l",
+    "name": "אל סבון נוזלי לידיים מילוי 1 ליטר",
+    "aliases": [
+      "סבון נוזלי 1 ליטר",
+      "אל סבון מילוי",
+      "סבון ידיים 1"
+    ],
+    "supermarketPrice": 9.2,
+    "chains": {
+      "osherAd": 8.5,
+      "ramiLevy": 9.2,
+      "yeshHesed": 9.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "shampoo_havai",
+    "name": "שמפו / מרכך פינוק או הוואי 700 מ\"ל",
+    "aliases": [
+      "שמפו פינוק",
+      "שמפו הואי",
+      "מרכך פינוק",
+      "פינוק 700"
+    ],
+    "supermarketPrice": 11.2,
+    "chains": {
+      "osherAd": 10.5,
+      "ramiLevy": 11.2,
+      "yeshHesed": 11.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "peas_frozen_sunfrost",
+    "name": "אפונה עדינה סנפרוסט 800 גרם",
+    "aliases": [
+      "אפונה סנפרוסט",
+      "סנפרוסט אפונה"
+    ],
+    "supermarketPrice": 16.9,
+    "chains": {
+      "osherAd": 15.9,
+      "ramiLevy": 16.9,
+      "yeshHesed": 17.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "green_beans_sunfrost",
+    "name": "שעועית ירוקה עדינה סנפרוסט 800 גרם",
+    "aliases": [
+      "שעועית ירוקה סנפרוסט",
+      "סנפרוסט שעועית"
+    ],
+    "supermarketPrice": 16.9,
+    "chains": {
+      "osherAd": 15.9,
+      "ramiLevy": 16.9,
+      "yeshHesed": 17.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "fries_frozen",
+    "name": "צ'יפס אמריקאי קפוא 1.5-2 ק\"ג",
+    "aliases": [
+      "ציפס קפוא",
+      "צ'יפס אמריקאי",
+      "תפודים ציפס"
+    ],
+    "supermarketPrice": 20.43,
+    "chains": {
+      "osherAd": 18.9,
+      "ramiLevy": 20.5,
+      "yeshHesed": 21.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bourekas_potato",
+    "name": "בורקס תפוחי אדמה מעדנות 800 גרם",
+    "aliases": [
+      "בורקס תפוחי אדמה",
+      "בורקס מעדנות"
+    ],
+    "supermarketPrice": 18.9,
+    "chains": {
+      "osherAd": 17.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 19.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "malawach",
+    "name": "מלוואח מעדנות 700 גרם",
+    "aliases": [
+      "מלוואח מעדנות",
+      "מלוח מעדנות"
+    ],
+    "supermarketPrice": 15.9,
+    "chains": {
+      "osherAd": 14.9,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "schnitzel_corn",
+    "name": "שניצל תירס טבעול 750 גרם",
+    "aliases": [
+      "שניצל תירס",
+      "טבעול תירס"
+    ],
+    "supermarketPrice": 28.43,
+    "chains": {
+      "osherAd": 26.9,
+      "ramiLevy": 28.5,
+      "yeshHesed": 29.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "chicken_breast_fresh",
+    "name": "חזה עוף טרי מוכשר 1 ק\"ג",
+    "aliases": [
+      "חזה עוף טרי",
+      "חזה עוף נקי"
+    ],
+    "supermarketPrice": 38.23,
+    "chains": {
+      "osherAd": 36.9,
+      "ramiLevy": 37.9,
+      "yeshHesed": 39.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "ground_beef_frozen",
+    "name": "בשר טחון קפוא חלק 500 גרם",
+    "aliases": [
+      "בשר בקר טחון",
+      "בקר טחון קפוא",
+      "טחון חלק"
+    ],
+    "supermarketPrice": 21.57,
+    "chains": {
+      "osherAd": 19.9,
+      "ramiLevy": 21.9,
+      "yeshHesed": 22.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "salmon_fillet_frozen",
+    "name": "פילה סלמון קפוא בוואקום 1 ק\"ג",
+    "aliases": [
+      "פילה סלמון",
+      "סלמון קפוא"
+    ],
+    "supermarketPrice": 62.57,
+    "chains": {
+      "osherAd": 59.9,
+      "ramiLevy": 62.9,
+      "yeshHesed": 64.9
+    },
+    "lastVerified": "2026-11-09"
+  }
+]
