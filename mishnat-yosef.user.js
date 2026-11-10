@@ -4,6 +4,8 @@
 // @version      0.4
 // @description  סל קניות משפחתי חכם למשנת יוסף - מד תקציב שבועי, תזכורת קבועים שנשכחו, מחשבון חיסכון והשוואת מחירים לרשתות השיווק, סימון מוצרים שהוזמנו בעבר, סימון קבועים, היסטוריית קניות מפורטת, הדפסת רשימת איסוף, והוספה מהירה לסל
 // @author       לב טוב דיגיטל (https://digital.levtov.uk/)
+// @copyright    2026, Lev Tov Digital (https://digital.levtov.uk/). All Rights Reserved.
+// @license      Proprietary - כל הזכויות שמורות ללב טוב דיגיטל. לשימוש אישי בלבד. אין להעתיק או להפיץ מחדש.
 // @match        https://mishnatyosef.org/*
 // @match        https://*.mishnatyosef.org/*
 // @connect      digital.levtov.uk

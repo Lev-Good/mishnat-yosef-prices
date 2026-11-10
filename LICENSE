@@ -1,0 +1,40 @@
+PROPRIETARY LICENSE & COPYRIGHT NOTICE
+========================================
+
+Copyright (c) 2026 Lev Tov Digital (לב טוב דיגיטל - Yehuda).
+Website: https://digital.levtov.uk/
+Contact: mytovmail@gmail.com
+All Rights Reserved.
+
+1. PROPRIETARY RIGHTS & OWNERSHIP
+---------------------------------
+The software ("מוסיף למשנת - סל קניות משפחתי חכם", including all JavaScript source code,
+userscripts, extension files, stylesheets, visual layouts, and price database schemas)
+is the exclusive proprietary property of Lev Tov Digital (לב טוב דיגיטל).
+
+2. PERMITTED USE
+----------------
+You are granted a personal, revocable, non-exclusive, non-transferable license to use,
+run, and execute this software solely as a personal browser extension / userscript for
+your own personal non-commercial use on https://mishnatyosef.org/.
+
+3. PROHIBITED ACTIONS
+---------------------
+Without prior express written permission from Lev Tov Digital, you may NOT:
+a) Copy, duplicate, reproduce, redistribute, republish, or sub-license the source code
+   or any substantial part thereof.
+b) Modify, fork, merge, or create derivative works of this software for public distribution
+   or re-branding.
+c) Upload, publish, or distribute this software or derivative works to the Chrome Web Store,
+   Edge Add-ons, Firefox Add-ons, or any other extension catalog or third-party repository.
+d) Commercialize, sell, rent, lease, or monetize this software or any data generated from it.
+e) Remove, obscure, or alter any copyright notice, branding, author credits, or website links.
+
+4. DISCLAIMER
+-------------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES,
+OR OTHER LIABILITY ARISING FROM THE USE OF THIS SOFTWARE.
+
+This software is an independent third-party tool and is not affiliated with, endorsed by,
+or officially connected to "Mishnat Yosef" (משנת יוסף).
