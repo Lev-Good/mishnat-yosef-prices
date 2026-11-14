@@ -1098,11 +1098,11 @@ function showToast(msg, type = 'success') {
           if (diff >= 0.5) {
             compTag.className = 'myfam-price-comp-tag tag-saving';
             compTag.innerHTML = `⚡ חסכון ₪${diff.toFixed(1)}`;
-            compTag.title = `מחיר ברשתות: כ-₪${compItem.supermarketPrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})`;
-          } else if (diff <= -0.8) {
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות: כ-₪${compItem.supermarketPrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})`;
+          } else if (diff <= -0.5) {
             compTag.className = 'myfam-price-comp-tag tag-expensive';
-            compTag.innerHTML = `יקר ב-₪${Math.abs(diff).toFixed(1)}`;
-            compTag.title = `מחיר ברשתות: כ-₪${compItem.supermarketPrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})`;
+            compTag.innerHTML = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות: כ-₪${compItem.supermarketPrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)} מול רשתות השיווק)`;
           } else {
             // הפרש זניח - מסירים כדי לשמור על עיצוב נקי ומינימליסטי
             compTag.remove();
@@ -3600,6 +3600,18 @@ function showToast(msg, type = 'success') {
           </div>
         </div>
 
+        ${(() => {
+          const expensiveItems = stats.items.filter(it => it.itemSavings < -0.4);
+          if (!expensiveItems.length) return '';
+          const totalExtra = expensiveItems.reduce((acc, it) => acc + Math.abs(it.itemSavings), 0);
+          return `
+            <div style="background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;border-radius:10px;padding:9px 14px;margin-bottom:12px;font-size:12.5px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:16px;">⚠️</span>
+              <span><b>שימו לב:</b> אותרו <b>${expensiveItems.length}</b> מוצרים בסל שבהם משנת יוסף יקרה יותר מרשתות השיווק (בסך מצטבר של ₪${totalExtra.toFixed(2)}). המוצרים מסומנים באדום בטבלה.</span>
+            </div>
+          `;
+        })()}
+
         <div class="myfam-savings-disclaimer">
           ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול חציון רשתות השיווק המובילות (אושר עד, רמי לוי, יש חסד). ירקות, פירות, מוצרים שקילים ומוצרים ייחודיים אינם נכללים בהשוואה.
         </div>
@@ -5322,7 +5334,7 @@ function showToast(msg, type = 'success') {
       /* תגית השוואת מחיר על כרטיס המוצר - מינימליסטית ועדינה */
       .myfam-price-comp-tag{display:inline-flex;align-items:center;gap:2px;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:4px;padding:0 5px;font-size:10px;font-weight:700;line-height:16px;white-space:nowrap;vertical-align:middle;margin:0 4px;cursor:help;user-select:none;pointer-events:auto;box-shadow:0 1px 2px rgba(0,0,0,0.03)}
       .myfam-price-comp-tag.tag-saving{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
-      .myfam-price-comp-tag.tag-expensive{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
+      .myfam-price-comp-tag.tag-expensive{background:#fff1f2;color:#be123c;border-color:#fecdd3;font-weight:700}
       #myfam-panel.floating #myfam-toggle{cursor:grab}
       #myfam-panel.floating.dragging #myfam-toggle{cursor:grabbing}
 
