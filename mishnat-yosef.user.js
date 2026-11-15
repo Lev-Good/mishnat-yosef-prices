@@ -2920,14 +2920,14 @@ function showToast(msg, type = 'success') {
       "שמן זית",
       "כתית מעולה 750"
     ],
-    "supermarketPrice": 38.57,
+    "supermarketPrice": 29.85,
     "chains": {
-      "osherAd": 36.9,
-      "ramiLevy": 38.9,
-      "yeshHesed": 39.9,
-      "netoChisachon": 38.4
+      "osherAd": 29.9,
+      "ramiLevy": 29.8,
+      "yeshHesed": null,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "sugar_white",
@@ -3049,14 +3049,14 @@ function showToast(msg, type = 'success') {
       "ספגטי אסם",
       "פסטה ספגטי"
     ],
-    "supermarketPrice": 5.97,
+    "supermarketPrice": 4.5,
     "chains": {
-      "osherAd": 5.5,
-      "ramiLevy": 5.9,
-      "yeshHesed": 6.5,
-      "netoChisachon": 6
+      "osherAd": 4.5,
+      "ramiLevy": 4.5,
+      "yeshHesed": 4.5,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "pasta_osem_penne",
@@ -3119,14 +3119,14 @@ function showToast(msg, type = 'success') {
       "טונה בשמן רביעיה",
       "מארז טונה"
     ],
-    "supermarketPrice": 23.57,
+    "supermarketPrice": 29.9,
     "chains": {
-      "osherAd": 21.9,
-      "ramiLevy": 23.9,
-      "yeshHesed": 24.9,
-      "netoChisachon": 23.4
+      "osherAd": null,
+      "ramiLevy": 29.9,
+      "yeshHesed": null,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "corn_can",
