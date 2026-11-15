@@ -10,7 +10,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI } from '@google/genai';
-import { parseProductUnits, areUnitsCompatible, findMarketComparison } from './parse_units.mjs';
+import { parseProductUnits, areUnitsCompatible, findMarketComparison, norm } from './parse_units.mjs';
 
 const PRICES_FILE = path.resolve('prices.json');
 const MAPPING_FILE = path.resolve('scripts', 'mapping_cache.json');
@@ -49,11 +49,16 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function isLeafHerbItem(name) {
+  return /(?:כוסברה|שמיר|פטרוזיליה|בזיליקום|נענע|רוזמרין|סלרי|חסה|רוקט|תרד|בצל\s*ירוק|עירית)/i.test(name || '');
+}
+
 function isProduceItem(name, mappingEntry) {
+  if (isLeafHerbItem(name)) return false;
   if (mappingEntry && typeof mappingEntry.isProduce === 'boolean') {
     return mappingEntry.isProduce;
   }
-  return /(?:בצל|תפוחי?\s*אדמה|תפוח\s*אדמה|עגבני[הו]|מלפפון|גזר|פלפל|חסה|כרוב|בטטה|שום|קישוא|חציל|דלורית|אפרסמון|קלמנטינה|תפוז|אגס|בננ|לימון|אבוקדו|סלק|קולרבי|פטרוזיליה|כוסברה|שמיר|סלרי)/i.test(name || '');
+  return /(?:בצל|תפוחי?\s*אדמה|תפוח\s*אדמה|עגבני[הו]|מלפפון|גזר|פלפל|כרוב|בטטה|שום|קישוא|חציל|דלורית|אפרסמון|קלמנטינה|תפוז|אגס|בננ|לימון|אבוקדו|סלק|קולרבי)/i.test(name || '');
 }
 
 /**
@@ -236,17 +241,27 @@ function median(nums) {
  * ניקוי שמות מוצרים ממשנת יוסף ובניית שאילתות מדורגות לחיפוש ב-chp.co.il.
  */
 function cleanMishnatName(rawName, stripPrivateBrands = false) {
+  const heBoundaryStart = '(?:^|(?<=[\\s()[\\]\\/\\-–—"\'״׳.,]))';
+  const heBoundaryEnd = '(?=$|[\\s()[\\]\\/\\-–—"\'״׳.,])';
+  const stripPhraseRe = phrases => new RegExp(`${heBoundaryStart}(?:${phrases})${heBoundaryEnd}`, 'gi');
+
   let s = (rawName || '')
     .replace(/\{[^}]*\}/g, ' ')
     .replace(/\[[^\]]*\]/g, ' ')
     .replace(/\((?:כתום|חום|ירוק|צהוב|אדום|שחור|לבן|אריזת?\s*[^)]*|מומלץ!?|לאחר הפסח)\)/gi, ' ')
-    .replace(/\bגר['"״׳]?/g, 'גרם')
-    .replace(/\bקילו\b/g, 'ק"ג')
-    .replace(/\bיח['"״׳]?\b/g, 'יחידות')
-    .replace(/\b(?:מומלץ!?|אריזה מוגדלת|מארז מוגדל|מהדורה מוגבלת|בשקית|בקופסא)\b/gi, ' ');
+    .replace(/קרטון\s+בצבע\s+[^\s]+(?:\s+[^\s]+)?/gi, ' ')
+    .replace(/רשת\s+(?:כתומה|ירוקה|אדומה|לבנה)/gi, ' ')
+    .replace(stripPhraseRe('גידולי\\s*אדמה|גוש\\s*קטיף|חסלט|עלי\\s*קטיף|מהדרין|בד["״]?ץ|לנדא|העדה\\s*החרדית|מובחר|טריים|טרי|בשקית|בקופסא|איסוף\\s+כמוצר\\s+בודד|מומלץ!?|אריזה\\s*מוגדלת|מארז\\s*מוגדל|מהדורה\\s*מוגבלת'), ' ')
+    .replace(/\b(?:XL|XXL)\b/gi, ' ')
+    .replace(stripPhraseRe("גר['\"״׳]?"), 'גרם')
+    .replace(stripPhraseRe('קילו'), 'ק"ג')
+    .replace(stripPhraseRe("יח['\"״׳]?"), 'יחידות')
+    .replace(stripPhraseRe('רביעיית'), 'רביעיה')
+    .replace(stripPhraseRe('שישיית'), 'שישיה')
+    .replace(stripPhraseRe('עשיריית'), 'עשיריה');
 
   if (stripPrivateBrands) {
-    s = s.replace(/\b(?:קייטי|מ\.מ\.|מ\.מ|הדר גאולה|אשבול|My\s*VILLAGE|באגסי|תירוש|ברמן|ריאו)\b/gi, ' ');
+    s = s.replace(stripPhraseRe('קייטי|מ\\.מ\\.?|הדר\\s*גאולה|אשבול|My\\s*VILLAGE|באגסי|ברמן|ריאו|ענבי\\s*טלי'), ' ');
   }
 
   return s
@@ -264,6 +279,7 @@ function buildSearchQueries(item, isProduce) {
 
   const fullClean = cleanMishnatName(item.name, false);
   const genericClean = cleanMishnatName(item.name, true);
+  const isHerb = isLeafHerbItem(item.name);
 
   if (isProduce) {
     const baseProd = genericClean.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
@@ -273,13 +289,23 @@ function buildSearchQueries(item, isProduce) {
     }
     addQ(`${baseProd.split(' ').slice(0, 3).join(' ')} משקל`);
     addQ(baseProd);
+  } else if (isHerb) {
+    const baseHerb = genericClean.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+    addQ(`${baseHerb} בשקית`);
+    addQ(baseHerb);
   }
 
   addQ(fullClean);
   if (genericClean !== fullClean) addQ(genericClean);
 
   const words = genericClean.replace(/[()]/g, ' ').split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
-  if (words.length > 4) {
+  const leadStopWords = new Set(['רביעיה', 'שישיה', 'עשיריה', 'ראש', 'מארז', 'קופסא', 'שקית', 'סלסלה', 'חמישיית', 'זוג', 'עלי']);
+  const coreWords = leadStopWords.has(words[0]) ? words.slice(1) : words;
+
+  if (coreWords.length >= 2) {
+    addQ(coreWords.slice(0, 3).join(' '));
+    addQ(coreWords.slice(0, 2).join(' '));
+  } else if (words.length > 4) {
     addQ(words.slice(0, 4).join(' '));
   }
   if (words.length > 2) {
@@ -311,6 +337,10 @@ function isCandidateUnitCompatible(targetName, targetUnits, candLabel) {
 
   // מניעת השוואת שק של 2+ ק"ג למחיר ליחידת משקל של 1 ק"ג
   if (targetUnits.weightGrams && targetUnits.weightGrams >= 2000 && /מחיר לפי משקל/i.test(candLabel) && !candUnits.weightGrams) {
+    return false;
+  }
+  // מניעת השוואת עלים ירוקים/תבלינים טריים באריזה (צרור/שקית ~5 ש"ח) למחיר לקילו (~100 ש"ח)
+  if (isLeafHerbItem(targetName) && !targetUnits.weightGrams && /מחיר לפי משקל/i.test(candLabel)) {
     return false;
   }
   return true;
@@ -482,12 +512,12 @@ async function selectMatchesWithAI(batchPrepared) {
   const prompt = `
 אתה מומחה ישראלי להתאמת מוצרי סופרמרקט ומוצרי צריכה.
 לכל מוצר של "משנת יוסף" ברשימה מטה צורפה רשימת מועמדים אמיתיים שנשלפו ממאגר המחירים הארצי (chp.co.il).
-עליך לבחור עבור כל מוצר את האינדקס (selectedIdx) של המועמד שמתאים לו להשוואת מחיר, או null אם אף מועמד אינו מתאים!
+עליך לבחור עבור כל מוצר עד 3 אינדקסים תואמים ("selectedIndices") בסדר עדיפות יורד (הראשון הוא ההתאמה הטובה ביותר, והבאים הם חלופות תואמות של אותו מוצר/גרסה/ברקוד במקרה שלראשון חסרים מחירים בחלק מהרשתות), או מערך ריק [] אם אף מועמד אינו מתאים!
 
 כללי התאמה מחמירים:
 1. התאמה מהותית מדויקת: אסור להתאים מוצר שונה במהותו או באחוזי השומן (לדוגמה: אסור להתאים חלב 3% לחלב 1%, אסור להתאים שמנת חמוצה לחמאה, אסור להתאים ממתק/קינדר לביצים, אסור להתאים סבון למלפפון, אסור להתאים פסטה לבושם!).
 2. התאמת גודל/משקל/מארז: הקפד שהמשקל, הנפח וכמות היחידות תואמים (סטייה קלה עד ~8% מותרת, למשל 686 גרם מול 700/750 גרם רק אם זה אותו מוצר בדיוק, או טונה 335 מול 340 גרם). לעולם אל תתאים מארז ליחידה או 5 ק"ג ל-1 ק"ג ("מחיר לפי משקל").
-3. ירקות ופירות (isProduce=true): בחר "מחיר לפי משקל" (1 ק"ג) אלא אם למשנת יוסף יש שק במשקל נקוב גדול (כמו 5 ק"ג) ואז התאם רק לשק של 5 ק"ג.
+3. ירקות ופירות (isProduce=true): בחר "מחיר לפי משקל" (1 ק"ג) אלא אם למשנת יוסף יש שק במשקל נקוב גדול (כמו 5 ק"ג) ואז התאם רק לשק של 5 ק"ג. עבור עשבי תיבול ועלים באריזה (כוסברה, שמיר, פטרוזיליה, בזיליקום, חסה, סלרי) — בחר רק שקית/יחידה/מארז ולא "מחיר לפי משקל" לקילו.
 4. מותג פרטי / מוצר בסיסי (כגון קייטי, מ.מ., הדר גאולה, או שם גנרי כמו "פסטה", "אטריות", "וופלים"): אם אין מותג זהה, מותר ורצוי לבחור מוצר מותג מקביל עם אותה מהות, טעם, סוג ומשקל/מארז — ובמקרה כזה חובה לסמן "isEquivalentBrand": true!
    לעומת זאת, אם שם המוצר במשנת יוסף מציין מותג מוכר (תנובה, טרה, אסם, עלית, תלמה, שטראוס, סנו, פיירי, Careline וכו') — העדף התאמה לאותו מותג ("isEquivalentBrand": false), והשתמש במקביל רק אם מדובר במוצר יסוד זהה לחלוטין (כגון סוכר לבן/קמח/מלח).
 
@@ -499,7 +529,7 @@ ${JSON.stringify(payload, null, 2)}
   "results": [
     {
       "id": "item_id",
-      "selectedIdx": 0,
+      "selectedIndices": [0, 2],
       "isEquivalentBrand": false
     }
   ]
@@ -562,8 +592,9 @@ async function main() {
     mappingCache = JSON.parse(fs.readFileSync(MAPPING_FILE, 'utf8'));
   }
 
-  // שילוב מוצרים חדשים מקטלוג משנת יוסף החי (ללא סינון קטגוריות)
+  // שילוב מוצרים חדשים מקטלוג משנת יוסף החי (ללא סינון קטגוריות) + שמירת מחיר משנת יוסף כעוגן שפיות
   const candidates = [];
+  const livePriceByName = new Map();
   const LIVE_CATALOG_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
   if (fs.existsSync(LIVE_CATALOG_FILE)) {
     try {
@@ -573,6 +604,10 @@ async function main() {
       let candidateCount = 0;
       for (const item of liveCatalog) {
         if (!item.name || item.name.length < 3) continue;
+        if (typeof item.price === 'number' && item.price > 0) {
+          livePriceByName.set(norm(item.name), item.price);
+          livePriceByName.set(`my_${item.id}`, item.price);
+        }
 
         const matchedExisting = findMarketComparison(item.name, prices);
         if (matchedExisting) {
@@ -604,6 +639,17 @@ async function main() {
       console.warn('⚠️ שגיאה בקריאת mishnat_live_catalog.json:', e.message);
     }
   }
+
+  const getLivePriceForItem = item => {
+    if (livePriceByName.has(item.id)) return livePriceByName.get(item.id);
+    const byName = livePriceByName.get(norm(item.name));
+    if (byName) return byName;
+    for (const al of (item.aliases || [])) {
+      const p = livePriceByName.get(norm(al));
+      if (p) return p;
+    }
+    return null;
+  };
 
   let targetList = [...candidates, ...prices];
   if (targetId) {
@@ -641,50 +687,91 @@ async function main() {
 
     const aiDecisions = await selectMatchesWithAI(batch);
 
-    // איסוף בחירות תקינות לשליפת מחירים רב-עירונית במקביל
+    // איסוף בחירות מדורגות (עד 3 מועמדים תואמים למוצר) לשליפת מחירים רב-עירונית והשלמה חלופית
     const toFetchPrices = [];
     for (const entry of batch) {
       const dec = aiDecisions.find(d => d.id === entry.item.id);
-      if (!dec || typeof dec.selectedIdx !== 'number' || !entry.candidates[dec.selectedIdx]) {
-        console.warn(`ℹ️ לא נמצאה התאמת מוצר מאומתת עבור "${entry.item.name}" - מדלג.`);
-        continue;
-      }
-      const chosen = entry.candidates[dec.selectedIdx];
-      const targetUnits = parseProductUnits(entry.item.name);
-      if (!isCandidateUnitCompatible(entry.item.name, targetUnits, chosen.label)) {
-        console.warn(`⚠️ אי-התאמת יחידות עבור "${entry.item.name}": נדחה המוצר "${chosen.label}".`);
-        continue;
-      }
-      toFetchPrices.push({ entry, chosen, isEquivalentBrand: Boolean(dec.isEquivalentBrand) });
-    }
-
-    const fetchedPrices = await mapWithConcurrency(toFetchPrices, 3, async task => {
-      const priceData = await fetchChpPricesMultiCity(task.chosen);
-      return { ...task, priceData };
-    });
-
-    for (const { entry, chosen, isEquivalentBrand, priceData } of fetchedPrices) {
-      const { item } = entry;
-      const validChainPrices = {};
-
-      for (const chain of ALLOWED_CHAINS) {
-        const val = priceData.chains[chain];
-        if (typeof val === 'number' && val > 0) {
-          const prevPrice = item.chains?.[chain] || item.supermarketPrice;
-          if (prevPrice && (val < prevPrice * 0.4 || val > prevPrice * 2.2)) {
-            console.warn(`⚠️ מחיר חריג עבור ${item.name} ברשת ${chain}: ${val} (מחיר קודם: ${prevPrice}) - נפסל.`);
-            validChainPrices[chain] = item.chains?.[chain] ?? null;
-          } else {
-            validChainPrices[chain] = Math.round(val * 100) / 100;
-          }
-        } else {
-          validChainPrices[chain] = null;
+      let rawIndices = [];
+      if (dec) {
+        if (Array.isArray(dec.selectedIndices)) {
+          rawIndices = dec.selectedIndices;
+        } else if (typeof dec.selectedIdx === 'number') {
+          rawIndices = [dec.selectedIdx];
         }
       }
 
+      const targetUnits = parseProductUnits(entry.item.name);
+      const chosenList = [];
+      const seenIdx = new Set();
+      for (const idx of rawIndices) {
+        if (typeof idx !== 'number' || seenIdx.has(idx) || !entry.candidates[idx]) continue;
+        seenIdx.add(idx);
+        const cand = entry.candidates[idx];
+        if (!isCandidateUnitCompatible(entry.item.name, targetUnits, cand.label)) {
+          console.warn(`⚠️ אי-התאמת יחידות עבור "${entry.item.name}": נדחה המוצר "${cand.label}".`);
+          continue;
+        }
+        chosenList.push(cand);
+        if (chosenList.length >= 3) break;
+      }
+
+      if (chosenList.length === 0) {
+        console.warn(`ℹ️ לא נמצאה התאמת מוצר מאומתת עבור "${entry.item.name}" - מדלג.`);
+        continue;
+      }
+      toFetchPrices.push({ entry, chosenList, isEquivalentBrand: Boolean(dec?.isEquivalentBrand) });
+    }
+
+    const isPriceSane = (item, chain, val, livePrice) => {
+      if (livePrice && livePrice > 0) {
+        if (val < livePrice * 0.3 || val > livePrice * 3.0) {
+          console.warn(`⚠️ מחיר חריג עבור ${item.name} ברשת ${chain}: ${val} מול מחיר משנת יוסף ${livePrice} - נפסל.`);
+          return false;
+        }
+        return true;
+      }
+      const prevPrice = item.chains?.[chain] || item.supermarketPrice;
+      if (prevPrice && (val < prevPrice * 0.35 || val > prevPrice * 2.8)) {
+        console.warn(`⚠️ מחיר חריג עבור ${item.name} ברשת ${chain}: ${val} (מחיר קודם: ${prevPrice}) - נפסל.`);
+        return false;
+      }
+      return true;
+    };
+
+    const fetchedPrices = await mapWithConcurrency(toFetchPrices, 3, async task => {
+      const { entry, chosenList } = task;
+      const livePrice = getLivePriceForItem(entry.item);
+      const mergedChains = { osherAd: null, ramiLevy: null, yeshHesed: null, netoChisachon: null };
+      let primaryTitle = null;
+      let primaryLabel = chosenList[0].label;
+
+      for (const cand of chosenList) {
+        const missingChains = ALLOWED_CHAINS.filter(c => mergedChains[c] == null);
+        if (missingChains.length === 0) break;
+
+        const priceData = await fetchChpPricesMultiCity(cand);
+        let acceptedAnyFromCand = false;
+        for (const chain of missingChains) {
+          const val = priceData.chains[chain];
+          if (typeof val === 'number' && val > 0 && isPriceSane(entry.item, chain, val, livePrice)) {
+            mergedChains[chain] = Math.round(val * 100) / 100;
+            acceptedAnyFromCand = true;
+          }
+        }
+        if (acceptedAnyFromCand && !primaryTitle) {
+          primaryTitle = priceData.resolvedTitle || cand.label;
+          primaryLabel = cand.label;
+        }
+      }
+
+      return { ...task, livePrice, validChainPrices: mergedChains, resolvedTitle: primaryTitle, chosenLabel: primaryLabel };
+    });
+
+    for (const { entry, isEquivalentBrand, validChainPrices, resolvedTitle, chosenLabel } of fetchedPrices) {
+      const { item } = entry;
       const activeValues = Object.values(validChainPrices).filter(v => typeof v === 'number' && v > 0);
       if (activeValues.length === 0) {
-        console.warn(`ℹ️ לא נמצאו מחירי רשתות יעד מאומתים עבור "${item.name}" (${chosen.label}) השבוע - מדלג.`);
+        console.warn(`ℹ️ לא נמצאו מחירי רשתות יעד מאומתים עבור "${item.name}" (${chosenLabel}) השבוע - מדלג.`);
         continue;
       }
 
@@ -694,7 +781,7 @@ async function main() {
       item.chains = validChainPrices;
       item.supermarketPrice = newAvg;
       item.lastVerified = todayStr;
-      item.matchedName = priceData.resolvedTitle || chosen.label;
+      item.matchedName = resolvedTitle || chosenLabel;
       if (isEquivalentBrand) {
         item.isEquivalentBrand = true;
       } else {

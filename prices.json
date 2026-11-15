@@ -2196,22 +2196,6 @@
     "lastVerified": "2026-11-15"
   },
   {
-    "id": "my_27",
-    "name": "אפרסמון {מ.מ.}",
-    "aliases": [
-      "אפרסמון {מ.מ.}"
-    ],
-    "supermarketPrice": 12.9,
-    "chains": {
-      "osherAd": 12.9,
-      "ramiLevy": 12.9,
-      "yeshHesed": 12.9,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-15",
-    "matchedName": "מיץ ענבים תירוש, 1 ליטר"
-  },
-  {
     "id": "my_392",
     "name": "פטרוזליה {לנדא}",
     "aliases": [
@@ -2462,56 +2446,6 @@
     },
     "lastVerified": "2026-11-15",
     "matchedName": "סלרי עלים בשקית יחידה שדות בעמק",
-    "isEquivalentBrand": true
-  },
-  {
-    "id": "my_388",
-    "name": "כוסברה {לנדא}",
-    "aliases": [
-      "כוסברה {לנדא}"
-    ],
-    "supermarketPrice": 100,
-    "chains": {
-      "osherAd": null,
-      "ramiLevy": 100,
-      "yeshHesed": null,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-15",
-    "matchedName": "כוסברה עלים, מחיר לפי משקל",
-    "isEquivalentBrand": true
-  },
-  {
-    "id": "my_393",
-    "name": "שמיר {לנדא}",
-    "aliases": [
-      "שמיר {לנדא}"
-    ],
-    "supermarketPrice": 100,
-    "chains": {
-      "osherAd": null,
-      "ramiLevy": 100,
-      "yeshHesed": null,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-15",
-    "matchedName": "שמיר עלים, מחיר לפי משקל"
-  },
-  {
-    "id": "my_7039",
-    "name": "עלי בזיליקום טריים {לנדא}",
-    "aliases": [
-      "עלי בזיליקום טריים {לנדא}"
-    ],
-    "supermarketPrice": 80,
-    "chains": {
-      "osherAd": null,
-      "ramiLevy": 80,
-      "yeshHesed": null,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-15",
-    "matchedName": "בזיליקום עלים, מחיר לפי משקל",
     "isEquivalentBrand": true
   },
   {
