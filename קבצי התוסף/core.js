@@ -1100,7 +1100,7 @@ function showToast(msg, type = 'success') {
           }
           const selChainNames = (compItem.activeChainEntries && compItem.activeChainEntries.length)
             ? compItem.activeChainEntries.map(([c]) => ALL_CHAINS[c]?.name || c).join(', ')
-            : 'רשתות שיווק';
+            : (compItem.sourceLabel || 'רשתות שיווק');
           const eqSuffix = compItem.isEquivalentBrand ? ' (מקביל)' : '';
           const eqNote = compItem.isEquivalentBrand
             ? `\n* הערה: השוואה למותג מקביל שאינו זהה (${compItem.matchedName || 'מוצר מקביל דומה'}).`
@@ -5099,6 +5099,7 @@ function showToast(msg, type = 'success') {
         itemSavings,
         savingsPct: marketItemTotal > 0 ? (itemSavings / marketItemTotal) * 100 : 0,
         chains: activeChains,
+        sourceLabel: match.sourceLabel || '',
         isEquivalentBrand: !!match.isEquivalentBrand,
         matchedName: match.matchedName || ''
       });
@@ -5194,7 +5195,7 @@ function showToast(msg, type = 'success') {
         .map(([cName, cPrice]) => {
           const heName = ALL_CHAINS[cName]?.name || cName;
           return `<span class="myfam-chain-pill">${heName}: ₪${Number(cPrice).toFixed(2)}</span>`;
-        }).join('');
+        }).join('') || (it.sourceLabel ? `<span class="myfam-chain-pill">${esc(it.sourceLabel)}</span>` : '');
       const eqBadge = it.isEquivalentBrand
         ? `<div style="font-size:11px; color:#92400e; background:#fef3c7; border:1px solid #fde68a; border-radius:4px; padding:1px 6px; display:inline-block; margin-top:3px;">מותג מקביל שאינו זהה${it.matchedName ? `: ${esc(it.matchedName)}` : ''}</div>`
         : '';

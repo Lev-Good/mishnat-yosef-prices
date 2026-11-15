@@ -26,6 +26,9 @@ const candidateLimitIndex = args.indexOf('--candidate-limit');
 const MAX_CANDIDATES = candidateLimitIndex !== -1 ? parseInt(args[candidateLimitIndex + 1], 10) : Infinity;
 const targetIdIndex = args.indexOf('--id');
 const targetId = targetIdIndex !== -1 ? args[targetIdIndex + 1] : null;
+const disableSearchFallback = args.includes('--no-search-fallback');
+const searchBatchSizeIndex = args.indexOf('--search-batch-size');
+const SEARCH_BATCH_SIZE = searchBatchSizeIndex !== -1 ? parseInt(args[searchBatchSizeIndex + 1], 10) : 8;
 
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 let ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
@@ -37,6 +40,12 @@ const CANDIDATE_MODELS = [
   'gemini-flash-latest',
   'gemma-4-31b-it',
   'gemma-4-26b-a4b-it'
+];
+const SEARCH_GROUNDING_MODELS = [
+  'gemini-3.5-flash-lite',
+  'gemini-3.1-flash-lite',
+  'gemini-3.8-flash',
+  'gemini-flash-latest'
 ];
 let activeModel = CANDIDATE_MODELS[0];
 
@@ -282,7 +291,11 @@ function buildSearchQueries(item, isProduce) {
   const isHerb = isLeafHerbItem(item.name);
 
   if (isProduce) {
-    const baseProd = genericClean.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+    const baseProd = genericClean
+      .replace(/\([^)]*\)/g, ' ')
+      .replace(/(?:^|\s)\d+(?:[.,]\d+)?\s*(?:ק["״]?ג|גרם|יח['׳"]?|יחידות)(?=$|\s|[()[\]/\-–—.,])/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
     const targetUnits = parseProductUnits(item.name);
     if (targetUnits.weightGrams >= 2000) {
       addQ(fullClean);
@@ -455,18 +468,21 @@ async function fetchChpPricesMultiCity(candidate) {
   return { chains: finalChains, resolvedTitle };
 }
 
-async function generateWithFallback(prompt) {
+async function generateWithFallback(prompt, extraConfig = {}, candidateModels = CANDIDATE_MODELS) {
   let lastErr = null;
-  const modelsToTry = [activeModel, ...CANDIDATE_MODELS.filter(m => m !== activeModel)];
+  const isDefaultModels = candidateModels === CANDIDATE_MODELS;
+  const modelsToTry = isDefaultModels
+    ? [activeModel, ...candidateModels.filter(m => m !== activeModel)]
+    : [...candidateModels];
 
   for (const modelName of modelsToTry) {
     try {
       const response = await ai.models.generateContent({
         model: modelName,
         contents: prompt,
-        config: { temperature: 0.1 }
+        config: { temperature: 0.1, ...extraConfig }
       });
-      if (activeModel !== modelName) {
+      if (isDefaultModels && activeModel !== modelName) {
         console.log(`ℹ️ עבר למודל פעיל: ${modelName}`);
         activeModel = modelName;
       }
@@ -492,6 +508,36 @@ async function generateWithFallback(prompt) {
     }
   }
   throw lastErr;
+}
+
+function parseModelJsonResponse(response) {
+  let text = response?.text || '';
+  if (!text && response?.candidates?.[0]?.content?.parts) {
+    text = response.candidates[0].content.parts.map(pt => pt.text || '').join('\n');
+  }
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    console.warn('⚠️ אזהרה: לא נמצא מבנה JSON בתשובת המודל.');
+    return null;
+  }
+  return JSON.parse(jsonMatch[0]);
+}
+
+function isPriceSane(item, sourceName, val, livePrice) {
+  if (typeof val !== 'number' || !Number.isFinite(val) || val <= 0) return false;
+  if (livePrice && livePrice > 0) {
+    if (val < livePrice * 0.3 || val > livePrice * 3.0) {
+      console.warn(`⚠️ מחיר חריג עבור ${item.name} (${sourceName}): ${val} מול מחיר משנת יוסף ${livePrice} - נפסל.`);
+      return false;
+    }
+    return true;
+  }
+  const prevPrice = item.chains?.[sourceName] || item.supermarketPrice;
+  if (prevPrice && (val < prevPrice * 0.35 || val > prevPrice * 2.8)) {
+    console.warn(`⚠️ מחיר חריג עבור ${item.name} (${sourceName}): ${val} (מחיר קודם: ${prevPrice}) - נפסל.`);
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -538,19 +584,75 @@ ${JSON.stringify(payload, null, 2)}
 
   try {
     const response = await generateWithFallback(prompt);
-    let text = response.text || '';
-    if (!text && response.candidates?.[0]?.content?.parts) {
-      text = response.candidates[0].content.parts.map(pt => pt.text || '').join('\n');
-    }
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      console.warn('⚠️ אזהרה: לא נמצא מבנה JSON בתשובת המודל.');
-      return [];
-    }
-    const parsed = JSON.parse(jsonMatch[0]);
-    return parsed.results || [];
+    const parsed = parseModelJsonResponse(response);
+    return parsed?.results || [];
   } catch (err) {
     console.error('❌ שגיאה בקריאה ל-Gemini עבור האצווה:', err.message);
+    return [];
+  }
+}
+
+/**
+ * שלב גיבוי היברידי (Google Search Grounding) עבור מוצרים שלא נמצאה להם התאמה במאגר הסופרים CHP
+ * (לדוגמה: תוספי תזונה, קוסמטיקה, מוצרי חשמל/מטבח, טקסטיל, ספרים או מוצרי סופר חסרים).
+ */
+async function searchPricesWithGoogleGrounding(batchItems) {
+  const payload = batchItems.map(item => ({
+    id: item.id,
+    name: item.name,
+    cleanQuery: cleanMishnatName(item.name, false)
+  }));
+
+  const prompt = `
+אתה חוקר מחירים בישראל. עבור רשימת המוצרים מ"משנת יוסף" שלא נמצאו במאגר הסופרים CHP, השתמש בחיפוש Google Search כדי לאתר מחירי שוק אמיתיים ועדכניים בש"ח (ILS) בחנויות וברשתות ישראליות (רשתות מזון, סופר-פארם, Be, זאפ, KSP, אייס, הום סנטר, אתרי מותגים וחנויות רשת בישראל).
+
+כללים מחמירים:
+1. אל תנחש ואל תמציא מחיר בשום אופן! החזר מחיר ("marketPrice") רק אם מצאת בתוצאות החיפוש מחיר ממשי ועדכני בישראל של המוצר (או של מוצר מקביל זהה במהות ובגודל). אם לא נמצא מידע אמין או שמדובר במוצר ייחודי/בלעדי שאין לו מקבילה בשוק, החזר "marketPrice": null.
+2. התאמת גודל/כמות/משקל חובה: ודא שהמחיר שמצאת תואם לאותו נפח, משקל או מספר יחידות במארז (למשל לא להשוות בקבוק 400 מ"ל ל-750 מ"ל או יחידה למארז).
+3. מותג מקביל: אם המותג מצוין במשנת יוסף ונמצא אותו מותג בדיוק — סמן "isEquivalentBrand": false. אם זהו מוצר פרטי/גנרי או כלי בית/טקסטיל כללי והשווית לדגם/מותג מקביל נפוץ בישראל בעל אותם מפרט וגודל — סמן "isEquivalentBrand": true.
+4. אם במקרה נמצאו מחירים באחת מארבע הרשתות המרכזיות (osherAd = אושר עד, ramiLevy = רמי לוי, yeshHesed = יש חסד, netoChisachon = נטו חיסכון), ציין אותם בשדה "chains" (או null אם לא נמצא).
+5. בשדה "sourceLabel" ציין בקצרה (2-4 מילים בעברית) מאילו אתרים/רשתות אומת המחיר (למשל: "זאפ / חנויות רשת", "סופר-פארם / פארם", "רמי לוי / שופרסל").
+
+רשימת המוצרים לבדיקה:
+${JSON.stringify(payload, null, 2)}
+
+החזר JSON תקני בלבד (ללא הקדמות או הסברים) במבנה הבא:
+{
+  "results": [
+    {
+      "id": "item_id",
+      "marketPrice": 49.9,
+      "matchedName": "שם המוצר שנמצא כולל משקל/גודל",
+      "sourceLabel": "זאפ / חנויות רשת",
+      "isEquivalentBrand": false,
+      "chains": {
+        "osherAd": null,
+        "ramiLevy": null,
+        "yeshHesed": null,
+        "netoChisachon": null
+      }
+    }
+  ]
+}
+`;
+
+  try {
+    const response = await generateWithFallback(
+      prompt,
+      { tools: [{ googleSearch: {} }] },
+      SEARCH_GROUNDING_MODELS
+    );
+    const groundingMeta = response?.candidates?.[0]?.groundingMetadata;
+    const hasGroundingQueries = Array.isArray(groundingMeta?.webSearchQueries) && groundingMeta.webSearchQueries.length > 0;
+    const hasGroundingChunks = Array.isArray(groundingMeta?.groundingChunks) && groundingMeta.groundingChunks.length > 0;
+    if (!hasGroundingQueries && !hasGroundingChunks) {
+      console.warn('⚠️ אזהרה: תשובת החיפוש ההיברידי לא החזירה מטא-דאטה של Google Search Grounding - מדלג על האצווה.');
+      return [];
+    }
+    const parsed = parseModelJsonResponse(response);
+    return parsed?.results || [];
+  } catch (err) {
+    console.error('❌ שגיאה בשלב הגיבוי (Google Search Grounding):', err.message);
     return [];
   }
 }
@@ -596,7 +698,8 @@ async function main() {
   const candidates = [];
   const livePriceByName = new Map();
   const LIVE_CATALOG_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
-  if (fs.existsSync(LIVE_CATALOG_FILE)) {
+  const hasLiveCatalog = fs.existsSync(LIVE_CATALOG_FILE);
+  if (hasLiveCatalog) {
     try {
       const liveCatalog = JSON.parse(fs.readFileSync(LIVE_CATALOG_FILE, 'utf8'));
       console.log(`ℹ️ נטען קטלוג משנת יוסף חי (${liveCatalog.length} פריטים). בודק מוצרים חדשים למיפוי...`);
@@ -680,6 +783,7 @@ async function main() {
   console.log(`📊 נמצאו מועמדים ב-chp.co.il עבור ${withCandidates.length} מתוך ${targetList.length} מוצרים (${withoutCandidates.length} ללא התאמה במאגר chp).`);
 
   let updatedCount = 0;
+  const updatedIds = new Set();
 
   for (let i = 0; i < withCandidates.length; i += BATCH_SIZE) {
     const batch = withCandidates.slice(i, i + BATCH_SIZE);
@@ -721,22 +825,6 @@ async function main() {
       }
       toFetchPrices.push({ entry, chosenList, isEquivalentBrand: Boolean(dec?.isEquivalentBrand) });
     }
-
-    const isPriceSane = (item, chain, val, livePrice) => {
-      if (livePrice && livePrice > 0) {
-        if (val < livePrice * 0.3 || val > livePrice * 3.0) {
-          console.warn(`⚠️ מחיר חריג עבור ${item.name} ברשת ${chain}: ${val} מול מחיר משנת יוסף ${livePrice} - נפסל.`);
-          return false;
-        }
-        return true;
-      }
-      const prevPrice = item.chains?.[chain] || item.supermarketPrice;
-      if (prevPrice && (val < prevPrice * 0.35 || val > prevPrice * 2.8)) {
-        console.warn(`⚠️ מחיר חריג עבור ${item.name} ברשת ${chain}: ${val} (מחיר קודם: ${prevPrice}) - נפסל.`);
-        return false;
-      }
-      return true;
-    };
 
     const fetchedPrices = await mapWithConcurrency(toFetchPrices, 3, async task => {
       const { entry, chosenList } = task;
@@ -782,6 +870,8 @@ async function main() {
       item.supermarketPrice = newAvg;
       item.lastVerified = todayStr;
       item.matchedName = resolvedTitle || chosenLabel;
+      delete item.source;
+      delete item.sourceLabel;
       if (isEquivalentBrand) {
         item.isEquivalentBrand = true;
       } else {
@@ -791,6 +881,7 @@ async function main() {
       if (!prices.some(p => p.id === item.id)) {
         prices.push(item);
       }
+      updatedIds.add(item.id);
       updatedCount++;
 
       if (mappingCache[item.id]) {
@@ -804,6 +895,88 @@ async function main() {
 
     if (i + BATCH_SIZE < withCandidates.length) {
       await sleep(1500);
+    }
+  }
+
+  // שלב 3: גיבוי היברידי via Google Search Grounding עבור מוצרים פעילים שלא עודכנו ב-CHP
+  if (!disableSearchFallback) {
+    const searchFallbackTargets = targetList.filter(item => {
+      if (updatedIds.has(item.id)) return false;
+      if (targetId || !hasLiveCatalog) return true;
+      return getLivePriceForItem(item) != null;
+    });
+
+    if (searchFallbackTargets.length > 0) {
+      console.log(`\n🔎 שלב 3: מריץ גיבוי היברידי ב-Google Search עבור ${searchFallbackTargets.length} מוצרים ללא התאמת CHP...`);
+      let searchUpdatedCount = 0;
+
+      for (let i = 0; i < searchFallbackTargets.length; i += SEARCH_BATCH_SIZE) {
+        const searchBatch = searchFallbackTargets.slice(i, i + SEARCH_BATCH_SIZE);
+        console.log(`\n🌐 אצוות Search ${Math.floor(i / SEARCH_BATCH_SIZE) + 1} מתוך ${Math.ceil(searchFallbackTargets.length / SEARCH_BATCH_SIZE)} (${searchBatch.map(it => it.name).join(', ')})...`);
+
+        const searchResults = await searchPricesWithGoogleGrounding(searchBatch);
+        for (const item of searchBatch) {
+          const res = searchResults.find(r => r && r.id === item.id);
+          if (!res) continue;
+
+          const matchedName = String(res.matchedName || '').trim();
+          if (matchedName && !isCandidateUnitCompatible(item.name, parseProductUnits(item.name), matchedName)) {
+            console.warn(`⚠️ [Google Search] אי-התאמת יחידות עבור "${item.name}": נדחה "${matchedName}".`);
+            continue;
+          }
+
+          const livePrice = getLivePriceForItem(item);
+          const validExplicitChains = {};
+          for (const chain of ALLOWED_CHAINS) {
+            const rawVal = res.chains?.[chain];
+            if (typeof rawVal === 'number' && rawVal > 0 && isPriceSane(item, chain, rawVal, livePrice)) {
+              validExplicitChains[chain] = Math.round(rawVal * 100) / 100;
+            }
+          }
+
+          const explicitVals = Object.values(validExplicitChains);
+          let finalMarketPrice = null;
+          let finalChains = {};
+
+          if (explicitVals.length > 0) {
+            finalMarketPrice = Math.round((explicitVals.reduce((a, b) => a + b, 0) / explicitVals.length) * 100) / 100;
+            finalChains = { osherAd: null, ramiLevy: null, yeshHesed: null, netoChisachon: null, ...validExplicitChains };
+          } else if (typeof res.marketPrice === 'number' && isPriceSane(item, 'Google Search', res.marketPrice, livePrice)) {
+            finalMarketPrice = Math.round(res.marketPrice * 100) / 100;
+          }
+
+          if (!finalMarketPrice || finalMarketPrice <= 0) continue;
+
+          item.chains = finalChains;
+          item.supermarketPrice = finalMarketPrice;
+          item.lastVerified = todayStr;
+          item.matchedName = matchedName || item.name;
+          item.source = 'google_search';
+          item.sourceLabel = String(res.sourceLabel || 'חיפוש רשת (Google)').trim();
+
+          if (res.isEquivalentBrand) {
+            item.isEquivalentBrand = true;
+          } else {
+            delete item.isEquivalentBrand;
+          }
+
+          if (!prices.some(p => p.id === item.id)) {
+            prices.push(item);
+          }
+          updatedIds.add(item.id);
+          updatedCount++;
+          searchUpdatedCount++;
+
+          const eqLabel = item.isEquivalentBrand ? ` [מותג מקביל: ${item.matchedName}]` : '';
+          console.log(`🔍 [Google Search] עודכן: ${item.name}${eqLabel} -> ממוצע: ${finalMarketPrice} ש"ח (${item.sourceLabel})`);
+        }
+
+        if (i + SEARCH_BATCH_SIZE < searchFallbackTargets.length) {
+          await sleep(1200);
+        }
+      }
+
+      console.log(`📊 סיכום שלב 3 (Google Search): עודכנו ${searchUpdatedCount} מוצרים נוספים.`);
     }
   }
 
