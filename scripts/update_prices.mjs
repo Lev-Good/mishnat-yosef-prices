@@ -56,9 +56,9 @@ function isProduceItem(name, mappingEntry) {
   return /(?:בצל|תפוחי?\s*אדמה|עגבני[הו]|מלפפון|גזר|פלפל|חסה|כרוב|בטטה|שום)/i.test(name || '');
 }
 
-async function fetchChpSnippets(itemName) {
+async function fetchChpQuery(queryStr) {
   try {
-    const q = encodeURIComponent(itemName);
+    const q = encodeURIComponent(queryStr);
     const city = encodeURIComponent('בני ברק');
     const url = `https://chp.co.il/main_page/compare_results?shopping_address=${city}&product_name_or_barcode=${q}`;
     const res = await fetch(url, {
@@ -70,16 +70,29 @@ async function fetchChpSnippets(itemName) {
     });
     if (!res.ok) return '';
     const html = await res.text();
-    const clean = html
+    const tableIdx = html.indexOf('<table');
+    const relevantHtml = tableIdx !== -1 ? html.slice(tableIdx) : html;
+    const clean = relevantHtml
       .replace(/<script[\s\S]*?<\/script>/gi, ' ')
       .replace(/<style[\s\S]*?<\/style>/gi, ' ')
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
-    return clean.slice(0, 2500);
+    return clean.slice(0, 2200);
   } catch (_) {
     return '';
   }
+}
+
+async function fetchChpSnippets(item) {
+  const queries = [item.name, ...(item.aliases || [])].filter(Boolean);
+  for (const q of queries.slice(0, 2)) {
+    const snippet = await fetchChpQuery(q);
+    if (snippet && /\d+\.\d{2}/.test(snippet)) {
+      return snippet;
+    }
+  }
+  return '';
 }
 
 async function generateWithFallback(prompt, useSearchTool = true) {
@@ -135,14 +148,14 @@ async function generateWithFallback(prompt, useSearchTool = true) {
 async function queryGeminiPricesForBatch(batchItems, mappingCache) {
   const enrichedItems = [];
   for (const p of batchItems) {
-    const chpSnippet = await fetchChpSnippets(p.name);
+    const chpSnippet = await fetchChpSnippets(p);
     enrichedItems.push({
       id: p.id,
       name: p.name,
       aliases: p.aliases || [],
       lastKnownPrice: p.supermarketPrice,
       isProduce: isProduceItem(p.name, mappingCache[p.id]),
-      liveWebData: chpSnippet ? chpSnippet.slice(0, 1200) : undefined
+      liveWebData: chpSnippet ? chpSnippet.slice(0, 2000) : undefined
     });
   }
 
