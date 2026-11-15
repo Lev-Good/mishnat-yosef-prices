@@ -10,9 +10,10 @@
     "chains": {
       "osherAd": 7.11,
       "ramiLevy": 7.11,
-      "yeshHesed": 7.11
+      "yeshHesed": 7.11,
+      "netoChisachon": 7.11
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "milk_1",
@@ -25,9 +26,10 @@
     "chains": {
       "osherAd": 6.55,
       "ramiLevy": 6.55,
-      "yeshHesed": 6.55
+      "yeshHesed": 6.55,
+      "netoChisachon": 6.55
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "eggs_l30",
@@ -37,13 +39,14 @@
       "ביצים גודל l",
       "תבנית 30"
     ],
-    "supermarketPrice": 38.0,
+    "supermarketPrice": 38,
     "chains": {
       "osherAd": 37.24,
-      "ramiLevy": 38.0,
-      "yeshHesed": 38.0
+      "ramiLevy": 38,
+      "yeshHesed": 38,
+      "netoChisachon": 37.62
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "eggs_m30",
@@ -56,9 +59,10 @@
     "chains": {
       "osherAd": 33.81,
       "ramiLevy": 34.5,
-      "yeshHesed": 34.5
+      "yeshHesed": 34.5,
+      "netoChisachon": 34.16
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "eggs_l12",
@@ -71,9 +75,10 @@
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.2,
-      "yeshHesed": 15.2
+      "yeshHesed": 15.2,
+      "netoChisachon": 15.05
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "cheese_white_5",
@@ -86,9 +91,10 @@
     "chains": {
       "osherAd": 5.75,
       "ramiLevy": 5.75,
-      "yeshHesed": 5.75
+      "yeshHesed": 5.75,
+      "netoChisachon": 5.75
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "cottage_5",
@@ -101,9 +107,10 @@
     "chains": {
       "osherAd": 6.8,
       "ramiLevy": 6.9,
-      "yeshHesed": 6.9
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.85
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "yellow_emek",
@@ -117,9 +124,10 @@
     "chains": {
       "osherAd": 22.9,
       "ramiLevy": 23.9,
-      "yeshHesed": 24.5
+      "yeshHesed": 24.5,
+      "netoChisachon": 23.7
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "yellow_gilboa",
@@ -132,9 +140,10 @@
     "chains": {
       "osherAd": 12.9,
       "ramiLevy": 13.5,
-      "yeshHesed": 13.9
+      "yeshHesed": 13.9,
+      "netoChisachon": 13.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "butter_100",
@@ -147,9 +156,10 @@
     "chains": {
       "osherAd": 5.1,
       "ramiLevy": 5.1,
-      "yeshHesed": 5.1
+      "yeshHesed": 5.1,
+      "netoChisachon": 5.1
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sour_cream",
@@ -162,9 +172,10 @@
     "chains": {
       "osherAd": 3.05,
       "ramiLevy": 3.05,
-      "yeshHesed": 3.05
+      "yeshHesed": 3.05,
+      "netoChisachon": 3.05
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sweet_cream",
@@ -177,9 +188,10 @@
     "chains": {
       "osherAd": 7.9,
       "ramiLevy": 8.5,
-      "yeshHesed": 8.9
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "milky",
@@ -192,9 +204,10 @@
     "chains": {
       "osherAd": 3.2,
       "ramiLevy": 3.4,
-      "yeshHesed": 3.5
+      "yeshHesed": 3.5,
+      "netoChisachon": 3.35
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "shoko_1l",
@@ -207,9 +220,10 @@
     "chains": {
       "osherAd": 10.9,
       "ramiLevy": 11.9,
-      "yeshHesed": 12.2
+      "yeshHesed": 12.2,
+      "netoChisachon": 11.55
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "oil_canola",
@@ -222,9 +236,10 @@
     "chains": {
       "osherAd": 8.9,
       "ramiLevy": 9.5,
-      "yeshHesed": 9.9
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "oil_soy",
@@ -237,9 +252,10 @@
     "chains": {
       "osherAd": 7.9,
       "ramiLevy": 8.5,
-      "yeshHesed": 8.9
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "oil_olive",
@@ -252,9 +268,10 @@
     "chains": {
       "osherAd": 36.9,
       "ramiLevy": 38.9,
-      "yeshHesed": 39.9
+      "yeshHesed": 39.9,
+      "netoChisachon": 38.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sugar_white",
@@ -268,9 +285,10 @@
     "chains": {
       "osherAd": 4.8,
       "ramiLevy": 4.9,
-      "yeshHesed": 5.2
+      "yeshHesed": 5.2,
+      "netoChisachon": 5
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "flour_white",
@@ -283,9 +301,10 @@
     "chains": {
       "osherAd": 4.2,
       "ramiLevy": 4.5,
-      "yeshHesed": 4.9
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.55
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "flour_raising",
@@ -298,9 +317,10 @@
     "chains": {
       "osherAd": 5.9,
       "ramiLevy": 6.5,
-      "yeshHesed": 6.9
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "salt_fine",
@@ -313,9 +333,10 @@
     "chains": {
       "osherAd": 2.6,
       "ramiLevy": 2.6,
-      "yeshHesed": 2.6
+      "yeshHesed": 2.6,
+      "netoChisachon": 2.6
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "rice_persian",
@@ -328,9 +349,10 @@
     "chains": {
       "osherAd": 9.9,
       "ramiLevy": 10.5,
-      "yeshHesed": 10.9
+      "yeshHesed": 10.9,
+      "netoChisachon": 10.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "rice_basmati",
@@ -343,9 +365,10 @@
     "chains": {
       "osherAd": 13.5,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.9
+      "yeshHesed": 14.9,
+      "netoChisachon": 14.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "rice_jasmine",
@@ -358,9 +381,10 @@
     "chains": {
       "osherAd": 11.5,
       "ramiLevy": 12.2,
-      "yeshHesed": 12.9
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pasta_osem_spaghetti",
@@ -373,9 +397,10 @@
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 5.9,
-      "yeshHesed": 6.5
+      "yeshHesed": 6.5,
+      "netoChisachon": 6
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pasta_osem_penne",
@@ -389,9 +414,10 @@
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 5.9,
-      "yeshHesed": 6.5
+      "yeshHesed": 6.5,
+      "netoChisachon": 6
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pasta_osem_fusilli",
@@ -405,9 +431,10 @@
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 5.9,
-      "yeshHesed": 6.5
+      "yeshHesed": 6.5,
+      "netoChisachon": 6
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "ptitim_osem",
@@ -422,9 +449,10 @@
     "chains": {
       "osherAd": 5.9,
       "ramiLevy": 6.5,
-      "yeshHesed": 6.9
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tuna_fillet_4",
@@ -439,9 +467,10 @@
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 23.9,
-      "yeshHesed": 24.9
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "corn_can",
@@ -455,9 +484,10 @@
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 6.2,
-      "yeshHesed": 6.9
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "peas_can",
@@ -470,9 +500,10 @@
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 6.2,
-      "yeshHesed": 6.9
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pickles_cucumbers",
@@ -487,9 +518,10 @@
     "chains": {
       "osherAd": 6.2,
       "ramiLevy": 6.9,
-      "yeshHesed": 7.5
+      "yeshHesed": 7.5,
+      "netoChisachon": 6.85
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "olives_green",
@@ -504,9 +536,10 @@
     "chains": {
       "osherAd": 7.5,
       "ramiLevy": 7.9,
-      "yeshHesed": 8.9
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tomato_paste_100",
@@ -518,10 +551,11 @@
     "supermarketPrice": 2.03,
     "chains": {
       "osherAd": 1.9,
-      "ramiLevy": 2.0,
-      "yeshHesed": 2.2
+      "ramiLevy": 2,
+      "yeshHesed": 2.2,
+      "netoChisachon": 2.05
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "ketchup_osem",
@@ -534,9 +568,10 @@
     "chains": {
       "osherAd": 11.5,
       "ramiLevy": 12.2,
-      "yeshHesed": 12.9
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "mayo_telma",
@@ -548,10 +583,11 @@
     "supermarketPrice": 12.03,
     "chains": {
       "osherAd": 11.2,
-      "ramiLevy": 12.0,
-      "yeshHesed": 12.9
+      "ramiLevy": 12,
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.05
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tahini_raw",
@@ -566,9 +602,10 @@
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 22.9,
-      "yeshHesed": 23.9
+      "yeshHesed": 23.9,
+      "netoChisachon": 22.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "challah",
@@ -582,9 +619,10 @@
     "chains": {
       "osherAd": 6.9,
       "ramiLevy": 7.2,
-      "yeshHesed": 7.5
+      "yeshHesed": 7.5,
+      "netoChisachon": 7.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bread_wholewheat",
@@ -599,9 +637,10 @@
     "chains": {
       "osherAd": 11.9,
       "ramiLevy": 12.5,
-      "yeshHesed": 12.9
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bread_sliced",
@@ -615,9 +654,10 @@
     "chains": {
       "osherAd": 7.91,
       "ramiLevy": 7.91,
-      "yeshHesed": 7.91
+      "yeshHesed": 7.91,
+      "netoChisachon": 7.91
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "cornflakes_telma",
@@ -630,9 +670,10 @@
     "chains": {
       "osherAd": 18.5,
       "ramiLevy": 19.5,
-      "yeshHesed": 19.9
+      "yeshHesed": 19.9,
+      "netoChisachon": 19.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "kariot_telma",
@@ -646,9 +687,10 @@
     "chains": {
       "osherAd": 24.9,
       "ramiLevy": 25.9,
-      "yeshHesed": 26.9
+      "yeshHesed": 26.9,
+      "netoChisachon": 25.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "petiber_osem",
@@ -661,9 +703,10 @@
     "chains": {
       "osherAd": 12.5,
       "ramiLevy": 13.2,
-      "yeshHesed": 13.9
+      "yeshHesed": 13.9,
+      "netoChisachon": 13.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bamba_osem",
@@ -676,26 +719,47 @@
     "chains": {
       "osherAd": 4.2,
       "ramiLevy": 4.5,
-      "yeshHesed": 4.9
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.55
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bisli_osem",
-    "name": "ביסלי אסם 70 גרם (גריל/ברביקיו/בצל)",
+    "name": "ביסלי אסם 70 גרם (גריל/ברביקיו)",
     "aliases": [
-      "ביסלי גריל",
-      "ביסלי ברביקיו",
-      "ביסלי בצל",
-      "ביסלי אסם"
+      "ביסלי גריל 70",
+      "ביסלי ברביקיו 70",
+      "ביסלי בצל 70",
+      "ביסלי 70 גרם"
     ],
     "supermarketPrice": 4.53,
     "chains": {
       "osherAd": 4.2,
       "ramiLevy": 4.5,
-      "yeshHesed": 4.9
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.55
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bisli_party_mix",
+    "name": "ביסלי פארטי מיקס אריזה גדולה אסם (150-200 גרם)",
+    "aliases": [
+      "פארטי מיקס",
+      "ביסלי פארטי",
+      "ביסלי אריזה גדולה",
+      "פארטי מיקס אסם",
+      "ביסלי מיקס"
+    ],
+    "supermarketPrice": 7.9,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 7.5,
+      "yeshHesed": 8.5,
+      "netoChisachon": 7.7
+    },
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "shahar_hashahar",
@@ -708,9 +772,10 @@
     "chains": {
       "osherAd": 12.5,
       "ramiLevy": 12.9,
-      "yeshHesed": 13.5
+      "yeshHesed": 13.5,
+      "netoChisachon": 13
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "coca_cola_6",
@@ -724,9 +789,10 @@
     "chains": {
       "osherAd": 41.9,
       "ramiLevy": 43.9,
-      "yeshHesed": 44.9
+      "yeshHesed": 44.9,
+      "netoChisachon": 43.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "coca_zero_6",
@@ -740,9 +806,10 @@
     "chains": {
       "osherAd": 41.9,
       "ramiLevy": 43.9,
-      "yeshHesed": 44.9
+      "yeshHesed": 44.9,
+      "netoChisachon": 43.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "mineral_water_6",
@@ -756,9 +823,10 @@
     "chains": {
       "osherAd": 13.5,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.5
+      "yeshHesed": 14.5,
+      "netoChisachon": 14
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "grape_juice",
@@ -771,9 +839,10 @@
     "chains": {
       "osherAd": 17.5,
       "ramiLevy": 18.2,
-      "yeshHesed": 18.9
+      "yeshHesed": 18.9,
+      "netoChisachon": 18.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "coffee_elite",
@@ -786,9 +855,10 @@
     "chains": {
       "osherAd": 19.9,
       "ramiLevy": 20.9,
-      "yeshHesed": 21.9
+      "yeshHesed": 21.9,
+      "netoChisachon": 20.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tasters_choice",
@@ -801,9 +871,10 @@
     "chains": {
       "osherAd": 32.9,
       "ramiLevy": 33.9,
-      "yeshHesed": 34.9
+      "yeshHesed": 34.9,
+      "netoChisachon": 33.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tea_wissotzky",
@@ -816,9 +887,10 @@
     "chains": {
       "osherAd": 18.5,
       "ramiLevy": 19.2,
-      "yeshHesed": 19.9
+      "yeshHesed": 19.9,
+      "netoChisachon": 19.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "fairy_dish",
@@ -831,9 +903,10 @@
     "chains": {
       "osherAd": 11.5,
       "ramiLevy": 12.2,
-      "yeshHesed": 12.9
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "persil_gel",
@@ -848,9 +921,10 @@
     "chains": {
       "osherAd": 33.9,
       "ramiLevy": 35.9,
-      "yeshHesed": 36.9
+      "yeshHesed": 36.9,
+      "netoChisachon": 35.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "badin_softener",
@@ -863,9 +937,10 @@
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_bleach",
@@ -878,9 +953,10 @@
     "chains": {
       "osherAd": 10.5,
       "ramiLevy": 10.9,
-      "yeshHesed": 11.5
+      "yeshHesed": 11.5,
+      "netoChisachon": 11
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "toilet_paper_30",
@@ -894,9 +970,10 @@
     "chains": {
       "osherAd": 31.9,
       "ramiLevy": 33.5,
-      "yeshHesed": 34.9
+      "yeshHesed": 34.9,
+      "netoChisachon": 33.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "garbage_bags",
@@ -909,9 +986,10 @@
     "chains": {
       "osherAd": 17.9,
       "ramiLevy": 18.9,
-      "yeshHesed": 19.9
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "colgate_total",
@@ -924,9 +1002,10 @@
     "chains": {
       "osherAd": 12.9,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.9
+      "yeshHesed": 14.9,
+      "netoChisachon": 13.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "hand_soap_1l",
@@ -940,9 +1019,10 @@
     "chains": {
       "osherAd": 8.5,
       "ramiLevy": 9.2,
-      "yeshHesed": 9.9
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "shampoo_havai",
@@ -957,9 +1037,10 @@
     "chains": {
       "osherAd": 10.5,
       "ramiLevy": 11.2,
-      "yeshHesed": 11.9
+      "yeshHesed": 11.9,
+      "netoChisachon": 11.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "peas_frozen_sunfrost",
@@ -972,9 +1053,10 @@
     "chains": {
       "osherAd": 15.9,
       "ramiLevy": 16.9,
-      "yeshHesed": 17.9
+      "yeshHesed": 17.9,
+      "netoChisachon": 16.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "green_beans_sunfrost",
@@ -987,9 +1069,10 @@
     "chains": {
       "osherAd": 15.9,
       "ramiLevy": 16.9,
-      "yeshHesed": 17.9
+      "yeshHesed": 17.9,
+      "netoChisachon": 16.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "fries_frozen",
@@ -1003,9 +1086,10 @@
     "chains": {
       "osherAd": 18.9,
       "ramiLevy": 20.5,
-      "yeshHesed": 21.9
+      "yeshHesed": 21.9,
+      "netoChisachon": 20.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bourekas_potato",
@@ -1018,9 +1102,10 @@
     "chains": {
       "osherAd": 17.9,
       "ramiLevy": 18.9,
-      "yeshHesed": 19.9
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "malawach",
@@ -1033,9 +1118,10 @@
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "schnitzel_corn",
@@ -1048,9 +1134,10 @@
     "chains": {
       "osherAd": 26.9,
       "ramiLevy": 28.5,
-      "yeshHesed": 29.9
+      "yeshHesed": 29.9,
+      "netoChisachon": 28.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "chicken_breast_fresh",
@@ -1063,9 +1150,10 @@
     "chains": {
       "osherAd": 36.9,
       "ramiLevy": 37.9,
-      "yeshHesed": 39.9
+      "yeshHesed": 39.9,
+      "netoChisachon": 38.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "ground_beef_frozen",
@@ -1079,9 +1167,10 @@
     "chains": {
       "osherAd": 19.9,
       "ramiLevy": 21.9,
-      "yeshHesed": 22.9
+      "yeshHesed": 22.9,
+      "netoChisachon": 21.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "salmon_fillet_frozen",
@@ -1094,9 +1183,10 @@
     "chains": {
       "osherAd": 59.9,
       "ramiLevy": 62.9,
-      "yeshHesed": 64.9
+      "yeshHesed": 64.9,
+      "netoChisachon": 62.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "fairy_1_5l",
@@ -1110,9 +1200,10 @@
     "chains": {
       "osherAd": 17.9,
       "ramiLevy": 18.9,
-      "yeshHesed": 19.9
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_maxima_softener",
@@ -1126,9 +1217,10 @@
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "persil_gel_3_8l",
@@ -1142,9 +1234,10 @@
     "chains": {
       "osherAd": 44.9,
       "ramiLevy": 47.9,
-      "yeshHesed": 49.9
+      "yeshHesed": 49.9,
+      "netoChisachon": 47.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "delipekan_telma",
@@ -1158,9 +1251,10 @@
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 23.5,
-      "yeshHesed": 24.9
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "shugi_bars",
@@ -1174,9 +1268,10 @@
     "chains": {
       "osherAd": 13.9,
       "ramiLevy": 14.9,
-      "yeshHesed": 15.9
+      "yeshHesed": 15.9,
+      "netoChisachon": 14.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "quaker_oats",
@@ -1190,9 +1285,10 @@
     "chains": {
       "osherAd": 9.9,
       "ramiLevy": 10.9,
-      "yeshHesed": 11.9
+      "yeshHesed": 11.9,
+      "netoChisachon": 10.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "soup_almonds_osem",
@@ -1205,9 +1301,10 @@
     "chains": {
       "osherAd": 11.9,
       "ramiLevy": 12.9,
-      "yeshHesed": 13.9
+      "yeshHesed": 13.9,
+      "netoChisachon": 12.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sweet_chili_sauce",
@@ -1221,9 +1318,10 @@
     "chains": {
       "osherAd": 9.9,
       "ramiLevy": 10.9,
-      "yeshHesed": 11.9
+      "yeshHesed": 11.9,
+      "netoChisachon": 10.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "silan_pure_squeeze",
@@ -1237,9 +1335,10 @@
     "chains": {
       "osherAd": 15.5,
       "ramiLevy": 16.9,
-      "yeshHesed": 17.9
+      "yeshHesed": 17.9,
+      "netoChisachon": 16.7
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "honey_squeeze",
@@ -1253,9 +1352,10 @@
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 23.9,
-      "yeshHesed": 24.9
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_clear_windows",
@@ -1269,9 +1369,10 @@
     "chains": {
       "osherAd": 9.9,
       "ramiLevy": 10.9,
-      "yeshHesed": 11.9
+      "yeshHesed": 11.9,
+      "netoChisachon": 10.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_ratzpaz",
@@ -1285,9 +1386,10 @@
     "chains": {
       "osherAd": 17.9,
       "ramiLevy": 18.9,
-      "yeshHesed": 19.9
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "dr_fischer_baby_shampoo",
@@ -1301,9 +1403,10 @@
     "chains": {
       "osherAd": 18.9,
       "ramiLevy": 20.9,
-      "yeshHesed": 21.9
+      "yeshHesed": 21.9,
+      "netoChisachon": 20.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_anti_calc",
@@ -1317,9 +1420,10 @@
     "chains": {
       "osherAd": 14.5,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.7
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_javel_spray",
@@ -1333,9 +1437,10 @@
     "chains": {
       "osherAd": 14.5,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.7
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "chocolate_chips_baking",
@@ -1349,9 +1454,10 @@
     "chains": {
       "osherAd": 10.9,
       "ramiLevy": 11.9,
-      "yeshHesed": 12.9
+      "yeshHesed": 12.9,
+      "netoChisachon": 11.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pizza_snacks_maadanot",
@@ -1365,9 +1471,10 @@
     "chains": {
       "osherAd": 23.9,
       "ramiLevy": 25.5,
-      "yeshHesed": 26.9
+      "yeshHesed": 26.9,
+      "netoChisachon": 25.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "green_beans_cut",
@@ -1380,9 +1487,10 @@
     "chains": {
       "osherAd": 12.9,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.9
+      "yeshHesed": 14.9,
+      "netoChisachon": 13.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bread_crumbs_golden",
@@ -1395,9 +1503,10 @@
     "chains": {
       "osherAd": 6.5,
       "ramiLevy": 7.2,
-      "yeshHesed": 7.9
+      "yeshHesed": 7.9,
+      "netoChisachon": 7.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "axe_deodorant_spray",
@@ -1411,9 +1520,10 @@
     "chains": {
       "osherAd": 13.5,
       "ramiLevy": 14.9,
-      "yeshHesed": 15.9
+      "yeshHesed": 15.9,
+      "netoChisachon": 14.7
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "marshmallow_carmit",
@@ -1426,9 +1536,10 @@
     "chains": {
       "osherAd": 4.9,
       "ramiLevy": 5.5,
-      "yeshHesed": 5.9
+      "yeshHesed": 5.9,
+      "netoChisachon": 5.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "frozen_mango_chunks",
@@ -1441,9 +1552,10 @@
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 23.5,
-      "yeshHesed": 24.9
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "frozen_strawberries",
@@ -1456,9 +1568,10 @@
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 23.5,
-      "yeshHesed": 24.9
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "canned_peach_halves",
@@ -1471,9 +1584,10 @@
     "chains": {
       "osherAd": 8.5,
       "ramiLevy": 9.2,
-      "yeshHesed": 9.9
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.2
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "chocolate_spread_mehadrin",
@@ -1486,8 +1600,9 @@
     "chains": {
       "osherAd": 13.9,
       "ramiLevy": 14.9,
-      "yeshHesed": 15.9
+      "yeshHesed": 15.9,
+      "netoChisachon": 14.9
     },
-    "lastVerified": "2026-11-14"
+    "lastVerified": "2026-11-09"
   }
 ]

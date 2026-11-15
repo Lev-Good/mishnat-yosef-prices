@@ -1,0 +1,68 @@
+name: Weekly Supermarket Price Refresh
+
+on:
+  schedule:
+    # רץ בכל יום ראשון בשעה 05:00 UTC (07:00 / 08:00 שעון ישראל)
+    - cron: '0 5 * * 0'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'האם להריץ במצב בדיקה בלבד (ללא שמירה)'
+        required: false
+        type: boolean
+        default: false
+      limit:
+        description: 'מגבלת פריטים לעדכון (ריק = כולם)'
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  refresh-prices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 שליפת קוד המקור (Checkout)
+        uses: actions/checkout@v4
+
+      - name: ⚙️ הגדרת Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 התקנת תלויות
+        run: npm install
+
+      - name: 🧪 הרצת בדיקות תקינות יחידות (Unit Parser Test)
+        run: npm run test-units
+
+      - name: 🤖 הרצת מנוע רענון המחירים (Gemini Search Grounding)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          if [ -n "${{ inputs.limit }}" ]; then
+            ARGS="$ARGS --limit ${{ inputs.limit }}"
+          fi
+          node scripts/update_prices.mjs $ARGS
+
+      - name: 💾 שמירה ודחיפת המחירים המעודכנים ל-Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # בדיקה האם היו שינויים בקובץ המחירים או המיפוי
+          if git status --porcelain prices.json scripts/mapping_cache.json | grep -q .; then
+            echo "נמצאו עדכוני מחירים חדשים. מבצע Commit ו-Push..."
+            git add prices.json scripts/mapping_cache.json
+            git commit -m "chore(prices): weekly automated supermarket price refresh [skip ci]"
+            git push
+          else
+            echo "לא חלו שינויים במחירים השבוע. אין צורך ב-Commit."
+          fi

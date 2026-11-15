@@ -1,0 +1,13 @@
+{
+  "name": "mishnat-yosef-prices-pipeline",
+  "version": "1.0.0",
+  "description": "Weekly automated price updates for Mishnat Yosef smart comparison extension",
+  "type": "module",
+  "scripts": {
+    "update-prices": "node scripts/update_prices.mjs",
+    "test-units": "node scripts/test_units.mjs"
+  },
+  "dependencies": {
+    "@google/genai": "^2.29.1"
+  }
+}

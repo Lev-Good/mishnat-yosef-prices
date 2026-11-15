@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         מוסיף למשנת - סל קניות משפחתי חכם
 // @namespace    https://digital.levtov.uk/
-// @version      0.4
+// @version      0.6
 // @description  סל קניות משפחתי חכם למשנת יוסף - מד תקציב שבועי, תזכורת קבועים שנשכחו, מחשבון חיסכון והשוואת מחירים לרשתות השיווק, סימון מוצרים שהוזמנו בעבר, סימון קבועים, היסטוריית קניות מפורטת, הדפסת רשימת איסוף, והוספה מהירה לסל
 // @author       לב טוב דיגיטל (https://digital.levtov.uk/)
 // @copyright    2026, Lev Tov Digital (https://digital.levtov.uk/). All Rights Reserved.
@@ -100,10 +100,20 @@
     let req;
     try { req = JSON.parse(ev.detail); } catch (e) { return; }
     
+    // שליפת טוקן ההתחברות ישירות מ-localStorage של האתר
+    const token = localStorage.getItem('token') || (req.auth ? req.auth.replace(/^Bearer\s+/i, '') : '');
+
+    // הגדרת כותרות נקיות לחלוטין - בדיוק כמו ה-Axios של משנת יוסף
+    const hdrs = { 'Accept': 'application/json' };
+    if (req.body) {
+      hdrs['Content-Type'] = 'application/json';
+    }
+    if (token) {
+      hdrs['Authorization'] = 'Bearer ' + token;
+    }
+
     // ניסיון ראשון: fetch מתוך עולם הדף
     try {
-      const hdrs = { 'Accept': 'application/json', ...(req.headers || {}) };
-      if (req.auth) hdrs['Authorization'] = req.auth;
       const resp = await origFetch(req.url, {
         method: req.method || 'GET',
         headers: hdrs,
@@ -112,6 +122,11 @@
       });
       let json = null;
       try { json = await resp.json(); } catch (e) {}
+
+      if (resp.ok && json && /\/api\/(add_item|update_item|remove_item)/.test(req.url)) {
+        emit({ url: abs(req.url), method: (req.method || 'GET').toUpperCase(), body: req.body, headers: hdrs, status: resp.status, json });
+      }
+
       window.dispatchEvent(new CustomEvent('myfam-call-api-res', {
         detail: JSON.stringify({ id: req.id, status: resp.status, json, ok: resp.ok })
       }));
@@ -125,10 +140,18 @@
       xhr.open(req.method || 'GET', req.url);
       xhr.withCredentials = true;
       xhr.setRequestHeader('Accept', 'application/json');
-      if (req.auth) xhr.setRequestHeader('Authorization', req.auth);
+      if (req.body) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
+      if (token) {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+      }
       xhr.onload = function () {
         let json = null;
         try { json = JSON.parse(xhr.responseText); } catch (e) {}
+        if (xhr.status >= 200 && xhr.status < 300 && json && /\/api\/(add_item|update_item|remove_item)/.test(req.url)) {
+          emit({ url: abs(req.url), method: (req.method || 'GET').toUpperCase(), body: req.body, status: xhr.status, json });
+        }
         window.dispatchEvent(new CustomEvent('myfam-call-api-res', {
           detail: JSON.stringify({ id: req.id, status: xhr.status, json, text: xhr.responseText, ok: xhr.status >= 200 && xhr.status < 300 })
         }));
@@ -237,9 +260,18 @@ if (typeof window.__MY_T === 'undefined') {
   }
   let saleMeta = jget('salemeta', {});          // saleId -> {week, begin}
   let filter = 'all';
-  const PREF_DEFAULT = { seenColor: '#2e9e5b', seenFill: false, fixedColor: '#e0a800', fixedFill: true };
+  const PREF_DEFAULT = { 
+    seenColor: '#2e9e5b', 
+    seenFill: false, 
+    fixedColor: '#e0a800', 
+    fixedFill: true,
+    selectedChains: ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy']
+  };
   let prefs = { ...PREF_DEFAULT, ...jget('prefs', {}) };
-  let sale = { id: null, items: new Map() };    // שם מנורמל -> {pid, name}
+  if (!Array.isArray(prefs.selectedChains) || !prefs.selectedChains.length) {
+    prefs.selectedChains = [...PREF_DEFAULT.selectedChains];
+  }
+  let sale = { id: null, items: new Map(), loadedAll: false };    // שם מנורמל / pid / itemSalesId -> מוצר במכירה
   let live = null;                              // ההזמנה הנוכחית: {orderId, saleId, clientId, lines: Map}
   let currentCardMap = new Map();               // כרטיס מוצר פעיל בדף -> {key, leaf}
   const debugBuf = [];
@@ -388,6 +420,9 @@ if (typeof window.__MY_T === 'undefined') {
           }
           if (res.myfam_prefs && typeof res.myfam_prefs === 'object') {
             prefs = { ...prefs, ...res.myfam_prefs };
+            if (!Array.isArray(prefs.selectedChains) || !prefs.selectedChains.length) {
+              prefs.selectedChains = [...PREF_DEFAULT.selectedChains];
+            }
             jset('prefs', prefs);
             applyPrefs();
           }
@@ -431,11 +466,25 @@ if (typeof window.__MY_T === 'undefined') {
     try { handleApi(d); } catch (e) { console.warn('[myfam]', e); }
   });
 
+  function formatMishnatImageUrl(raw) {
+    if (!raw || typeof raw !== 'string') return '';
+    raw = raw.trim();
+    if (!raw) return '';
+    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+    if (raw.startsWith('//')) return 'https:' + raw;
+    const clean = raw.replace(/^\/+/, '');
+    if (clean.startsWith('images/')) return `https://images.mishnatyosef.org/${clean}`;
+    return `https://images.mishnatyosef.org/images/items/${clean}`;
+  }
+
   let productImages = jget('product_images', {});
-  // ניקוי זיהומים ישנים של חותמת כשרות אם נשמרו במטמון
+  // ניקוי זיהומים ישנים של חותמת כשרות או כתובות שגויות עם API_HOST
   Object.keys(productImages).forEach(k => {
-    if (/kashrut|badatz|badge|כשרות|בדץ|עדה/i.test(productImages[k])) {
+    const val = productImages[k];
+    if (/kashrut|badatz|badge|כשרות|בדץ|עדה/i.test(val)) {
       delete productImages[k];
+    } else if (val && val.includes('v2.mishnatyosef.org')) {
+      productImages[k] = formatMishnatImageUrl(val.replace(/^https?:\/\/v2\.mishnatyosef\.org\/?/, ''));
     }
   });
   function saveProductImages() {
@@ -594,9 +643,8 @@ function showToast(msg, type = 'success') {
       || (is.product && (is.product.thumb_featured_image || is.product.featured_image || is.product.image || is.product.image_url))
       || (it.product && (it.product.thumb_featured_image || it.product.featured_image || it.product.image))
       || it.thumb_featured_image || it.featured_image || it.image;
-    let img = '';
-    if (rawImg) {
-      img = rawImg.startsWith('http') ? rawImg : `https://images.mishnatyosef.org/images/items/${rawImg.replace(/^\/+/, '')}`;
+    let img = formatMishnatImageUrl(rawImg);
+    if (img) {
       productImages['p' + pid] = img;
       productImages[norm(name)] = img;
     } else {
@@ -620,6 +668,43 @@ function showToast(msg, type = 'success') {
     };
   };
 
+  // אכלוס מוצרי המכירה מכל הקטגוריות למפה מרכזית מהירה ועמידה
+  function populateSaleItems(rows) {
+    if (!Array.isArray(rows) || !rows.length) return;
+    rows.forEach(r => {
+      const n = r.name || (r.product && r.product.name);
+      const pid = r.itemID != null ? r.itemID : (r.product && r.product.id);
+      const salesId = r.id != null ? r.id : r.item_salesID;
+      if (n && pid != null) {
+        const rawImg = r.thumb_featured_image || r.featured_image || r.image || r.picture || r.image_url
+          || (r.product && (r.product.thumb_featured_image || r.product.featured_image || r.product.image || r.product.image_url));
+        const img = formatMishnatImageUrl(rawImg);
+        if (img) {
+          productImages['p' + pid] = img;
+          productImages[norm(n)] = img;
+        }
+        const p = parseFloat(r.price ?? (r.item_sale && r.item_sale.price) ?? r.cost ?? 0) || 0;
+        if (p > 0) {
+          itemPrices['p' + pid] = p;
+        }
+        const itemObj = {
+          pid: Number(pid),
+          name: n,
+          image: img,
+          price: p,
+          itemSalesId: salesId != null ? Number(salesId) : null,
+          raw: r
+        };
+        sale.items.set(norm(n), itemObj);
+        sale.items.set('p' + pid, itemObj);
+        if (salesId != null) sale.items.set('s' + salesId, itemObj);
+        if (r.product && r.product.name) sale.items.set(norm(r.product.name), itemObj);
+      }
+    });
+    saveProductImages();
+    saveItemPrices();
+  }
+
   function handleApi(d) {
     const u = new URL(d.url), path = u.pathname, j = d.json; let m;
     if (CONFIG.debugPaths.test(path)) {
@@ -631,27 +716,9 @@ function showToast(msg, type = 'success') {
     if (d.method === 'GET' && /get_items_for_sale\//.test(path)) {
       const rows = Array.isArray(j && j.data) ? j.data : [];
       if (!rows.length) return;
-      const page = parseInt(u.searchParams.get('page') || '1', 10);
       const sid = rows[0].saleID;
-      if (sale.id !== sid || page <= 1) sale = { id: sid, items: new Map() };
-      rows.forEach(r => {
-        const n = r.name || (r.product && r.product.name);
-        if (n && r.itemID != null) {
-          const rawImg = r.image || r.picture || r.image_url || (r.product && (r.product.image || r.product.image_url));
-          const img = rawImg ? (rawImg.startsWith('http') ? rawImg : `${API_HOST}${rawImg.startsWith('/') ? '' : '/'}${rawImg}`) : '';
-          if (img) {
-            productImages['p' + r.itemID] = img;
-            productImages[norm(n)] = img;
-          }
-          const p = parseFloat(r.price ?? (r.item_sale && r.item_sale.price) ?? r.cost ?? 0) || 0;
-          if (p > 0) {
-            itemPrices['p' + r.itemID] = p;
-          }
-          sale.items.set(norm(n), { pid: r.itemID, name: n, image: img, price: p, itemSalesId: r.id });
-        }
-      });
-      saveProductImages();
-      saveItemPrices();
+      if (sale.id !== sid) sale = { id: sid, items: new Map(), loadedAll: false };
+      populateSaleItems(rows);
       scheduleRender();
       updateBudgetUI();
       updateForgottenUI();
@@ -952,7 +1019,7 @@ function showToast(msg, type = 'success') {
 
     const c = counts();
 
-    // 1. אלמנטי טקסט ששמם זהה למוצר, ואייקוני לב
+    // 1. אלמנטי טקסט ששמם זהה למוצר, ואייקוני לב (החרגה מלאה של סל הקניות ומודאלים)
     const leaves = [], hearts = [];
     // ניקוי סימוני leaf ישנים (האתר ממחזר אלמנטים בגלילה — טקסט מתחלף אך התכונה נשארת)
     $$('[data-myleaf]').forEach(e => e.removeAttribute('data-myleaf'));
@@ -961,7 +1028,8 @@ function showToast(msg, type = 'success') {
       if (el.children.length || /^(SCRIPT|STYLE|BUTTON|NOSCRIPT)$/.test(el.tagName)) return;
       const t = el.textContent;
       if (!t || t.length < 2 || t.length > 200) return;
-      if (el.closest('#myfam-panel,#myfam-body,#myfam-modal,.myfam-tag')) return;
+      // החרגה גורפת של סל הקניות של משנת יוסף כדי למנוע הופעת רקע ומסגרת זהב בסל!
+      if (el.closest('#myfam-panel, #myfam-body, #myfam-modal, #myfam-forgotten-modal, #myfam-savings-modal, .myfam-tag, #cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i], header, nav, dialog')) return;
       const hit = sale.items.get(norm(t));
       if (hit) { el.setAttribute('data-myleaf', 'p' + hit.pid); leaves.push(el); }
     });
@@ -974,6 +1042,7 @@ function showToast(msg, type = 'success') {
       while (card.parentElement && card.parentElement !== document.body && hops < 8) {
         const p = card.parentElement;
         if (p.offsetHeight > 800) break;
+        if (p.closest('#cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i]')) break;
         if ([...p.querySelectorAll('[data-myleaf]')].every(x => x.getAttribute('data-myleaf') === key)) {
           card = p;
           hops++;
@@ -981,7 +1050,9 @@ function showToast(msg, type = 'success') {
           break;
         }
       }
-      cardMap.set(card, { key, leaf });
+      if (!card.closest('#cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i]')) {
+        cardMap.set(card, { key, leaf });
+      }
     });
     currentCardMap = cardMap;
     const cards = [...cardMap.keys()], N = cards.length;
@@ -999,8 +1070,12 @@ function showToast(msg, type = 'success') {
 
     // 4. סימון, תגית וכוכב (שימוש חוזר באלמנטים קיימים למניעת ריצוד ואיחור בגלילה)
     $$('.myfam-seen,.myfam-fixed,.myfam-hide,.myfam-fill').forEach(e => {
-      if (!cardMap.has(e)) e.classList.remove('myfam-seen', 'myfam-fixed', 'myfam-hide', 'myfam-fill');
+      if (!cardMap.has(e) || e.closest('#cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i]')) {
+        e.classList.remove('myfam-seen', 'myfam-fixed', 'myfam-hide', 'myfam-fill');
+      }
     });
+    // ניקוי מוחלט של אלמנטי תוסף מתוך סל הקניות
+    $$('#cart .myfam-tag, #cart .myfam-starbtn, #cart .myfam-price-comp-tag, [id*="cart" i] .myfam-tag, [id*="cart" i] .myfam-starbtn, [id*="cart" i] .myfam-price-comp-tag').forEach(el => el.remove());
 
     let inList = 0; const stars = [];
     cards.forEach(cd => {
@@ -1075,34 +1150,55 @@ function showToast(msg, type = 'success') {
 
       // תגית השוואת מחיר מול רשתות השיווק - מינימליסטית, אלגנטית ולא מפריעה
       const pName = (leaf.textContent || '').trim();
-      const compItem = findMarketComparison(pName, '');
-      const myPrice = itemPrices[key] || 0;
-      if (compItem && myPrice > 0) {
-        const ratio = myPrice / compItem.supermarketPrice;
+      const rawComp = findMarketComparison(pName, '');
+      const compItem = rawComp ? getEffectiveMarketComparison(rawComp) : null;
+
+      // מציאת מחיר המוצר: מתוך המאגר המקומי או ישירות מהטקסט בכרטיס
+      let myPrice = itemPrices[key] || 0;
+      let priceEl = null;
+      const allEls = [...cd.querySelectorAll('*')];
+      for (const el of allEls) {
+        if (el === leaf || el.closest('.myfam-tag, .myfam-starbtn, .myfam-price-comp-tag')) continue;
+        const txt = (el.textContent || '').trim();
+        const m = txt.match(/(\d+(?:\.\d+)?)\s*₪|₪\s*(\d+(?:\.\d+)?)/);
+        if (m) {
+          if (!myPrice) myPrice = parseFloat(m[1] || m[2]) || 0;
+          if (el.children.length === 0 || [...el.children].every(c => !/(?:₪|\d)/.test(c.textContent))) {
+            priceEl = el;
+            break;
+          }
+        }
+      }
+
+      if (compItem && myPrice > 0 && compItem.effectivePrice > 0) {
+        const ratio = myPrice / compItem.effectivePrice;
         if (ratio >= 0.4 && ratio <= 2.2) {
-          const diff = compItem.supermarketPrice - myPrice;
+          const diff = compItem.effectivePrice - myPrice;
           let compTag = cd.querySelector('.myfam-price-comp-tag');
           if (!compTag) {
             compTag = document.createElement('span');
             compTag.className = 'myfam-price-comp-tag';
-            // הצמדה ישירה לצד אלמנט המחיר בכרטיס
-            const priceEl = [...cd.querySelectorAll('*')].find(el => 
-              el.children.length === 0 && el !== leaf && /(?:₪\s*\d|\d+(?:\.\d+)?\s*₪)/.test(el.textContent)
-            );
+            // הצמדה ישירה לצד אלמנט המחיר בכרטיס, או מתחת לשם המוצר
             if (priceEl && priceEl.parentElement && priceEl.parentElement !== cd) {
               priceEl.insertAdjacentElement('afterend', compTag);
+            } else if (leaf && leaf.parentElement) {
+              leaf.insertAdjacentElement('afterend', compTag);
             } else {
               cd.appendChild(compTag);
             }
           }
-          if (diff >= 0.5) {
+          const selChainNames = (compItem.activeChainEntries && compItem.activeChainEntries.length)
+            ? compItem.activeChainEntries.map(([c]) => ALL_CHAINS[c]?.name || c).join(', ')
+            : 'רשתות שיווק';
+
+          if (diff >= 0.3) {
             compTag.className = 'myfam-price-comp-tag tag-saving';
             compTag.innerHTML = `⚡ חסכון ₪${diff.toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות: כ-₪${compItem.supermarketPrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})`;
-          } else if (diff <= -0.5) {
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})`;
+          } else if (diff <= -0.3) {
             compTag.className = 'myfam-price-comp-tag tag-expensive';
             compTag.innerHTML = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות: כ-₪${compItem.supermarketPrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)} מול רשתות השיווק)`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})`;
           } else {
             // הפרש זניח - מסירים כדי לשמור על עיצוב נקי ומינימליסטי
             compTag.remove();
@@ -1222,11 +1318,8 @@ function showToast(msg, type = 'success') {
 
       W.addEventListener('myfam-call-api-res', onRes);
 
-      const hdrs = { 'Accept': 'application/json', ...(apiHeaders || {}) };
-      if (apiAuthToken) hdrs['Authorization'] = apiAuthToken;
-
       W.dispatchEvent(new CustomEvent('myfam-call-api', {
-        detail: JSON.stringify({ id, url, method, body, auth: apiAuthToken, headers: hdrs })
+        detail: JSON.stringify({ id, url, method, body, auth: apiAuthToken })
       }));
 
       setTimeout(() => {
@@ -1239,26 +1332,83 @@ function showToast(msg, type = 'success') {
   }
 
   /* קריאה חכמה ל-API של משנת יוסף:
-     1. עדיפות ראשונה: דרך Background Service Worker (בזכות host_permissions בכרום אין מגבלות CORS או CSP).
-     2. עדיפות שנייה (גיבוי): דרך עולם הדף (MAIN world).
+     1. לפעולות שינוי סל (POST): עדיפות ראשונה לעולם הדף (MAIN world) עם הסשן המקומי והטוקן ב-localStorage.
+     2. לקריאות משיכת נתונים (GET): עדיפות לעולם הדף ואז דרך Background Service Worker כגיבוי.
   */
   async function siteApiRequest(url, method = 'GET', body = null) {
-    const headers = { 'Accept': 'application/json', ...(apiHeaders || {}) };
-    if (apiAuthToken) headers['Authorization'] = apiAuthToken;
-
-    // 1. ניסיון ראשי: דרך ה-Background Service Worker
-    try {
-      if (T && typeof T.request === 'function') {
-        const res = await T.request({ url, method, body, headers });
+    if (method === 'POST') {
+      try {
+        const res = await pageApiRequest(url, method, body);
         if (res !== undefined && res !== null) return res;
+      } catch (pageErr) {
+        console.warn('[myfam page request fallback to bg]', pageErr);
       }
-    } catch (bgErr) {
-      if (bgErr && bgErr.message === 'unauthorized') throw bgErr;
-      console.warn('[myfam bg request fallback to page]', bgErr);
+      if (T && typeof T.request === 'function') {
+        const bgHeaders = { 'Accept': 'application/json' };
+        if (body) bgHeaders['Content-Type'] = 'application/json';
+        if (apiAuthToken) bgHeaders['Authorization'] = apiAuthToken;
+        return T.request({ url, method, body, headers: bgHeaders });
+      }
+      return null;
     }
 
-    // 2. גיבוי: דרך עולם הדף
-    return pageApiRequest(url, method, body);
+    try {
+      const res = await pageApiRequest(url, method, body);
+      if (res !== undefined && res !== null) return res;
+    } catch (pageErr) {
+      if (T && typeof T.request === 'function') {
+        const bgHeaders = { 'Accept': 'application/json' };
+        if (apiAuthToken) bgHeaders['Authorization'] = apiAuthToken;
+        const res = await T.request({ url, method, body, headers: bgHeaders });
+        if (res !== undefined && res !== null) return res;
+      }
+    }
+    return null;
+  }
+
+  // טעינה חכמה ומקיפה של כלל מוצרי המכירה מכל הקטגוריות
+  let saleCatalogPromise = null;
+  async function ensureSaleItemsLoaded(oid) {
+    // מזהה ההזמנה (orderId) הוא הפרמטר הראשון ב-API של get_items_for_sale, בעוד saleId הוא מזהה המכירה
+    const realOrderId = (live && live.orderId) || extractOrderIdFromUrl();
+    const targetOrderId = realOrderId || oid;
+    if (!targetOrderId) return;
+    if (sale.loadedAll && sale.items && sale.items.size > 0) return;
+    if (saleCatalogPromise) return saleCatalogPromise;
+
+    saleCatalogPromise = (async () => {
+      try {
+        const res = await siteApiRequest(`${API_HOST}/api/get_items_for_sale/${targetOrderId}/null?page=1&limit=500`);
+        const rows = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+        if (rows.length) {
+          const sid = rows[0].saleID || extractSaleIdFromUrl() || targetOrderId;
+          if (sale.id !== sid) {
+            sale = { id: sid, items: new Map(), loadedAll: false };
+          }
+          populateSaleItems(rows);
+          const totalPages = parseInt(res?.pagination?.total_pages || '1', 10);
+          if (totalPages > 1) {
+            for (let p = 2; p <= Math.min(totalPages, 10); p++) {
+              try {
+                const nextRes = await siteApiRequest(`${API_HOST}/api/get_items_for_sale/${targetOrderId}/null?page=${p}&limit=500`);
+                const nextRows = Array.isArray(nextRes?.data) ? nextRes.data : [];
+                if (nextRows.length) populateSaleItems(nextRows);
+              } catch (_) {}
+            }
+          }
+          sale.loadedAll = true;
+          updateForgottenUI();
+        }
+      } catch (err) {
+        const msg = String(err?.message || err);
+        if (!msg.includes('הזמנה לא קיימת') && !msg.includes('404')) {
+          console.debug('[myfam ensureSaleItemsLoaded]', msg);
+        }
+      } finally {
+        saleCatalogPromise = null;
+      }
+    })();
+    return saleCatalogPromise;
   }
 
   function showImportProgressModal() {
@@ -1617,18 +1767,37 @@ function showToast(msg, type = 'success') {
   }
 
   /* ---------- הוספת כל הקבועים לסל ---------- */
+  function triggerSimulatedClick(el) {
+    if (!el) return;
+    const target = el.querySelector('.material-symbols-rounded, .material-icons, svg') || el;
+    const opts = { bubbles: true, cancelable: true, view: window };
+    target.dispatchEvent(new PointerEvent('pointerdown', opts));
+    target.dispatchEvent(new MouseEvent('mousedown', opts));
+    target.dispatchEvent(new PointerEvent('pointerup', opts));
+    target.dispatchEvent(new MouseEvent('mouseup', opts));
+    target.click();
+    if (target !== el) {
+      el.dispatchEvent(new PointerEvent('pointerdown', opts));
+      el.dispatchEvent(new MouseEvent('mousedown', opts));
+      el.dispatchEvent(new PointerEvent('pointerup', opts));
+      el.dispatchEvent(new MouseEvent('mouseup', opts));
+      el.click();
+    }
+  }
+
   function findCardAddButton(cd) {
-    const buttons = [...cd.querySelectorAll('button, a[role="button"]')].filter(b => 
+    if (!cd) return null;
+    const elements = [...cd.querySelectorAll('button, a[role="button"], div[role="button"], [class*="add"], [class*="plus"], [class*="btn"]')].filter(b => 
       !b.classList.contains('myfam-starbtn') && !heartLike(b)
     );
-    if (!buttons.length) return null;
-    const explicit = buttons.find(b => {
+    if (!elements.length) return null;
+    const explicit = elements.find(b => {
       const txt = (b.textContent || '').trim();
       const aria = b.getAttribute('aria-label') || b.getAttribute('title') || '';
-      return /\+|הוסף|add/i.test(txt + aria) || b.querySelector('.material-symbols-rounded, .material-icons')?.textContent.trim() === 'add';
+      return /\+|הוסף|להוסיף|הוספה|add/i.test(txt + aria) || b.querySelector('.material-symbols-rounded, .material-icons')?.textContent.trim() === 'add';
     });
     if (explicit) return explicit;
-    return buttons[buttons.length - 1];
+    return elements[elements.length - 1];
   }
 
   function findCardForKey(key) {
@@ -1639,27 +1808,167 @@ function showToast(msg, type = 'success') {
     return null;
   }
 
+  /* פונקציה מרכזית ואמינה להוספת פריט לסל */
+  async function addItemToCart(it, amount = 1) {
+    const oid = (live && live.orderId) || extractOrderIdFromUrl();
+    if (!oid) return false;
+
+    // אם המכירה טרם נטענה במלואה, נוודא טעינה
+    if (!sale || !sale.items || !sale.items.size || (!sale.items.get('p' + it.pid) && !sale.items.get(norm(it.name || '')))) {
+      await ensureSaleItemsLoaded(oid);
+    }
+
+    const match = (sale && sale.items) ? (
+      sale.items.get('p' + it.pid) ||
+      (it.key && sale.items.get(it.key)) ||
+      sale.items.get(norm(it.name || '')) ||
+      (it.itemSalesId && sale.items.get('s' + it.itemSalesId))
+    ) : null;
+
+    const itemID = Number(match?.pid || it.pid || (it.key ? it.key.replace(/^p/, '') : 0));
+    const salesId = Number(match?.itemSalesId || it.itemSalesId || match?.id || 0);
+    const name = match?.name || it.name || '';
+    const price = Number(match?.price || it.price || 0);
+    const qty = Number(amount || it.avgQty || 1);
+
+    if (!itemID && !salesId) {
+      console.warn('[myfam] לא נמצא מזהה מוצר עבור', it);
+      return false;
+    }
+
+    let success = false;
+
+    // 1. קריאה ישירה ואמינה ל-API של משנת יוסף עם כל המזהים הנדרשים
+    try {
+      const payload = {
+        ...(match?.raw || {}),
+        itemID: itemID,
+        item_salesID: salesId || itemID,
+        id: salesId || itemID,
+        name: name,
+        amount: qty,
+        price: price,
+        price1: price
+      };
+
+      const res = await siteApiRequest(`${API_HOST}/api/add_item/${oid}`, 'POST', JSON.stringify(payload));
+      if (res) {
+        success = true;
+        const rows = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : (Array.isArray(res?.items) ? res.items : (res?.item ? [res.item] : [])));
+        rows.forEach(r => {
+          const l = lineFrom(r);
+          if (l && live && live.lines) live.lines.set(l.sid, l);
+        });
+
+        // עדכון מיידי בסל המקומי של התוסף
+        if (live && live.lines) {
+          const sid = salesId || itemID;
+          live.lines.set(sid, {
+            sid: sid,
+            pid: itemID,
+            key: 'p' + itemID,
+            name: name,
+            qty: qty,
+            price: price,
+            image: it.image || match?.image || ''
+          });
+        }
+
+        const newTotal = parseFloat(res?.total_list ?? res?.total ?? res?.order_total ?? res?.data?.total_list ?? 0) || null;
+        if (newTotal !== null && newTotal > 0 && live) {
+          live.serverTotal = newTotal;
+          live.currentTotal = newTotal;
+        }
+
+        // רענון סל מלא מהאתר ברקע
+        try {
+          siteApiRequest(`${API_HOST}/api/orders/${oid}`).then(oRes => {
+            if (oRes && oRes.order) {
+              const o = oRes.order;
+              const curOrdId = extractOrderIdFromUrl();
+              if (curOrdId === oid && live) {
+                live.serverTotal = parseFloat(o.total_list ?? o.total ?? 0) || live.serverTotal;
+                live.currentTotal = live.serverTotal;
+                if (Array.isArray(o.items)) {
+                  live.lines = new Map();
+                  o.items.forEach(lineIt => {
+                    const l = lineFrom(lineIt);
+                    if (l) live.lines.set(l.sid, l);
+                  });
+                }
+                updateBudgetUI();
+                updateForgottenUI();
+                updateSavingsUI();
+              }
+            }
+          }).catch(() => {});
+        } catch (e) {}
+      }
+    } catch (e) {
+      console.warn('[myfam add item API error]', e);
+    }
+
+    // 2. לחיצה ויזואלית על כרטיס המוצר בדף אם הוא מופיע ב-DOM
+    const card = findCardForKey(it.key || ('p' + itemID));
+    if (card) {
+      const btn = findCardAddButton(card);
+      if (btn) {
+        try {
+          triggerSimulatedClick(btn);
+          if (!success) success = true;
+        } catch (e) {}
+      }
+    }
+
+    if (success) {
+      commit();
+      updateBudgetUI();
+      updateForgottenUI();
+      updateSavingsUI();
+      return true;
+    }
+    return false;
+  }
+
   async function addAllFixedToCart() {
     const btnAll = $('#myfam-b-addall');
     const origHtml = btnAll ? btnAll.innerHTML : '';
-    const c = counts();
-    const cartPids = new Set(live ? [...live.lines.values()].map(l => l.key) : []);
-    const candidates = [];
-
-    $$('.myfam-card.myfam-fixed').forEach(cd => {
-      const leaf = cd.querySelector('[data-myleaf]');
-      if (!leaf) return;
-      const key = leaf.getAttribute('data-myleaf');
-      if (cartPids.has(key)) return; // כבר קיים בסל
-
-      const btn = findCardAddButton(cd);
-      if (btn) {
-        candidates.push({ cd, key, btn });
+    
+    // וידוא טעינת כלל מוצרי המכירה מכל הקטגוריות
+    const oid = (live && live.orderId) || extractOrderIdFromUrl();
+    if (oid && (!sale.loadedAll || !sale.items || sale.items.size < 5)) {
+      if (btnAll) {
+        btnAll.disabled = true;
+        btnAll.innerHTML = `<span style="display:inline-block;animation:myfam-spin 1s linear infinite;margin-left:6px;">⏳</span> <span>טוען מוצרים מהמכירה...</span>`;
       }
-    });
+      await ensureSaleItemsLoaded(oid);
+    }
+
+    // שליפת כל המוצרים הקבועים שעדיין חסרים בסל הנוכחי
+    let candidates = getForgottenFixedItems();
+
+    // גיבוי: אם getForgottenFixedItems ריק, נבדוק כרטיסים גלויים ב-DOM
+    if (!candidates.length) {
+      const cartPids = new Set(live ? [...live.lines.values()].map(l => l.key) : []);
+      $$('.myfam-card.myfam-fixed').forEach(cd => {
+        const leaf = cd.querySelector('[data-myleaf]');
+        if (!leaf) return;
+        const key = leaf.getAttribute('data-myleaf');
+        if (cartPids.has(key)) return;
+        const t = (leaf.textContent || '').trim();
+        const hit = sale && sale.items && sale.items.get(norm(t));
+        candidates.push({
+          key,
+          pid: hit ? hit.pid : Number(key.replace(/^p/, '')),
+          name: t,
+          itemSalesId: hit ? hit.itemSalesId : null,
+          avgQty: 1
+        });
+      });
+    }
 
     if (!candidates.length) {
-      showToast('כל המוצרים הקבועים במכירה זו כבר נמצאים בסל הקניות שלך!', 'info');
+      showToast('כל המוצרים הקבועים במכירה זו כבר נמצאים בסל הקניות שלך! 🎉', 'info');
       return;
     }
 
@@ -1678,8 +1987,8 @@ function showToast(msg, type = 'success') {
     let added = 0;
     for (const item of candidates) {
       try {
-        item.btn.click();
-        added++;
+        const ok = await addItemToCart(item, item.avgQty || 1);
+        if (ok) added++;
         if (btnAll) {
           btnAll.innerHTML = `<span style="display:inline-block;animation:myfam-spin 1s linear infinite;margin-left:6px;">⏳</span> <span>מוסיף ${added} מתוך ${candidates.length}...</span>`;
         }
@@ -1703,7 +2012,7 @@ function showToast(msg, type = 'success') {
         btnAll.innerHTML = origHtml || `${ICONS.cartPlus} <span>הוסף את כל הקבועים לסל</span>`;
       }, 3500);
     }
-    showToast(`נוספו ${added} מוצרים קבועים לסל בהצלחה!`, 'success');
+    showToast(`נוספו ${added} מוצרים קבועים לסל בהצלחה! 🛒`, 'success');
   }
 
   /* ---------- מד תקציב דינמי ומעודד (Budget Tracker) ---------- */
@@ -1968,8 +2277,14 @@ function showToast(msg, type = 'success') {
     const cartNames = new Set([...live.lines.values()].map(l => norm(l.name)));
 
     const missing = [];
-    for (const [normName, it] of (sale.items || new Map()).entries()) {
+    const seenPids = new Set();
+
+    for (const [keyOrNorm, it] of (sale.items || new Map()).entries()) {
+      if (!it || !it.pid || seenPids.has(it.pid)) continue;
+      seenPids.add(it.pid);
+
       const key = 'p' + it.pid;
+      const normName = norm(it.name || '');
       if (isFixed(key, c)) {
         if (!cartKeys.has(key) && !cartNames.has(normName)) {
           let avgQty = 1;
@@ -1985,14 +2300,34 @@ function showToast(msg, type = 'success') {
             if (ordCount > 0) avgQty = Math.round(sumQty / ordCount) || 1;
           } catch (e) {}
 
+          let img = it.image || productImages[key] || productImages[normName] || '';
+          if (!img) {
+            img = getProductImage({ key, name: it.name, image: it.image });
+          }
+          if (!img) {
+            for (const o of state.history) {
+              const found = o.items?.find(x => x.key === key || norm(x.name) === normName);
+              if (found && found.image) {
+                img = formatMishnatImageUrl(found.image);
+                break;
+              }
+            }
+          }
+          img = formatMishnatImageUrl(img);
+          if (img) {
+            productImages[key] = img;
+            productImages[normName] = img;
+          }
+
           missing.push({
             key,
             pid: it.pid,
             name: it.name,
             itemSalesId: it.itemSalesId,
-            image: it.image || productImages[key] || productImages[normName] || '',
+            image: img,
             price: it.price || itemPrices[key] || 0,
-            avgQty
+            avgQty,
+            raw: it.raw
           });
         }
       }
@@ -2006,9 +2341,14 @@ function showToast(msg, type = 'success') {
     const widget = $('#myfam-forgotten-widget');
 
     const curSaleId = sale.id || extractSaleIdFromUrl();
+    const curOrderId = (live && live.orderId) || extractOrderIdFromUrl();
     const isDismissed = curSaleId && localStorage.getItem(LS + 'dismiss_forgotten_' + curSaleId) === 'true';
 
     const onOrderPage = location.pathname.includes('/order/');
+    if (onOrderPage && curOrderId && !sale.loadedAll && !saleCatalogPromise) {
+      ensureSaleItemsLoaded(curOrderId);
+    }
+
     const missing = onOrderPage ? getForgottenFixedItems() : [];
 
     if (!missing.length || isDismissed) {
@@ -2055,8 +2395,12 @@ function showToast(msg, type = 'success') {
     }
   }
 
-  function showForgottenModal(isAutoTrigger = false) {
+  async function showForgottenModal(isAutoTrigger = false) {
     $('#myfam-forgotten-modal')?.remove();
+    const oid = (live && live.orderId) || extractOrderIdFromUrl();
+    if (oid && (!sale.loadedAll || !sale.items || sale.items.size < 5)) {
+      await ensureSaleItemsLoaded(oid);
+    }
     const missing = getForgottenFixedItems();
     const curSaleId = sale.id || extractSaleIdFromUrl();
 
@@ -2073,7 +2417,7 @@ function showToast(msg, type = 'success') {
     const itemsHtml = missing.map(it => `
       <div class="myfam-forgotten-item-row" data-key="${it.key}">
         <div class="myfam-forgotten-item-thumb">
-          ${it.image ? `<img src="${esc(it.image)}" alt="${esc(it.name)}">` : `<span class="myfam-no-img">${ICONS.package}</span>`}
+          ${it.image ? `<img src="${esc(it.image)}" alt="${esc(it.name)}" onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span class=\\'myfam-no-img\\'>${ICONS.package}</span>';">` : `<span class="myfam-no-img">${ICONS.package}</span>`}
         </div>
         <div class="myfam-forgotten-item-details">
           <div class="myfam-forgotten-item-name" title="${esc(it.name)}">${esc(it.name)}</div>
@@ -2135,37 +2479,14 @@ function showToast(msg, type = 'success') {
     async function addSingleForgottenItem(it, rowEl, btnEl) {
       btnEl.disabled = true;
       btnEl.innerHTML = ICONS.spinner;
-      let success = false;
-
-      // 1. חיפוש כרטיס קיים ב-DOM
-      const card = findCardForKey(it.key);
-      if (card) {
-        const b = findCardAddButton(card);
-        if (b) {
-          b.click();
-          success = true;
-        }
-      }
-
-      // 2. פנייה ישירה ל-API של האתר אם הכרטיס אינו ב-DOM
-      if (!success && live?.orderId && it.itemSalesId) {
-        try {
-          await siteApiRequest(`${API_HOST}/api/add_item/${live.orderId}`, 'POST', JSON.stringify({
-            item_salesID: it.itemSalesId,
-            amount: it.avgQty || 1
-          }));
-          success = true;
-        } catch (e) {}
-      }
+      const success = await addItemToCart(it, it.avgQty || 1);
 
       if (success) {
         btnEl.className = 'myfam-btn-added';
         btnEl.innerHTML = '✓ נוסף';
         if (rowEl) rowEl.classList.add('item-added');
         showToast(`"${it.name}" נוסף לסל בהצלחה! 🛒`, 'success');
-        updateBudgetUI();
         setTimeout(() => {
-          updateForgottenUI();
           if (getForgottenFixedItems().length === 0) {
             setTimeout(() => m.remove(), 700);
           }
@@ -2193,32 +2514,16 @@ function showToast(msg, type = 'success') {
           const btnEl = rowEl?.querySelector('.myfam-btn-add-single');
           if (btnEl && !btnEl.classList.contains('myfam-btn-added')) {
             btnEl.innerHTML = ICONS.spinner;
-            let success = false;
-
-            const card = findCardForKey(it.key);
-            if (card) {
-              const b = findCardAddButton(card);
-              if (b) {
-                b.click();
-                success = true;
-              }
-            }
-
-            if (!success && live?.orderId && it.itemSalesId) {
-              try {
-                await siteApiRequest(`${API_HOST}/api/add_item/${live.orderId}`, 'POST', JSON.stringify({
-                  item_salesID: it.itemSalesId,
-                  amount: it.avgQty || 1
-                }));
-                success = true;
-              } catch (e) {}
-            }
+            const success = await addItemToCart(it, it.avgQty || 1);
 
             if (success) {
               addedCount++;
               btnEl.className = 'myfam-btn-added';
               btnEl.innerHTML = '✓ נוסף';
               if (rowEl) rowEl.classList.add('item-added');
+            } else {
+              btnEl.disabled = false;
+              btnEl.innerHTML = '+ הוסף לסל';
             }
             await new Promise(r => setTimeout(r, 220));
           }
@@ -2317,6 +2622,14 @@ function showToast(msg, type = 'success') {
 
 
   /* ---------- מחשבון חיסכון והשוואת מחירים מול רשתות השיווק ---------- */
+  const ALL_CHAINS = {
+    yeshHesed: { id: 'yeshHesed', name: 'יש חסד' },
+    netoChisachon: { id: 'netoChisachon', name: 'נטו חיסכון' },
+    osherAd: { id: 'osherAd', name: 'אושר עד' },
+    ramiLevy: { id: 'ramiLevy', name: 'רמי לוי' }
+  };
+  const DEFAULT_SELECTED_CHAINS = ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy'];
+
   const MARKET_ANCHOR_ITEMS = [
   {
     "id": "milk_3",
@@ -2327,10 +2640,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 7.11,
     "chains": {
-      "osherAd": 6.9,
+      "osherAd": 7.11,
       "ramiLevy": 7.11,
-      "yeshHesed": 7.11
-    }
+      "yeshHesed": 7.11,
+      "netoChisachon": 7.11
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "milk_1",
@@ -2341,10 +2656,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 6.55,
     "chains": {
-      "osherAd": 6.4,
+      "osherAd": 6.55,
       "ramiLevy": 6.55,
-      "yeshHesed": 6.55
-    }
+      "yeshHesed": 6.55,
+      "netoChisachon": 6.55
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "eggs_l30",
@@ -2354,12 +2671,14 @@ function showToast(msg, type = 'success') {
       "ביצים גודל l",
       "תבנית 30"
     ],
-    "supermarketPrice": 38.0,
+    "supermarketPrice": 38,
     "chains": {
-      "osherAd": 36.9,
-      "ramiLevy": 37.9,
-      "yeshHesed": 38.0
-    }
+      "osherAd": 37.24,
+      "ramiLevy": 38,
+      "yeshHesed": 38,
+      "netoChisachon": 37.62
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "eggs_m30",
@@ -2370,10 +2689,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 34.5,
     "chains": {
-      "osherAd": 33.9,
+      "osherAd": 33.81,
       "ramiLevy": 34.5,
-      "yeshHesed": 34.5
-    }
+      "yeshHesed": 34.5,
+      "netoChisachon": 34.16
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "eggs_l12",
@@ -2386,8 +2707,10 @@ function showToast(msg, type = 'success') {
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.2,
-      "yeshHesed": 15.2
-    }
+      "yeshHesed": 15.2,
+      "netoChisachon": 15.05
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "cheese_white_5",
@@ -2398,10 +2721,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 5.75,
     "chains": {
-      "osherAd": 5.5,
+      "osherAd": 5.75,
       "ramiLevy": 5.75,
-      "yeshHesed": 5.75
-    }
+      "yeshHesed": 5.75,
+      "netoChisachon": 5.75
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "cottage_5",
@@ -2410,12 +2735,14 @@ function showToast(msg, type = 'success') {
       "קוטג 5",
       "קוטג' 5"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 6.87,
     "chains": {
       "osherAd": 6.8,
       "ramiLevy": 6.9,
-      "yeshHesed": 6.9
-    }
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.85
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "yellow_emek",
@@ -2425,12 +2752,14 @@ function showToast(msg, type = 'success') {
       "צהובה עמק",
       "עמק 400"
     ],
-    "supermarketPrice": 23.9,
+    "supermarketPrice": 23.77,
     "chains": {
       "osherAd": 22.9,
       "ramiLevy": 23.9,
-      "yeshHesed": 24.5
-    }
+      "yeshHesed": 24.5,
+      "netoChisachon": 23.7
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "yellow_gilboa",
@@ -2439,12 +2768,14 @@ function showToast(msg, type = 'success') {
       "גלבוע 200",
       "צהובה גלבוע"
     ],
-    "supermarketPrice": 13.5,
+    "supermarketPrice": 13.43,
     "chains": {
       "osherAd": 12.9,
       "ramiLevy": 13.5,
-      "yeshHesed": 13.9
-    }
+      "yeshHesed": 13.9,
+      "netoChisachon": 13.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "butter_100",
@@ -2455,10 +2786,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 5.1,
     "chains": {
-      "osherAd": 4.9,
+      "osherAd": 5.1,
       "ramiLevy": 5.1,
-      "yeshHesed": 5.1
-    }
+      "yeshHesed": 5.1,
+      "netoChisachon": 5.1
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sour_cream",
@@ -2469,10 +2802,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 3.05,
     "chains": {
-      "osherAd": 2.9,
+      "osherAd": 3.05,
       "ramiLevy": 3.05,
-      "yeshHesed": 3.05
-    }
+      "yeshHesed": 3.05,
+      "netoChisachon": 3.05
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sweet_cream",
@@ -2481,12 +2816,14 @@ function showToast(msg, type = 'success') {
       "שמנת מתוקה 38",
       "השף הלבן 38"
     ],
-    "supermarketPrice": 8.5,
+    "supermarketPrice": 8.43,
     "chains": {
       "osherAd": 7.9,
       "ramiLevy": 8.5,
-      "yeshHesed": 8.9
-    }
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "milky",
@@ -2495,12 +2832,14 @@ function showToast(msg, type = 'success') {
       "מילקי שוקולד",
       "מילקי"
     ],
-    "supermarketPrice": 3.4,
+    "supermarketPrice": 3.37,
     "chains": {
       "osherAd": 3.2,
       "ramiLevy": 3.4,
-      "yeshHesed": 3.5
-    }
+      "yeshHesed": 3.5,
+      "netoChisachon": 3.35
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "shoko_1l",
@@ -2509,12 +2848,14 @@ function showToast(msg, type = 'success') {
       "שוקו 1 ליטר",
       "שוקו תנובה"
     ],
-    "supermarketPrice": 11.9,
+    "supermarketPrice": 11.67,
     "chains": {
       "osherAd": 10.9,
       "ramiLevy": 11.9,
-      "yeshHesed": 12.2
-    }
+      "yeshHesed": 12.2,
+      "netoChisachon": 11.55
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "oil_canola",
@@ -2523,12 +2864,14 @@ function showToast(msg, type = 'success') {
       "שמן קנולה",
       "קנולה 1 ליטר"
     ],
-    "supermarketPrice": 9.9,
+    "supermarketPrice": 9.43,
     "chains": {
       "osherAd": 8.9,
       "ramiLevy": 9.5,
-      "yeshHesed": 9.9
-    }
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "oil_soy",
@@ -2537,12 +2880,14 @@ function showToast(msg, type = 'success') {
       "שמן סויה",
       "סויה 1 ליטר"
     ],
-    "supermarketPrice": 8.9,
+    "supermarketPrice": 8.43,
     "chains": {
       "osherAd": 7.9,
       "ramiLevy": 8.5,
-      "yeshHesed": 8.9
-    }
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "oil_olive",
@@ -2551,12 +2896,14 @@ function showToast(msg, type = 'success') {
       "שמן זית",
       "כתית מעולה 750"
     ],
-    "supermarketPrice": 39.9,
+    "supermarketPrice": 38.57,
     "chains": {
       "osherAd": 36.9,
       "ramiLevy": 38.9,
-      "yeshHesed": 39.9
-    }
+      "yeshHesed": 39.9,
+      "netoChisachon": 38.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sugar_white",
@@ -2566,12 +2913,14 @@ function showToast(msg, type = 'success') {
       "סוכר 1 קג",
       "סוכר סוגת"
     ],
-    "supermarketPrice": 5.2,
+    "supermarketPrice": 4.97,
     "chains": {
       "osherAd": 4.8,
       "ramiLevy": 4.9,
-      "yeshHesed": 5.2
-    }
+      "yeshHesed": 5.2,
+      "netoChisachon": 5
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "flour_white",
@@ -2580,12 +2929,14 @@ function showToast(msg, type = 'success') {
       "קמח לבן",
       "קמח בהיר 1"
     ],
-    "supermarketPrice": 4.9,
+    "supermarketPrice": 4.53,
     "chains": {
       "osherAd": 4.2,
       "ramiLevy": 4.5,
-      "yeshHesed": 4.9
-    }
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.55
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "flour_raising",
@@ -2594,12 +2945,14 @@ function showToast(msg, type = 'success') {
       "קמח תופח",
       "תופח 1 קג"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 6.43,
     "chains": {
       "osherAd": 5.9,
       "ramiLevy": 6.5,
-      "yeshHesed": 6.9
-    }
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "salt_fine",
@@ -2610,10 +2963,12 @@ function showToast(msg, type = 'success') {
     ],
     "supermarketPrice": 2.6,
     "chains": {
-      "osherAd": 2.3,
-      "ramiLevy": 2.5,
-      "yeshHesed": 2.6
-    }
+      "osherAd": 2.6,
+      "ramiLevy": 2.6,
+      "yeshHesed": 2.6,
+      "netoChisachon": 2.6
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "rice_persian",
@@ -2622,12 +2977,14 @@ function showToast(msg, type = 'success') {
       "אורז פרסי",
       "פרסי סוגת"
     ],
-    "supermarketPrice": 10.9,
+    "supermarketPrice": 10.43,
     "chains": {
       "osherAd": 9.9,
       "ramiLevy": 10.5,
-      "yeshHesed": 10.9
-    }
+      "yeshHesed": 10.9,
+      "netoChisachon": 10.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "rice_basmati",
@@ -2636,12 +2993,14 @@ function showToast(msg, type = 'success') {
       "אורז בסמטי",
       "בסמטי 1 קג"
     ],
-    "supermarketPrice": 14.9,
+    "supermarketPrice": 14.1,
     "chains": {
       "osherAd": 13.5,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.9
-    }
+      "yeshHesed": 14.9,
+      "netoChisachon": 14.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "rice_jasmine",
@@ -2650,12 +3009,14 @@ function showToast(msg, type = 'success') {
       "אורז יסמין",
       "יסמין 1 קג"
     ],
-    "supermarketPrice": 12.9,
+    "supermarketPrice": 12.2,
     "chains": {
       "osherAd": 11.5,
       "ramiLevy": 12.2,
-      "yeshHesed": 12.9
-    }
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pasta_osem_spaghetti",
@@ -2664,12 +3025,14 @@ function showToast(msg, type = 'success') {
       "ספגטי אסם",
       "פסטה ספגטי"
     ],
-    "supermarketPrice": 6.5,
+    "supermarketPrice": 5.97,
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 5.9,
-      "yeshHesed": 6.5
-    }
+      "yeshHesed": 6.5,
+      "netoChisachon": 6
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pasta_osem_penne",
@@ -2679,12 +3042,14 @@ function showToast(msg, type = 'success') {
       "פנה אסם",
       "פסטה נוצה"
     ],
-    "supermarketPrice": 6.5,
+    "supermarketPrice": 5.97,
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 5.9,
-      "yeshHesed": 6.5
-    }
+      "yeshHesed": 6.5,
+      "netoChisachon": 6
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pasta_osem_fusilli",
@@ -2694,12 +3059,14 @@ function showToast(msg, type = 'success') {
       "פסטה מסולסלת",
       "פסטה פוזילי"
     ],
-    "supermarketPrice": 6.5,
+    "supermarketPrice": 5.97,
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 5.9,
-      "yeshHesed": 6.5
-    }
+      "yeshHesed": 6.5,
+      "netoChisachon": 6
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "ptitim_osem",
@@ -2710,12 +3077,14 @@ function showToast(msg, type = 'success') {
       "פתיתים כוכבים",
       "פתיתים אסם"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 6.43,
     "chains": {
       "osherAd": 5.9,
       "ramiLevy": 6.5,
-      "yeshHesed": 6.9
-    }
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tuna_fillet_4",
@@ -2726,12 +3095,14 @@ function showToast(msg, type = 'success') {
       "טונה בשמן רביעיה",
       "מארז טונה"
     ],
-    "supermarketPrice": 24.9,
+    "supermarketPrice": 23.57,
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 23.9,
-      "yeshHesed": 24.9
-    }
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "corn_can",
@@ -2741,12 +3112,14 @@ function showToast(msg, type = 'success') {
       "שימורי תירס",
       "גרגרי תירס"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 6.2,
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 6.2,
-      "yeshHesed": 6.9
-    }
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "peas_can",
@@ -2755,12 +3128,14 @@ function showToast(msg, type = 'success') {
       "אפונה עדינה",
       "שימורי אפונה"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 6.2,
     "chains": {
       "osherAd": 5.5,
       "ramiLevy": 6.2,
-      "yeshHesed": 6.9
-    }
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "pickles_cucumbers",
@@ -2771,12 +3146,14 @@ function showToast(msg, type = 'success') {
       "שימורי מלפפונים",
       "מלפפונים 7-9"
     ],
-    "supermarketPrice": 7.5,
+    "supermarketPrice": 6.87,
     "chains": {
       "osherAd": 6.2,
       "ramiLevy": 6.9,
-      "yeshHesed": 7.5
-    }
+      "yeshHesed": 7.5,
+      "netoChisachon": 6.85
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "olives_green",
@@ -2787,12 +3164,14 @@ function showToast(msg, type = 'success') {
       "זיתים מושחלים",
       "זיתים חרוזים"
     ],
-    "supermarketPrice": 8.9,
+    "supermarketPrice": 8.1,
     "chains": {
       "osherAd": 7.5,
       "ramiLevy": 7.9,
-      "yeshHesed": 8.9
-    }
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tomato_paste_100",
@@ -2801,12 +3180,14 @@ function showToast(msg, type = 'success') {
       "רסק עגבניות",
       "רסק 100 גרם"
     ],
-    "supermarketPrice": 2.2,
+    "supermarketPrice": 2.03,
     "chains": {
       "osherAd": 1.9,
-      "ramiLevy": 2.0,
-      "yeshHesed": 2.2
-    }
+      "ramiLevy": 2,
+      "yeshHesed": 2.2,
+      "netoChisachon": 2.05
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "ketchup_osem",
@@ -2815,12 +3196,14 @@ function showToast(msg, type = 'success') {
       "קטשופ אסם",
       "קטשופ 750"
     ],
-    "supermarketPrice": 12.9,
+    "supermarketPrice": 12.2,
     "chains": {
       "osherAd": 11.5,
       "ramiLevy": 12.2,
-      "yeshHesed": 12.9
-    }
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "mayo_telma",
@@ -2829,12 +3212,14 @@ function showToast(msg, type = 'success') {
       "מיונז תלמה",
       "מיונז אמיתי"
     ],
-    "supermarketPrice": 12.9,
+    "supermarketPrice": 12.03,
     "chains": {
       "osherAd": 11.2,
-      "ramiLevy": 12.0,
-      "yeshHesed": 12.9
-    }
+      "ramiLevy": 12,
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.05
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tahini_raw",
@@ -2845,12 +3230,14 @@ function showToast(msg, type = 'success') {
       "טחינה הנסיך",
       "טחינה ירושלים"
     ],
-    "supermarketPrice": 23.9,
+    "supermarketPrice": 22.9,
     "chains": {
       "osherAd": 21.9,
       "ramiLevy": 22.9,
-      "yeshHesed": 23.9
-    }
+      "yeshHesed": 23.9,
+      "netoChisachon": 22.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "challah",
@@ -2860,12 +3247,14 @@ function showToast(msg, type = 'success') {
       "חלה מהודרת",
       "חלה לשבת"
     ],
-    "supermarketPrice": 7.5,
+    "supermarketPrice": 7.2,
     "chains": {
       "osherAd": 6.9,
       "ramiLevy": 7.2,
-      "yeshHesed": 7.5
-    }
+      "yeshHesed": 7.5,
+      "netoChisachon": 7.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bread_wholewheat",
@@ -2876,12 +3265,14 @@ function showToast(msg, type = 'success') {
       "לחם מלא",
       "מחיטה מלאה"
     ],
-    "supermarketPrice": 12.90,
+    "supermarketPrice": 12.43,
     "chains": {
-      "osherAd": 11.90,
-      "ramiLevy": 12.50,
-      "yeshHesed": 12.90
-    }
+      "osherAd": 11.9,
+      "ramiLevy": 12.5,
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bread_sliced",
@@ -2895,8 +3286,10 @@ function showToast(msg, type = 'success') {
     "chains": {
       "osherAd": 7.91,
       "ramiLevy": 7.91,
-      "yeshHesed": 7.91
-    }
+      "yeshHesed": 7.91,
+      "netoChisachon": 7.91
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "cornflakes_telma",
@@ -2905,12 +3298,14 @@ function showToast(msg, type = 'success') {
       "קורנפלקס תלמה",
       "קורנפלקס של אלופים"
     ],
-    "supermarketPrice": 19.9,
+    "supermarketPrice": 19.3,
     "chains": {
       "osherAd": 18.5,
       "ramiLevy": 19.5,
-      "yeshHesed": 19.9
-    }
+      "yeshHesed": 19.9,
+      "netoChisachon": 19.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "kariot_telma",
@@ -2920,12 +3315,14 @@ function showToast(msg, type = 'success') {
       "כריות נוגט",
       "כריות שוקולד"
     ],
-    "supermarketPrice": 26.9,
+    "supermarketPrice": 25.9,
     "chains": {
       "osherAd": 24.9,
       "ramiLevy": 25.9,
-      "yeshHesed": 26.9
-    }
+      "yeshHesed": 26.9,
+      "netoChisachon": 25.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "petiber_osem",
@@ -2934,12 +3331,14 @@ function showToast(msg, type = 'success') {
       "פטי בר",
       "פטיבר אסם"
     ],
-    "supermarketPrice": 13.9,
+    "supermarketPrice": 13.2,
     "chains": {
       "osherAd": 12.5,
       "ramiLevy": 13.2,
-      "yeshHesed": 13.9
-    }
+      "yeshHesed": 13.9,
+      "netoChisachon": 13.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bamba_osem",
@@ -2948,28 +3347,51 @@ function showToast(msg, type = 'success') {
       "במבה אסם",
       "במבה 80"
     ],
-    "supermarketPrice": 4.9,
+    "supermarketPrice": 4.53,
     "chains": {
       "osherAd": 4.2,
       "ramiLevy": 4.5,
-      "yeshHesed": 4.9
-    }
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.55
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bisli_osem",
-    "name": "ביסלי אסם 70 גרם (גריל/ברביקיו/בצל)",
+    "name": "ביסלי אסם 70 גרם (גריל/ברביקיו)",
     "aliases": [
-      "ביסלי גריל",
-      "ביסלי ברביקיו",
-      "ביסלי בצל",
-      "ביסלי אסם"
+      "ביסלי גריל 70",
+      "ביסלי ברביקיו 70",
+      "ביסלי בצל 70",
+      "ביסלי 70 גרם"
     ],
-    "supermarketPrice": 4.9,
+    "supermarketPrice": 4.53,
     "chains": {
       "osherAd": 4.2,
       "ramiLevy": 4.5,
-      "yeshHesed": 4.9
-    }
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.55
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bisli_party_mix",
+    "name": "ביסלי פארטי מיקס אריזה גדולה אסם (150-200 גרם)",
+    "aliases": [
+      "פארטי מיקס",
+      "ביסלי פארטי",
+      "ביסלי אריזה גדולה",
+      "פארטי מיקס אסם",
+      "ביסלי מיקס"
+    ],
+    "supermarketPrice": 7.9,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 7.5,
+      "yeshHesed": 8.5,
+      "netoChisachon": 7.7
+    },
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "shahar_hashahar",
@@ -2978,12 +3400,14 @@ function showToast(msg, type = 'success') {
       "השחר העולה",
       "ממרח השחר"
     ],
-    "supermarketPrice": 13.5,
+    "supermarketPrice": 12.97,
     "chains": {
       "osherAd": 12.5,
       "ramiLevy": 12.9,
-      "yeshHesed": 13.5
-    }
+      "yeshHesed": 13.5,
+      "netoChisachon": 13
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "coca_cola_6",
@@ -2993,12 +3417,14 @@ function showToast(msg, type = 'success') {
       "קולה שישיה",
       "קוקה קולה 1.5"
     ],
-    "supermarketPrice": 44.9,
+    "supermarketPrice": 43.57,
     "chains": {
       "osherAd": 41.9,
       "ramiLevy": 43.9,
-      "yeshHesed": 44.9
-    }
+      "yeshHesed": 44.9,
+      "netoChisachon": 43.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "coca_zero_6",
@@ -3008,12 +3434,14 @@ function showToast(msg, type = 'success') {
       "זירו שישיה",
       "קוקה קולה זירו"
     ],
-    "supermarketPrice": 44.9,
+    "supermarketPrice": 43.57,
     "chains": {
       "osherAd": 41.9,
       "ramiLevy": 43.9,
-      "yeshHesed": 44.9
-    }
+      "yeshHesed": 44.9,
+      "netoChisachon": 43.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "mineral_water_6",
@@ -3023,12 +3451,14 @@ function showToast(msg, type = 'success') {
       "שישיית מים",
       "עין גדי שישיה"
     ],
-    "supermarketPrice": 14.5,
+    "supermarketPrice": 13.97,
     "chains": {
       "osherAd": 13.5,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.5
-    }
+      "yeshHesed": 14.5,
+      "netoChisachon": 14
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "grape_juice",
@@ -3037,12 +3467,14 @@ function showToast(msg, type = 'success') {
       "תירוש כרמל",
       "מיץ ענבים תירוש"
     ],
-    "supermarketPrice": 18.9,
+    "supermarketPrice": 18.2,
     "chains": {
       "osherAd": 17.5,
       "ramiLevy": 18.2,
-      "yeshHesed": 18.9
-    }
+      "yeshHesed": 18.9,
+      "netoChisachon": 18.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "coffee_elite",
@@ -3051,12 +3483,14 @@ function showToast(msg, type = 'success') {
       "קפה נמס עלית",
       "נמס עלית 200"
     ],
-    "supermarketPrice": 21.9,
+    "supermarketPrice": 20.9,
     "chains": {
       "osherAd": 19.9,
       "ramiLevy": 20.9,
-      "yeshHesed": 21.9
-    }
+      "yeshHesed": 21.9,
+      "netoChisachon": 20.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tasters_choice",
@@ -3065,12 +3499,14 @@ function showToast(msg, type = 'success') {
       "טסטרס צויס",
       "טסטרס צ'ויס"
     ],
-    "supermarketPrice": 34.9,
+    "supermarketPrice": 33.9,
     "chains": {
       "osherAd": 32.9,
       "ramiLevy": 33.9,
-      "yeshHesed": 34.9
-    }
+      "yeshHesed": 34.9,
+      "netoChisachon": 33.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "tea_wissotzky",
@@ -3079,12 +3515,14 @@ function showToast(msg, type = 'success') {
       "ויסוצקי קלאסי",
       "תה ויסוצקי 100"
     ],
-    "supermarketPrice": 19.9,
+    "supermarketPrice": 19.2,
     "chains": {
       "osherAd": 18.5,
       "ramiLevy": 19.2,
-      "yeshHesed": 19.9
-    }
+      "yeshHesed": 19.9,
+      "netoChisachon": 19.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "fairy_dish",
@@ -3093,12 +3531,14 @@ function showToast(msg, type = 'success') {
       "פיירי",
       "נוזל כלים פיירי"
     ],
-    "supermarketPrice": 12.9,
+    "supermarketPrice": 12.2,
     "chains": {
       "osherAd": 11.5,
       "ramiLevy": 12.2,
-      "yeshHesed": 12.9
-    }
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "persil_gel",
@@ -3109,12 +3549,14 @@ function showToast(msg, type = 'success') {
       "פרסיל כביסה",
       "אריאל ג'ל"
     ],
-    "supermarketPrice": 36.9,
+    "supermarketPrice": 35.57,
     "chains": {
       "osherAd": 33.9,
       "ramiLevy": 35.9,
-      "yeshHesed": 36.9
-    }
+      "yeshHesed": 36.9,
+      "netoChisachon": 35.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "badin_softener",
@@ -3123,12 +3565,14 @@ function showToast(msg, type = 'success') {
       "מרכך בדין",
       "בדין מרוכז"
     ],
-    "supermarketPrice": 16.9,
+    "supermarketPrice": 15.9,
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
-    }
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "sano_bleach",
@@ -3137,12 +3581,14 @@ function showToast(msg, type = 'success') {
       "אקונומיקה סנו",
       "סנו ג'ל"
     ],
-    "supermarketPrice": 11.5,
+    "supermarketPrice": 10.97,
     "chains": {
       "osherAd": 10.5,
       "ramiLevy": 10.9,
-      "yeshHesed": 11.5
-    }
+      "yeshHesed": 11.5,
+      "netoChisachon": 11
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "toilet_paper_30",
@@ -3152,12 +3598,14 @@ function showToast(msg, type = 'success') {
       "לילי 30",
       "מולט 30"
     ],
-    "supermarketPrice": 34.9,
+    "supermarketPrice": 33.43,
     "chains": {
       "osherAd": 31.9,
       "ramiLevy": 33.5,
-      "yeshHesed": 34.9
-    }
+      "yeshHesed": 34.9,
+      "netoChisachon": 33.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "garbage_bags",
@@ -3166,12 +3614,14 @@ function showToast(msg, type = 'success') {
       "שקיות אשפה שרוך",
       "שקיות לפח"
     ],
-    "supermarketPrice": 19.9,
+    "supermarketPrice": 18.9,
     "chains": {
       "osherAd": 17.9,
       "ramiLevy": 18.9,
-      "yeshHesed": 19.9
-    }
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "colgate_total",
@@ -3180,12 +3630,14 @@ function showToast(msg, type = 'success') {
       "קולגייט טוטאל",
       "משחת שיניים קולגייט"
     ],
-    "supermarketPrice": 14.9,
+    "supermarketPrice": 13.9,
     "chains": {
       "osherAd": 12.9,
       "ramiLevy": 13.9,
-      "yeshHesed": 14.9
-    }
+      "yeshHesed": 14.9,
+      "netoChisachon": 13.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "hand_soap_1l",
@@ -3195,12 +3647,14 @@ function showToast(msg, type = 'success') {
       "אל סבון מילוי",
       "סבון ידיים 1"
     ],
-    "supermarketPrice": 9.9,
+    "supermarketPrice": 9.2,
     "chains": {
       "osherAd": 8.5,
       "ramiLevy": 9.2,
-      "yeshHesed": 9.9
-    }
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "shampoo_havai",
@@ -3211,12 +3665,14 @@ function showToast(msg, type = 'success') {
       "מרכך פינוק",
       "פינוק 700"
     ],
-    "supermarketPrice": 11.9,
+    "supermarketPrice": 11.2,
     "chains": {
       "osherAd": 10.5,
       "ramiLevy": 11.2,
-      "yeshHesed": 11.9
-    }
+      "yeshHesed": 11.9,
+      "netoChisachon": 11.2
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "peas_frozen_sunfrost",
@@ -3225,12 +3681,14 @@ function showToast(msg, type = 'success') {
       "אפונה סנפרוסט",
       "סנפרוסט אפונה"
     ],
-    "supermarketPrice": 17.9,
+    "supermarketPrice": 16.9,
     "chains": {
       "osherAd": 15.9,
       "ramiLevy": 16.9,
-      "yeshHesed": 17.9
-    }
+      "yeshHesed": 17.9,
+      "netoChisachon": 16.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "green_beans_sunfrost",
@@ -3239,12 +3697,14 @@ function showToast(msg, type = 'success') {
       "שעועית ירוקה סנפרוסט",
       "סנפרוסט שעועית"
     ],
-    "supermarketPrice": 17.9,
+    "supermarketPrice": 16.9,
     "chains": {
       "osherAd": 15.9,
       "ramiLevy": 16.9,
-      "yeshHesed": 17.9
-    }
+      "yeshHesed": 17.9,
+      "netoChisachon": 16.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "fries_frozen",
@@ -3254,12 +3714,14 @@ function showToast(msg, type = 'success') {
       "צ'יפס אמריקאי",
       "תפודים ציפס"
     ],
-    "supermarketPrice": 21.9,
+    "supermarketPrice": 20.43,
     "chains": {
       "osherAd": 18.9,
       "ramiLevy": 20.5,
-      "yeshHesed": 21.9
-    }
+      "yeshHesed": 21.9,
+      "netoChisachon": 20.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "bourekas_potato",
@@ -3268,12 +3730,14 @@ function showToast(msg, type = 'success') {
       "בורקס תפוחי אדמה",
       "בורקס מעדנות"
     ],
-    "supermarketPrice": 19.9,
+    "supermarketPrice": 18.9,
     "chains": {
       "osherAd": 17.9,
       "ramiLevy": 18.9,
-      "yeshHesed": 19.9
-    }
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "malawach",
@@ -3282,12 +3746,14 @@ function showToast(msg, type = 'success') {
       "מלוואח מעדנות",
       "מלוח מעדנות"
     ],
-    "supermarketPrice": 16.9,
+    "supermarketPrice": 15.9,
     "chains": {
       "osherAd": 14.9,
       "ramiLevy": 15.9,
-      "yeshHesed": 16.9
-    }
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.9
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "schnitzel_corn",
@@ -3296,12 +3762,14 @@ function showToast(msg, type = 'success') {
       "שניצל תירס",
       "טבעול תירס"
     ],
-    "supermarketPrice": 29.9,
+    "supermarketPrice": 28.43,
     "chains": {
       "osherAd": 26.9,
       "ramiLevy": 28.5,
-      "yeshHesed": 29.9
-    }
+      "yeshHesed": 29.9,
+      "netoChisachon": 28.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "chicken_breast_fresh",
@@ -3310,12 +3778,14 @@ function showToast(msg, type = 'success') {
       "חזה עוף טרי",
       "חזה עוף נקי"
     ],
-    "supermarketPrice": 39.9,
+    "supermarketPrice": 38.23,
     "chains": {
       "osherAd": 36.9,
       "ramiLevy": 37.9,
-      "yeshHesed": 39.9
-    }
+      "yeshHesed": 39.9,
+      "netoChisachon": 38.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "ground_beef_frozen",
@@ -3325,12 +3795,14 @@ function showToast(msg, type = 'success') {
       "בקר טחון קפוא",
       "טחון חלק"
     ],
-    "supermarketPrice": 22.9,
+    "supermarketPrice": 21.57,
     "chains": {
       "osherAd": 19.9,
       "ramiLevy": 21.9,
-      "yeshHesed": 22.9
-    }
+      "yeshHesed": 22.9,
+      "netoChisachon": 21.4
+    },
+    "lastVerified": "2026-11-09"
   },
   {
     "id": "salmon_fillet_frozen",
@@ -3339,12 +3811,431 @@ function showToast(msg, type = 'success') {
       "פילה סלמון",
       "סלמון קפוא"
     ],
-    "supermarketPrice": 64.9,
+    "supermarketPrice": 62.57,
     "chains": {
       "osherAd": 59.9,
       "ramiLevy": 62.9,
-      "yeshHesed": 64.9
-    }
+      "yeshHesed": 64.9,
+      "netoChisachon": 62.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "fairy_1_5l",
+    "name": "סבון כלים פיירי 1.5 ליטר",
+    "aliases": [
+      "פיירי 1.5",
+      "סבון כלים פיירי - 1.5",
+      "פיירי 1.5 ליטר"
+    ],
+    "supermarketPrice": 18.9,
+    "chains": {
+      "osherAd": 17.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_maxima_softener",
+    "name": "מרכך כביסה מרוכז סנו מקסימה 1 ליטר",
+    "aliases": [
+      "סנו מקסימה",
+      "מרכך סנו מקסימה",
+      "מקסימה מרוכז"
+    ],
+    "supermarketPrice": 15.9,
+    "chains": {
+      "osherAd": 14.9,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "persil_gel_3_8l",
+    "name": "ג'ל כביסה פרסיל 3.8 ליטר",
+    "aliases": [
+      "פרסיל 3.8",
+      "ג'ל כביסה פרסיל - 3.8",
+      "גל כביסה פרסיל 3.8"
+    ],
+    "supermarketPrice": 47.57,
+    "chains": {
+      "osherAd": 44.9,
+      "ramiLevy": 47.9,
+      "yeshHesed": 49.9,
+      "netoChisachon": 47.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "delipekan_telma",
+    "name": "דגני בוקר דליפקאן תלמה 400-500 גרם",
+    "aliases": [
+      "דליפקאן",
+      "דלי פקאן",
+      "דליפקאן תלמה"
+    ],
+    "supermarketPrice": 23.43,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.5,
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "shugi_bars",
+    "name": "מארז חטיף דגנים שוגי תלמה (שוקולד/וניל)",
+    "aliases": [
+      "חטיף דגנים שוגי",
+      "שוגי תלמה",
+      "חטיפי שוגי"
+    ],
+    "supermarketPrice": 14.9,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 14.9,
+      "yeshHesed": 15.9,
+      "netoChisachon": 14.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "quaker_oats",
+    "name": "קוואקר שיבולת שועל להכנה מהירה 500 גרם",
+    "aliases": [
+      "קווקר",
+      "קוואקר",
+      "שיבולת שועל להכנה מהירה"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.9,
+      "netoChisachon": 10.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "soup_almonds_osem",
+    "name": "שקדי מרק אסם 400 גרם",
+    "aliases": [
+      "שקדי מרק",
+      "שקדי מרק אסם"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {
+      "osherAd": 11.9,
+      "ramiLevy": 12.9,
+      "yeshHesed": 13.9,
+      "netoChisachon": 12.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sweet_chili_sauce",
+    "name": "רוטב צ'ילי מתוק 700 מ\"ל",
+    "aliases": [
+      "רוטב צ'ילי מתוק",
+      "רוטב צילי מתוק",
+      "צילי מתוק"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.9,
+      "netoChisachon": 10.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "silan_pure_squeeze",
+    "name": "סילאן תמרים טבעי 100% בקבוק לחיץ",
+    "aliases": [
+      "סילאן טבעי",
+      "סילאן לחיץ",
+      "סילאן תמרים"
+    ],
+    "supermarketPrice": 16.77,
+    "chains": {
+      "osherAd": 15.5,
+      "ramiLevy": 16.9,
+      "yeshHesed": 17.9,
+      "netoChisachon": 16.7
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "honey_squeeze",
+    "name": "דבש טהור בקבוק לחיץ / צנצנת (יד מרדכי/עמק חפר)",
+    "aliases": [
+      "דבש טבעי",
+      "דבש בבקבוק לחיץ",
+      "דבש לחיץ"
+    ],
+    "supermarketPrice": 23.57,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.9,
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_clear_windows",
+    "name": "נוזל לניקוי חלונות סנו קליר 1 ליטר",
+    "aliases": [
+      "סנו קליר",
+      "נוזל לניקוי חלונות 1 ליטר",
+      "ניקוי חלונות סנו"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.9,
+      "netoChisachon": 10.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_ratzpaz",
+    "name": "רצפז נוזל רצפות לשואב שוטף / מרוכז סנו",
+    "aliases": [
+      "רצפז",
+      "נוזל רצפות לשואב שוטף",
+      "רצפז נוזל"
+    ],
+    "supermarketPrice": 18.9,
+    "chains": {
+      "osherAd": 17.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 19.9,
+      "netoChisachon": 18.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "dr_fischer_baby_shampoo",
+    "name": "שמפו אל דמע לתינוקות ד\"ר פישר 750 מ\"ל - 1 ליטר",
+    "aliases": [
+      "אל דמע לתינוקות",
+      "שמפו אל דמע",
+      "ד\"ר פישר לתינוקות"
+    ],
+    "supermarketPrice": 20.57,
+    "chains": {
+      "osherAd": 18.9,
+      "ramiLevy": 20.9,
+      "yeshHesed": 21.9,
+      "netoChisachon": 20.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_anti_calc",
+    "name": "תרסיס אנטי קאלק 4 ב-1 סנו 1 ליטר",
+    "aliases": [
+      "אנטי קאלק",
+      "תרסיס אנטי קאלק",
+      "אנטיקאלק סנו"
+    ],
+    "supermarketPrice": 15.77,
+    "chains": {
+      "osherAd": 14.5,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.7
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "sano_javel_spray",
+    "name": "תרסיס ז'אוול קצף ניקוי בתוספת אקונומיקה סנו 750 מ\"ל",
+    "aliases": [
+      "ז'אוול קצף",
+      "זאוול סנו",
+      "תרסיס ז'אוול"
+    ],
+    "supermarketPrice": 15.77,
+    "chains": {
+      "osherAd": 14.5,
+      "ramiLevy": 15.9,
+      "yeshHesed": 16.9,
+      "netoChisachon": 15.7
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "chocolate_chips_baking",
+    "name": "שוקולד צ'יפס לאפייה (אופנהיימר / מיה / כרמית)",
+    "aliases": [
+      "שוקולד צ'יפס",
+      "שוקולד ציפס אמיתי",
+      "נטיפי שוקולד מריר"
+    ],
+    "supermarketPrice": 11.9,
+    "chains": {
+      "osherAd": 10.9,
+      "ramiLevy": 11.9,
+      "yeshHesed": 12.9,
+      "netoChisachon": 11.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "pizza_snacks_maadanot",
+    "name": "חטיפי פיצה קפואים מעדנות 700 גרם",
+    "aliases": [
+      "חטיפי פיצה",
+      "פיצה מעדנות",
+      "חטיפי פיצה קפואים"
+    ],
+    "supermarketPrice": 25.43,
+    "chains": {
+      "osherAd": 23.9,
+      "ramiLevy": 25.5,
+      "yeshHesed": 26.9,
+      "netoChisachon": 25.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "green_beans_cut",
+    "name": "שעועית ירוקה חתוכה קפואה 800 גרם",
+    "aliases": [
+      "שעועית ירוקה חתוכה",
+      "שעועית ירוקה קפואה"
+    ],
+    "supermarketPrice": 13.9,
+    "chains": {
+      "osherAd": 12.9,
+      "ramiLevy": 13.9,
+      "yeshHesed": 14.9,
+      "netoChisachon": 13.9
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "bread_crumbs_golden",
+    "name": "פירורי לחם מוזהבים 400-500 גרם",
+    "aliases": [
+      "פירורי לחם מוזהבים",
+      "פירורי לחם אסם"
+    ],
+    "supermarketPrice": 7.2,
+    "chains": {
+      "osherAd": 6.5,
+      "ramiLevy": 7.2,
+      "yeshHesed": 7.9,
+      "netoChisachon": 7.2
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "axe_deodorant_spray",
+    "name": "דאודורנט ספריי אקס AXE לגברים 150-200 מ\"ל",
+    "aliases": [
+      "דאודורנט אקס",
+      "אקס לגברים",
+      "ספריי אקס"
+    ],
+    "supermarketPrice": 14.77,
+    "chains": {
+      "osherAd": 13.5,
+      "ramiLevy": 14.9,
+      "yeshHesed": 15.9,
+      "netoChisachon": 14.7
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "marshmallow_carmit",
+    "name": "מרשמלו 150 גרם כרמית",
+    "aliases": [
+      "מרשמלו 150",
+      "מרשמלו כרמית"
+    ],
+    "supermarketPrice": 5.43,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": 5.5,
+      "yeshHesed": 5.9,
+      "netoChisachon": 5.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "frozen_mango_chunks",
+    "name": "קוביות מנגו קפוא 1 ק\"ג / מוגדלת",
+    "aliases": [
+      "קוביות מנגו",
+      "מנגו קפוא"
+    ],
+    "supermarketPrice": 23.43,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.5,
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "frozen_strawberries",
+    "name": "תות שדה קפוא נקי 1 ק\"ג",
+    "aliases": [
+      "תות שדה קפוא",
+      "תות קפוא"
+    ],
+    "supermarketPrice": 23.43,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": 23.5,
+      "yeshHesed": 24.9,
+      "netoChisachon": 23.4
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "canned_peach_halves",
+    "name": "חצאי אפרסק בסירופ שימורים 820 גרם",
+    "aliases": [
+      "חצאי אפרסק",
+      "אפרסק שימורים"
+    ],
+    "supermarketPrice": 9.2,
+    "chains": {
+      "osherAd": 8.5,
+      "ramiLevy": 9.2,
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.2
+    },
+    "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "chocolate_spread_mehadrin",
+    "name": "רביעיית שוקולד מריר כרמית 400 גרם",
+    "aliases": [
+      "רביעיית שוקולד",
+      "שוקולד מריר כרמית"
+    ],
+    "supermarketPrice": 14.9,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 14.9,
+      "yeshHesed": 15.9,
+      "netoChisachon": 14.9
+    },
+    "lastVerified": "2026-11-09"
   }
 ];
 
@@ -3395,15 +4286,188 @@ function showToast(msg, type = 'success') {
     }
   }
 
+  /* ---------- מנוע זיהוי יחידות מידה ומשקלים (Weight & Unit Parser) ---------- */
+  function parseProductUnits(rawStr) {
+    if (!rawStr) return { weightGrams: null, volumeMl: null, packCount: null, isBig: false, isSmall: false };
+    const s = rawStr.toString().toLowerCase();
+
+    let weightGrams = null;
+    let volumeMl = null;
+    let packCount = null;
+
+    // 1. משקל בקילוגרמים: 1.5 ק"ג, 1 קג, 2 קילו, 1.25 ק''ג, kg
+    const kgMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:ק["'״׳]?ג|קג|קילו|kg)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+    if (kgMatch) {
+      weightGrams = Math.round(parseFloat(kgMatch[1]) * 1000);
+    }
+
+    // 2. משקל בגרמים: 70 גרם, 250 גר', 500 ג', 100 גר, 100ג, g, gr
+    if (!weightGrams) {
+      const gMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:גרם|גר["'״׳]|ג["'״׳]|גר|ג|gr|g)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (gMatch) {
+        weightGrams = Math.round(parseFloat(gMatch[1]));
+      }
+    }
+
+    // 3. נפח בליטרים: 1.5 ליטר, 1 ל', 2ל, liter, l
+    const lMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:ליטר|ל["'״׳]|ל|liter|l)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+    if (lMatch) {
+      volumeMl = Math.round(parseFloat(lMatch[1]) * 1000);
+    }
+
+    // 4. נפח במיליליטר: 330 מ"ל, 250 מל, 750 מ''ל, ml
+    if (!volumeMl) {
+      const mlMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:מ["'״׳]?ל|מל|ml)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (mlMatch) {
+        volumeMl = Math.round(parseFloat(mlMatch[1]));
+      }
+    }
+
+    // 5. מארזים וכמויות: מארז 4 יח', 6 יחידות, תבנית 30, מארז 12, רביעיית, שישיית, זוג, שלישייה
+    const packMatch = s.match(/(?:מארז|תבנית|חבילת|רביעיית|שישיית|זוג|שלישיית|עשיריית)\s*(\d+)?(?:\s*יח['"״׳]?|\s*יחידות)?/i);
+    if (packMatch && packMatch[1]) {
+      packCount = parseInt(packMatch[1], 10);
+    } else if (/זוג(?:\s|$)/.test(s)) {
+      packCount = 2;
+    } else if (/שלישיי?ה|שלישיית/.test(s)) {
+      packCount = 3;
+    } else if (/רביעיי?ה|רביעיית/.test(s)) {
+      packCount = 4;
+    } else if (/חמישיי?ה|חמישיית/.test(s)) {
+      packCount = 5;
+    } else if (/שישיי?ה|שישיית/.test(s)) {
+      packCount = 6;
+    } else if (/שמינ?יי?ה|שמינ?יית/.test(s)) {
+      packCount = 8;
+    } else if (/עשיריי?ה|עשיריית/.test(s)) {
+      packCount = 10;
+    } else {
+      const multiMatch = s.match(/(\d+)\s*[\*xX×]\s*(\d+)/);
+      if (multiMatch) {
+        packCount = parseInt(multiMatch[1], 10);
+        if (!weightGrams && multiMatch[2]) {
+          weightGrams = packCount * parseInt(multiMatch[2], 10);
+        }
+      }
+    }
+
+    const isBig = /(?:אריזה\s*גדולה|משפחתי|פארטי|מיקס|מגה|ג['"״׳]?מבו|ענק|חיסכון)/i.test(s) 
+      || (weightGrams != null && weightGrams >= 140 && weightGrams <= 500 && /(?:חטיף|ביסלי|במבה|תפוצ[יפ]ס|דוריטוס)/i.test(s));
+    const isSmall = /(?:אישי|קטן|מיני|כיס)/i.test(s) 
+      || (weightGrams != null && weightGrams <= 80 && /(?:חטיף|ביסלי|במבה|תפוצ[יפ]ס|דוריטוס)/i.test(s));
+
+    return { weightGrams, volumeMl, packCount, isBig, isSmall };
+  }
+
+  function areUnitsCompatible(u1, u2) {
+    if (!u1 || !u2) return true;
+
+    // 1. בדיקת משקל (אם לשניהם זוהה משקל): חייב להיות תואם (סטייה מקסימלית של 8% למניעת פערי עיגול)
+    if (u1.weightGrams && u2.weightGrams) {
+      const diffPct = Math.abs(u1.weightGrams - u2.weightGrams) / Math.max(u1.weightGrams, u2.weightGrams);
+      if (diffPct > 0.08) return false;
+    }
+
+    // 2. בדיקת נפח (אם לשניהם זוהה נפח): חייב להיות תואם (סטייה מקסימלית של 8%)
+    if (u1.volumeMl && u2.volumeMl) {
+      const diffPct = Math.abs(u1.volumeMl - u2.volumeMl) / Math.max(u1.volumeMl, u2.volumeMl);
+      if (diffPct > 0.08) return false;
+    }
+
+    // 3. בדיקת כמות במארז (אם לשניהם זוהתה כמות מארז): חייב להיות שווה
+    if (u1.packCount && u2.packCount) {
+      if (u1.packCount !== u2.packCount) return false;
+    }
+
+    // 4. אי-התאמה של מארז מול יחידה בודדת
+    if ((u1.packCount && u1.packCount > 1 && !u2.packCount) || (u2.packCount && u2.packCount > 1 && !u1.packCount)) {
+      return false;
+    }
+
+    // 5. בדיקת אריזה גדולה מול אריזה אישית/קטנה
+    if ((u1.isBig && u2.isSmall) || (u1.isSmall && u2.isBig)) {
+      return false;
+    }
+
+    return true;
+  }
+
   function findMarketComparison(itemName, barcode = '') {
     if (!itemName) return null;
     const n = norm(itemName);
-    for (const item of (dynamicMarketItems || MARKET_ANCHOR_ITEMS)) {
-      if (item.aliases.some(alias => n.includes(alias))) {
+    const catalog = dynamicMarketItems || MARKET_ANCHOR_ITEMS;
+    if (!Array.isArray(catalog)) return null;
+
+    const targetUnits = parseProductUnits(itemName);
+
+    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (כולל נירמול גרשיים ורווחים)
+    for (const item of catalog) {
+      const itemUnits = parseProductUnits(item.name);
+      if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
+
+      if (item.aliases && item.aliases.some(alias => {
+        const na = norm(alias);
+        return na.length >= 2 && n.includes(na);
+      })) {
+        return item;
+      }
+      const iname = norm(item.name);
+      if (iname.length >= 3 && (n.includes(iname) || (iname.includes(n) && n.length >= iname.length * 0.7))) {
         return item;
       }
     }
+
+    // 2. התאמה חכמה לפי מילות מפתח (מילים מהותיות בסדר שונה, כגון "חלב 3% 1 ליטר תנובה" מול "חלב תנובה 3")
+    for (const item of catalog) {
+      const itemUnits = parseProductUnits(item.name);
+      if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
+
+      if (item.aliases) {
+        for (const alias of item.aliases) {
+          const na = norm(alias);
+          const tokens = na.split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
+          if (tokens.length >= 2 && tokens.every(tok => n.includes(tok))) {
+            return item;
+          }
+        }
+      }
+      const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3);
+      if (itemTokens.length >= 3 && itemTokens.every(tok => n.includes(tok))) {
+        return item;
+      }
+    }
+
     return null;
+  }
+
+  function getEffectiveMarketComparison(item) {
+    if (!item) return null;
+    const selChains = (Array.isArray(prefs.selectedChains) && prefs.selectedChains.length > 0)
+      ? prefs.selectedChains
+      : DEFAULT_SELECTED_CHAINS;
+
+    const chains = item.chains || {};
+    const activeChainEntries = [];
+    for (const c of selChains) {
+      if (chains[c] != null && chains[c] > 0) {
+        activeChainEntries.push([c, Number(chains[c])]);
+      }
+    }
+
+    let effectivePrice = 0;
+    if (activeChainEntries.length > 0) {
+      const sum = activeChainEntries.reduce((acc, [, price]) => acc + price, 0);
+      effectivePrice = Math.round((sum / activeChainEntries.length) * 100) / 100;
+    } else {
+      effectivePrice = item.supermarketPrice || 0;
+    }
+
+    return {
+      ...item,
+      effectivePrice,
+      activeChainEntries,
+      selectedChains: selChains
+    };
   }
 
   function getCartSavingsStats() {
@@ -3421,10 +4485,12 @@ function showToast(msg, type = 'success') {
       const myUnitPrice = l.price || itemPrices['p' + l.pid] || 0;
       if (myUnitPrice <= 0) continue;
 
-      const match = findMarketComparison(l.name, '');
-      if (!match) continue;
+      const rawMatch = findMarketComparison(l.name, '');
+      if (!rawMatch) continue;
+      const match = getEffectiveMarketComparison(rawMatch);
+      if (!match || match.effectivePrice <= 0) continue;
 
-      const marketUnitPrice = match.supermarketPrice;
+      const marketUnitPrice = match.effectivePrice;
       const ratio = myUnitPrice / marketUnitPrice;
       // מסנן יחס קיצוני למניעת חוסר התאמה בגודל מארז
       if (ratio < 0.4 || ratio > 2.2) continue;
@@ -3439,6 +4505,13 @@ function showToast(msg, type = 'success') {
       totalMarketCost += marketItemTotal;
       totalSavings += itemSavings;
 
+      const activeChains = {};
+      if (match.activeChainEntries) {
+        for (const [c, p] of match.activeChainEntries) {
+          activeChains[c] = p;
+        }
+      }
+
       matchedItems.push({
         line: l,
         name: l.name,
@@ -3450,7 +4523,7 @@ function showToast(msg, type = 'success') {
         marketItemTotal,
         itemSavings,
         savingsPct: marketItemTotal > 0 ? (itemSavings / marketItemTotal) * 100 : 0,
-        chains: match.chains || {}
+        chains: activeChains
       });
     }
 
@@ -3531,10 +4604,15 @@ function showToast(msg, type = 'success') {
     const m = document.createElement('div');
     m.id = 'myfam-savings-modal';
 
+    const selChainNames = (prefs.selectedChains || DEFAULT_SELECTED_CHAINS)
+      .map(c => ALL_CHAINS[c]?.name)
+      .filter(Boolean)
+      .join(', ');
+
     const rowsHtml = stats.items.map(it => {
       const chainsText = Object.entries(it.chains)
         .map(([cName, cPrice]) => {
-          const heName = cName === 'osherAd' ? 'אושר עד' : cName === 'ramiLevy' ? 'רמי לוי' : 'יש חסד';
+          const heName = ALL_CHAINS[cName]?.name || cName;
           return `<span class="myfam-chain-pill">${heName}: ₪${Number(cPrice).toFixed(2)}</span>`;
         }).join('');
 
@@ -3613,7 +4691,7 @@ function showToast(msg, type = 'success') {
         })()}
 
         <div class="myfam-savings-disclaimer">
-          ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול חציון רשתות השיווק המובילות (אושר עד, רמי לוי, יש חסד). ירקות, פירות, מוצרים שקילים ומוצרים ייחודיים אינם נכללים בהשוואה.
+          ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול הרשתות שנבחרו בהגדרות (${selChainNames}). ירקות, פירות, מוצרים שקילים ומוצרים ייחודיים אינם נכללים בהשוואה.
         </div>
 
         <div class="myfam-savings-table-wrap">
@@ -3665,6 +4743,11 @@ function showToast(msg, type = 'success') {
     if (!stats || !stats.items.length) return;
     const w = window.open('', '_blank');
     if (!w) { showAppAlert('נא לאשר פתיחת חלונות קופצים (Popups) כדי להדפיס את הרשימה.', 'הדפסת רשימה'); return; }
+
+    const selChainNames = (prefs.selectedChains || DEFAULT_SELECTED_CHAINS)
+      .map(c => ALL_CHAINS[c]?.name)
+      .filter(Boolean)
+      .join(', ');
 
     const nowStr = new Date().toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' });
     const rowsHtml = stats.items.map((it, idx) => `
@@ -3740,7 +4823,7 @@ function showToast(msg, type = 'success') {
   </table>
   <div class="footer">
     <div>הופק באמצעות תוסף "מוסיף למשנת" · פותח ע"י <b>לב טוב דיגיטל</b> (https://digital.levtov.uk/)</div>
-    <div>ההשוואה מבוססת על מחירי רשתות מובילות (אושר עד, רמי לוי, יש חסד).</div>
+    <div>ההשוואה מבוססת על מחירי רשתות מובילות שנבחרו (${selChainNames}).</div>
   </div>
 </body>
 </html>`);
@@ -4701,7 +5784,36 @@ function showToast(msg, type = 'success') {
         </div>
       </div>
 
-      <!-- חלק 4: סנכרון מאובטח -->
+      <!-- חלק 4: רשתות להשוואת מחירים -->
+      <div class="myfam-set-section">
+        <h4 class="myfam-set-sec-title">🛒 רשתות להשוואת מחירים</h4>
+        <div style="font-size:12px; color:#64748b; margin-bottom:8px;">
+          בחרו את הרשתות שברצונכם להשוות מולן (תגיות המחיר וחישובי החיסכון יותאמו רק לרשתות שסומנו):
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
+            <input type="checkbox" class="mf-chain-cb" value="yeshHesed" style="accent-color:#2e9e5b; width:16px; height:16px;">
+            <span>יש חסד</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
+            <input type="checkbox" class="mf-chain-cb" value="netoChisachon" style="accent-color:#2e9e5b; width:16px; height:16px;">
+            <span>נטו חיסכון</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
+            <input type="checkbox" class="mf-chain-cb" value="osherAd" style="accent-color:#2e9e5b; width:16px; height:16px;">
+            <span>אושר עד</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
+            <input type="checkbox" class="mf-chain-cb" value="ramiLevy" style="accent-color:#2e9e5b; width:16px; height:16px;">
+            <span>רמי לוי</span>
+          </label>
+        </div>
+        <div id="mf-chain-warning" style="display:none; color:#dc2626; font-size:11.5px; margin-top:6px; font-weight:bold;">
+          ⚠️ יש לבחור לפחות רשת שיווק אחת להשוואה.
+        </div>
+      </div>
+
+      <!-- חלק 5: סנכרון מאובטח -->
       <div class="myfam-set-section" style="background:#f0fdf4; border-color:#bbf7d0;">
         <h4 class="myfam-set-sec-title" style="color:#166534; display:flex; align-items:center; gap:6px;">
           <span>☁️ סנכרון מאובטח בחשבון Google</span>
@@ -4732,8 +5844,35 @@ function showToast(msg, type = 'success') {
     const fill = () => {
       g('mf-seenColor').value = prefs.seenColor; g('mf-fixedColor').value = prefs.fixedColor;
       g('mf-seenFill').value = prefs.seenFill ? '1' : '0'; g('mf-fixedFill').value = prefs.fixedFill ? '1' : '0';
+      const selChains = (Array.isArray(prefs.selectedChains) && prefs.selectedChains.length)
+        ? prefs.selectedChains
+        : DEFAULT_SELECTED_CHAINS;
+      $$('.mf-chain-cb', m).forEach(cb => {
+        cb.checked = selChains.includes(cb.value);
+      });
     };
     fill();
+
+    $$('.mf-chain-cb', m).forEach(cb => {
+      cb.onchange = () => {
+        const checked = $$('.mf-chain-cb', m).filter(c => c.checked).map(c => c.value);
+        const warn = $('#mf-chain-warning', m);
+        if (!checked.length) {
+          cb.checked = true;
+          if (warn) {
+            warn.style.display = 'block';
+            setTimeout(() => { if (warn) warn.style.display = 'none'; }, 3000);
+          }
+          return;
+        }
+        if (warn) warn.style.display = 'none';
+        prefs = { ...prefs, selectedChains: checked };
+        jset('prefs', prefs);
+        syncSaveGoogle({ myfam_prefs: prefs });
+        render();
+        updateSavingsUI();
+      };
+    });
 
     const notifySettings = jget('notify_settings', {
       enabled: true,
@@ -4790,8 +5929,13 @@ function showToast(msg, type = 'success') {
     g('mf-budget-target').oninput = saveBudgetSettings;
 
     const upd = rerender => {
-      prefs = { seenColor: g('mf-seenColor').value, fixedColor: g('mf-fixedColor').value,
-                seenFill: g('mf-seenFill').value === '1', fixedFill: g('mf-fixedFill').value === '1' };
+      prefs = { 
+        ...prefs,
+        seenColor: g('mf-seenColor').value, 
+        fixedColor: g('mf-fixedColor').value,
+        seenFill: g('mf-seenFill').value === '1', 
+        fixedFill: g('mf-fixedFill').value === '1' 
+      };
       jset('prefs', prefs);
       syncSaveGoogle({ myfam_prefs: prefs });
       applyPrefs();
@@ -4801,7 +5945,15 @@ function showToast(msg, type = 'success') {
     g('mf-fixedColor').oninput = () => upd(false);
     g('mf-seenFill').onchange = () => upd(true);
     g('mf-fixedFill').onchange = () => upd(true);
-    g('mf-reset').onclick = () => { prefs = { ...PREF_DEFAULT }; jset('prefs', prefs); applyPrefs(); fill(); render(); };
+    g('mf-reset').onclick = () => { 
+      prefs = { ...PREF_DEFAULT }; 
+      jset('prefs', prefs); 
+      syncSaveGoogle({ myfam_prefs: prefs }); 
+      applyPrefs(); 
+      fill(); 
+      render(); 
+      updateSavingsUI();
+    };
     g('mf-reset-fixed').onclick = async () => {
       if (await showAppConfirm('לאפס את כל הסימונים הידניים של מוצרים קבועים?\nכל המוצרים שהוזמנו 3 פעמים ומעלה יחזרו להיות קבועים אוטומטית.', 'איפוס סימונים ידניים')) {
         state.fixed = {};
@@ -4855,6 +6007,19 @@ function showToast(msg, type = 'success') {
       icon: ICONS.print,
       text: `בלחיצה על <b>"הדפס רשימת קניות לאיסוף"</b> תקבלו דף מסודר ומעוצב עם כמויות מודגשות, תמונות המוצרים ותיבות סימון לבדיקה בתחנת החלוקה.<br><br>
         בנוסף, בהגדרות התוסף תוכלו להפעיל <b>התראות דפדפן</b> שיזכירו לכם מתי המכירה נפתחת ולפני שהיא ננעלת!`
+    },
+    {
+      title: 'טיפ זהב: צפייה ביותר מוצרים במסך',
+      badge: 'נוחות וחיסכון בגלילה',
+      icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`,
+      text: `רוצים לראות הרבה יותר מוצרים בבת אחת ולחסוך גלילה ממושכת?<br>
+        אתר משנת יוסף מתאים את מספר הטורים לגודל המסך. פשוט הקטינו מעט את הזום של הדף:<br>
+        1. לחצו על <b>3 הנקודות ⋮</b> בפינה העליונה בדפדפן כרום.<br>
+        2. תחת <b>"מרחק מתצוגה" (Zoom)</b> הקטינו ל-<b>75%</b> (או 80%).<br>
+        <span style="display:inline-block;margin-top:6px;background:#f0fdf4;color:#166534;padding:4px 8px;border-radius:6px;font-size:12px;border:1px solid #bbf7d0;">
+          💡 <b>קיצור מקלדת מהיר:</b> לחצו על <b>Ctrl</b> וביחד על מקש המינוס <b>-</b> כדי להקטין מיד!
+        </span><br>
+        הקטנה קלה זו תוסיף <b>מוצר שלישי בכל שורה</b> ותקל משמעותית על חוויית הקנייה!`
     }
   ];
 
@@ -4984,6 +6149,10 @@ function showToast(msg, type = 'success') {
       .myfam-fixed{outline:3px solid var(--myfam-fixed,#e0a800)!important;outline-offset:-3px}
       .myfam-seen.myfam-fill{background-color:var(--myfam-seen-bg,#2e9e5b33)!important}
       .myfam-fixed.myfam-fill{background-color:var(--myfam-fixed-bg,#e0a80040)!important}
+      /* מניעה מוחלטת של הופעת מסגרות או רקע צהוב בתוך סל הקניות */
+      #cart .myfam-fixed, #cart .myfam-fill, #cart .myfam-seen,
+      [id*="cart" i] .myfam-fixed, [id*="cart" i] .myfam-fill, [id*="cart" i] .myfam-seen,
+      [class*="cart-product" i] { outline: none !important; background-color: transparent !important; }
       .myfam-hide{display:none!important}
       .myfam-tag{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;display:inline-flex;align-items:center;gap:4px;width:fit-content;max-width:calc(100% - 130px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;padding:2px 8px;background:#fff7ed;color:#c2410c;border:1px solid #ffedd5;border-radius:10px;font:bold 12px sans-serif;direction:rtl;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.12)}
       .myfam-tag.fixed{background:#fef3c7;color:#92400e;border:1px solid #fde68a}

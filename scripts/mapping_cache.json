@@ -1,0 +1,1802 @@
+{
+  "milk_3": {
+    "id": "milk_3",
+    "name": "חלב תנובה 3% 1 ליטר",
+    "aliases": [
+      "חלב 3",
+      "חלב תנובה 3"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "milk_1": {
+    "id": "milk_1",
+    "name": "חלב תנובה 1% 1 ליטר",
+    "aliases": [
+      "חלב 1",
+      "חלב תנובה 1"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "eggs_l30": {
+    "id": "eggs_l30",
+    "name": "ביצים L תבנית 30",
+    "aliases": [
+      "ביצים l",
+      "ביצים גודל l",
+      "תבנית 30"
+    ],
+    "unitType": "pack",
+    "unitAmount": 30,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "eggs_m30": {
+    "id": "eggs_m30",
+    "name": "ביצים M תבנית 30",
+    "aliases": [
+      "ביצים m",
+      "ביצים גודל m"
+    ],
+    "unitType": "pack",
+    "unitAmount": 30,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "eggs_l12": {
+    "id": "eggs_l12",
+    "name": "ביצים L מארז 12",
+    "aliases": [
+      "מארז 12",
+      "12 ביצים"
+    ],
+    "unitType": "pack",
+    "unitAmount": 12,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "cheese_white_5": {
+    "id": "cheese_white_5",
+    "name": "גבינה לבנה 5% תנובה 250 גרם",
+    "aliases": [
+      "גבינה לבנה 5",
+      "לבנה 5% תנובה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 250,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "cottage_5": {
+    "id": "cottage_5",
+    "name": "קוטג' תנובה 5% 250 גרם",
+    "aliases": [
+      "קוטג 5",
+      "קוטג' 5"
+    ],
+    "unitType": "weight",
+    "unitAmount": 250,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "yellow_emek": {
+    "id": "yellow_emek",
+    "name": "גבינה צהובה עמק תנובה 400 גרם",
+    "aliases": [
+      "עמק 28",
+      "צהובה עמק",
+      "עמק 400"
+    ],
+    "unitType": "weight",
+    "unitAmount": 400,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "yellow_gilboa": {
+    "id": "yellow_gilboa",
+    "name": "גבינה צהובה גלבוע 200 גרם",
+    "aliases": [
+      "גלבוע 200",
+      "צהובה גלבוע"
+    ],
+    "unitType": "weight",
+    "unitAmount": 200,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "butter_100": {
+    "id": "butter_100",
+    "name": "חמאה תנובה 100 גרם",
+    "aliases": [
+      "חמאה 100",
+      "חמאה תנובה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 100,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sour_cream": {
+    "id": "sour_cream",
+    "name": "שמנת חמוצה 15% תנובה 200 מ\"ל",
+    "aliases": [
+      "שמנת חמוצה 15",
+      "חמוצה 15"
+    ],
+    "unitType": "volume",
+    "unitAmount": 200,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sweet_cream": {
+    "id": "sweet_cream",
+    "name": "שמנת מתוקה 38% השף הלבן 250 מ\"ל",
+    "aliases": [
+      "שמנת מתוקה 38",
+      "השף הלבן 38"
+    ],
+    "unitType": "volume",
+    "unitAmount": 250,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "milky": {
+    "id": "milky",
+    "name": "מילקי שוקולד שטראוס",
+    "aliases": [
+      "מילקי שוקולד",
+      "מילקי"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "shoko_1l": {
+    "id": "shoko_1l",
+    "name": "שוקו תנובה 1 ליטר",
+    "aliases": [
+      "שוקו 1 ליטר",
+      "שוקו תנובה"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "oil_canola": {
+    "id": "oil_canola",
+    "name": "שמן קנולה מזוכך 1 ליטר",
+    "aliases": [
+      "שמן קנולה",
+      "קנולה 1 ליטר"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "oil_soy": {
+    "id": "oil_soy",
+    "name": "שמן סויה 1 ליטר",
+    "aliases": [
+      "שמן סויה",
+      "סויה 1 ליטר"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "oil_olive": {
+    "id": "oil_olive",
+    "name": "שמן זית כתית מעולה 750 מ\"ל",
+    "aliases": [
+      "שמן זית",
+      "כתית מעולה 750"
+    ],
+    "unitType": "volume",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sugar_white": {
+    "id": "sugar_white",
+    "name": "סוכר לבן סוגת 1 ק\"ג",
+    "aliases": [
+      "סוכר לבן",
+      "סוכר 1 קג",
+      "סוכר סוגת"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "flour_white": {
+    "id": "flour_white",
+    "name": "קמח לבן בהיר 1 ק\"ג",
+    "aliases": [
+      "קמח לבן",
+      "קמח בהיר 1"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "flour_raising": {
+    "id": "flour_raising",
+    "name": "קמח תופח 1 ק\"ג",
+    "aliases": [
+      "קמח תופח",
+      "תופח 1 קג"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "salt_fine": {
+    "id": "salt_fine",
+    "name": "מלח שולחן דק 1 ק\"ג",
+    "aliases": [
+      "מלח שולחן",
+      "מלח דק 1"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "rice_persian": {
+    "id": "rice_persian",
+    "name": "אורז פרסי סוגת 1 ק\"ג",
+    "aliases": [
+      "אורז פרסי",
+      "פרסי סוגת"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "rice_basmati": {
+    "id": "rice_basmati",
+    "name": "אורז בסמטי סוגת 1 ק\"ג",
+    "aliases": [
+      "אורז בסמטי",
+      "בסמטי 1 קג"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "rice_jasmine": {
+    "id": "rice_jasmine",
+    "name": "אורז יסמין סוגת 1 ק\"ג",
+    "aliases": [
+      "אורז יסמין",
+      "יסמין 1 קג"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pasta_osem_spaghetti": {
+    "id": "pasta_osem_spaghetti",
+    "name": "פסטה ספגטי אסם 500 גרם",
+    "aliases": [
+      "ספגטי אסם",
+      "פסטה ספגטי"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pasta_osem_penne": {
+    "id": "pasta_osem_penne",
+    "name": "פסטה פנה אסם 500 גרם",
+    "aliases": [
+      "פסטה פנה",
+      "פנה אסם",
+      "פסטה נוצה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pasta_osem_fusilli": {
+    "id": "pasta_osem_fusilli",
+    "name": "פסטה מסולסלת (בורגי) אסם 500 גרם",
+    "aliases": [
+      "פסטה בורגי",
+      "פסטה מסולסלת",
+      "פסטה פוזילי"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "ptitim_osem": {
+    "id": "ptitim_osem",
+    "name": "פתיתים אפויים אסם 500 גרם",
+    "aliases": [
+      "פתיתים אפויים",
+      "פתיתים עגולים",
+      "פתיתים כוכבים",
+      "פתיתים אסם"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "tuna_fillet_4": {
+    "id": "tuna_fillet_4",
+    "name": "טונה בהירה בשמן מארז רביעייה",
+    "aliases": [
+      "טונה 4",
+      "שימורי טונה רביעיה",
+      "טונה בשמן רביעיה",
+      "מארז טונה"
+    ],
+    "unitType": "pack",
+    "unitAmount": 4,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "corn_can": {
+    "id": "corn_can",
+    "name": "גרגרי תירס מתוק שימורים 550 גרם",
+    "aliases": [
+      "תירס מתוק",
+      "שימורי תירס",
+      "גרגרי תירס"
+    ],
+    "unitType": "weight",
+    "unitAmount": 550,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "peas_can": {
+    "id": "peas_can",
+    "name": "אפונה עדינה שימורים 550 גרם",
+    "aliases": [
+      "אפונה עדינה",
+      "שימורי אפונה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 550,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pickles_cucumbers": {
+    "id": "pickles_cucumbers",
+    "name": "מלפפונים חמוצים במלח 7-9 שימורים",
+    "aliases": [
+      "מלפפונים בחומץ",
+      "מלפפונים במלח",
+      "שימורי מלפפונים",
+      "מלפפונים 7-9"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "olives_green": {
+    "id": "olives_green",
+    "name": "זיתים ירוקים טבעות שימורים",
+    "aliases": [
+      "זיתים ירוקים",
+      "זיתים טבעות",
+      "זיתים מושחלים",
+      "זיתים חרוזים"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "tomato_paste_100": {
+    "id": "tomato_paste_100",
+    "name": "רסק עגבניות 28-30% 100 גרם (שלישייה/יחידה)",
+    "aliases": [
+      "רסק עגבניות",
+      "רסק 100 גרם"
+    ],
+    "unitType": "weight",
+    "unitAmount": 100,
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "ketchup_osem": {
+    "id": "ketchup_osem",
+    "name": "קטשופ אסם בקבוק לחיץ 750 גרם",
+    "aliases": [
+      "קטשופ אסם",
+      "קטשופ 750"
+    ],
+    "unitType": "weight",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "mayo_telma": {
+    "id": "mayo_telma",
+    "name": "מיונז אמיתי תלמה 500 גרם",
+    "aliases": [
+      "מיונז תלמה",
+      "מיונז אמיתי"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "tahini_raw": {
+    "id": "tahini_raw",
+    "name": "טחינה גולמית טהורה 1 ק\"ג",
+    "aliases": [
+      "טחינה גולמית",
+      "טחינה 1 קג",
+      "טחינה הנסיך",
+      "טחינה ירושלים"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "challah": {
+    "id": "challah",
+    "name": "חלת שבת מהודרת 500 גרם",
+    "aliases": [
+      "חלת שבת",
+      "חלה מהודרת",
+      "חלה לשבת"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bread_wholewheat": {
+    "id": "bread_wholewheat",
+    "name": "לחם 100% חיטה מלאה פרוס (דגנית עין בר/ברמן/אנגל)",
+    "aliases": [
+      "חיטה מלאה",
+      "דגנית עין בר",
+      "לחם מלא",
+      "מחיטה מלאה"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bread_sliced": {
+    "id": "bread_sliced",
+    "name": "לחם אחיד כהה פרוס 750 גרם",
+    "aliases": [
+      "לחם אחיד",
+      "אחיד פרוס",
+      "אחיד כהה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "cornflakes_telma": {
+    "id": "cornflakes_telma",
+    "name": "קורנפלקס תלמה אלופים 750 גרם",
+    "aliases": [
+      "קורנפלקס תלמה",
+      "קורנפלקס של אלופים"
+    ],
+    "unitType": "weight",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "kariot_telma": {
+    "id": "kariot_telma",
+    "name": "כריות שוקולד תלמה 750 גרם",
+    "aliases": [
+      "כריות תלמה",
+      "כריות נוגט",
+      "כריות שוקולד"
+    ],
+    "unitType": "weight",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "petiber_osem": {
+    "id": "petiber_osem",
+    "name": "ביסקוויט פטיבר אסם 500 גרם",
+    "aliases": [
+      "פטי בר",
+      "פטיבר אסם"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bamba_osem": {
+    "id": "bamba_osem",
+    "name": "במבה אסם 80 גרם",
+    "aliases": [
+      "במבה אסם",
+      "במבה 80"
+    ],
+    "unitType": "weight",
+    "unitAmount": 80,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bisli_osem": {
+    "id": "bisli_osem",
+    "name": "ביסלי אסם 70 גרם (גריל/ברביקיו)",
+    "aliases": [
+      "ביסלי גריל 70",
+      "ביסלי ברביקיו 70",
+      "ביסלי בצל 70",
+      "ביסלי 70 גרם"
+    ],
+    "unitType": "weight",
+    "unitAmount": 70,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bisli_party_mix": {
+    "id": "bisli_party_mix",
+    "name": "ביסלי פארטי מיקס אריזה גדולה אסם (150-200 גרם)",
+    "aliases": [
+      "פארטי מיקס",
+      "ביסלי פארטי",
+      "ביסלי אריזה גדולה",
+      "פארטי מיקס אסם",
+      "ביסלי מיקס"
+    ],
+    "unitType": "weight",
+    "unitAmount": 200,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "shahar_hashahar": {
+    "id": "shahar_hashahar",
+    "name": "ממרח שוקולד השחר העולה 450 גרם",
+    "aliases": [
+      "השחר העולה",
+      "ממרח השחר"
+    ],
+    "unitType": "weight",
+    "unitAmount": 450,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "coca_cola_6": {
+    "id": "coca_cola_6",
+    "name": "קוקה קולה 1.5 ליטר מארז שישייה",
+    "aliases": [
+      "קוקה קולה שישיה",
+      "קולה שישיה",
+      "קוקה קולה 1.5"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "coca_zero_6": {
+    "id": "coca_zero_6",
+    "name": "קוקה קולה זירו 1.5 ליטר מארז שישייה",
+    "aliases": [
+      "קולה זירו שישיה",
+      "זירו שישיה",
+      "קוקה קולה זירו"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "mineral_water_6": {
+    "id": "mineral_water_6",
+    "name": "מים מינרליים 1.5 ליטר מארז שישייה",
+    "aliases": [
+      "מים מינרליים שישיה",
+      "שישיית מים",
+      "עין גדי שישיה"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "grape_juice": {
+    "id": "grape_juice",
+    "name": "מיץ ענבים תירוש כרמל 1 ליטר",
+    "aliases": [
+      "תירוש כרמל",
+      "מיץ ענבים תירוש"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "coffee_elite": {
+    "id": "coffee_elite",
+    "name": "קפה נמס עלית פחית 200 גרם",
+    "aliases": [
+      "קפה נמס עלית",
+      "נמס עלית 200"
+    ],
+    "unitType": "weight",
+    "unitAmount": 200,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "tasters_choice": {
+    "id": "tasters_choice",
+    "name": "קפה מגורען טסטרס צ'ויס 200 גרם",
+    "aliases": [
+      "טסטרס צויס",
+      "טסטרס צ'ויס"
+    ],
+    "unitType": "weight",
+    "unitAmount": 200,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "tea_wissotzky": {
+    "id": "tea_wissotzky",
+    "name": "תה ויסוצקי קלאסי 100 שקיקים",
+    "aliases": [
+      "ויסוצקי קלאסי",
+      "תה ויסוצקי 100"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "fairy_dish": {
+    "id": "fairy_dish",
+    "name": "נוזל כלים פיירי 650 מ\"ל",
+    "aliases": [
+      "פיירי",
+      "נוזל כלים פיירי"
+    ],
+    "unitType": "volume",
+    "unitAmount": 650,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "persil_gel": {
+    "id": "persil_gel",
+    "name": "ג'ל כביסה פרסיל / אריאל 2.5 ליטר",
+    "aliases": [
+      "ג'ל כביסה",
+      "גל כביסה",
+      "פרסיל כביסה",
+      "אריאל ג'ל"
+    ],
+    "unitType": "volume",
+    "unitAmount": 2500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "badin_softener": {
+    "id": "badin_softener",
+    "name": "מרכך כביסה מרוכז בדין 1 ליטר",
+    "aliases": [
+      "מרכך בדין",
+      "בדין מרוכז"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sano_bleach": {
+    "id": "sano_bleach",
+    "name": "אקונומיקה סנו ג'ל 750 מ\"ל",
+    "aliases": [
+      "אקונומיקה סנו",
+      "סנו ג'ל"
+    ],
+    "unitType": "volume",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "toilet_paper_30": {
+    "id": "toilet_paper_30",
+    "name": "נייר טואלט דו-שכבתי 30 גלילים",
+    "aliases": [
+      "נייר טואלט 30",
+      "לילי 30",
+      "מולט 30"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "garbage_bags": {
+    "id": "garbage_bags",
+    "name": "שקיות אשפה עם שרוך מארז 50-60 יח'",
+    "aliases": [
+      "שקיות אשפה שרוך",
+      "שקיות לפח"
+    ],
+    "unitType": "pack",
+    "unitAmount": 50,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "colgate_total": {
+    "id": "colgate_total",
+    "name": "משחת שיניים קולגייט טוטאל 100 מ\"ל",
+    "aliases": [
+      "קולגייט טוטאל",
+      "משחת שיניים קולגייט"
+    ],
+    "unitType": "volume",
+    "unitAmount": 100,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "hand_soap_1l": {
+    "id": "hand_soap_1l",
+    "name": "אל סבון נוזלי לידיים מילוי 1 ליטר",
+    "aliases": [
+      "סבון נוזלי 1 ליטר",
+      "אל סבון מילוי",
+      "סבון ידיים 1"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "shampoo_havai": {
+    "id": "shampoo_havai",
+    "name": "שמפו / מרכך פינוק או הוואי 700 מ\"ל",
+    "aliases": [
+      "שמפו פינוק",
+      "שמפו הואי",
+      "מרכך פינוק",
+      "פינוק 700"
+    ],
+    "unitType": "volume",
+    "unitAmount": 700,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "peas_frozen_sunfrost": {
+    "id": "peas_frozen_sunfrost",
+    "name": "אפונה עדינה סנפרוסט 800 גרם",
+    "aliases": [
+      "אפונה סנפרוסט",
+      "סנפרוסט אפונה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 800,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "green_beans_sunfrost": {
+    "id": "green_beans_sunfrost",
+    "name": "שעועית ירוקה עדינה סנפרוסט 800 גרם",
+    "aliases": [
+      "שעועית ירוקה סנפרוסט",
+      "סנפרוסט שעועית"
+    ],
+    "unitType": "weight",
+    "unitAmount": 800,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "fries_frozen": {
+    "id": "fries_frozen",
+    "name": "צ'יפס אמריקאי קפוא 1.5-2 ק\"ג",
+    "aliases": [
+      "ציפס קפוא",
+      "צ'יפס אמריקאי",
+      "תפודים ציפס"
+    ],
+    "unitType": "weight",
+    "unitAmount": 2000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bourekas_potato": {
+    "id": "bourekas_potato",
+    "name": "בורקס תפוחי אדמה מעדנות 800 גרם",
+    "aliases": [
+      "בורקס תפוחי אדמה",
+      "בורקס מעדנות"
+    ],
+    "unitType": "weight",
+    "unitAmount": 800,
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "malawach": {
+    "id": "malawach",
+    "name": "מלוואח מעדנות 700 גרם",
+    "aliases": [
+      "מלוואח מעדנות",
+      "מלוח מעדנות"
+    ],
+    "unitType": "weight",
+    "unitAmount": 700,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "schnitzel_corn": {
+    "id": "schnitzel_corn",
+    "name": "שניצל תירס טבעול 750 גרם",
+    "aliases": [
+      "שניצל תירס",
+      "טבעול תירס"
+    ],
+    "unitType": "weight",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "chicken_breast_fresh": {
+    "id": "chicken_breast_fresh",
+    "name": "חזה עוף טרי מוכשר 1 ק\"ג",
+    "aliases": [
+      "חזה עוף טרי",
+      "חזה עוף נקי"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "ground_beef_frozen": {
+    "id": "ground_beef_frozen",
+    "name": "בשר טחון קפוא חלק 500 גרם",
+    "aliases": [
+      "בשר בקר טחון",
+      "בקר טחון קפוא",
+      "טחון חלק"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "salmon_fillet_frozen": {
+    "id": "salmon_fillet_frozen",
+    "name": "פילה סלמון קפוא בוואקום 1 ק\"ג",
+    "aliases": [
+      "פילה סלמון",
+      "סלמון קפוא"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "fairy_1_5l": {
+    "id": "fairy_1_5l",
+    "name": "סבון כלים פיירי 1.5 ליטר",
+    "aliases": [
+      "פיירי 1.5",
+      "סבון כלים פיירי - 1.5",
+      "פיירי 1.5 ליטר"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sano_maxima_softener": {
+    "id": "sano_maxima_softener",
+    "name": "מרכך כביסה מרוכז סנו מקסימה 1 ליטר",
+    "aliases": [
+      "סנו מקסימה",
+      "מרכך סנו מקסימה",
+      "מקסימה מרוכז"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "persil_gel_3_8l": {
+    "id": "persil_gel_3_8l",
+    "name": "ג'ל כביסה פרסיל 3.8 ליטר",
+    "aliases": [
+      "פרסיל 3.8",
+      "ג'ל כביסה פרסיל - 3.8",
+      "גל כביסה פרסיל 3.8"
+    ],
+    "unitType": "volume",
+    "unitAmount": 3800,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "delipekan_telma": {
+    "id": "delipekan_telma",
+    "name": "דגני בוקר דליפקאן תלמה 400-500 גרם",
+    "aliases": [
+      "דליפקאן",
+      "דלי פקאן",
+      "דליפקאן תלמה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "shugi_bars": {
+    "id": "shugi_bars",
+    "name": "מארז חטיף דגנים שוגי תלמה (שוקולד/וניל)",
+    "aliases": [
+      "חטיף דגנים שוגי",
+      "שוגי תלמה",
+      "חטיפי שוגי"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "quaker_oats": {
+    "id": "quaker_oats",
+    "name": "קוואקר שיבולת שועל להכנה מהירה 500 גרם",
+    "aliases": [
+      "קווקר",
+      "קוואקר",
+      "שיבולת שועל להכנה מהירה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "soup_almonds_osem": {
+    "id": "soup_almonds_osem",
+    "name": "שקדי מרק אסם 400 גרם",
+    "aliases": [
+      "שקדי מרק",
+      "שקדי מרק אסם"
+    ],
+    "unitType": "weight",
+    "unitAmount": 400,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sweet_chili_sauce": {
+    "id": "sweet_chili_sauce",
+    "name": "רוטב צ'ילי מתוק 700 מ\"ל",
+    "aliases": [
+      "רוטב צ'ילי מתוק",
+      "רוטב צילי מתוק",
+      "צילי מתוק"
+    ],
+    "unitType": "volume",
+    "unitAmount": 700,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "silan_pure_squeeze": {
+    "id": "silan_pure_squeeze",
+    "name": "סילאן תמרים טבעי 100% בקבוק לחיץ",
+    "aliases": [
+      "סילאן טבעי",
+      "סילאן לחיץ",
+      "סילאן תמרים"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "honey_squeeze": {
+    "id": "honey_squeeze",
+    "name": "דבש טהור בקבוק לחיץ / צנצנת (יד מרדכי/עמק חפר)",
+    "aliases": [
+      "דבש טבעי",
+      "דבש בבקבוק לחיץ",
+      "דבש לחיץ"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sano_clear_windows": {
+    "id": "sano_clear_windows",
+    "name": "נוזל לניקוי חלונות סנו קליר 1 ליטר",
+    "aliases": [
+      "סנו קליר",
+      "נוזל לניקוי חלונות 1 ליטר",
+      "ניקוי חלונות סנו"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sano_ratzpaz": {
+    "id": "sano_ratzpaz",
+    "name": "רצפז נוזל רצפות לשואב שוטף / מרוכז סנו",
+    "aliases": [
+      "רצפז",
+      "נוזל רצפות לשואב שוטף",
+      "רצפז נוזל"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "dr_fischer_baby_shampoo": {
+    "id": "dr_fischer_baby_shampoo",
+    "name": "שמפו אל דמע לתינוקות ד\"ר פישר 750 מ\"ל - 1 ליטר",
+    "aliases": [
+      "אל דמע לתינוקות",
+      "שמפו אל דמע",
+      "ד\"ר פישר לתינוקות"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sano_anti_calc": {
+    "id": "sano_anti_calc",
+    "name": "תרסיס אנטי קאלק 4 ב-1 סנו 1 ליטר",
+    "aliases": [
+      "אנטי קאלק",
+      "תרסיס אנטי קאלק",
+      "אנטיקאלק סנו"
+    ],
+    "unitType": "volume",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sano_javel_spray": {
+    "id": "sano_javel_spray",
+    "name": "תרסיס ז'אוול קצף ניקוי בתוספת אקונומיקה סנו 750 מ\"ל",
+    "aliases": [
+      "ז'אוול קצף",
+      "זאוול סנו",
+      "תרסיס ז'אוול"
+    ],
+    "unitType": "volume",
+    "unitAmount": 750,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "chocolate_chips_baking": {
+    "id": "chocolate_chips_baking",
+    "name": "שוקולד צ'יפס לאפייה (אופנהיימר / מיה / כרמית)",
+    "aliases": [
+      "שוקולד צ'יפס",
+      "שוקולד ציפס אמיתי",
+      "נטיפי שוקולד מריר"
+    ],
+    "unitType": "unit",
+    "unitAmount": 1,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pizza_snacks_maadanot": {
+    "id": "pizza_snacks_maadanot",
+    "name": "חטיפי פיצה קפואים מעדנות 700 גרם",
+    "aliases": [
+      "חטיפי פיצה",
+      "פיצה מעדנות",
+      "חטיפי פיצה קפואים"
+    ],
+    "unitType": "weight",
+    "unitAmount": 700,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "green_beans_cut": {
+    "id": "green_beans_cut",
+    "name": "שעועית ירוקה חתוכה קפואה 800 גרם",
+    "aliases": [
+      "שעועית ירוקה חתוכה",
+      "שעועית ירוקה קפואה"
+    ],
+    "unitType": "weight",
+    "unitAmount": 800,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "bread_crumbs_golden": {
+    "id": "bread_crumbs_golden",
+    "name": "פירורי לחם מוזהבים 400-500 גרם",
+    "aliases": [
+      "פירורי לחם מוזהבים",
+      "פירורי לחם אסם"
+    ],
+    "unitType": "weight",
+    "unitAmount": 500,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "axe_deodorant_spray": {
+    "id": "axe_deodorant_spray",
+    "name": "דאודורנט ספריי אקס AXE לגברים 150-200 מ\"ל",
+    "aliases": [
+      "דאודורנט אקס",
+      "אקס לגברים",
+      "ספריי אקס"
+    ],
+    "unitType": "volume",
+    "unitAmount": 200,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "marshmallow_carmit": {
+    "id": "marshmallow_carmit",
+    "name": "מרשמלו 150 גרם כרמית",
+    "aliases": [
+      "מרשמלו 150",
+      "מרשמלו כרמית"
+    ],
+    "unitType": "weight",
+    "unitAmount": 150,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "frozen_mango_chunks": {
+    "id": "frozen_mango_chunks",
+    "name": "קוביות מנגו קפוא 1 ק\"ג / מוגדלת",
+    "aliases": [
+      "קוביות מנגו",
+      "מנגו קפוא"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "frozen_strawberries": {
+    "id": "frozen_strawberries",
+    "name": "תות שדה קפוא נקי 1 ק\"ג",
+    "aliases": [
+      "תות שדה קפוא",
+      "תות קפוא"
+    ],
+    "unitType": "weight",
+    "unitAmount": 1000,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "canned_peach_halves": {
+    "id": "canned_peach_halves",
+    "name": "חצאי אפרסק בסירופ שימורים 820 גרם",
+    "aliases": [
+      "חצאי אפרסק",
+      "אפרסק שימורים"
+    ],
+    "unitType": "weight",
+    "unitAmount": 820,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "chocolate_spread_mehadrin": {
+    "id": "chocolate_spread_mehadrin",
+    "name": "רביעיית שוקולד מריר כרמית 400 גרם",
+    "aliases": [
+      "רביעיית שוקולד",
+      "שוקולד מריר כרמית"
+    ],
+    "unitType": "weight",
+    "unitAmount": 400,
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "מוסיף למשנת",
+  "version": "0.6",
+  "description": "סל קניות חכם למשנת יוסף: מד תקציב, השוואת מחירים לרשתות, הוספת קבועים בקליק, היסטוריית הזמנות, רשימת איסוף להדפסה ותזכורות.",
+  "icons": {
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "cookies",
+    "notifications",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://v2.mishnatyosef.org/*",
+    "https://*.mishnatyosef.org/*",
+    "https://digital.levtov.uk/*",
+    "https://raw.githubusercontent.com/*",
+    "https://cdn.jsdelivr.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mishnatyosef.org/*",
+        "https://*.mishnatyosef.org/*"
+      ],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://mishnatyosef.org/*",
+        "https://*.mishnatyosef.org/*"
+      ],
+      "js": ["transport.js", "core.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["feedback.html"],
+      "matches": ["https://mishnatyosef.org/*", "https://*.mishnatyosef.org/*"]
+    }
+  ]
+}
