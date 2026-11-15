@@ -9,7 +9,7 @@
 import fs from 'fs';
 import path from 'path';
 import { GoogleGenAI } from '@google/genai';
-import { parseProductUnits, areUnitsCompatible } from './parse_units.mjs';
+import { parseProductUnits, areUnitsCompatible, findMarketComparison } from './parse_units.mjs';
 
 const PRICES_FILE = path.resolve('prices.json');
 const MAPPING_FILE = path.resolve('scripts', 'mapping_cache.json');
@@ -253,6 +253,16 @@ async function main() {
         if (item.category && !foodCategories.test(item.category) && !foodCategories.test(item.subCategory || '')) {
           continue;
         }
+        // בדיקה האם המוצר כבר מותאם לפריט קיים במאגר
+        const matchedExisting = findMarketComparison(item.name, prices);
+        if (matchedExisting) {
+          if (!matchedExisting.aliases) matchedExisting.aliases = [];
+          if (!matchedExisting.aliases.includes(item.name)) {
+            matchedExisting.aliases.push(item.name);
+          }
+          continue;
+        }
+
         const exists = prices.some(p => p.id === `my_${item.id}` || p.name === item.name || (p.aliases && p.aliases.includes(item.name)));
         if (!exists) {
           candidates.push({

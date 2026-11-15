@@ -240,3 +240,83 @@ export function areUnitsCompatible(u1, u2) {
 
   return true;
 }
+
+export function norm(s) {
+  return (s || '')
+    .toString()
+    .toLowerCase()
+    .replace(/["'״׳`]/g, '')
+    .replace(/[\(\)\[\]\{\}\-\–\—\:\,\.\/\\]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function tokenMatches(targetNorm, targetTokens, token) {
+  if (targetTokens.includes(token)) return true;
+  if (token.length >= 4 && targetNorm.includes(token)) return true;
+  return false;
+}
+
+export function findMarketComparison(itemName, catalog = []) {
+  if (!itemName) return null;
+  const n = norm(itemName);
+  const nWords = n.split(/\s+/);
+  const targetUnits = parseProductUnits(itemName);
+  const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
+  const isProduceExcluded = /(?:מרק|אבקת|טבעות|קמח|מלח|סלט|מיץ|עוגת|עוגיות|חטיף|בורקס|שבבי)/i.test(n);
+  const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
+
+  let bestStep1 = null;
+  let bestStep1Len = 0;
+  for (const item of catalog) {
+    if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
+    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+    if (item.id.includes('pasta') && isWholeWheat) continue;
+    const itemUnits = parseProductUnits(item.name);
+    if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
+
+    const iname = norm(item.name);
+    if (iname.length >= 3 && (n.includes(iname) || (iname.includes(n) && n.length >= iname.length * 0.7))) {
+      const score = iname.length + 100;
+      if (score > bestStep1Len) {
+        bestStep1Len = score;
+        bestStep1 = item;
+      }
+    }
+    if (item.aliases) {
+      for (const alias of item.aliases) {
+        const na = norm(alias);
+        if (na.length >= 2 && n.includes(na) && na.length > bestStep1Len) {
+          bestStep1Len = na.length;
+          bestStep1 = item;
+        }
+      }
+    }
+  }
+  if (bestStep1) return bestStep1;
+
+  for (const item of catalog) {
+    if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
+    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+    if (item.id.includes('pasta') && isWholeWheat) continue;
+    const itemUnits = parseProductUnits(item.name);
+    if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
+
+    if (item.aliases) {
+      for (const alias of item.aliases) {
+        const na = norm(alias);
+        const tokens = na.split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
+        if (tokens.length >= 2 && tokens.every(tok => tokenMatches(n, nWords, tok))) {
+          return item;
+        }
+      }
+    }
+    const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3 || /\d/.test(w));
+    if (itemTokens.length >= 3 && itemTokens.every(tok => tokenMatches(n, nWords, tok))) {
+      return item;
+    }
+  }
+  return null;
+}

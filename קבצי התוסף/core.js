@@ -2451,9 +2451,9 @@ function showToast(msg, type = 'success') {
       "חלב תנובה 3%",
       "חלב טרי 3%"
     ],
-    "supermarketPrice": 7.25,
+    "supermarketPrice": 7.28,
     "chains": {
-      "osherAd": 7.2,
+      "osherAd": null,
       "ramiLevy": 7.2,
       "yeshHesed": 7.35,
       "netoChisachon": null
@@ -4076,7 +4076,8 @@ function showToast(msg, type = 'success') {
     "name": "רביעיית שוקולד מריר כרמית 400 גרם",
     "aliases": [
       "רביעיית שוקולד",
-      "שוקולד מריר כרמית"
+      "שוקולד מריר כרמית",
+      "רביעיית שוקולד מריר כרמית"
     ],
     "supermarketPrice": 14.9,
     "chains": {
@@ -4417,6 +4418,111 @@ function showToast(msg, type = 'success') {
       "osherAd": 6.8,
       "ramiLevy": 6.9,
       "yeshHesed": 7.1,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_9228",
+    "name": "קצפת צמחית השף הלבן תנובה",
+    "aliases": [
+      "קצפת צמחית השף הלבן תנובה"
+    ],
+    "supermarketPrice": 15.6,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 15.6,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_11174",
+    "name": "רביעיית גבינה מותכת 18% - משק צוריאל",
+    "aliases": [
+      "רביעיית גבינה מותכת 18% - משק צוריאל"
+    ],
+    "supermarketPrice": 8.45,
+    "chains": {
+      "osherAd": 8.5,
+      "ramiLevy": null,
+      "yeshHesed": 8.4,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_900",
+    "name": "חמאה טרה",
+    "aliases": [
+      "חמאה טרה"
+    ],
+    "supermarketPrice": 9.6,
+    "chains": {
+      "osherAd": 9.5,
+      "ramiLevy": 9.8,
+      "yeshHesed": 9.5,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_6550",
+    "name": "בורקס קפוא במילוי גבינה",
+    "aliases": [
+      "בורקס קפוא במילוי גבינה"
+    ],
+    "supermarketPrice": 16.85,
+    "chains": {
+      "osherAd": 16.9,
+      "ramiLevy": 16.8,
+      "yeshHesed": null,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_742",
+    "name": "טבעות זיתים ירוקים - שימורים {מ.מ.}",
+    "aliases": [
+      "טבעות זיתים ירוקים - שימורים {מ.מ.}"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 12.9,
+      "yeshHesed": null,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_1632",
+    "name": "שוקולד צ'יפס (נטיפי שוקולד מריר) - אופנהיימר {מ.מ.}",
+    "aliases": [
+      "שוקולד צ'יפס (נטיפי שוקולד מריר) - אופנהיימר {מ.מ.}"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 19.9,
+      "yeshHesed": null,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_1508",
+    "name": "קרמבו מוקה 8 יח' ריאו {מ.מ.}",
+    "aliases": [
+      "קרמבו מוקה 8 יח' ריאו {מ.מ.}"
+    ],
+    "supermarketPrice": 14.57,
+    "chains": {
+      "osherAd": 14,
+      "ramiLevy": 14.8,
+      "yeshHesed": 14.9,
       "netoChisachon": null
     },
     "lastVerified": "2026-11-15"

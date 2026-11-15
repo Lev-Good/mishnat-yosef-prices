@@ -1632,7 +1632,8 @@
     "name": "רביעיית שוקולד מריר כרמית 400 גרם",
     "aliases": [
       "רביעיית שוקולד",
-      "שוקולד מריר כרמית"
+      "שוקולד מריר כרמית",
+      "רביעיית שוקולד מריר כרמית"
     ],
     "supermarketPrice": 14.9,
     "chains": {
@@ -1973,21 +1974,6 @@
       "osherAd": 6.8,
       "ramiLevy": 6.9,
       "yeshHesed": 7.1,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-15"
-  },
-  {
-    "id": "my_527",
-    "name": "רביעיית שוקולד מריר כרמית",
-    "aliases": [
-      "רביעיית שוקולד מריר כרמית"
-    ],
-    "supermarketPrice": 22.5,
-    "chains": {
-      "osherAd": null,
-      "ramiLevy": null,
-      "yeshHesed": 22.5,
       "netoChisachon": null
     },
     "lastVerified": "2026-11-15"
