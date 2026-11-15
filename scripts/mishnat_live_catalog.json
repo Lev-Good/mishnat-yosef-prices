@@ -1,0 +1,5106 @@
+[
+  {
+    "id": 888,
+    "name": "תפוח אדמה אדום 5 קילו",
+    "price": 18.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 888
+  },
+  {
+    "id": 231,
+    "name": "בצל",
+    "price": 8.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 231
+  },
+  {
+    "id": 8814,
+    "name": "רביעיית שום יבש XL",
+    "price": 5.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 8814
+  },
+  {
+    "id": 1045,
+    "name": "גזר",
+    "price": 4.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 1045
+  },
+  {
+    "id": 177,
+    "name": "פלפלונים בייבי {ללא גרעינים}",
+    "price": 9.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 177
+  },
+  {
+    "id": 16,
+    "name": "פלפל אדום",
+    "price": 7.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 16
+  },
+  {
+    "id": 5994,
+    "name": "מלפפון",
+    "price": 7.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 5994
+  },
+  {
+    "id": 6,
+    "name": "עגבניות",
+    "price": 9.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 6
+  },
+  {
+    "id": 1180,
+    "name": "עגבניות שרי אדומות",
+    "price": 12.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 1180
+  },
+  {
+    "id": 211,
+    "name": "קולרבי",
+    "price": 9.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 211
+  },
+  {
+    "id": 10,
+    "name": "קישואים (ירוק)",
+    "price": 8.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 10
+  },
+  {
+    "id": 9,
+    "name": "חצילים",
+    "price": 6.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 9
+  },
+  {
+    "id": 11,
+    "name": "בטטות",
+    "price": 10,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 11
+  },
+  {
+    "id": 14,
+    "name": "סלק",
+    "price": 6.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 14
+  },
+  {
+    "id": 12,
+    "name": "דלורית",
+    "price": 5.5,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 12
+  },
+  {
+    "id": 28,
+    "name": "אבוקדו {מ.מ.}",
+    "price": 7.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 28
+  },
+  {
+    "id": 29,
+    "name": "רימון סלסלה",
+    "price": 12.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 29
+  },
+  {
+    "id": 25,
+    "name": "קיווי {מ.מ.}",
+    "price": 8.5,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 25
+  },
+  {
+    "id": 8698,
+    "name": "ענבים ירוקים (וינטר קינג) - ענבי טלי",
+    "price": 24.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 8698
+  },
+  {
+    "id": 31,
+    "name": "ענבים אדומים זן סקרלוטה- ענבי טלי",
+    "price": 22.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 31
+  },
+  {
+    "id": 27,
+    "name": "אפרסמון {מ.מ.}",
+    "price": 8.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 27
+  },
+  {
+    "id": 57,
+    "name": "פומלית  - רשת ירוקה",
+    "price": 8.5,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 57
+  },
+  {
+    "id": 59,
+    "name": "תפוזים (רשת כתומה) {מ.מ.}",
+    "price": 6.5,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 59
+  },
+  {
+    "id": 61,
+    "name": "קלמנטינה",
+    "price": 7.5,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 61
+  },
+  {
+    "id": 1066,
+    "name": "אגס",
+    "price": 8.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 1066
+  },
+  {
+    "id": 1104,
+    "name": "תפוח עץ סמיט (ירוק)",
+    "price": 12.2,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 1104
+  },
+  {
+    "id": 442,
+    "name": "תפוח עץ זהוב (צהוב)",
+    "price": 11.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 442
+  },
+  {
+    "id": 520,
+    "name": "תפוח עץ אדום",
+    "price": 11.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 520
+  },
+  {
+    "id": 20,
+    "name": "אשכול בננות",
+    "price": 16.8,
+    "category": "פירות",
+    "subCategory": "",
+    "itemSalesId": 20
+  },
+  {
+    "id": 1010,
+    "name": "ראש כרוב אדום גדול {לנדא} {שקית}",
+    "price": 14.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 1010
+  },
+  {
+    "id": 386,
+    "name": "חסה גידולי אדמה {לנדא}",
+    "price": 3.9,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 386
+  },
+  {
+    "id": 1578,
+    "name": "סלסלה חסה קריספית (לאליק) {לנדא}",
+    "price": 6.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 1578
+  },
+  {
+    "id": 391,
+    "name": "סלרי עלים (בשקית) {לנדא}",
+    "price": 4.4,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 391
+  },
+  {
+    "id": 387,
+    "name": "בצל ירוק {לנדא}",
+    "price": 4.4,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 387
+  },
+  {
+    "id": 392,
+    "name": "פטרוזליה {לנדא}",
+    "price": 3.5,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 392
+  },
+  {
+    "id": 388,
+    "name": "כוסברה {לנדא}",
+    "price": 3.5,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 388
+  },
+  {
+    "id": 393,
+    "name": "שמיר {לנדא}",
+    "price": 3.5,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 393
+  },
+  {
+    "id": 7039,
+    "name": "עלי בזיליקום טריים {לנדא}",
+    "price": 5.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 7039
+  },
+  {
+    "id": 51,
+    "name": "נבטים אמריקאים (דקים - אלפלפא) {אריזה שחורה מוגדלת}",
+    "price": 4.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 51
+  },
+  {
+    "id": 50,
+    "name": "נבטים סיניים (עבים) - {אריזת לבנה מוגדלת}",
+    "price": 4.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 50
+  },
+  {
+    "id": 52,
+    "name": "מארז צמד סלסלאות פטריות טריות לבן/חום {מארז מוגדל}",
+    "price": 16.5,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 52
+  },
+  {
+    "id": 160,
+    "name": "ביצים גודל M",
+    "price": 29.2,
+    "category": "ביצים",
+    "subCategory": "",
+    "itemSalesId": 160
+  },
+  {
+    "id": 485,
+    "name": "לחם פרוס - דגנית עין בר",
+    "price": 5.6,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 485
+  },
+  {
+    "id": 1067,
+    "name": "לחם פרוס מחיטה מלאה - דגנית עין בר",
+    "price": 9.7,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 1067
+  },
+  {
+    "id": 238,
+    "name": "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%  {נ. לאחר הפסח}",
+    "price": 13.9,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 238
+  },
+  {
+    "id": 10519,
+    "name": "עשיריית פיתות",
+    "price": 9.5,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 10519
+  },
+  {
+    "id": 10520,
+    "name": "פיתות מקמח כוסמין",
+    "price": 11,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 10520
+  },
+  {
+    "id": 544,
+    "name": "עוגת בוקר רוגעל'ה שוקולד - שפיצר",
+    "price": 2.9,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 544
+  },
+  {
+    "id": 9364,
+    "name": "רוגלעך אפוי בקופסא {מבית הדר גאולה}",
+    "price": 14.8,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 9364
+  },
+  {
+    "id": 527,
+    "name": "רביעיית שוקולד מריר כרמית",
+    "price": 21.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 527
+  },
+  {
+    "id": 12478,
+    "name": "טבלת שוקולד חלב עוגיות ופצפוצים - קליק {מ. לאחר הפסח}",
+    "price": 5.7,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 12478
+  },
+  {
+    "id": 9356,
+    "name": "חטיף שוקולד קראנץ בלאק אנד וויט - עלית",
+    "price": 6.6,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 9356
+  },
+  {
+    "id": 8189,
+    "name": "שקית ואוו גלילי וופל בציפוי שוקולד חלב {מ.מ.}",
+    "price": 3.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 8189
+  },
+  {
+    "id": 9228,
+    "name": "קצפת צמחית השף הלבן תנובה",
+    "price": 13.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 9228
+  },
+  {
+    "id": 1549,
+    "name": "סלט מטבוחה אמיתית - צבר",
+    "price": 9.9,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 1549
+  },
+  {
+    "id": 1551,
+    "name": "סחוג אדום - My VILLAGE {בד\"ץ בית חלקיה}",
+    "price": 9.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 1551
+  },
+  {
+    "id": 330,
+    "name": "משקה שיבולת שועל - תנובה אלטרנטיב (כתום)",
+    "price": 11.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 330
+  },
+  {
+    "id": 7790,
+    "name": "חלב 2 ליטר - קייטי/טרה",
+    "price": 12.1,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 7790
+  },
+  {
+    "id": 11174,
+    "name": "רביעיית גבינה מותכת 18% - משק צוריאל",
+    "price": 6.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 11174
+  },
+  {
+    "id": 699,
+    "name": "גבינת שמנת 25% - הכפרייה",
+    "price": 20,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 699
+  },
+  {
+    "id": 5189,
+    "name": "גבינה 5% - טרה",
+    "price": 8.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 5189
+  },
+  {
+    "id": 896,
+    "name": "קוטג' 250 גר' - טרה",
+    "price": 6,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 896
+  },
+  {
+    "id": 900,
+    "name": "חמאה טרה",
+    "price": 9.1,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 900
+  },
+  {
+    "id": 2426,
+    "name": "פיצרלה מגורדת - יבנה",
+    "price": 21.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 2426
+  },
+  {
+    "id": 6383,
+    "name": "גבינה צהובה עמק - 600 גר'",
+    "price": 31.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 6383
+  },
+  {
+    "id": 8112,
+    "name": "מאגדת קרלו בטעם שוקו (חום)",
+    "price": 12.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 8112
+  },
+  {
+    "id": 895,
+    "name": "מאגדת מעדן וניל - טרה",
+    "price": 11.9,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 895
+  },
+  {
+    "id": 7596,
+    "name": "מאגדת יוגורט Bio 3% - תנובה ",
+    "price": 15.4,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 7596
+  },
+  {
+    "id": 684,
+    "name": "רביעיית מעדני סימפלי פרוט {אפרסק} 0% שומן מולר",
+    "price": 14.2,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 684
+  },
+  {
+    "id": 6550,
+    "name": "בורקס קפוא במילוי גבינה",
+    "price": 12.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6550
+  },
+  {
+    "id": 608,
+    "name": "קרטון בצבע כתום חום קמח כוסמין 80 - שטיבל",
+    "price": 80,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 608
+  },
+  {
+    "id": 10248,
+    "name": "קרטון בצבע כחול/חום  קמח לבן מנופה (10 יח') - מומלץ!",
+    "price": 39.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 10248
+  },
+  {
+    "id": 403,
+    "name": "פסטה (צורות) {מ.מ.}",
+    "price": 2.2,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 403
+  },
+  {
+    "id": 741,
+    "name": "פתיתים אפויים",
+    "price": 3.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 741
+  },
+  {
+    "id": 740,
+    "name": "אטריות",
+    "price": 3.9,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 740
+  },
+  {
+    "id": 433,
+    "name": "מלפפון חמוץ במלח {מ.מ.}",
+    "price": 4.5,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 433
+  },
+  {
+    "id": 100,
+    "name": "פטריות חתוכות שימורים - קייטי",
+    "price": 3.9,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 100
+  },
+  {
+    "id": 742,
+    "name": "טבעות זיתים ירוקים - שימורים {מ.מ.}",
+    "price": 7.9,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 742
+  },
+  {
+    "id": 1655,
+    "name": "תירס שימורים 340 גרם - קייטי",
+    "price": 3.4,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 1655
+  },
+  {
+    "id": 12908,
+    "name": "אפונה בשימורים - פריניר",
+    "price": 4.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 12908
+  },
+  {
+    "id": 877,
+    "name": "טונה במים רביעיה - קייטי",
+    "price": 12.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 877
+  },
+  {
+    "id": 11855,
+    "name": "חומוס בשימורים - פריניר",
+    "price": 4.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 11855
+  },
+  {
+    "id": 719,
+    "name": "רסק/רוטב עגבניות 22 (4 קופסאות) - פרי מבורך",
+    "price": 11.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 719
+  },
+  {
+    "id": 10283,
+    "name": "מחיות תפוח בננה לפעוטות בפאווצ' פריפוש - קייטי",
+    "price": 8.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 10283
+  },
+  {
+    "id": 99,
+    "name": "שמן קנולה",
+    "price": 6.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 99
+  },
+  {
+    "id": 821,
+    "name": "שקדי מרק",
+    "price": 6.6,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 821
+  },
+  {
+    "id": 91,
+    "name": "קמח מצה",
+    "price": 4.2,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 91
+  },
+  {
+    "id": 14064,
+    "name": "מרק דגש בטעם עוף - קנור",
+    "price": 8.8,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 14064
+  },
+  {
+    "id": 73,
+    "name": "טחינה 0.5 קילו - אחווה",
+    "price": 8.3,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 73
+  },
+  {
+    "id": 6186,
+    "name": "מיונז תלמה 0.5 קילו",
+    "price": 9.9,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 6186
+  },
+  {
+    "id": 343,
+    "name": "קטשופ אסם",
+    "price": 10.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 343
+  },
+  {
+    "id": 1144,
+    "name": "רוטב צ'ילי מתוק",
+    "price": 8.3,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 1144
+  },
+  {
+    "id": 14061,
+    "name": "רוטב אלף האיים - הלמנס",
+    "price": 9.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 14061
+  },
+  {
+    "id": 339,
+    "name": "מיץ לימון - מיה",
+    "price": 6.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 339
+  },
+  {
+    "id": 341,
+    "name": "חומץ טבעי 5%",
+    "price": 3.9,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 341
+  },
+  {
+    "id": 95,
+    "name": "דבש טבעי",
+    "price": 15.8,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 95
+  },
+  {
+    "id": 5653,
+    "name": "סילאן טבעי עם פקק לחיץ",
+    "price": 8.8,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 5653
+  },
+  {
+    "id": 438,
+    "name": "קונפיטורה תות שדה {ריבה} - מיה",
+    "price": 9.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 438
+  },
+  {
+    "id": 8979,
+    "name": "ממרח ריבת חלב - מיה",
+    "price": 9.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 8979
+  },
+  {
+    "id": 1203,
+    "name": "חמאת בטנים טבעית 1 קילו -  B&D {מ.מ.}",
+    "price": 19.8,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 1203
+  },
+  {
+    "id": 342,
+    "name": "ממרח שוקולד",
+    "price": 5.8,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 342
+  },
+  {
+    "id": 8201,
+    "name": "קקאו 250 גר'",
+    "price": 11.8,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 8201
+  },
+  {
+    "id": 9013,
+    "name": "תמצית וניל 250 מ\"ל - קייטי",
+    "price": 8.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 9013
+  },
+  {
+    "id": 1632,
+    "name": "שוקולד צ'יפס (נטיפי שוקולד מריר) - אופנהיימר {מ.מ.}",
+    "price": 12.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 1632
+  },
+  {
+    "id": 828,
+    "name": "פקאן מסוכר (סיני)",
+    "price": 8.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 828
+  },
+  {
+    "id": 1821,
+    "name": "חמוציות עם רכז תפוחים",
+    "price": 7.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 1821
+  },
+  {
+    "id": 1508,
+    "name": "קרמבו מוקה 8 יח' ריאו {מ.מ.}",
+    "price": 10,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 1508
+  },
+  {
+    "id": 8395,
+    "name": "כריות נוגט - תלמה",
+    "price": 24.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 8395
+  },
+  {
+    "id": 422,
+    "name": "קורנפלקס תלמה 850 גר' {מ. לאחר הפסח}",
+    "price": 18.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 422
+  },
+  {
+    "id": 11258,
+    "name": "קורנפלקס דבש - קייטי",
+    "price": 10.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 11258
+  },
+  {
+    "id": 449,
+    "name": "דגני בוקר פירות xl אריזה מוגדלת",
+    "price": 13.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 449
+  },
+  {
+    "id": 751,
+    "name": "שלווה עם סוכר חום ודבש - אשבול {מ. לאחר הפסח}",
+    "price": 6.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 751
+  },
+  {
+    "id": 474,
+    "name": "פרכיות אורז - אריזת ג'מבו",
+    "price": 25.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 474
+  },
+  {
+    "id": 14066,
+    "name": "מארז פרכיות מיני - משולשי תירס - אלומה",
+    "price": 18,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 14066
+  },
+  {
+    "id": 10702,
+    "name": "מארז פיטנס בר פריכיות עם שוקולד חלב - fitness",
+    "price": 10.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 10702
+  },
+  {
+    "id": 540,
+    "name": "עוגיות במילוי קרם שוקולד מפנקות - ברמן {מ.מ.}",
+    "price": 3.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 540
+  },
+  {
+    "id": 5136,
+    "name": "עוגיות חצי ירח - תירוש",
+    "price": 4.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 5136
+  },
+  {
+    "id": 1159,
+    "name": "חטיף אפוי מלוח דג דג - בייגל בייגל {נ. לאחר הפסח}",
+    "price": 9.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1159
+  },
+  {
+    "id": 1800,
+    "name": "בייגלה שטוחלה שומשום - מאיר בייגל",
+    "price": 6.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1800
+  },
+  {
+    "id": 528,
+    "name": "[שימו לב זה בשקית]קרקר - בשקית",
+    "price": 3.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 528
+  },
+  {
+    "id": 1345,
+    "name": "וופלים",
+    "price": 2.6,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1345
+  },
+  {
+    "id": 427,
+    "name": "במבה אסם מאגדת (ד)",
+    "price": 11.6,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 427
+  },
+  {
+    "id": 416,
+    "name": "חטיף אפרופו מצופה שוקולד חלב - אסם",
+    "price": 3.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 416
+  },
+  {
+    "id": 8568,
+    "name": "ביסלי פארטי מיקס אריזה גדולה - אסם",
+    "price": 6.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 8568
+  },
+  {
+    "id": 14065,
+    "name": "חטיף כיפלי בצל/גריל - תלמה",
+    "price": 4.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 14065
+  },
+  {
+    "id": 9754,
+    "name": "נשנושים איירביס - בייגל בייגל (50 גר')",
+    "price": 3.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 9754
+  },
+  {
+    "id": 1638,
+    "name": "חטיף תן צ'אפ מיה",
+    "price": 2.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1638
+  },
+  {
+    "id": 7824,
+    "name": "חטיף קראנצ'וס (דמוי ביסלי)",
+    "price": 1.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 7824
+  },
+  {
+    "id": 559,
+    "name": "מאגדת חטיף דמוי ביסלי {באגסי}",
+    "price": 8.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 559
+  },
+  {
+    "id": 7897,
+    "name": "מארז סוכריות ג'לי בצורות חנוכה - מיה",
+    "price": 6.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 7897
+  },
+  {
+    "id": 1761,
+    "name": "ג'לי בינס בצילינדר - ענק",
+    "price": 22.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1761
+  },
+  {
+    "id": 9091,
+    "name": "טופי צבעוני {אריזה מוגדלת} - קייטי",
+    "price": 9.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 9091
+  },
+  {
+    "id": 14060,
+    "name": "מרשמלו סגול/לבן - כרמית",
+    "price": 4.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 14060
+  },
+  {
+    "id": 110,
+    "name": "מארז מטבעות שוקולד חלב - כרמית",
+    "price": 42.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 110
+  },
+  {
+    "id": 531,
+    "name": "טיטולים פרימיום מידה 5 - חוגלה {מ.מ.}",
+    "price": 24.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 531
+  },
+  {
+    "id": 8875,
+    "name": "חיתולים מידה 4 - בייביסיטר",
+    "price": 27.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 8875
+  },
+  {
+    "id": 606,
+    "name": "(ירוק) ג'ל כביסה פרסיל - 3.8 ליטר",
+    "price": 35.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 606
+  },
+  {
+    "id": 6895,
+    "name": "תרסיס להסרת כתמים לכביסה לבנה - וניש קליה {מ.מ.}",
+    "price": 8.9,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 6895
+  },
+  {
+    "id": 8879,
+    "name": "אבקת וניש קליה צבעוני גדול 1.8 ק\"ג - מהדורה מוגבלת {מ.מ.}",
+    "price": 27.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 8879
+  },
+  {
+    "id": 952,
+    "name": "שמפו פינוק - כחול",
+    "price": 9.5,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 952
+  },
+  {
+    "id": 8152,
+    "name": "אקונומיקה ז'אוול 2 ליטר {בקבוק עגול} - סנו",
+    "price": 8.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 8152
+  },
+  {
+    "id": 535,
+    "name": "קרטונית נרות מילוי - 6 שעות",
+    "price": 12.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 535
+  },
+  {
+    "id": 14119,
+    "name": "סט צלחות יוקרתי ח\"פ קשיחות צבע פנינה - בראבו",
+    "price": 7.8,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 14119
+  },
+  {
+    "id": 1207,
+    "name": "מנג'טים 3 צבעוניים בקופסא ",
+    "price": 4.2,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 1207
+  },
+  {
+    "id": 706,
+    "name": "נייר אפייה 50 יח'",
+    "price": 4.7,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 706
+  },
+  {
+    "id": 127,
+    "name": "נייר כסף עבה 200 פיט (רוחב 30 ס\"מ)",
+    "price": 19.8,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 127
+  },
+  {
+    "id": 227,
+    "name": "כוסות (8B) נייר איכותיות 50 יח'",
+    "price": 2.9,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 227
+  },
+  {
+    "id": 7745,
+    "name": "מארז 10 גביעי אחסון 750 מ\"ל באריזת חיסכון",
+    "price": 7.5,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 7745
+  },
+  {
+    "id": 591,
+    "name": "תבנית ענק 7 יח r99 ",
+    "price": 7.8,
+    "category": "חד פעמי רגיל",
+    "subCategory": "",
+    "itemSalesId": 591
+  },
+  {
+    "id": 569,
+    "name": "חמישיית טישו",
+    "price": 5.9,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 569
+  },
+  {
+    "id": 131,
+    "name": "מגבונים 72 יח - קייטי",
+    "price": 2.9,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 131
+  },
+  {
+    "id": 12886,
+    "name": "מיטת מתכת היי ריזר כפולה עם מזרנים אורטופדיים - דגם צילי {לא לאיסוף}",
+    "price": 2150,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12886
+  },
+  {
+    "id": 12887,
+    "name": "מיטת מתכת היי ריזר כפולה עם מזרנים אורטופדיים - דגם גילי {לא לאיסוף}",
+    "price": 2150,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12887
+  },
+  {
+    "id": 12892,
+    "name": "מיטת מתכת היי ריזר כפולה עם מזרנים אורטופדיים - דגם אלמה {לא לאיסוף}",
+    "price": 2350,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12892
+  },
+  {
+    "id": 12895,
+    "name": "מיטת היי ריזר כפולה מתכת בשילוב פולימרים עם מזרנים אורטופדיים - דגם בלה {לא לאיסוף}",
+    "price": 2350,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12895
+  },
+  {
+    "id": 12888,
+    "name": "מיטת מתכת היי רייזר משולשת עם מזרנים בעובי רגיל - דגם צילי {לא לאיסוף}",
+    "price": 2150,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12888
+  },
+  {
+    "id": 12889,
+    "name": "מיטת מתכת היי רייזר משולשת עם מזרנים בעובי רגיל - דגם גילי {לא לאיסוף}",
+    "price": 2150,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12889
+  },
+  {
+    "id": 12893,
+    "name": "מיטת מתכת היי רייזר משולשת עם מזרנים בעובי רגיל - דגם אלמה {לא לאיסוף}",
+    "price": 2350,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12893
+  },
+  {
+    "id": 12896,
+    "name": "מיטת היי רייזר משולשת מתכת בשילוב פולימרים  עם מזרנים בעובי רגיל - דגם בלה {לא לאיסוף}",
+    "price": 2350,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12896
+  },
+  {
+    "id": 12898,
+    "name": "מיטת היי רייזר משולשת מתכת מעוצבת עם חזית מתכת פסים עם מזרנים בעובי רגיל - דגם צופית {לא לאיסוף}",
+    "price": 3780,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12898
+  },
+  {
+    "id": 12890,
+    "name": "מיטת מתכת היי רייזר משולשת עם מזרני ספוג משודרגים בצבעים שונים  - דגם צילי {לא לאיסוף}",
+    "price": 2550,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12890
+  },
+  {
+    "id": 12891,
+    "name": "מיטת מתכת היי רייזר משולשת עם מזרני ספוג משודרגים בצבעים שונים  - דגם גילי {לא לאיסוף}",
+    "price": 2550,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12891
+  },
+  {
+    "id": 12894,
+    "name": "מיטת מתכת היי רייזר משולשת עם מזרני ספוג משודרגים בצבעים שונים  - דגם אלמה {לא לאיסוף}",
+    "price": 2780,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12894
+  },
+  {
+    "id": 12897,
+    "name": "מיטת היי רייזר משולשת מתכת בשילוב פולימרים  עם מזרני ספוג משודרגים בצבעים שונים  - דגם בלה {לא לאיסו",
+    "price": 2780,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12897
+  },
+  {
+    "id": 12899,
+    "name": "מיטת היי רייזר משולשת מתכת מעוצבת עם חזית מתכת פסים עם מזרני ספוג משודרגים בצבעים שונים  - דגם צופית",
+    "price": 4090,
+    "category": "למיטות היי רייזר",
+    "subCategory": "",
+    "itemSalesId": 12899
+  },
+  {
+    "id": 12847,
+    "name": "מזרן לחדר שינה - מבית REVE ROYAL",
+    "price": 480,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12847
+  },
+  {
+    "id": 12034,
+    "name": "מצלמה קנון דגם G7X MARK 3 תפריט בעברית - שחור כסוף {324}",
+    "price": 3980,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12034
+  },
+  {
+    "id": 9017,
+    "name": "מצלמה קנון דגם SX740 תפריט בעברית - שחור {333}",
+    "price": 2390,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 9017
+  },
+  {
+    "id": 11287,
+    "name": "מצלמה קנון דגם SX740 תפריט בעברית - כסף {322}",
+    "price": 2290,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11287
+  },
+  {
+    "id": 11878,
+    "name": "מקרן איכותי LUMA PRIME כשרות כהלכה - סאמוויקס {302}",
+    "price": 528,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11878
+  },
+  {
+    "id": 11876,
+    "name": "נגן סמארט באס 10 כשרות כהלכה - סאמוויקס {304}",
+    "price": 295,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11876
+  },
+  {
+    "id": 12033,
+    "name": "כרטיס SD אולטרה למצלמה 64 ג'יגה - סאן דיסק {330}",
+    "price": 69,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12033
+  },
+  {
+    "id": 11969,
+    "name": "כרטיס זיכרון מיקרו 256 ג'יגה - סאן דיסק {326}",
+    "price": 129,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11969
+  },
+  {
+    "id": 11939,
+    "name": "מחליק ומסלסל שיער 2 ב-1 בייביליס - דגם BA-ST330ILE/E{309}",
+    "price": 149,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11939
+  },
+  {
+    "id": 10419,
+    "name": "מייבש שיער יוני קומפקטי ועוצמתי בייביליס - דגם BA-D581E/ILE{307}",
+    "price": 178,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10419
+  },
+  {
+    "id": 12879,
+    "name": "מזגן עילי אינוורטר 1.25 ק\"ס - פמילי (לא לאיסוף)",
+    "price": 797,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12879
+  },
+  {
+    "id": 12900,
+    "name": "מכשיר פלאפון כשר מאושר - MX5",
+    "price": 219,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12900
+  },
+  {
+    "id": 10246,
+    "name": "אוזניה חוט נשלף - BASELINE",
+    "price": 79,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10246
+  },
+  {
+    "id": 1962,
+    "name": "מיקסר בוש דגם MUM6N11",
+    "price": 868,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1962
+  },
+  {
+    "id": 12884,
+    "name": "מעבד מזון משולב Magimix דגם CS4160PIus",
+    "price": 1048,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12884
+  },
+  {
+    "id": 11958,
+    "name": "מכשיר חשמלי פאואר קיטשן עם פלטה נשלפת לניקוי קל - לימו",
+    "price": 167,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11958
+  },
+  {
+    "id": 6040,
+    "name": "מכשיר טוסטר מיני קייק - לימו",
+    "price": 98,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 6040
+  },
+  {
+    "id": 7210,
+    "name": "מכשיר להכנת פנקייק/חביתיות - טפאל",
+    "price": 219,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 7210
+  },
+  {
+    "id": 2138,
+    "name": "צ'יפסר טיגון",
+    "price": 118,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 2138
+  },
+  {
+    "id": 11165,
+    "name": "מוט בלנדר נירוסטה - בראון דגם  MQ10.201M ",
+    "price": 189,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11165
+  },
+  {
+    "id": 12885,
+    "name": "מקצף חזק במיוחד 575w - בוש דגם MFQ4840",
+    "price": 298,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12885
+  },
+  {
+    "id": 11974,
+    "name": "מגהץ קיטור טפאל - דגם SV8110E0",
+    "price": 790,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11974
+  },
+  {
+    "id": 10532,
+    "name": "מפזר חום - עומד",
+    "price": 29.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10532
+  },
+  {
+    "id": 653,
+    "name": "רדיאטור 9 צלעות - לימו",
+    "price": 159,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 653
+  },
+  {
+    "id": 8031,
+    "name": "מכשיר אדים קרים - לימו",
+    "price": 69,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 8031
+  },
+  {
+    "id": 1760,
+    "name": "מגן ברקים",
+    "price": 25,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1760
+  },
+  {
+    "id": 7749,
+    "name": "תאורת חירום 30 לדים - לימו",
+    "price": 14.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 7749
+  },
+  {
+    "id": 963,
+    "name": "מחבת יציקה איכותית בקוטר 20 ס\"מ",
+    "price": 28,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 963
+  },
+  {
+    "id": 12882,
+    "name": "קרש חיתוך זכוכית עם מסגרת גומי -  גדול",
+    "price": 28,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12882
+  },
+  {
+    "id": 11746,
+    "name": "זוג מגשי מתכת  כסופים - אליפסה",
+    "price": 13.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 11746
+  },
+  {
+    "id": 7390,
+    "name": "שטיח PVC מודפס למטבח",
+    "price": 16.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 7390
+  },
+  {
+    "id": 605,
+    "name": "סט 3 כלי ששת למטבח מעץ במבוק ",
+    "price": 3.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 605
+  },
+  {
+    "id": 6630,
+    "name": "קולפן ירקות שוויצרי - קיסג",
+    "price": 15.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 6630
+  },
+  {
+    "id": 5719,
+    "name": "מטרפה סיליקון",
+    "price": 4.2,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 5719
+  },
+  {
+    "id": 623,
+    "name": "קערת התפחה ענקית מפלסטיק + מכסה",
+    "price": 13.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 623
+  },
+  {
+    "id": 7277,
+    "name": "מערוך משולשים מפלסטיק להכנת רוגלעך וקרואסונים",
+    "price": 12.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 7277
+  },
+  {
+    "id": 1567,
+    "name": "שקיות זילוף ח\"פ",
+    "price": 6.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1567
+  },
+  {
+    "id": 1642,
+    "name": "מארז צנטרי מתכת לזילוף",
+    "price": 4.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1642
+  },
+  {
+    "id": 10458,
+    "name": "בקבוק תרסיס מפלסטיק - לשמן",
+    "price": 10.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10458
+  },
+  {
+    "id": 1783,
+    "name": "בקבוק לחיץ ",
+    "price": 3.3,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1783
+  },
+  {
+    "id": 12872,
+    "name": "תבנית סיליקון לעוגה - חנוכיה",
+    "price": 11.6,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12872
+  },
+  {
+    "id": 8283,
+    "name": "מארז 100 מקלות עץ לארטיק מגנום",
+    "price": 2.9,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 8283
+  },
+  {
+    "id": 10451,
+    "name": "חוברת מתכונים רק רגע - 10 דקות שאופות את היום - מספר 2",
+    "price": 21.8,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10451
+  },
+  {
+    "id": 992,
+    "name": "בית לחנוכיה לחנוכיית פס - עם זכוכית מחוזקת",
+    "price": 26.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 992
+  },
+  {
+    "id": 2136,
+    "name": "חנוכיית פס קריסטלית {קרטון לבן}",
+    "price": 29.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 2136
+  },
+  {
+    "id": 1517,
+    "name": "פתיליות",
+    "price": 1.4,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1517
+  },
+  {
+    "id": 763,
+    "name": "נרות חנוכה לילדים",
+    "price": 1.6,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 763
+  },
+  {
+    "id": 12883,
+    "name": "החנוכיה הזוהרת - מאירים בשלל צבעים",
+    "price": 22.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12883
+  },
+  {
+    "id": 8984,
+    "name": "כדורי קסם המים - יצירה לחנוכה",
+    "price": 8.4,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 8984
+  },
+  {
+    "id": 553,
+    "name": "סביבון גדול אורות מנגן",
+    "price": 6.4,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 553
+  },
+  {
+    "id": 1524,
+    "name": "רביעיית סביבונים מציירים",
+    "price": 4.2,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1524
+  },
+  {
+    "id": 1155,
+    "name": "פאזל רצפה 48 חלקים - חנוכה",
+    "price": 11.6,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1155
+  },
+  {
+    "id": 8953,
+    "name": "מארז 10 חנוכיות מעץ לצביעה דמוי מנורה",
+    "price": 9.3,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 8953
+  },
+  {
+    "id": 1097,
+    "name": "בצק קנטי בשקית",
+    "price": 7.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 1097
+  },
+  {
+    "id": 6085,
+    "name": "כדור קפיצה פוגו",
+    "price": 24.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 6085
+  },
+  {
+    "id": 10394,
+    "name": "מארז מיני מקלות להפרחת בועות סבון",
+    "price": 5.4,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10394
+  },
+  {
+    "id": 10829,
+    "name": "משחק מגנטים מיקרו - 100 חלקים",
+    "price": 42,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 10829
+  },
+  {
+    "id": 561,
+    "name": "מטריה שחורה ארוכה - גברים",
+    "price": 22,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 561
+  },
+  {
+    "id": 229,
+    "name": "כדוריות סבון לאסלה עם מתלה - שלשייה",
+    "price": 6.5,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 229
+  },
+  {
+    "id": 12864,
+    "name": "מארז 12 שקיות ריחניות - לבישום ארונות",
+    "price": 16,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 12864
+  },
+  {
+    "id": 8028,
+    "name": "משטח פעילות ענק מתקפל - בנרתיק אל בד",
+    "price": 39,
+    "category": "חנוכה ואפייה ומוצרי חשמל לחורף ולמטבח",
+    "subCategory": "",
+    "itemSalesId": 8028
+  },
+  {
+    "id": 2471,
+    "name": "דובוני ג'לי מולטי ויטמין - אריזת חיסכון {1} - {איסוף כמוצר בודד}",
+    "price": 50,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2471
+  },
+  {
+    "id": 8144,
+    "name": "כוכבי ג'לי קומפלקס לחיזוק מערכת החיסון - אריזת חיסכון {0}",
+    "price": 50,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 8144
+  },
+  {
+    "id": 7516,
+    "name": "כדורית - מבית מאדר נייצ'ר {83}",
+    "price": 148,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 7516
+  },
+  {
+    "id": 7503,
+    "name": "מקסילק - למיניקות מבית מאדר נייצ'ר {93}",
+    "price": 148,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 7503
+  },
+  {
+    "id": 11133,
+    "name": "קו-אנזים 10 - נוטריקר{1}",
+    "price": 55.2,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 11133
+  },
+  {
+    "id": 11134,
+    "name": "פרחי צבר בתוספת אבץ - נוטריקר{92}",
+    "price": 55.2,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 11134
+  },
+  {
+    "id": 6653,
+    "name": "טיפות ויטמין B12 - פיור {77}",
+    "price": 38,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6653
+  },
+  {
+    "id": 11136,
+    "name": "שום 2500 - נוטריקר{3}",
+    "price": 52.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 11136
+  },
+  {
+    "id": 8962,
+    "name": "תמצית ולריאן - נוטריקר {72}",
+    "price": 35.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 8962
+  },
+  {
+    "id": 8963,
+    "name": "אל אקס קר - נוטריקר {5}",
+    "price": 38.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 8963
+  },
+  {
+    "id": 1814,
+    "name": "פרנטל - נוטריקר {13}",
+    "price": 42.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 1814
+  },
+  {
+    "id": 6651,
+    "name": "איינתול 50 מ\"ל - פיור {8}",
+    "price": 54,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6651
+  },
+  {
+    "id": 12191,
+    "name": "כורכמין ליפוזומלי {ספיגה מירבית} - פיור {17}",
+    "price": 88,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 12191
+  },
+  {
+    "id": 10499,
+    "name": "ויטמין B12 ליפוזומלי {ספיגה מירבית} - פיור{54}",
+    "price": 67.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10499
+  },
+  {
+    "id": 10501,
+    "name": "ויטמין C ליפוזומלי {ספיגה מירבית} - פיור {32}",
+    "price": 67.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10501
+  },
+  {
+    "id": 10498,
+    "name": "ויטמין D3 ליפוזומלי {ספיגה מירבית} - פיור{46}",
+    "price": 67.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10498
+  },
+  {
+    "id": 10500,
+    "name": "מגנזיום ליפוזומלי {ספיגה מירבית} בתוספת ביסגליצנאט - פיור{76}",
+    "price": 67.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10500
+  },
+  {
+    "id": 10504,
+    "name": "צרלבסטופ {להקלה בצרבת} - פיור {66}",
+    "price": 36.6,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10504
+  },
+  {
+    "id": 10502,
+    "name": "פטריית ריישי  {48}- פיור",
+    "price": 63.4,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10502
+  },
+  {
+    "id": 10503,
+    "name": "פטריית רעמת האריה {80}- פיור",
+    "price": 63.4,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10503
+  },
+  {
+    "id": 6652,
+    "name": "קלוריקס - פיור {10}",
+    "price": 78,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6652
+  },
+  {
+    "id": 12192,
+    "name": "אומגה 3 DHA המופק מאצות - Perrymedik {מ.מ.} {64}",
+    "price": 88,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 12192
+  },
+  {
+    "id": 5242,
+    "name": "מולטי הייר פלוס לגבר - סופהרב {45}",
+    "price": 69.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5242
+  },
+  {
+    "id": 5039,
+    "name": "רידלייס (אריזה גדולה){55}",
+    "price": 49.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5039
+  },
+  {
+    "id": 11179,
+    "name": "ריזאלטס סטופ לכינים - 100 מ\"ל‏‏‏‏ ‏{53}",
+    "price": 33.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 11179
+  },
+  {
+    "id": 2420,
+    "name": "מולטי ויטמין לילדים - סופהרב {16}",
+    "price": 43.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2420
+  },
+  {
+    "id": 2425,
+    "name": "ברזל טיפות לילדים - סופהרב {74}",
+    "price": 18.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2425
+  },
+  {
+    "id": 2164,
+    "name": "ביוטיקיד LR לילדים - סופהרב {34}",
+    "price": 39,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2164
+  },
+  {
+    "id": 5118,
+    "name": "מולטי הייר פלוס לנשים - סופהרב {4}",
+    "price": 62.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5118
+  },
+  {
+    "id": 6887,
+    "name": "ויטמיני C&D ללעיסה בתוספת אבץ לילדים - סופהרב {50}",
+    "price": 37,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6887
+  },
+  {
+    "id": 2161,
+    "name": "סירופ סמבוקיד - סופהרב {49}",
+    "price": 28.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2161
+  },
+  {
+    "id": 1832,
+    "name": "סידן ציטראט סופהרב{56}",
+    "price": 47.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 1832
+  },
+  {
+    "id": 12356,
+    "name": "סידן D&K - סופהרב{59}",
+    "price": 47.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 12356
+  },
+  {
+    "id": 2166,
+    "name": "פריג'נטלי - סופהרב {15}",
+    "price": 53,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2166
+  },
+  {
+    "id": 8964,
+    "name": "ברזל 9 months - סופהרב {31}",
+    "price": 34.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 8964
+  },
+  {
+    "id": 10060,
+    "name": "מולטי ויטמין לנשים Tab In Gum - סופהרב {21}",
+    "price": 42.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10060
+  },
+  {
+    "id": 10138,
+    "name": "ברזל 30 מ\"ג בתוספת ויטמין שיא Tab In Gum- סופהרב {38}",
+    "price": 42.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10138
+  },
+  {
+    "id": 7961,
+    "name": "מולטי ויטמין לנשים - סופהרב {2}",
+    "price": 66,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 7961
+  },
+  {
+    "id": 2243,
+    "name": "ביו 25 LR גדול - סופהרב {44}",
+    "price": 115,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2243
+  },
+  {
+    "id": 10381,
+    "name": "פולאט 1000 מק\"ג - סופהרב {20}",
+    "price": 37.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10381
+  },
+  {
+    "id": 8414,
+    "name": "מגנזיום מקס 550 - סופהרב {23}",
+    "price": 39.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 8414
+  },
+  {
+    "id": 6507,
+    "name": "ויטמין D1000 סופהרב - באריזת חיסכון {18}",
+    "price": 52,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6507
+  },
+  {
+    "id": 1827,
+    "name": "בי 50 קומפלקס - סופהרב {84}",
+    "price": 42,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 1827
+  },
+  {
+    "id": 10378,
+    "name": "תמצית ג'ינג'ר בתוספת B6 - {7} סופהרב",
+    "price": 22.8,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10378
+  },
+  {
+    "id": 10379,
+    "name": "קומפלקס ביופלבנואידים - {40} סופהרב",
+    "price": 37.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10379
+  },
+  {
+    "id": 10380,
+    "name": "פרופוליס - {9} סופהרב",
+    "price": 52.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10380
+  },
+  {
+    "id": 10385,
+    "name": "גדילן מצוי - {43} סופהרב",
+    "price": 68.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10385
+  },
+  {
+    "id": 2424,
+    "name": "Q10 - סופהרב {6}",
+    "price": 68,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2424
+  },
+  {
+    "id": 5435,
+    "name": "מולטי ויטמין (פרנטל) - בוטיק {87}",
+    "price": 42,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5435
+  },
+  {
+    "id": 2172,
+    "name": "ויטמין B12 - בוטיק {73}",
+    "price": 24,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2172
+  },
+  {
+    "id": 1826,
+    "name": "ויטמין C-500 למציצה - בוטיק {86}",
+    "price": 29,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 1826
+  },
+  {
+    "id": 5354,
+    "name": "ויטמין C1000 לא חומצי - בוטיק {78}",
+    "price": 39,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5354
+  },
+  {
+    "id": 6655,
+    "name": "טיפות ויטמין D1000 בוטיק - באריזת חיסכון {81}",
+    "price": 29,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6655
+  },
+  {
+    "id": 2255,
+    "name": "חילבה בוטיק {88}",
+    "price": 24,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2255
+  },
+  {
+    "id": 6271,
+    "name": "מגנזיום +B6 - בוטיק {52}",
+    "price": 28.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6271
+  },
+  {
+    "id": 1807,
+    "name": "כורכומין קומפלקס - בוטיק {51}",
+    "price": 62,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 1807
+  },
+  {
+    "id": 5116,
+    "name": "ברזל קומפלקס - בוטיק {58}",
+    "price": 28,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5116
+  },
+  {
+    "id": 5323,
+    "name": "אבץ למציצה  - בוטיק {75}",
+    "price": 28,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5323
+  },
+  {
+    "id": 5356,
+    "name": "ספירולינה - בוטיק {36}",
+    "price": 34,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5356
+  },
+  {
+    "id": 6650,
+    "name": "לקסי קל  - בוטיק {26}",
+    "price": 42,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6650
+  },
+  {
+    "id": 2427,
+    "name": "סטיביה - בוטיק {85}",
+    "price": 24,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2427
+  },
+  {
+    "id": 5119,
+    "name": "פרוביוטיקה 30 ביליון - בוטיק {68}",
+    "price": 65,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5119
+  },
+  {
+    "id": 2254,
+    "name": "מסטיק תימני - בוטיק {71}",
+    "price": 40,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2254
+  },
+  {
+    "id": 2169,
+    "name": "אקטיב BRN {37}",
+    "price": 118,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2169
+  },
+  {
+    "id": 5164,
+    "name": "גרפווטר{82}",
+    "price": 33.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5164
+  },
+  {
+    "id": 11177,
+    "name": "חילבה אקסטרקט - ויטל {41}",
+    "price": 38.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 11177
+  },
+  {
+    "id": 10510,
+    "name": "שמן אשכוליות {39}- ויטל",
+    "price": 18,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10510
+  },
+  {
+    "id": 2419,
+    "name": "שמן ארניקה - ויטל {27}",
+    "price": 18,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2419
+  },
+  {
+    "id": 5320,
+    "name": "וירילקס - ויטל {29}",
+    "price": 35.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5320
+  },
+  {
+    "id": 1560,
+    "name": "שמן ציטרונלה - ויטל {11}",
+    "price": 18,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 1560
+  },
+  {
+    "id": 5040,
+    "name": "שמן אקליפטוס - ויטל {33}",
+    "price": 18,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5040
+  },
+  {
+    "id": 8799,
+    "name": "שמן קיק - ויטל {24}",
+    "price": 15.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 8799
+  },
+  {
+    "id": 6203,
+    "name": "שמן רוזמרין - ויטל {62}",
+    "price": 18,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6203
+  },
+  {
+    "id": 2244,
+    "name": "שמן שקדים 125 מ\"ל {22}",
+    "price": 22,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 2244
+  },
+  {
+    "id": 10913,
+    "name": "אבקת חלבון חלב בתוספת ויטמין c - פרו {91}",
+    "price": 85,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10913
+  },
+  {
+    "id": 6883,
+    "name": "אבקת חלבון אפונה בטעם וניל - ויטל  {65}",
+    "price": 44.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 6883
+  },
+  {
+    "id": 10374,
+    "name": "אבקת חלבון אפונה בטעם שוקולד-פקאן - {61} ויטל",
+    "price": 44.5,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 10374
+  },
+  {
+    "id": 12150,
+    "name": "מדבקות פחם לניקוי נקבוביות האף - BEAUTY FORMULAS{158}",
+    "price": 14,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12150
+  },
+  {
+    "id": 14053,
+    "name": "בושם לנשים לה ויאה איסט בל La Vie Est Belle - לנקום{95}",
+    "price": 330,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14053
+  },
+  {
+    "id": 10020,
+    "name": "קצף לניקוי הפנים REVIVAL PLUS לעור בוגר - CARELINE {350}",
+    "price": 63.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10020
+  },
+  {
+    "id": 10978,
+    "name": "בושם קלואה נומאד לומייאר א.ד.פ. - Chloe {130}",
+    "price": 198,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10978
+  },
+  {
+    "id": 10975,
+    "name": "בושם ברברי לונדון א.ד.פ - BURBERRY {112}",
+    "price": 130,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10975
+  },
+  {
+    "id": 12042,
+    "name": "בושם זדיג-ZADIG & VOLTAIRE THIS IS HER {126}",
+    "price": 219,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12042
+  },
+  {
+    "id": 10976,
+    "name": "בושם טוז לאב מי א.ד.פ - TOUS {127}",
+    "price": 182,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10976
+  },
+  {
+    "id": 12232,
+    "name": "בושם לאישה מון בלאן Montblanc Lady Emblem {110}",
+    "price": 110,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12232
+  },
+  {
+    "id": 11247,
+    "name": "בושם לנשים אברקרומבי אנד פיץ'- Abercrombie {105}",
+    "price": 109,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11247
+  },
+  {
+    "id": 10024,
+    "name": "בושם לנשים אברקרומבי פירסט אינסטינקט - Abercrombie & FF Instinct{132}",
+    "price": 119,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10024
+  },
+  {
+    "id": 12247,
+    "name": "בושם לנשים איסי מיאקי A Drop d'Issey Fraiche {140}",
+    "price": 119,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12247
+  },
+  {
+    "id": 12233,
+    "name": "בושם לנשים איסי מיאקי L'Eau d'Issey {120}",
+    "price": 129,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12233
+  },
+  {
+    "id": 12118,
+    "name": "בושם לנשים אלחרמין לולו רוז Loulou Rose {118}",
+    "price": 97,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12118
+  },
+  {
+    "id": 9832,
+    "name": "בושם לנשים ארמף קלאב דה נואי - club de nuit {129}",
+    "price": 78.5,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 9832
+  },
+  {
+    "id": 11251,
+    "name": "בושם לנשים ג'אסט קוואלי ווילד הארט - Just Cavalli Wild Heart{145}",
+    "price": 69,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11251
+  },
+  {
+    "id": 11248,
+    "name": "בושם לנשים ג'ימי צ'ו בלוסום - Jimmy Choo Blossom{142}",
+    "price": 69,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11248
+  },
+  {
+    "id": 10025,
+    "name": "בושם לנשים גאס בלה ויטה - Guess Bella Vita {113}",
+    "price": 124.5,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10025
+  },
+  {
+    "id": 14013,
+    "name": "בושם לנשים גאס אייקוניק 15 מ\"ל  GUESS ICONIC {139}",
+    "price": 28,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14013
+  },
+  {
+    "id": 11250,
+    "name": "בושם לנשים גס בלה ויטה לה מיה - Guess Bella Vita La Mia{135}",
+    "price": 109,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11250
+  },
+  {
+    "id": 11246,
+    "name": "בושם לנשים דולצ'ה וגבאנה סאמר וייבס - D&G Summer Vibes{143}",
+    "price": 175,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11246
+  },
+  {
+    "id": 10507,
+    "name": "בושם לנשים דולצה גבאנה DOLCE & GABBANA {122}",
+    "price": 228,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10507
+  },
+  {
+    "id": 14035,
+    "name": "בושם לנשים דולצה גבאנה לימפרטריס Dolce Gabbana L'imperatrice{150}",
+    "price": 179,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14035
+  },
+  {
+    "id": 12123,
+    "name": "בושם לנשים דונה קארן בי דלישס DKNY Be Delicious {116}",
+    "price": 144,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12123
+  },
+  {
+    "id": 11243,
+    "name": "בושם לנשים מונט בלאנק סיגנצ'ר - Mont Blanc Signature{133}",
+    "price": 139,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11243
+  },
+  {
+    "id": 11254,
+    "name": "בושם לנשים מונקלר סאנרייז - Moncler Sunrise{141}",
+    "price": 189,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11254
+  },
+  {
+    "id": 11252,
+    "name": "בושם לנשים מרינה גולדן דיינסטי - Marina De Bourbon Dynastie{115}",
+    "price": 52,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11252
+  },
+  {
+    "id": 11242,
+    "name": "בושם לנשים מרינה דה בורבון דיינסטי - Marina De Bourbon Dynastie{136}",
+    "price": 52,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11242
+  },
+  {
+    "id": 11783,
+    "name": "בושם לנשים מרינה קלאסיק {Marina de bourbon Classique} {131}",
+    "price": 86,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11783
+  },
+  {
+    "id": 12230,
+    "name": "בושם לנשים נינה ריצ'י Premier Jour {119}",
+    "price": 190,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12230
+  },
+  {
+    "id": 11244,
+    "name": "בושם לנשים נרסיסו רודריגז אול אוף מי - Narciso Rodriguez All of Me{137}",
+    "price": 179,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11244
+  },
+  {
+    "id": 10027,
+    "name": "בושם לנשים סי קיי אופוריה - CK Euphoria {121}",
+    "price": 145,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10027
+  },
+  {
+    "id": 10505,
+    "name": "בושם לנשים פם {femme - מבית הוגו בוס} - BOSS {104}",
+    "price": 93,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10505
+  },
+  {
+    "id": 12228,
+    "name": "בושם לנשים פראדה פרדוקס - Prada Paradoxe {134}",
+    "price": 389,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12228
+  },
+  {
+    "id": 10509,
+    "name": "בושם לנשים קלואה Chloe {124}",
+    "price": 228,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10509
+  },
+  {
+    "id": 10028,
+    "name": "בושם לנשים רוברטו קוואלי פרדיסו Roberto Cavalli Paradiso {107}",
+    "price": 139,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 10028
+  },
+  {
+    "id": 14051,
+    "name": "בושם לנשים טרוסרדי דונה Trussardi Donna{151}",
+    "price": 190,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14051
+  },
+  {
+    "id": 12231,
+    "name": "בושם לנשים דוידוף Davidoff Cool Water {138}",
+    "price": 74,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12231
+  },
+  {
+    "id": 12255,
+    "name": "בושם לנשים DKNY דונה קארן בי דלישס לאטה מאצ'ה  {125}",
+    "price": 109,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12255
+  },
+  {
+    "id": 12254,
+    "name": "בושם לנשים DKNY דונה קארן בי דלישס לאטה פיסטצ'ו {114}",
+    "price": 85,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12254
+  },
+  {
+    "id": 12419,
+    "name": "בושם לנשים DKNY דונה קארן בי דלישס פרש בלוסום{149}",
+    "price": 75,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12419
+  },
+  {
+    "id": 12229,
+    "name": "בושם לנשים גוצ'י Gucci Flora Gorgeous Magnolia  {144}",
+    "price": 294,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12229
+  },
+  {
+    "id": 12246,
+    "name": "בושם לנשים לקוסטLacoste Original {147}",
+    "price": 180,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12246
+  },
+  {
+    "id": 12245,
+    "name": "בושם לנשים מון בלאן Montblanc - Signature Elixir {117}",
+    "price": 189,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12245
+  },
+  {
+    "id": 12053,
+    "name": "בושם נרסיסו פודרה NARCISO RODRIGUEZ POUDREE {111}",
+    "price": 238,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12053
+  },
+  {
+    "id": 12250,
+    "name": "בושם  Calvin Klein CK One Night Essence {146}",
+    "price": 129,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12250
+  },
+  {
+    "id": 12226,
+    "name": "מארז בושם ודאודורנט לנשים La Rive Her Choice {128}",
+    "price": 49,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12226
+  },
+  {
+    "id": 11784,
+    "name": "מארז בושם לנשים + קרם גוף - מרינה רויאל דיימונד Royal diamond {מ.מ.} {96}",
+    "price": 59,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11784
+  },
+  {
+    "id": 12265,
+    "name": "מארז מתנה בושם לנשים  Coach Dreams {148}",
+    "price": 139,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 12265
+  },
+  {
+    "id": 11723,
+    "name": "בושם לנשים ג'ולייט האז א גאן נוט אפרפיום {102}",
+    "price": 169,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 11723
+  },
+  {
+    "id": 14027,
+    "name": "בושם לנשים גאס אייקוניק 100 מ\"ל {103} GUESS ICONIC",
+    "price": 140,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14027
+  },
+  {
+    "id": 14052,
+    "name": "בושם לנשים נינה ריצ'י ל'אר די טאם Nina Ricci L'Air Du Temps{123}",
+    "price": 138,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14052
+  },
+  {
+    "id": 14050,
+    "name": "בושם לנשים פקו רבאן ליידי מיליון Paco Rabanne Lady Million{106}",
+    "price": 187,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14050
+  },
+  {
+    "id": 14049,
+    "name": "בושם לנשים פראדה פרדוקס Prada Paradoxe{108}",
+    "price": 290,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14049
+  },
+  {
+    "id": 14047,
+    "name": "בושם לנשים ורסצ'ה ברייט קריסטל  Versace Bright Crystal{101}",
+    "price": 158,
+    "category": "לבשמים לנשים",
+    "subCategory": "",
+    "itemSalesId": 14047
+  },
+  {
+    "id": 9297,
+    "name": "מסיר איפור דו פאזי ורוד CARELINE {196}",
+    "price": 32.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9297
+  },
+  {
+    "id": 9362,
+    "name": "מסיר איפור דו פאזי כחול CARELINE {183}",
+    "price": 32.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9362
+  },
+  {
+    "id": 9694,
+    "name": "מסיר איפור דו פאזי - LaSera {360}",
+    "price": 17,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9694
+  },
+  {
+    "id": 9653,
+    "name": "סבון פנים עם מברשת ניקוי - CARELINE {185}",
+    "price": 28.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9653
+  },
+  {
+    "id": 14024,
+    "name": "מים מיסלרים לניקוי הפנים להסרת איפור - SENCE{385}",
+    "price": 14.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14024
+  },
+  {
+    "id": 9554,
+    "name": "תרחיץ (ג'ל כתום) פנים + משאבה {233} CARELINE - POWER C",
+    "price": 23.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9554
+  },
+  {
+    "id": 9827,
+    "name": "מים מיסלריים עם חומצה היאלורונית - GARNIER {226}",
+    "price": 27.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9827
+  },
+  {
+    "id": 9840,
+    "name": "תרסיס לחות לרענון הפנים [סדרת מאיה קיי] - CARELINE {320}",
+    "price": 39,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9840
+  },
+  {
+    "id": 12251,
+    "name": "מי פנים לניקוי עמוק לעור רגיש - קלין & קליר {342}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12251
+  },
+  {
+    "id": 12249,
+    "name": "תרחיץ פנים לשטיפה יומיומית מתקדמת - קלין & קליר {323}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12249
+  },
+  {
+    "id": 14017,
+    "name": "מגבות מיקרופייבר חד פעמיות לניקוי הפנים - SWIPES{357}",
+    "price": 21,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14017
+  },
+  {
+    "id": 9697,
+    "name": "שפורפרת תכשיר לניקוי פנים 3 ב1  GARNIER - Pure Active {25}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9697
+  },
+  {
+    "id": 9826,
+    "name": "תרסיס סבון מקציף 2 ב-1 להסרת איפור וניקוי פנים - LaSera{268}",
+    "price": 14.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9826
+  },
+  {
+    "id": 10920,
+    "name": "מוס ניקוי פנים קליר אנד סאות' - NEUTROGENA  {321}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10920
+  },
+  {
+    "id": 10941,
+    "name": "תרחיץ ג'ל מים הידרו בוסט - NEUTROGENA {47}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10941
+  },
+  {
+    "id": 10943,
+    "name": "תרחיץ יומי קליר & דיפנד - NEUTROGENA {79}",
+    "price": 28,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10943
+  },
+  {
+    "id": 12148,
+    "name": "מסיר איפור דו פאזי לעיניים - עדין במיוחד NIVEA{221}",
+    "price": 14.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12148
+  },
+  {
+    "id": 12248,
+    "name": "תרחיץ גרגירים יומי לניקוי ראשים שחורים - קלין & קליר {335}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12248
+  },
+  {
+    "id": 12253,
+    "name": "תרחיץ גרגירים לניקוי פנים יומיומי - קלין & קליר {270}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12253
+  },
+  {
+    "id": 12270,
+    "name": "ג'ל פילינג פנים קוריאני לאיזון והרגעת העור - Dearboo {362}",
+    "price": 32,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12270
+  },
+  {
+    "id": 9824,
+    "name": "שפורפרת פילינג גרגירים (ירוק) - LaSera {266}",
+    "price": 14.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9824
+  },
+  {
+    "id": 10324,
+    "name": "שפורפרת פילינג גרגירים לעור עדין {176} (ורוד) - LaSera",
+    "price": 14.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10324
+  },
+  {
+    "id": 10921,
+    "name": "פילינג נוזלי קליר & דיפנד - NEUTROGENA  {259}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10921
+  },
+  {
+    "id": 10954,
+    "name": "תרחיץ גרגירים בלאקהד - NEUTROGENA {289}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10954
+  },
+  {
+    "id": 10936,
+    "name": "תרחיץ גרגירים הידרו בוסט - NEUTROGENA {42}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10936
+  },
+  {
+    "id": 10930,
+    "name": "תרחיץ גרגירים  לפנים Clear & Radiant - NEUTROGENA  {397}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10930
+  },
+  {
+    "id": 9825,
+    "name": "בקבוק מי פנים - LaSera {100}",
+    "price": 14.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9825
+  },
+  {
+    "id": 10929,
+    "name": "תרחיץ פנים גרגירים Anti-Pimple - NEUTROGENA  {260}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10929
+  },
+  {
+    "id": 14018,
+    "name": "60 פדים קולגן וקפאין למיצוק העור - HEALTH&BEYOND{393}",
+    "price": 19,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14018
+  },
+  {
+    "id": 14016,
+    "name": "60 פדים סרמידיים עם חומצה לקטית לאיזון עור שמנוני - HEALTH&BEYOND{391}",
+    "price": 19,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14016
+  },
+  {
+    "id": 12063,
+    "name": "סרום ויטמין סי בוסטר - CARELINE {188}",
+    "price": 49,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12063
+  },
+  {
+    "id": 9553,
+    "name": "סרום פנים {171} CARELINE - PERFECT CARE",
+    "price": 61.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9553
+  },
+  {
+    "id": 14043,
+    "name": "סרום קולגן Pink Radiance +PDRN - יCARELINE{365}",
+    "price": 69,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14043
+  },
+  {
+    "id": 12271,
+    "name": "סרום פנים קוריאני להרגעת העור וחיזוק מחסום ההגנה - Dearboo {353}",
+    "price": 39,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12271
+  },
+  {
+    "id": 9831,
+    "name": "סרום למיצוק והזנה - LaSera {217}",
+    "price": 29.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9831
+  },
+  {
+    "id": 10016,
+    "name": "סרום רול-און לעיניים - LaSera {202}",
+    "price": 29.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10016
+  },
+  {
+    "id": 10916,
+    "name": "סרום יומי קליר & דיפאנד - NEUTROGENA {290}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10916
+  },
+  {
+    "id": 10927,
+    "name": "סרום ניאצינאמיד הידרו בוסט - NEUTROGENA {279}",
+    "price": 45,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10927
+  },
+  {
+    "id": 10917,
+    "name": "סרום רטינול בוסט - NEUTROGENA {300}",
+    "price": 45,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10917
+  },
+  {
+    "id": 10923,
+    "name": "סרום לילה רטינול בוסט - NEUTROGENA  {299}",
+    "price": 59,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10923
+  },
+  {
+    "id": 10017,
+    "name": "קרם יום 15SPF טריפל אומגה - CARELINE {339}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10017
+  },
+  {
+    "id": 9298,
+    "name": "C power - קרם לחות יום CARELINE {201}",
+    "price": 39.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9298
+  },
+  {
+    "id": 9299,
+    "name": "C power - קרם לחות לילה CARELINE {166}",
+    "price": 39.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9299
+  },
+  {
+    "id": 10018,
+    "name": "קרם יום REVIVAL לעור בוגר - CARELINE {283}",
+    "price": 88,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10018
+  },
+  {
+    "id": 14042,
+    "name": "קרם יום קולגן Pink Radiance +PDRN - יCARELINE{383}",
+    "price": 69,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14042
+  },
+  {
+    "id": 10019,
+    "name": "קרם לילה REVIVAL לעור בוגר - CARELINE {275}",
+    "price": 88,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10019
+  },
+  {
+    "id": 14041,
+    "name": "ג'ל קרם קפסולות קולגן Pink Radiance +PDRN - יCARELINE{374}",
+    "price": 69,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14041
+  },
+  {
+    "id": 10371,
+    "name": "קרם יום ולילה היילו טאק {עם חומצה היאלרונית} - {235} CARELINE",
+    "price": 39.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10371
+  },
+  {
+    "id": 9301,
+    "name": "קרם לחות יום SPF25 מולטי אפקט CARELINE {175}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9301
+  },
+  {
+    "id": 9302,
+    "name": "קרם לחות לילה מולטי אפקט CARELINE {170}",
+    "price": 32.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9302
+  },
+  {
+    "id": 12064,
+    "name": "קרם לילה מתקן פרו רטינול - CARELINE {198}",
+    "price": 49,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12064
+  },
+  {
+    "id": 9655,
+    "name": "שפורפרת קרם לחות יום ריזרב (שמן)(מ.מ.) - CARELINE {328}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9655
+  },
+  {
+    "id": 12252,
+    "name": "קרם לחות ללא שומן בעל הפעולה הכפולה - קלין & קליר {303}",
+    "price": 27,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12252
+  },
+  {
+    "id": 12152,
+    "name": "קרם פנים יום נגד קמטים - DIADERMINE{67} (מ.מ.)",
+    "price": 26,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12152
+  },
+  {
+    "id": 12153,
+    "name": "קרם פנים לילה נגד קמטים - DIADERMINE{98} (מ.מ.)",
+    "price": 26,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12153
+  },
+  {
+    "id": 9829,
+    "name": "קרם יום ממצק  SPF - LaSera {220}",
+    "price": 29.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9829
+  },
+  {
+    "id": 9828,
+    "name": "קרם לילה משקם ומזין - LaSera{218}",
+    "price": 29.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9828
+  },
+  {
+    "id": 9695,
+    "name": "קרם לחות יום טריפל אקטיב - L'OREAL PARIS {215}",
+    "price": 36.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9695
+  },
+  {
+    "id": 9696,
+    "name": "קרם לחות לילה טריפל אקטיב - L'OREAL PARIS {213}",
+    "price": 36.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9696
+  },
+  {
+    "id": 12057,
+    "name": "קרם פנים יום רויטליפט לייזר - L'OREAL DERMO REVITALIFT{203}",
+    "price": 75,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12057
+  },
+  {
+    "id": 12058,
+    "name": "קרם פנים לילה רויטליפט לייזר -L'OREAL DERMO REVITALIFT {230}",
+    "price": 75,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12058
+  },
+  {
+    "id": 10934,
+    "name": "קרם לחות SPF25 הידרו בוסט - NEUTROGENA {209}",
+    "price": 41,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10934
+  },
+  {
+    "id": 12121,
+    "name": "קרם לחות מרוכז SPF30 קולגן בנק - נטרוג'ינה  {265}",
+    "price": 69,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12121
+  },
+  {
+    "id": 10919,
+    "name": "קרם לחות רטינול בוסט - NEUTROGENA  {280}",
+    "price": 45,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10919
+  },
+  {
+    "id": 12268,
+    "name": "קרם לילה משקם לפנים - NIVEA{361}",
+    "price": 24,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12268
+  },
+  {
+    "id": 12209,
+    "name": "קרם הגנה לפנים  מועשר בויטמין סי Dermo Protect - יSun&Care {258}P",
+    "price": 25,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12209
+  },
+  {
+    "id": 10949,
+    "name": "תרחיץ גרגירים דיפ קלין - NEUTROGENA {344}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10949
+  },
+  {
+    "id": 9556,
+    "name": "קרם גוף בשפורפרת {186} careline - miss ko",
+    "price": 29.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9556
+  },
+  {
+    "id": 14038,
+    "name": "קרם גוף אלוורה - ווזאלין{367}",
+    "price": 19.7,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14038
+  },
+  {
+    "id": 12068,
+    "name": "מולטי אפקט קרם עיניים - CARELINE {153}",
+    "price": 32.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12068
+  },
+  {
+    "id": 12272,
+    "name": "קרם פנים קוריאני להרגעת העור והזנה בלחות - Dearboo {363}",
+    "price": 48,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12272
+  },
+  {
+    "id": 12120,
+    "name": "אמבריוליס - קרם גוף פלואיד לפנים ולגוף, 400 מ\"ל - EMBRYOLISSE {291}",
+    "price": 74,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12120
+  },
+  {
+    "id": 12119,
+    "name": "אמבריולס - קרם לחות רב תכליתי 75 מ\"ל - EMBRYOLISSE {251}",
+    "price": 69,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12119
+  },
+  {
+    "id": 9830,
+    "name": "קרם עיניים נגד קמטים - LaSera {223}",
+    "price": 29.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9830
+  },
+  {
+    "id": 12227,
+    "name": "קרם עיניים רויטליפט לייזר - L'OREAL DERMO REVITALIFT {301}",
+    "price": 75,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12227
+  },
+  {
+    "id": 10939,
+    "name": "ג'ל קרם הידרו בוסט - NEUTROGENA  {57}",
+    "price": 41,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10939
+  },
+  {
+    "id": 10937,
+    "name": "ג'ל מים הידרו בוסט - NEUTROGENA {293}",
+    "price": 41,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10937
+  },
+  {
+    "id": 10922,
+    "name": "קרם לחות מרוכז רטינול בוסט - NEUTROGENA  {296}",
+    "price": 59,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10922
+  },
+  {
+    "id": 10924,
+    "name": "סרום לחות הידרו בוסט - NEUTROGENA {297}",
+    "price": 40,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10924
+  },
+  {
+    "id": 10938,
+    "name": "קרם עשיר ומשקם הידרו בוסט - NEUTROGENA  {295}",
+    "price": 41,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10938
+  },
+  {
+    "id": 10946,
+    "name": "קרם לחות קליר & דיפנד - NEUTROGENA {346}",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10946
+  },
+  {
+    "id": 9549,
+    "name": "קרם-ג'ל לחות לעור רגיל/שמן{152} CARELINE - YOUNG",
+    "price": 39.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9549
+  },
+  {
+    "id": 10918,
+    "name": "קרם עיניים רטינול בוסט - NEUTROGENA  {287}",
+    "price": 45,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10918
+  },
+  {
+    "id": 10944,
+    "name": "קרם רגליים נוסחה נורווגית - NEUTROGENA {261}",
+    "price": 18,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10944
+  },
+  {
+    "id": 10320,
+    "name": "קרם לחות סופט רב שימושי - NIVEA{288}",
+    "price": 19.6,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10320
+  },
+  {
+    "id": 12067,
+    "name": "מסכה לשפתיים אקווה פרש - CARELINE {250}",
+    "price": 33,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12067
+  },
+  {
+    "id": 12066,
+    "name": "רטיות לחות לפנים - CARELINE {349}",
+    "price": 33,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12066
+  },
+  {
+    "id": 10369,
+    "name": "שלישיית מסכות בד C ויטמין -  {208} CARELINE",
+    "price": 19.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10369
+  },
+  {
+    "id": 10368,
+    "name": "שלישיית מסכות בד GOLD זהב  -  {210} CARELINE",
+    "price": 19.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10368
+  },
+  {
+    "id": 12070,
+    "name": "שלישיית מסכות בד לטיפוח פחם טבעי - CARELINE {206}",
+    "price": 19.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12070
+  },
+  {
+    "id": 12147,
+    "name": "מסיכת כורכום מטהרת NEUTROGENA{269}",
+    "price": 14,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12147
+  },
+  {
+    "id": 12201,
+    "name": "רביעיית מסכות פנים עם פחם לטיהור והבהרה{318}",
+    "price": 16.4,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12201
+  },
+  {
+    "id": 12202,
+    "name": "רביעיית מסיכות בד לפנים להבהרה והאטת הזדקנות העור - מועשרות בתמצית רימונים{337}",
+    "price": 16.4,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12202
+  },
+  {
+    "id": 12275,
+    "name": "מארז 5 מסכות בד לפנים Sence Smoothie Mask Book{352}",
+    "price": 19.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12275
+  },
+  {
+    "id": 12157,
+    "name": "מסיכה הידרוג'ל לשפתיים - SENCE{257}",
+    "price": 10,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12157
+  },
+  {
+    "id": 9548,
+    "name": "תרחיץ (ג'ל ורוד) פנים {389} CARELINE - YOUNG",
+    "price": 23.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9548
+  },
+  {
+    "id": 10948,
+    "name": "תרחיץ אקנה קליר & דיפנד - NEUTROGENA {379}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10948
+  },
+  {
+    "id": 9547,
+    "name": "ג'ל שקוף לפנים עם מברשת (שפורפרת ורודה) {399} CARELINE - YOUNG",
+    "price": 24.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9547
+  },
+  {
+    "id": 9300,
+    "name": "C power - פריימר עם קרם לחות בייס CARELINE {168}",
+    "price": 39.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9300
+  },
+  {
+    "id": 9539,
+    "name": "פריימר {169} הכל באחד - CARELINE",
+    "price": 64.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9539
+  },
+  {
+    "id": 9303,
+    "name": "מגי'ק קרם BB לייט - לעור בהיר CARELINE {181}",
+    "price": 48,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9303
+  },
+  {
+    "id": 9304,
+    "name": "מגי'ק קרם BB לייט - לעור בינוני CARELINE {180}",
+    "price": 48,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9304
+  },
+  {
+    "id": 10362,
+    "name": "מייק-אפ Bold לכיסוי מלא - CARELINE",
+    "price": 52.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4270
+  },
+  {
+    "id": 12195,
+    "name": "קרם לחות BB בתוספת גוון בהיר - GARNIER{256}",
+    "price": 41,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12195
+  },
+  {
+    "id": 12196,
+    "name": "קרם לחות BB בתוספת גוון מדיום - GARNIER{255}",
+    "price": 41,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12196
+  },
+  {
+    "id": 14031,
+    "name": "מייק-אפ דאבל וור - אסתי לאודר",
+    "price": 144,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4482
+  },
+  {
+    "id": 12197,
+    "name": "מייק-אפ מסדרת טרו מאצ' - Loreal Paris",
+    "price": 62,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4427
+  },
+  {
+    "id": 10974,
+    "name": "מייק-אפ קולורסטיי יבש/רגיל או שמן/מעורב - REVLON",
+    "price": 52,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4303
+  },
+  {
+    "id": 9330,
+    "name": "קונסילר כיסוי מלא - CARELINE",
+    "price": 39.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4183
+  },
+  {
+    "id": 12059,
+    "name": "קונסילר עם ראש ספוגית - לסרה",
+    "price": 19.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4416
+  },
+  {
+    "id": 9329,
+    "name": "FIX AND GO - פודרה באבקה CARELINE {178}",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9329
+  },
+  {
+    "id": 10953,
+    "name": "סומק פאודר 003 - REVLON {325}",
+    "price": 44,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10953
+  },
+  {
+    "id": 10951,
+    "name": "פודרה דחוסה קולורסטיי - REVLON",
+    "price": 49,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4301
+  },
+  {
+    "id": 9337,
+    "name": "סומק - CARELINE",
+    "price": 36.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4184
+  },
+  {
+    "id": 9651,
+    "name": "סט קונטור - CARELINE {162}",
+    "price": 51.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9651
+  },
+  {
+    "id": 9336,
+    "name": "קונטור לחיטוב ועיצוב הפנים 06 CARELINE {30}",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9336
+  },
+  {
+    "id": 9320,
+    "name": "עפרון גבות במגוון צבעים וסוגים - CARELINE",
+    "price": 17.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4192
+  },
+  {
+    "id": 9319,
+    "name": "ג'ל לגבות CARELINE - BROW SETTING {174}",
+    "price": 42.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9319
+  },
+  {
+    "id": 12156,
+    "name": "ג'ל לגבות עם אפקט סבון - GABRINI{254}",
+    "price": 16,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12156
+  },
+  {
+    "id": 12054,
+    "name": "ג'ל לגבות סופר לוק עמיד שקוף - MAYBELLINE {192}",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12054
+  },
+  {
+    "id": 12055,
+    "name": "ג'ל לגבות סופר לוק עמיד גוון חום - MAYBELLINE {69}",
+    "price": 37,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12055
+  },
+  {
+    "id": 9837,
+    "name": "מסקרה במגוון צבעים וסוגים מהמותגים המובילים",
+    "price": 59.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4193
+  },
+  {
+    "id": 9823,
+    "name": "מסקרה במגוון צבעים וסוגים מהמותגים המובילים",
+    "price": 39.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4193
+  },
+  {
+    "id": 9541,
+    "name": "עפרון גבות במגוון צבעים וסוגים - CARELINE",
+    "price": 17.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4192
+  },
+  {
+    "id": 11286,
+    "name": "עפרון עיניים קולורסטיי שחור0201-REVLON מס'{227}",
+    "price": 24,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 11286
+  },
+  {
+    "id": 12234,
+    "name": "עפרון עיניים במקרם ג'ל שחור 221 - LaSera {316}",
+    "price": 13,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12234
+  },
+  {
+    "id": 14048,
+    "name": "עפרון עיניים קולוסל קז'אל שחור - מייבילין{366}",
+    "price": 19,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14048
+  },
+  {
+    "id": 14044,
+    "name": "אייליינר סופרליינר סלים שחור עמיד - LOREAL{370}",
+    "price": 36.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14044
+  },
+  {
+    "id": 14045,
+    "name": "אייליינר שחור סופר סלים - LaSera{368}",
+    "price": 18,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14045
+  },
+  {
+    "id": 14039,
+    "name": "פלטת צלליות וסמקים 01 PINKS - יLOREAL{388}",
+    "price": 54,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14039
+  },
+  {
+    "id": 14040,
+    "name": "פלטת צלליות וסמקים 02 GLOW - יLOREAL{386}",
+    "price": 54,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14040
+  },
+  {
+    "id": 9839,
+    "name": "פלטת שימרים רטובה [סדרת מאיה קיי] - CARELINE {308}",
+    "price": 39,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9839
+  },
+  {
+    "id": 12263,
+    "name": "פלטת צלליות לעיניים Nudes Of New York - מייבילין{340}",
+    "price": 43,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12263
+  },
+  {
+    "id": 12476,
+    "name": "פלטת צלליות לעיניים  Burgundy Bar - מייבילין {310}",
+    "price": 33,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12476
+  },
+  {
+    "id": 12420,
+    "name": "שפתון עמיד INFALLIBLE במבחר גוונים - LOREAL",
+    "price": 40,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4481
+  },
+  {
+    "id": 9306,
+    "name": "שפתון נוזלי עמיד וגלוס CARELINE - Everlast",
+    "price": 39.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4181
+  },
+  {
+    "id": 12051,
+    "name": "שפתון סופרסטיי מאט אינק - MAYBELLINE",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4415
+  },
+  {
+    "id": 14014,
+    "name": "שפתון סופרסטיי במבחר גוונים",
+    "price": 37,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4480
+  },
+  {
+    "id": 10947,
+    "name": "תרחיץ משאבה Oil Balance - NEUTROGENA {327}",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10947
+  },
+  {
+    "id": 10959,
+    "name": "שפתון קולורסטיי אוברטיים - REVLON",
+    "price": 29,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4302
+  },
+  {
+    "id": 10965,
+    "name": "תרחיץ מסכה 2 ב-1 - NEUTROGENA {190}",
+    "price": 36,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10965
+  },
+  {
+    "id": 12276,
+    "name": "זוג שפתוני לחות למראה טבעי - SENCE{373}",
+    "price": 10,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12276
+  },
+  {
+    "id": 12269,
+    "name": "שמן הזנה לשיער - פאנטן{371}",
+    "price": 21,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12269
+  },
+  {
+    "id": 12205,
+    "name": "מוס מקצועי לעיצוב ובניית תלתלים  PRO HAIR+ {334}",
+    "price": 19.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12205
+  },
+  {
+    "id": 12208,
+    "name": "סרום לשיער מתולתל PRO HAIR+ {278}",
+    "price": 32,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12208
+  },
+  {
+    "id": 12222,
+    "name": "סרום קרטין וחמאת שיאה  PRO HAIR+ {331}",
+    "price": 32,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12222
+  },
+  {
+    "id": 12223,
+    "name": "קרם לחות קרטין לשיער יבש מאוד ופגום PRO HAIR+ {312}",
+    "price": 19.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12223
+  },
+  {
+    "id": 12204,
+    "name": "קרם לחות מתולתל PRO HAIR+ {273}",
+    "price": 19.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12204
+  },
+  {
+    "id": 12207,
+    "name": "שמפו מקצועי לשיער מתולתל  PRO HAIR+ {298}",
+    "price": 34,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12207
+  },
+  {
+    "id": 12220,
+    "name": "שמפו קרטין וחמאת שיאה  PRO HAIR+ {332}",
+    "price": 34,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12220
+  },
+  {
+    "id": 12206,
+    "name": "מסיכה מקצועית לשיער מתולתל  PRO HAIR+ {276}",
+    "price": 32,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12206
+  },
+  {
+    "id": 12221,
+    "name": "מסכה מקצועית קרטין וחמאת שיאה  PRO HAIR+ {336}",
+    "price": 32,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12221
+  },
+  {
+    "id": 10506,
+    "name": "ג'ל מקצועי לעיצוב תלתלים {228}",
+    "price": 22,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10506
+  },
+  {
+    "id": 14022,
+    "name": "שמפו לשיער מתולתל - OLIERE PARIS{384}",
+    "price": 106,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14022
+  },
+  {
+    "id": 10972,
+    "name": "מייק-אפ קולורסטיי יבש/רגיל או שמן/מעורב - REVLON",
+    "price": 52,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 4303
+  },
+  {
+    "id": 14021,
+    "name": "מסיכה לשיער מתולתל - OLIERE PARIS{382}",
+    "price": 152,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14021
+  },
+  {
+    "id": 14020,
+    "name": "מסכה מאצ'ה ללא מלחים לכל סוגי השיער - REDEFINE{364}",
+    "price": 32,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14020
+  },
+  {
+    "id": 12266,
+    "name": "מארז 8 סכיני גילוח  עם 3 להבים - Gillette Venus Simply{372}",
+    "price": 19.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12266
+  },
+  {
+    "id": 14025,
+    "name": "מארז מכשיר גילוח ג'ילט - VENUS SATIN CARE{375}",
+    "price": 42,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14025
+  },
+  {
+    "id": 9835,
+    "name": "רצועות שעווה דקות לפנים - veet - {אריזה ענק} {225}",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9835
+  },
+  {
+    "id": 9836,
+    "name": "רצועות שעווה רחבות - veet {אריזה ענק} {211}",
+    "price": 35,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9836
+  },
+  {
+    "id": 12224,
+    "name": "מארז טיפוח מועשר בשמן זית - OLIVERA {377}",
+    "price": 44,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12224
+  },
+  {
+    "id": 14036,
+    "name": "קרם ידיים מועשר בשמן זית - Olivera{387}",
+    "price": 12,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14036
+  },
+  {
+    "id": 14037,
+    "name": "קרם רגליים מועשר בשמן זית - Olivera{359}",
+    "price": 13,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14037
+  },
+  {
+    "id": 9552,
+    "name": "ג'ל שקוף ליבוש פצעים {161} CARELINE - OIL FREE",
+    "price": 33.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9552
+  },
+  {
+    "id": 9557,
+    "name": "טינט פיגמנט לשפתיים וללחיים CARELINE - LIP & CHEEK {246}",
+    "price": 28.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9557
+  },
+  {
+    "id": 9546,
+    "name": "ספריי מקבע איפור {216} CARELINE - FIX&GO",
+    "price": 24.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9546
+  },
+  {
+    "id": 14046,
+    "name": "INFAILLIBLE ספריי מקבע איפור - Loreal Paris{355}",
+    "price": 43,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14046
+  },
+  {
+    "id": 9358,
+    "name": "מברשת איפור לסומק והצללה 03 - careline {189}",
+    "price": 19.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9358
+  },
+  {
+    "id": 9360,
+    "name": "מברשת מייק אפ דו פייברית 08 - careline {392}",
+    "price": 19.9,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9360
+  },
+  {
+    "id": 9699,
+    "name": "מברשת איפור זויתית 22 - LaSera {224}",
+    "price": 11.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9699
+  },
+  {
+    "id": 9698,
+    "name": "מברשת לפודרה וסומק 20 - LaSera {281}",
+    "price": 11.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9698
+  },
+  {
+    "id": 10022,
+    "name": "מברשת פטנט 4 ב-1 {204} - LaSera",
+    "price": 24.5,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10022
+  },
+  {
+    "id": 10023,
+    "name": "מיקס ספוגיות איפור מקצועיות {405}  LaSera",
+    "price": 17.8,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 10023
+  },
+  {
+    "id": 12262,
+    "name": "מברשת מייק-אפ דחוסה  איכותית במיוחד- Ranisanse{347}",
+    "price": 49,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12262
+  },
+  {
+    "id": 12260,
+    "name": "מברשת סומק איכותית במיוחד- Ranisanse{314}",
+    "price": 49,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12260
+  },
+  {
+    "id": 12261,
+    "name": "מברשת איכותית פודרה אוורירית Ranisanse{329}",
+    "price": 49,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 12261
+  },
+  {
+    "id": 14019,
+    "name": "ערכה להלבנת שיניים -  X WHITE{356}",
+    "price": 119,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 14019
+  },
+  {
+    "id": 9833,
+    "name": "סילון מים דנטלי נטען נייד - ורוד {319}",
+    "price": 85,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9833
+  },
+  {
+    "id": 9834,
+    "name": "סילון מים דנטלי נטען נייד - ירוק {317}",
+    "price": 85,
+    "category": "איפור וטיפוח",
+    "subCategory": "",
+    "itemSalesId": 9834
+  },
+  {
+    "id": 9895,
+    "name": "חטיפי פיצה קפואים - מעדנות",
+    "price": 27.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 9895
+  },
+  {
+    "id": 10910,
+    "name": "קוביות מחית תות קפואות {אריזה משפחתית}",
+    "price": 22.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 10910
+  },
+  {
+    "id": 6269,
+    "name": "קוביות פסיפלורה קפואה אריזה משפחתית - קייטי",
+    "price": 16,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6269
+  },
+  {
+    "id": 202,
+    "name": "גרגירי אפונה קפואה - קייטי",
+    "price": 10.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 202
+  },
+  {
+    "id": 8306,
+    "name": "שקית פרחי כרובית מוקפאים עד\"ח",
+    "price": 20.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8306
+  },
+  {
+    "id": 8843,
+    "name": "צ'יפס קפוא 1.5 קילו",
+    "price": 15.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8843
+  },
+  {
+    "id": 6621,
+    "name": "בצק פילו מוקפא - זוגלובק",
+    "price": 13.9,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6621
+  },
+  {
+    "id": 11739,
+    "name": "סיגרים קפואים במילוי תפוח אדמה - בלינו (לנדא)",
+    "price": 12.9,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11739
+  },
+  {
+    "id": 6622,
+    "name": "נגאטס תירס - קייטי (ריבוע צהוב)",
+    "price": 24.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6622
+  },
+  {
+    "id": 5036,
+    "name": "טבעות בצל מצופות קפואות - קייטי (ריבוע חום)",
+    "price": 18.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 5036
+  },
+  {
+    "id": 11740,
+    "name": "אצבעות דג אמנון (מושט) בציפוי פירורי לחם - רוזנערס",
+    "price": 27.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11740
+  },
+  {
+    "id": 954,
+    "name": "רולדה גפילטע פיש 0.5 קילו",
+    "price": 18.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 954
+  },
+  {
+    "id": 1490,
+    "name": "קרטון מושט (פילה אמנון) עם עור עד\"ח - קייטי",
+    "price": 148,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 1490
+  },
+  {
+    "id": 105,
+    "name": "קרטון סטייק טונה חומה בד\"ץ העד\"ח - קייטי {צהובת סנפיר}",
+    "price": 195,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 105
+  },
+  {
+    "id": 5334,
+    "name": "קרטון פילה סלמון נורבגי בד\"ץ העד\"ח - קייטי",
+    "price": 385,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 5334
+  },
+  {
+    "id": 8854,
+    "name": "נקנקיות עוף בד\"צ בית חלקיה",
+    "price": 10.7,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8854
+  },
+  {
+    "id": 447,
+    "name": "קישקע ממולא בשרי קפוא גלאט עוף {מ. לאחר הפסח}",
+    "price": 14.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 447
+  },
+  {
+    "id": 178,
+    "name": "כבד צלוי קפוא - בד\"צ בית חלקיה {משקל חדש}",
+    "price": 28.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 178
+  },
+  {
+    "id": 1543,
+    "name": "קרטון עוף שלם קפוא בד\"צ בית חלקיה",
+    "price": 367.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 1543
+  },
+  {
+    "id": 773,
+    "name": "קרטון פרגית עוף קפוא בד\"צ בית חלקיה",
+    "price": 670,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 773
+  },
+  {
+    "id": 141,
+    "name": "קרטון חזה עוף קפוא בד\"צ בית חלקיה",
+    "price": 573,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 141
+  },
+  {
+    "id": 2155,
+    "name": "קרטון עוף מחולק (מפורק) קפוא בד\"צ בית חלקיה",
+    "price": 302.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2155
+  },
+  {
+    "id": 374,
+    "name": "קרטון כרעיים עוף קפוא בד\"צ בית חלקיה",
+    "price": 366.3,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 374
+  },
+  {
+    "id": 448,
+    "name": "קרטון שוקיים עוף קפוא בד\"צ בית חלקיה",
+    "price": 444,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 448
+  },
+  {
+    "id": 2154,
+    "name": "קרטון ירכיים עוף קפוא בד\"צ בית חלקיה",
+    "price": 416,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2154
+  },
+  {
+    "id": 882,
+    "name": "קרטון כנפיים עוף קפוא בד\"צ בית חלקיה",
+    "price": 147,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 882
+  },
+  {
+    "id": 2156,
+    "name": "קרטון שניצל קפוא בד\"צ בית חלקיה",
+    "price": 397,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2156
+  },
+  {
+    "id": 2157,
+    "name": "קרטון גרונות עוף בד\"צ בית חלקיה",
+    "price": 75,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2157
+  },
+  {
+    "id": 397,
+    "name": "קרטון בשר טחון קפוא בד\"צ בית חלקיה {לא שקיל-מחיר קבוע}",
+    "price": 276,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 397
+  },
+  {
+    "id": 11178,
+    "name": "קרטון אצבעות אנטריקוט {ללא עצם} בד\"צ בית חלקיה",
+    "price": 490,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11178
+  },
+  {
+    "id": 994,
+    "name": "קרטון סטייק אנטריקוט פרוס קפוא בד\"צ בית חלקיה",
+    "price": 500,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 994
+  },
+  {
+    "id": 11798,
+    "name": "קרטון רוסטביף אנטריקוט מעובד קפוא בד\"צ בית חלקיה",
+    "price": 500,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11798
+  },
+  {
+    "id": 355,
+    "name": "קרטון קשתית חתוכה עם עצם (קוביות לחמין) קפוא בד\"צ בית חלקיה",
+    "price": 492,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 355
+  },
+  {
+    "id": 2343,
+    "name": "קרטון קשתית פרוסות אסאדו עגל (עם עצם) קפוא בד\"צ בית חלקיה",
+    "price": 552,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2343
+  },
+  {
+    "id": 506,
+    "name": "קרטון צלעות אונטריב בקר בד\"צ בית חלקיה",
+    "price": 468,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 506
+  },
+  {
+    "id": 2338,
+    "name": "קרטון חזה בקר קפוא (מס 3) בד\"צ בית חלקיה",
+    "price": 450,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2338
+  },
+  {
+    "id": 2339,
+    "name": "קרטון כתף בקר קפוא (מס 4) בד\"צ בית חלקיה",
+    "price": 504,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2339
+  },
+  {
+    "id": 2340,
+    "name": "קרטון צלי כתף קפוא (מס 5) בד\"צ בית חלקיה",
+    "price": 630,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2340
+  },
+  {
+    "id": 2341,
+    "name": "קרטון פילה מדומה קפוא (מס 6) בד\"צ בית חלקיה",
+    "price": 552,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2341
+  },
+  {
+    "id": 2342,
+    "name": "קרטון שריר בקר קפוא (מס 8) בד\"צ בית חלקיה",
+    "price": 564,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2342
+  },
+  {
+    "id": 2344,
+    "name": "קרטון צוואר בקר קפוא (מס 10) בד\"צ בית חלקיה",
+    "price": 432,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2344
+  },
+  {
+    "id": 8830,
+    "name": "קרטון עוף טחון קפוא בד\"צ עד\"ח {לא שקיל-מחיר קבוע}",
+    "price": 190,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8830
+  },
+  {
+    "id": 8530,
+    "name": "קרטון צלעות בקר קפוא (מס 2) בד\"צ עד\"ח",
+    "price": 534,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8530
+  },
+  {
+    "id": 9875,
+    "name": "צווארון ליבית מכופתר לילדות M.L - לבן - מידה 6-10",
+    "price": 29.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 9875
+  },
+  {
+    "id": 10428,
+    "name": "צווארון ליבית מכופתר לילדות .M.L - תכלת - מידה 6-10",
+    "price": 29.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 10428
+  },
+  {
+    "id": 10429,
+    "name": "צווארון ליבית מכופתר לילדות .M.L - תכלת - מידה 12-16",
+    "price": 29.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 10429
+  },
+  {
+    "id": 9861,
+    "name": "חולצה לבנה M.L מכופתרת ילדות - מידות 4-16",
+    "price": 39,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4217
+  },
+  {
+    "id": 9871,
+    "name": "חולצה תכלת M.L מכופתרת ילדות - מידות 4-16",
+    "price": 39,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4218
+  },
+  {
+    "id": 10434,
+    "name": "חולצה לבנה M.L מכופתרת ילדות - מידות 10-16 {LONG}",
+    "price": 39,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4275
+  },
+  {
+    "id": 11766,
+    "name": "צווארון ליבית מכופתר לנערות M.L - לבן - תואם חולצה xxs-s",
+    "price": 29.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 11766
+  },
+  {
+    "id": 11767,
+    "name": "צווארון ליבית מכופתר לנערות M.L - לבן - תואם חולצה m-xl",
+    "price": 29.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 11767
+  },
+  {
+    "id": 11769,
+    "name": "צווארון ליבית מכופתר לנערות M.L - תכלת - תואם חולצה m-xl",
+    "price": 29.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 11769
+  },
+  {
+    "id": 11751,
+    "name": "חולצה לבנה M.L מכופתרת נערות",
+    "price": 45.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4406
+  },
+  {
+    "id": 11759,
+    "name": "חולצה תכלת M.L מכופתרת נערות",
+    "price": 45.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4407
+  },
+  {
+    "id": 9265,
+    "name": "טי שירט MAX LAUREN עבה לילדות - כחול  מידות 6-16",
+    "price": 48.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4124
+  },
+  {
+    "id": 7480,
+    "name": "טי שירט MAX LAUREN עבה לנערות - שחור",
+    "price": 54.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4084
+  },
+  {
+    "id": 7672,
+    "name": "טי שירט MAX LAUREN עבה לנערות - כחול",
+    "price": 54.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4085
+  },
+  {
+    "id": 7490,
+    "name": "טי שירט MAX LAUREN עבה לנערות - כחול",
+    "price": 54.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4085
+  },
+  {
+    "id": 7470,
+    "name": "חצאית פליסה איכותית לילדות לתלבושת צ.כחול MAX LAUREN",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2661
+  },
+  {
+    "id": 9791,
+    "name": "חצאית פליסה לילדות צ.כחול  LONG",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4214
+  },
+  {
+    "id": 9788,
+    "name": "חצאית פליסה איכותית לילדות לתלבושת צ.שחור MAX LAURE",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4202
+  },
+  {
+    "id": 9679,
+    "name": "חצאית פליסה צ.שחור MAX LAUREN לנערות - (66)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4203
+  },
+  {
+    "id": 9855,
+    "name": "חצאית פליסה צ.שחור MAX LAUREN לנערות - (75)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4216
+  },
+  {
+    "id": 12108,
+    "name": "חצאית פליסה צ.שחור MAX LAUREN לנערות - (83)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4420
+  },
+  {
+    "id": 14111,
+    "name": "חצאית פליסה צ.שחור MAX LAUREN לנערות - (88)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4486
+  },
+  {
+    "id": 6253,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות - (66)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2575
+  },
+  {
+    "id": 5867,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות - (69)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2662
+  },
+  {
+    "id": 5875,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות - (72)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2663
+  },
+  {
+    "id": 7471,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות -  (75)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4083
+  },
+  {
+    "id": 7664,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות - (78)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4097
+  },
+  {
+    "id": 8663,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות - (83)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4147
+  },
+  {
+    "id": 12114,
+    "name": "חצאית פליסה צ.כחול MAX LAUREN לנערות - (88)",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4276
+  },
+  {
+    "id": 10185,
+    "name": "סריג לנוער ribbed צ. עגול - שחור - מידות 6-18",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4247
+  },
+  {
+    "id": 10199,
+    "name": "סריג לנוער ribbed צ. עגול - אפור כהה מלאנג' - מידות 6-18",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4249
+  },
+  {
+    "id": 10201,
+    "name": "סריג לנוער ribbed צ. עגול - אפור כהה מלאנג' - מידות 6-18",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4249
+  },
+  {
+    "id": 10192,
+    "name": "סריג לנוער ribbed צ. עגול - כחול מלנג' - מידות 6-18",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4248
+  },
+  {
+    "id": 10206,
+    "name": "סריג לנוער ribbed צ. עגול - חום כהה מלאנג' - מידות 6-18",
+    "price": 59.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4250
+  },
+  {
+    "id": 12809,
+    "name": "סריג לנוער ribbed עם רוכסן (Z) - אפור כהה מלאנג' - מידות 6-18",
+    "price": 76,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4458
+  },
+  {
+    "id": 12816,
+    "name": "סריג לנוער ribbed עם רוכסן (Z) - כחול - מידות 6-18",
+    "price": 76,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4459
+  },
+  {
+    "id": 10219,
+    "name": "סריג לגבר ribbed צ. עגול - אפור כהה מלאנג' - מידות xs-xxl",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4252
+  },
+  {
+    "id": 10213,
+    "name": "סריג לגבר ribbed צ. עגול - כחול מלנג' מידות - xs-xxl",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4251
+  },
+  {
+    "id": 10225,
+    "name": "סריג לגבר ribbed צ. עגול - חום כהה מלאנג' - מידות xs-xxl",
+    "price": 69,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4253
+  },
+  {
+    "id": 12824,
+    "name": "סריג לגבר ribbed מכופתר - שחור - מידות s-xxxl",
+    "price": 76.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4255
+  },
+  {
+    "id": 12807,
+    "name": "סריג לגבר ribbed מכופתר - אפור כהה מלאנג' - מידות s-xxl",
+    "price": 76.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4257
+  },
+  {
+    "id": 12825,
+    "name": "סריג לגבר ribbed מכופתר - כחול מלאנג' - מידות s-xxl",
+    "price": 76.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4256
+  },
+  {
+    "id": 5933,
+    "name": "פפיון בקופסא בצבעים שונים",
+    "price": 10,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 5934
+  },
+  {
+    "id": 11183,
+    "name": "חולצת ילדים 100% כותנה די פי גיהוץ פסים קבוע ג.צ. (תווית טורקיז)",
+    "price": 78,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4317
+  },
+  {
+    "id": 11188,
+    "name": "חולצת ילדים ספורטיבית 100% כותנה צ. כפתורים ג.צ. די פי (תווית טורקיז)",
+    "price": 78,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4318
+  },
+  {
+    "id": 6926,
+    "name": "חולצת ילדים 100% כותנה אל קמט (תווית זהב)",
+    "price": 68,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2584
+  },
+  {
+    "id": 8740,
+    "name": "חולצת ילדים 100% כותנה אל קמט ג.ר. (תווית יין)",
+    "price": 68,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4152
+  },
+  {
+    "id": 8745,
+    "name": "חולצת ילדים 100% כותנה אל קמט ג.ר. (תווית יין)",
+    "price": 68,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4152
+  },
+  {
+    "id": 8972,
+    "name": "חולצת ילדים 70% כותנה סאטן 80/2 ג.צ. מקס לורן אדום",
+    "price": 59,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2669
+  },
+  {
+    "id": 6013,
+    "name": "חולצה לילדים (תווית כחולה)",
+    "price": 50,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2644
+  },
+  {
+    "id": 168,
+    "name": "חולצה לילדים MAX LAUREN (תווית אפורה)",
+    "price": 40,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2624
+  },
+  {
+    "id": 6660,
+    "name": "חליפת ילד איכותית בצבע כחול",
+    "price": 165,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2585
+  },
+  {
+    "id": 6673,
+    "name": "חליפת ילד איכותית בצבע שחור",
+    "price": 165,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2586
+  },
+  {
+    "id": 2095,
+    "name": "מכנס ילדים אלגנט - שחור",
+    "price": 55.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2664
+  },
+  {
+    "id": 2475,
+    "name": "חגורות אלגנט לגבר ונוער בדגמים שונים",
+    "price": 16,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4156
+  },
+  {
+    "id": 5918,
+    "name": "מכנס ילדים אלגנט - כחול",
+    "price": 55.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 2564
+  },
+  {
+    "id": 7795,
+    "name": "צעיפים איכותיים דו צדדיים 100% ויסקוזה (טבעי) בצבעים ודיגומים שונים",
+    "price": 23.5,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4155
+  },
+  {
+    "id": 8621,
+    "name": "מכנס לילדים כחול פראדה מידות 3-14",
+    "price": 68,
+    "category": "ביגוד",
+    "subCategory": "",
+    "itemSalesId": 4143
+  }
+]
