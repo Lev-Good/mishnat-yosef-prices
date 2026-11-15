@@ -35,9 +35,12 @@ if (!apiKey) {
 const ai = new GoogleGenAI({ apiKey });
 
 const CANDIDATE_MODELS = [
-  'gemini-3.8-flash',
   'gemini-flash-latest',
-  'gemini-2.5-flash'
+  'gemini-3.8-flash',
+  'gemini-3.5-flash-lite',
+  'gemini-3.1-flash-lite',
+  'gemini-2.5-flash',
+  'gemini-2.5-flash-lite'
 ];
 let activeModel = CANDIDATE_MODELS[0];
 
@@ -74,7 +77,15 @@ async function generateWithFallback(prompt) {
     } catch (err) {
       lastErr = err;
       const msg = String(err?.message || err);
-      if (msg.includes('404') || msg.includes('not found') || msg.includes('not supported')) {
+      if (
+        msg.includes('404') ||
+        msg.includes('429') ||
+        msg.includes('RESOURCE_EXHAUSTED') ||
+        msg.includes('quota') ||
+        msg.includes('not found') ||
+        msg.includes('not supported')
+      ) {
+        console.warn(`⚠️ מודל ${modelName} לא זמין או חרג ממכסה (${msg.slice(0, 90)}...), מנסה מודל חלופי...`);
         continue;
       }
       throw err;
