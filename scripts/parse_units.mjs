@@ -148,6 +148,17 @@ export function parseProductUnits(rawStr) {
     }
   }
 
+  // ה. תבניות ביצים (כגון "תבנית ביצים L 30", "תבנית 30 ביצים")
+  if (!packCount) {
+    const trayMatch = s.match(/(?:תבנית|מארז)\s+(?:[^\d\s]+\s+)*(\d+)/i);
+    if (trayMatch) {
+      const n = parseInt(trayMatch[1], 10);
+      if (n >= 6 && n <= 60) {
+        packCount = n; packMin = n; packMax = n;
+      }
+    }
+  }
+
   const isBig = /(?:אריזה\s*גדולה|משפחתי|פארטי|מיקס|מגה|ג['"״׳]?מבו|ענק|חיסכון)/i.test(s)
     || (weightGrams != null && weightGrams >= 140 && weightGrams <= 500 && /(?:חטיף|ביסלי|במבה|תפוצ[יפ]ס|דוריטוס)/i.test(s));
   const isSmall = /(?:אישי|קטן|מיני|כיס)/i.test(s)

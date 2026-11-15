@@ -40,7 +40,10 @@
       "ביצים l 30",
       "ביצים גודל l 30",
       "תבנית 30 ביצים l",
-      "תבנית 30 ביצים"
+      "תבנית 30 ביצים",
+      "תבנית ביצים l 30",
+      "תבנית ביצים 30",
+      "ביצים 30"
     ],
     "supermarketPrice": 38,
     "chains": {
@@ -770,10 +773,13 @@
   },
   {
     "id": "shahar_hashahar",
-    "name": "ממרח שוקולד השחר העולה 450 גרם",
+    "name": "ממרח שוקולד השחר העולה 450-500 גרם",
     "aliases": [
       "השחר העולה",
-      "ממרח השחר"
+      "ממרח השחר",
+      "שוקולד השחר",
+      "שוקולד השחר 450",
+      "שוקולד השחר 500"
     ],
     "supermarketPrice": 12.97,
     "chains": {
@@ -782,7 +788,25 @@
       "yeshHesed": 13.5,
       "netoChisachon": 13
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "badin_softener_2l",
+    "name": "מרכך כביסה בדין 2 ליטר",
+    "aliases": [
+      "מרכך בדין",
+      "מרכך כביסה בדין",
+      "בדין 2 ליטר",
+      "בדין 2 ל"
+    ],
+    "supermarketPrice": 17.9,
+    "chains": {
+      "osherAd": 16.9,
+      "ramiLevy": 17.9,
+      "yeshHesed": 18.9,
+      "netoChisachon": 17.9
+    },
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "coca_cola_6",
@@ -1613,5 +1637,214 @@
       "netoChisachon": 14.9
     },
     "lastVerified": "2026-11-09"
+  },
+  {
+    "id": "cucumber_fresh",
+    "name": "מלפפון טרי 1 ק\"ג",
+    "aliases": [
+      "מלפפון",
+      "מלפפונים",
+      "מלפפון ירוק",
+      "מלפפון שדה"
+    ],
+    "supermarketPrice": 5.9,
+    "chains": {
+      "osherAd": 5.9,
+      "ramiLevy": 5.9,
+      "yeshHesed": 5.9,
+      "netoChisachon": 5.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "tomato_fresh",
+    "name": "עגבניות טריות 1 ק\"ג",
+    "aliases": [
+      "עגבניה",
+      "עגבניות",
+      "עגבניות חממה",
+      "עגבניה שדה"
+    ],
+    "supermarketPrice": 5.9,
+    "chains": {
+      "osherAd": 5.9,
+      "ramiLevy": 5.9,
+      "yeshHesed": 5.9,
+      "netoChisachon": 5.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "onion_dry",
+    "name": "בצל יבש 1 ק\"ג",
+    "aliases": [
+      "בצל",
+      "בצל יבש",
+      "בצל צהוב",
+      "בצל שקית"
+    ],
+    "supermarketPrice": 4.9,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": 4.9,
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "potato_fresh",
+    "name": "תפוחי אדמה 1 ק\"ג",
+    "aliases": [
+      "תפוח אדמה",
+      "תפוחי אדמה",
+      "תפו\"א",
+      "תפוא",
+      "תפוא אדום",
+      "תפוחי אדמה אדום",
+      "תפוחי אדמה לבן"
+    ],
+    "supermarketPrice": 4.9,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": 4.9,
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "carrot_fresh",
+    "name": "גזר ארוז 1 ק\"ג",
+    "aliases": [
+      "גזר",
+      "גזר ארוז",
+      "גזר שקית"
+    ],
+    "supermarketPrice": 4.9,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": 4.9,
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "pepper_red_fresh",
+    "name": "פלפל אדום (גמבה) 1 ק\"ג",
+    "aliases": [
+      "פלפל אדום",
+      "גמבה",
+      "גמבה אדומה",
+      "פלפל גמבה"
+    ],
+    "supermarketPrice": 8.9,
+    "chains": {
+      "osherAd": 8.9,
+      "ramiLevy": 8.9,
+      "yeshHesed": 8.9,
+      "netoChisachon": 8.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "sweet_potato_fresh",
+    "name": "בטטה 1 ק\"ג",
+    "aliases": [
+      "בטטה",
+      "בטטות"
+    ],
+    "supermarketPrice": 7.9,
+    "chains": {
+      "osherAd": 7.9,
+      "ramiLevy": 7.9,
+      "yeshHesed": 7.9,
+      "netoChisachon": 7.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "zucchini_fresh",
+    "name": "קישואים 1 ק\"ג",
+    "aliases": [
+      "קישוא",
+      "קישואים",
+      "קישוא ירוק"
+    ],
+    "supermarketPrice": 7.9,
+    "chains": {
+      "osherAd": 7.9,
+      "ramiLevy": 7.9,
+      "yeshHesed": 7.9,
+      "netoChisachon": 7.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "lemon_fresh",
+    "name": "לימון 1 ק\"ג",
+    "aliases": [
+      "לימון",
+      "לימונים"
+    ],
+    "supermarketPrice": 6.9,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 6.9,
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "banana_fresh",
+    "name": "בננות 1 ק\"ג",
+    "aliases": [
+      "בננה",
+      "בננות"
+    ],
+    "supermarketPrice": 6.9,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 6.9,
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cabbage_white_fresh",
+    "name": "כרוב לבן 1 ק\"ג",
+    "aliases": [
+      "כרוב לבן",
+      "כרוב"
+    ],
+    "supermarketPrice": 4.9,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": 4.9,
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.9
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "pasta_osem_general",
+    "name": "פסטה אסם 500 גרם",
+    "aliases": [
+      "פסטה אסם",
+      "פסטה 500 גרם",
+      "פסטה 500",
+      "ספגטי אסם 500"
+    ],
+    "supermarketPrice": 5.9,
+    "chains": {
+      "osherAd": 5.5,
+      "ramiLevy": 5.9,
+      "yeshHesed": 6.2,
+      "netoChisachon": 5.9
+    },
+    "lastVerified": "2026-11-15"
   }
 ]

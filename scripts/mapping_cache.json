@@ -1803,5 +1803,232 @@
       "yeshHesed",
       "netoChisachon"
     ]
+  },
+  "badin_softener_2l": {
+    "id": "badin_softener_2l",
+    "name": "מרכך כביסה בדין 2 ליטר",
+    "aliases": [
+      "מרכך בדין",
+      "מרכך כביסה בדין",
+      "בדין 2 ליטר",
+      "בדין 2 ל"
+    ],
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "cucumber_fresh": {
+    "id": "cucumber_fresh",
+    "name": "מלפפון טרי 1 ק\"ג",
+    "aliases": [
+      "מלפפון",
+      "מלפפונים",
+      "מלפפון ירוק",
+      "מלפפון שדה"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "tomato_fresh": {
+    "id": "tomato_fresh",
+    "name": "עגבניות טריות 1 ק\"ג",
+    "aliases": [
+      "עגבניה",
+      "עגבניות",
+      "עגבניות חממה",
+      "עגבניה שדה"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "onion_dry": {
+    "id": "onion_dry",
+    "name": "בצל יבש 1 ק\"ג",
+    "aliases": [
+      "בצל",
+      "בצל יבש",
+      "בצל צהוב",
+      "בצל שקית"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "potato_fresh": {
+    "id": "potato_fresh",
+    "name": "תפוחי אדמה 1 ק\"ג",
+    "aliases": [
+      "תפוח אדמה",
+      "תפוחי אדמה",
+      "תפו\"א",
+      "תפוא",
+      "תפוא אדום",
+      "תפוחי אדמה אדום",
+      "תפוחי אדמה לבן"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "carrot_fresh": {
+    "id": "carrot_fresh",
+    "name": "גזר ארוז 1 ק\"ג",
+    "aliases": [
+      "גזר",
+      "גזר ארוז",
+      "גזר שקית"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pepper_red_fresh": {
+    "id": "pepper_red_fresh",
+    "name": "פלפל אדום (גמבה) 1 ק\"ג",
+    "aliases": [
+      "פלפל אדום",
+      "גמבה",
+      "גמבה אדומה",
+      "פלפל גמבה"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "sweet_potato_fresh": {
+    "id": "sweet_potato_fresh",
+    "name": "בטטה 1 ק\"ג",
+    "aliases": [
+      "בטטה",
+      "בטטות"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "zucchini_fresh": {
+    "id": "zucchini_fresh",
+    "name": "קישואים 1 ק\"ג",
+    "aliases": [
+      "קישוא",
+      "קישואים",
+      "קישוא ירוק"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "lemon_fresh": {
+    "id": "lemon_fresh",
+    "name": "לימון 1 ק\"ג",
+    "aliases": [
+      "לימון",
+      "לימונים"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "banana_fresh": {
+    "id": "banana_fresh",
+    "name": "בננות 1 ק\"ג",
+    "aliases": [
+      "בננה",
+      "בננות"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "cabbage_white_fresh": {
+    "id": "cabbage_white_fresh",
+    "name": "כרוב לבן 1 ק\"ג",
+    "aliases": [
+      "כרוב לבן",
+      "כרוב"
+    ],
+    "isProduce": true,
+    "harediOnlyProduce": true,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
+  },
+  "pasta_osem_general": {
+    "id": "pasta_osem_general",
+    "name": "פסטה אסם 500 גרם",
+    "aliases": [
+      "פסטה אסם",
+      "פסטה 500 גרם",
+      "פסטה 500",
+      "ספגטי אסם 500"
+    ],
+    "isProduce": false,
+    "harediOnlyProduce": false,
+    "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
+      "yeshHesed",
+      "netoChisachon"
+    ]
   }
 }

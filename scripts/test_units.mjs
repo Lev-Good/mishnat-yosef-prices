@@ -81,11 +81,16 @@ function findMarketComparison(itemName) {
   const nWords = n.split(/\s+/);
   const targetUnits = parseProductUnits(itemName);
   const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
+  const isProduceExcluded = /(?:מרק|אבקת|טבעות|קמח|מלח|סלט|מיץ|עוגת|עוגיות|חטיף|בורקס|שבבי)/i.test(n);
+  const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
 
   let bestStep1 = null;
   let bestStep1Len = 0;
   for (const item of catalog) {
     if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
+    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+    if (item.id.includes('pasta') && isWholeWheat) continue;
     const itemUnits = parseProductUnits(item.name);
     if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
 
@@ -111,6 +116,9 @@ function findMarketComparison(itemName) {
 
   for (const item of catalog) {
     if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
+    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+    if (item.id.includes('pasta') && isWholeWheat) continue;
     const itemUnits = parseProductUnits(item.name);
     if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
 
