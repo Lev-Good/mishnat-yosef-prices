@@ -35,14 +35,15 @@ if (!apiKey) {
 const ai = new GoogleGenAI({ apiKey });
 
 const CANDIDATE_MODELS = [
-  'gemini-flash-latest',
-  'gemini-3.8-flash',
   'gemini-3.5-flash-lite',
   'gemini-3.1-flash-lite',
-  'gemini-2.5-flash',
-  'gemini-2.5-flash-lite'
+  'gemini-3.8-flash',
+  'gemini-flash-latest',
+  'gemma-4-31b-it',
+  'gemma-4-26b-a4b-it'
 ];
 let activeModel = CANDIDATE_MODELS[0];
+let searchGroundingSupported = true;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -55,46 +56,96 @@ function isProduceItem(name, mappingEntry) {
   return /(?:בצל|תפוחי?\s*אדמה|עגבני[הו]|מלפפון|גזר|פלפל|חסה|כרוב|בטטה|שום)/i.test(name || '');
 }
 
-async function generateWithFallback(prompt) {
+async function fetchChpSnippets(itemName) {
+  try {
+    const q = encodeURIComponent(itemName);
+    const city = encodeURIComponent('בני ברק');
+    const url = `https://chp.co.il/main_page/compare_results?shopping_address=${city}&product_name_or_barcode=${q}`;
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept': 'text/html,application/xhtml+xml'
+      },
+      signal: AbortSignal.timeout(8000)
+    });
+    if (!res.ok) return '';
+    const html = await res.text();
+    const clean = html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    return clean.slice(0, 2500);
+  } catch (_) {
+    return '';
+  }
+}
+
+async function generateWithFallback(prompt, useSearchTool = true) {
   let lastErr = null;
   const modelsToTry = [activeModel, ...CANDIDATE_MODELS.filter(m => m !== activeModel)];
 
   for (const modelName of modelsToTry) {
-    try {
-      const response = await ai.models.generateContent({
-        model: modelName,
-        contents: prompt,
-        config: {
-          tools: [{ googleSearch: {} }],
-          temperature: 0.1,
+    // מודלי Gemma אינם תומכים בכלי googleSearch מובנה
+    const canUseSearch = useSearchTool && searchGroundingSupported && !modelName.startsWith('gemma-');
+    const attempts = canUseSearch ? [true, false] : [false];
+
+    for (const withSearch of attempts) {
+      try {
+        const config = { temperature: 0.1 };
+        if (withSearch) {
+          config.tools = [{ googleSearch: {} }];
         }
-      });
-      if (activeModel !== modelName) {
-        console.log(`ℹ️ עבר למודל פעיל: ${modelName}`);
-        activeModel = modelName;
+        const response = await ai.models.generateContent({
+          model: modelName,
+          contents: prompt,
+          config
+        });
+        if (activeModel !== modelName) {
+          console.log(`ℹ️ עבר למודל פעיל: ${modelName} (Search Grounding: ${withSearch})`);
+          activeModel = modelName;
+        }
+        if (!withSearch && useSearchTool && searchGroundingSupported && !modelName.startsWith('gemma-')) {
+          console.log('ℹ️ כלי Google Search המובנה חסום במכסה החינמית - עובר לשליפת רשת ישירה + ניתוח AI.');
+          searchGroundingSupported = false;
+        }
+        return response;
+      } catch (err) {
+        lastErr = err;
+        const msg = String(err?.message || err);
+        if (
+          msg.includes('404') ||
+          msg.includes('429') ||
+          msg.includes('400') ||
+          msg.includes('RESOURCE_EXHAUSTED') ||
+          msg.includes('quota') ||
+          msg.includes('not found') ||
+          msg.includes('not supported')
+        ) {
+          continue;
+        }
+        throw err;
       }
-      return response;
-    } catch (err) {
-      lastErr = err;
-      const msg = String(err?.message || err);
-      if (
-        msg.includes('404') ||
-        msg.includes('429') ||
-        msg.includes('RESOURCE_EXHAUSTED') ||
-        msg.includes('quota') ||
-        msg.includes('not found') ||
-        msg.includes('not supported')
-      ) {
-        console.warn(`⚠️ מודל ${modelName} לא זמין או חרג ממכסה (${msg.slice(0, 90)}...), מנסה מודל חלופי...`);
-        continue;
-      }
-      throw err;
     }
   }
   throw lastErr;
 }
 
 async function queryGeminiPricesForBatch(batchItems, mappingCache) {
+  const enrichedItems = [];
+  for (const p of batchItems) {
+    const chpSnippet = await fetchChpSnippets(p.name);
+    enrichedItems.push({
+      id: p.id,
+      name: p.name,
+      aliases: p.aliases || [],
+      lastKnownPrice: p.supermarketPrice,
+      isProduce: isProduceItem(p.name, mappingCache[p.id]),
+      liveWebData: chpSnippet ? chpSnippet.slice(0, 1200) : undefined
+    });
+  }
+
   const prompt = `
 אתה מומחה ישראלי להשוואת מחירי מזון ומוצרי צריכה ברשתות השיווק בישראל.
 משימתך היא למצוא את מחירי המדף המדויקים והעדכניים ביותר בישראל (נכון לשבוע הנוכחי) עבור רשימת המוצרים הבאה.
@@ -106,20 +157,14 @@ async function queryGeminiPricesForBatch(batchItems, mappingCache) {
 4. netoChisachon ("נטו חיסכון" - סניפי אלעד / בני ברק / ירושלים)
 
 הנחיות קריטיות:
-1. השתמש בחיפוש גוגל (Google Search) לאיתור מחירי המדף העדכניים באתרי הרשתות, באתרי השוואת מחירים (chp, pricez, פרייסז, זאפ מרקט וכד') או קטלוגי המבצעים השבועיים.
+1. התבסס על נתוני הרשת העדכניים המצורפים (liveWebData) ו/או חיפוש גוגל לאיתור מחירי המדף העדכניים.
 2. התאמת גודל/משקל מדויקת: ודא שהמחיר תואם בדיוק את המשקל והאריזה של המוצר (גרמים, מ"ל, מארזים). אל תשווה מארז ליחידה או 70 גרם ל-150 גרם!
 3. פירות וירקות: חפש אך ורק מחיר לקילוגרם (1 ק"ג) במחלקות מהדרין (בד"ץ העדה החרדית / הרב רובין / קהילות וכד') בסניפי הערים החרדיות. אם אין מחיר מהדרין ברור - החזר null!
 4. עקרון אפס ניחושים (Zero Estimation): אם לרשת מסוימת אין מחיר מאומת וודאי לשבוע הנוכחי, החזר null עבור אותה רשת. אל תנחש ואל תמציא מחיר!
 5. החזר את התוצאה בפורמט JSON תקני בלבד (ללא מלל מיותר לפני או אחרי).
 
 המוצרים לבדיקה:
-${JSON.stringify(batchItems.map(p => ({
-  id: p.id,
-  name: p.name,
-  aliases: p.aliases || [],
-  lastKnownPrice: p.supermarketPrice,
-  isProduce: isProduceItem(p.name, mappingCache[p.id])
-})), null, 2)}
+${JSON.stringify(enrichedItems, null, 2)}
 
 פורמט התשובה המבוקש (JSON בלבד):
 {
