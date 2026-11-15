@@ -264,7 +264,7 @@ async function main() {
             lastVerified: todayStr
           });
           candidateCount++;
-          if (candidateCount >= 25) break; // מגבלת 25 פריטים חדשים בכל ריצה לשמירה על מכסות
+          if (candidateCount >= 40) break; // מגבלת 40 פריטים חדשים בכל ריצה לשמירה על מכסות
         }
       }
       if (candidateCount > 0) {
@@ -275,7 +275,7 @@ async function main() {
     }
   }
 
-  let targetList = [...prices, ...candidates];
+  let targetList = [...candidates, ...prices];
   if (targetId) {
     targetList = prices.filter(p => p.id === targetId);
     if (targetList.length === 0) {
