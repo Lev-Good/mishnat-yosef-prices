@@ -42,12 +42,14 @@ const CANDIDATE_MODELS = [
   'gemma-4-26b-a4b-it'
 ];
 const SEARCH_GROUNDING_MODELS = [
-  'gemini-3.5-flash-lite',
-  'gemini-3.1-flash-lite',
   'gemini-3.8-flash',
+  'gemini-2.5-flash',
+  'gemini-3.5-flash-lite',
+  'gemini-2.5-flash-lite',
   'gemini-flash-latest'
 ];
 let activeModel = CANDIDATE_MODELS[0];
+let activeSearchModel = SEARCH_GROUNDING_MODELS[0];
 
 const TARGET_CITIES = ['ירושלים', 'בני ברק'];
 const ALLOWED_CHAINS = ['osherAd', 'ramiLevy', 'yeshHesed', 'netoChisachon'];
@@ -471,21 +473,28 @@ async function fetchChpPricesMultiCity(candidate) {
 async function generateWithFallback(prompt, extraConfig = {}, candidateModels = CANDIDATE_MODELS) {
   let lastErr = null;
   const isDefaultModels = candidateModels === CANDIDATE_MODELS;
-  const modelsToTry = isDefaultModels
-    ? [activeModel, ...candidateModels.filter(m => m !== activeModel)]
-    : [...candidateModels];
+  const currentActive = isDefaultModels ? activeModel : activeSearchModel;
+  const modelsToTry = [currentActive, ...candidateModels.filter(m => m !== currentActive)];
 
   for (const modelName of modelsToTry) {
     try {
+      const reqConfig = { ...extraConfig };
+      if (!/^gemini-(?:3\.[5-9]|4)/.test(modelName) && reqConfig.temperature === undefined) {
+        reqConfig.temperature = 0.1;
+      }
       const response = await ai.models.generateContent({
         model: modelName,
         contents: prompt,
-        config: { temperature: 0.1, ...extraConfig }
+        config: reqConfig
       });
       if (isDefaultModels && activeModel !== modelName) {
         console.log(`ℹ️ עבר למודל פעיל: ${modelName}`);
         activeModel = modelName;
+      } else if (!isDefaultModels && activeSearchModel !== modelName) {
+        console.log(`ℹ️ עבר למודל חיפוש פעיל: ${modelName}`);
+        activeSearchModel = modelName;
       }
+      response._usedModel = modelName;
       return response;
     } catch (err) {
       lastErr = err;
@@ -499,6 +508,7 @@ async function generateWithFallback(prompt, extraConfig = {}, candidateModels = 
         msg.includes('not found') ||
         msg.includes('not supported')
       ) {
+        console.warn(`⚠️ מודל ${modelName} לא זמין לבקשה זו (${msg.slice(0, 120)}) - מנסה מודל חלופי...`);
         if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED')) {
           await sleep(2000);
         }
@@ -604,10 +614,10 @@ async function searchPricesWithGoogleGrounding(batchItems) {
   }));
 
   const prompt = `
-אתה חוקר מחירים בישראל. עבור רשימת המוצרים מ"משנת יוסף" שלא נמצאו במאגר הסופרים CHP, השתמש בחיפוש Google Search כדי לאתר מחירי שוק אמיתיים ועדכניים בש"ח (ILS) בחנויות וברשתות ישראליות (רשתות מזון, סופר-פארם, Be, זאפ, KSP, אייס, הום סנטר, אתרי מותגים וחנויות רשת בישראל).
+אתה חוקר מחירים בישראל. עבור רשימת המוצרים מ"משנת יוסף" שלא נמצאו במאגר הסופרים CHP, חובה להשתמש בפועל בכלי החיפוש google_search לכל מוצר כדי לאתר מחירי שוק אמיתיים ועדכניים בש"ח (ILS) בחנויות וברשתות ישראליות (רשתות מזון, סופר-פארם, Be, זאפ, KSP, אייס, הום סנטר, אתרי מותגים וחנויות רשת בישראל).
 
 כללים מחמירים:
-1. אל תנחש ואל תמציא מחיר בשום אופן! החזר מחיר ("marketPrice") רק אם מצאת בתוצאות החיפוש מחיר ממשי ועדכני בישראל של המוצר (או של מוצר מקביל זהה במהות ובגודל). אם לא נמצא מידע אמין או שמדובר במוצר ייחודי/בלעדי שאין לו מקבילה בשוק, החזר "marketPrice": null.
+1. אל תנחש ואל תמציא מחיר בשום אופן! בצע חיפושים ברשת עבור כל פריט והחזר מחיר ("marketPrice") רק אם מצאת בתוצאות החיפוש מחיר ממשי ועדכני בישראל של המוצר (או של מוצר מקביל זהה במהות ובגודל). אם לאחר חיפוש לא נמצא מידע אמין או שמדובר במוצר ייחודי/בלעדי שאין לו מקבילה בשוק, החזר "marketPrice": null.
 2. התאמת גודל/כמות/משקל חובה: ודא שהמחיר שמצאת תואם לאותו נפח, משקל או מספר יחידות במארז (למשל לא להשוות בקבוק 400 מ"ל ל-750 מ"ל או יחידה למארז).
 3. מותג מקביל: אם המותג מצוין במשנת יוסף ונמצא אותו מותג בדיוק — סמן "isEquivalentBrand": false. אם זהו מוצר פרטי/גנרי או כלי בית/טקסטיל כללי והשווית לדגם/מותג מקביל נפוץ בישראל בעל אותם מפרט וגודל — סמן "isEquivalentBrand": true.
 4. אם במקרה נמצאו מחירים באחת מארבע הרשתות המרכזיות (osherAd = אושר עד, ramiLevy = רמי לוי, yeshHesed = יש חסד, netoChisachon = נטו חיסכון), ציין אותם בשדה "chains" (או null אם לא נמצא).
@@ -646,7 +656,8 @@ ${JSON.stringify(payload, null, 2)}
     const hasGroundingQueries = Array.isArray(groundingMeta?.webSearchQueries) && groundingMeta.webSearchQueries.length > 0;
     const hasGroundingChunks = Array.isArray(groundingMeta?.groundingChunks) && groundingMeta.groundingChunks.length > 0;
     if (!hasGroundingQueries && !hasGroundingChunks) {
-      console.warn('⚠️ אזהרה: תשובת החיפוש ההיברידי לא החזירה מטא-דאטה של Google Search Grounding - מדלג על האצווה.');
+      const sampleText = String(response?.text || '').replace(/\s+/g, ' ').slice(0, 140);
+      console.warn(`⚠️ אזהרה (${response?._usedModel || 'unknown'}): תשובת החיפוש ההיברידי לא החזירה מטא-דאטה של Google Search Grounding (meta=${JSON.stringify(groundingMeta || null)}, sample="${sampleText}") - מדלג על האצווה.`);
       return [];
     }
     const parsed = parseModelJsonResponse(response);
