@@ -105,11 +105,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "cottage_5": {
     "id": "cottage_5",
@@ -215,9 +213,9 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "milky": {
     "id": "milky",
@@ -321,11 +319,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "osherAd"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "flour_white": {
     "id": "flour_white",
@@ -431,9 +427,9 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "pasta_osem_spaghetti": {
     "id": "pasta_osem_spaghetti",
@@ -656,9 +652,9 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "tahini_raw": {
     "id": "tahini_raw",
@@ -975,11 +971,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "osherAd"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "tea_wissotzky": {
     "id": "tea_wissotzky",
@@ -1536,10 +1530,9 @@
     "harediOnlyProduce": false,
     "verifiedChains": [
       "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "sano_ratzpaz": {
     "id": "sano_ratzpaz",
@@ -1649,11 +1642,10 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "green_beans_cut": {
     "id": "green_beans_cut",
@@ -1812,11 +1804,10 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "cucumber_fresh": {
     "id": "cucumber_fresh",

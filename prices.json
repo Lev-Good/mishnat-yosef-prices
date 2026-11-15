@@ -96,14 +96,14 @@
       "גבינה לבנה 5",
       "לבנה 5% תנובה"
     ],
-    "supermarketPrice": 5.75,
+    "supermarketPrice": 5.87,
     "chains": {
-      "osherAd": 5.75,
-      "ramiLevy": 5.75,
-      "yeshHesed": 5.75,
-      "netoChisachon": 5.75
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 5.87,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "cottage_5",
@@ -111,7 +111,8 @@
     "aliases": [
       "קוטג 5%",
       "קוטג תנובה 5%",
-      "קוטג 250"
+      "קוטג 250",
+      "קוטג' 250 גר' - טרה"
     ],
     "supermarketPrice": 6.87,
     "chains": {
@@ -194,14 +195,14 @@
       "שמנת מתוקה 38",
       "השף הלבן 38"
     ],
-    "supermarketPrice": 8.43,
+    "supermarketPrice": 7.6,
     "chains": {
-      "osherAd": 7.9,
-      "ramiLevy": 8.5,
-      "yeshHesed": 8.9,
-      "netoChisachon": 8.4
+      "osherAd": 7.6,
+      "ramiLevy": 7.56,
+      "yeshHesed": 7.64,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "milky",
@@ -272,7 +273,10 @@
     "name": "שמן זית כתית מעולה 750 מ\"ל",
     "aliases": [
       "שמן זית",
-      "כתית מעולה 750"
+      "כתית מעולה 750",
+      "מארז טיפוח מועשר בשמן זית - OLIVERA {377}",
+      "קרם ידיים מועשר בשמן זית - Olivera{387}",
+      "קרם רגליים מועשר בשמן זית - Olivera{359}"
     ],
     "supermarketPrice": 29.85,
     "chains": {
@@ -291,14 +295,14 @@
       "סוכר 1 קג",
       "סוכר סוגת"
     ],
-    "supermarketPrice": 4.97,
+    "supermarketPrice": 4.9,
     "chains": {
-      "osherAd": 4.8,
-      "ramiLevy": 4.9,
-      "yeshHesed": 5.2,
-      "netoChisachon": 5
+      "osherAd": 4.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "flour_white",
@@ -387,14 +391,14 @@
       "אורז יסמין",
       "יסמין 1 קג"
     ],
-    "supermarketPrice": 12.2,
+    "supermarketPrice": 10.9,
     "chains": {
-      "osherAd": 11.5,
-      "ramiLevy": 12.2,
-      "yeshHesed": 12.9,
-      "netoChisachon": 12.2
+      "osherAd": 10.9,
+      "ramiLevy": 10.9,
+      "yeshHesed": 10.9,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "pasta_osem_spaghetti",
@@ -504,7 +508,8 @@
     "name": "אפונה עדינה שימורים 550 גרם",
     "aliases": [
       "אפונה עדינה",
-      "שימורי אפונה"
+      "שימורי אפונה",
+      "אפונה בשימורים - פריניר"
     ],
     "supermarketPrice": 6.2,
     "chains": {
@@ -588,16 +593,17 @@
     "name": "מיונז אמיתי תלמה 500 גרם",
     "aliases": [
       "מיונז תלמה",
-      "מיונז אמיתי"
+      "מיונז אמיתי",
+      "מיונז תלמה 0.5 קילו"
     ],
-    "supermarketPrice": 12.03,
+    "supermarketPrice": 9.9,
     "chains": {
-      "osherAd": 11.2,
-      "ramiLevy": 12,
-      "yeshHesed": 12.9,
-      "netoChisachon": 12.05
+      "osherAd": 9.9,
+      "ramiLevy": 9.9,
+      "yeshHesed": 9.9,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "tahini_raw",
@@ -641,7 +647,9 @@
       "לחם חיטה מלאה",
       "לחם דגנית עין בר",
       "לחם מלא פרוס",
-      "לחם מחיטה מלאה"
+      "לחם מחיטה מלאה",
+      "לחם פרוס - דגנית עין בר",
+      "לחם פרוס מחיטה מלאה - דגנית עין בר"
     ],
     "supermarketPrice": 12.43,
     "chains": {
@@ -691,7 +699,8 @@
     "aliases": [
       "כריות תלמה",
       "כריות נוגט",
-      "כריות שוקולד"
+      "כריות שוקולד",
+      "כריות נוגט - תלמה"
     ],
     "supermarketPrice": 25.9,
     "chains": {
@@ -726,7 +735,8 @@
       "במבה 80",
       "במבה 80 גרם",
       "במבה אסם 80",
-      "שקית במבה 80"
+      "שקית במבה 80",
+      "במבה אסם מאגדת (ד)"
     ],
     "supermarketPrice": 4.53,
     "chains": {
@@ -765,7 +775,8 @@
       "ביסלי פארטי",
       "ביסלי אריזה גדולה",
       "פארטי מיקס אסם",
-      "ביסלי מיקס"
+      "ביסלי מיקס",
+      "ביסלי פארטי מיקס אריזה גדולה - אסם"
     ],
     "supermarketPrice": 7.9,
     "chains": {
@@ -804,12 +815,12 @@
       "בדין 2 ליטר",
       "בדין 2 ל"
     ],
-    "supermarketPrice": 17.9,
+    "supermarketPrice": 16.55,
     "chains": {
-      "osherAd": 16.9,
-      "ramiLevy": 17.9,
-      "yeshHesed": 18.9,
-      "netoChisachon": 17.9
+      "osherAd": null,
+      "ramiLevy": 17.2,
+      "yeshHesed": 15.9,
+      "netoChisachon": null
     },
     "lastVerified": "2026-11-15"
   },
@@ -903,14 +914,14 @@
       "טסטרס צויס",
       "טסטרס צ'ויס"
     ],
-    "supermarketPrice": 33.9,
+    "supermarketPrice": 39.9,
     "chains": {
-      "osherAd": 32.9,
-      "ramiLevy": 33.9,
-      "yeshHesed": 34.9,
-      "netoChisachon": 33.9
+      "osherAd": 39.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "tea_wissotzky",
@@ -1069,7 +1080,8 @@
       "שמפו פינוק",
       "שמפו הואי",
       "מרכך פינוק",
-      "פינוק 700"
+      "פינוק 700",
+      "שמפו פינוק - כחול"
     ],
     "supermarketPrice": 11.2,
     "chains": {
@@ -1118,7 +1130,8 @@
     "aliases": [
       "ציפס קפוא",
       "צ'יפס אמריקאי",
-      "תפודים ציפס"
+      "תפודים ציפס",
+      "צ'יפס קפוא 1.5 קילו"
     ],
     "supermarketPrice": 20.43,
     "chains": {
@@ -1215,7 +1228,8 @@
     "name": "פילה סלמון קפוא בוואקום 1 ק\"ג",
     "aliases": [
       "פילה סלמון",
-      "סלמון קפוא"
+      "סלמון קפוא",
+      "קרטון פילה סלמון נורבגי בד\"ץ העד\"ח - קייטי"
     ],
     "supermarketPrice": 62.57,
     "chains": {
@@ -1266,7 +1280,8 @@
     "aliases": [
       "פרסיל 3.8",
       "ג'ל כביסה פרסיל - 3.8",
-      "גל כביסה פרסיל 3.8"
+      "גל כביסה פרסיל 3.8",
+      "(ירוק) ג'ל כביסה פרסיל - 3.8 ליטר"
     ],
     "supermarketPrice": 47.57,
     "chains": {
@@ -1367,7 +1382,8 @@
     "aliases": [
       "סילאן טבעי",
       "סילאן לחיץ",
-      "סילאן תמרים"
+      "סילאן תמרים",
+      "סילאן טבעי עם פקק לחיץ"
     ],
     "supermarketPrice": 16.77,
     "chains": {
@@ -1403,14 +1419,14 @@
       "נוזל לניקוי חלונות 1 ליטר",
       "ניקוי חלונות סנו"
     ],
-    "supermarketPrice": 10.9,
+    "supermarketPrice": 9.4,
     "chains": {
-      "osherAd": 9.9,
-      "ramiLevy": 10.9,
-      "yeshHesed": 11.9,
-      "netoChisachon": 10.9
+      "osherAd": 9,
+      "ramiLevy": null,
+      "yeshHesed": 9.8,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "sano_ratzpaz",
@@ -1503,16 +1519,17 @@
     "aliases": [
       "חטיפי פיצה",
       "פיצה מעדנות",
-      "חטיפי פיצה קפואים"
+      "חטיפי פיצה קפואים",
+      "חטיפי פיצה קפואים - מעדנות"
     ],
-    "supermarketPrice": 25.43,
+    "supermarketPrice": 31.6,
     "chains": {
-      "osherAd": 23.9,
-      "ramiLevy": 25.5,
-      "yeshHesed": 26.9,
-      "netoChisachon": 25.4
+      "osherAd": null,
+      "ramiLevy": 33.3,
+      "yeshHesed": 29.9,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "green_beans_cut",
@@ -1568,7 +1585,8 @@
     "name": "מרשמלו 150 גרם כרמית",
     "aliases": [
       "מרשמלו 150",
-      "מרשמלו כרמית"
+      "מרשמלו כרמית",
+      "מרשמלו סגול/לבן - כרמית"
     ],
     "supermarketPrice": 5.43,
     "chains": {
@@ -1600,7 +1618,8 @@
     "name": "תות שדה קפוא נקי 1 ק\"ג",
     "aliases": [
       "תות שדה קפוא",
-      "תות קפוא"
+      "תות קפוא",
+      "קוביות מחית תות קפואות {אריזה משפחתית}"
     ],
     "supermarketPrice": 23.43,
     "chains": {
@@ -1669,7 +1688,9 @@
       "עגבניה",
       "עגבניות",
       "עגבניות חממה",
-      "עגבניה שדה"
+      "עגבניה שדה",
+      "עגבניות שרי אדומות",
+      "רסק/רוטב עגבניות 22 (4 קופסאות) - פרי מבורך"
     ],
     "supermarketPrice": 5.9,
     "chains": {
@@ -1708,7 +1729,8 @@
       "תפוא",
       "תפוא אדום",
       "תפוחי אדמה אדום",
-      "תפוחי אדמה לבן"
+      "תפוחי אדמה לבן",
+      "סיגרים קפואים במילוי תפוח אדמה - בלינו (לנדא)"
     ],
     "supermarketPrice": 4.9,
     "chains": {
@@ -1776,7 +1798,8 @@
     "aliases": [
       "קישוא",
       "קישואים",
-      "קישוא ירוק"
+      "קישוא ירוק",
+      "קישואים (ירוק)"
     ],
     "supermarketPrice": 7.9,
     "chains": {
@@ -1808,7 +1831,9 @@
     "name": "בננות 1 ק\"ג",
     "aliases": [
       "בננה",
-      "בננות"
+      "בננות",
+      "אשכול בננות",
+      "מחיות תפוח בננה לפעוטות בפאווצ' פריפוש - קייטי"
     ],
     "supermarketPrice": 6.9,
     "chains": {
@@ -1824,7 +1849,9 @@
     "name": "כרוב לבן 1 ק\"ג",
     "aliases": [
       "כרוב לבן",
-      "כרוב"
+      "כרוב",
+      "ראש כרוב אדום גדול {לנדא} {שקית}",
+      "שקית פרחי כרובית מוקפאים עד\"ח"
     ],
     "supermarketPrice": 4.9,
     "chains": {
@@ -1935,11 +1962,11 @@
       "גבינה 5% טרה 250",
       "גבינה לבנה טרה 250"
     ],
-    "supermarketPrice": 5.75,
+    "supermarketPrice": 5.84,
     "chains": {
-      "osherAd": 5.75,
-      "ramiLevy": 5.75,
-      "yeshHesed": 5.75,
+      "osherAd": 5.8,
+      "ramiLevy": null,
+      "yeshHesed": 5.87,
       "netoChisachon": null
     },
     "lastVerified": "2026-11-15"
@@ -2079,6 +2106,186 @@
       "osherAd": 14,
       "ramiLevy": 14.8,
       "yeshHesed": 14.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_12",
+    "name": "דלורית",
+    "aliases": [
+      "דלורית"
+    ],
+    "supermarketPrice": 2.9,
+    "chains": {
+      "osherAd": 2.9,
+      "ramiLevy": 2.9,
+      "yeshHesed": 2.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_27",
+    "name": "אפרסמון {מ.מ.}",
+    "aliases": [
+      "אפרסמון {מ.מ.}"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {
+      "osherAd": 12.9,
+      "ramiLevy": 12.9,
+      "yeshHesed": 12.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_392",
+    "name": "פטרוזליה {לנדא}",
+    "aliases": [
+      "פטרוזליה {לנדא}"
+    ],
+    "supermarketPrice": 5.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 5.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_1549",
+    "name": "סלט מטבוחה אמיתית - צבר",
+    "aliases": [
+      "סלט מטבוחה אמיתית - צבר"
+    ],
+    "supermarketPrice": 11.9,
+    "chains": {
+      "osherAd": 11.9,
+      "ramiLevy": 11.9,
+      "yeshHesed": 11.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_699",
+    "name": "גבינת שמנת 25% - הכפרייה",
+    "aliases": [
+      "גבינת שמנת 25% - הכפרייה"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {
+      "osherAd": 19.9,
+      "ramiLevy": 19.9,
+      "yeshHesed": null,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_403",
+    "name": "פסטה (צורות) {מ.מ.}",
+    "aliases": [
+      "פסטה (צורות) {מ.מ.}"
+    ],
+    "supermarketPrice": 6.95,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 6,
+      "yeshHesed": 7.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_91",
+    "name": "קמח מצה",
+    "aliases": [
+      "קמח מצה"
+    ],
+    "supermarketPrice": 5.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 5.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_14061",
+    "name": "רוטב אלף האיים - הלמנס",
+    "aliases": [
+      "רוטב אלף האיים - הלמנס"
+    ],
+    "supermarketPrice": 11.6,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 12.2,
+      "yeshHesed": 11,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_540",
+    "name": "עוגיות במילוי קרם שוקולד מפנקות - ברמן {מ.מ.}",
+    "aliases": [
+      "עוגיות במילוי קרם שוקולד מפנקות - ברמן {מ.מ.}"
+    ],
+    "supermarketPrice": 3.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 3.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_416",
+    "name": "חטיף אפרופו מצופה שוקולד חלב - אסם",
+    "aliases": [
+      "חטיף אפרופו מצופה שוקולד חלב - אסם"
+    ],
+    "supermarketPrice": 4.25,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 3,
+      "yeshHesed": 5.5,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_6895",
+    "name": "תרסיס להסרת כתמים לכביסה לבנה - וניש קליה {מ.מ.}",
+    "aliases": [
+      "תרסיס להסרת כתמים לכביסה לבנה - וניש קליה {מ.מ.}"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 7.9,
+      "yeshHesed": 17.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "my_6652",
+    "name": "קלוריקס - פיור {10}",
+    "aliases": [
+      "קלוריקס - פיור {10}"
+    ],
+    "supermarketPrice": 9.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 9.9,
+      "yeshHesed": null,
       "netoChisachon": null
     },
     "lastVerified": "2026-11-15"
