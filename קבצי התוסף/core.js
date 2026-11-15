@@ -67,14 +67,18 @@
     seenFill: false, 
     fixedColor: '#e0a800', 
     fixedFill: true,
-    selectedChains: ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy']
+    selectedChains: ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy'],
+    compareInHistory: true
   };
   let prefs = { ...PREF_DEFAULT, ...jget('prefs', {}) };
+  if (prefs.compareInHistory === undefined) prefs.compareInHistory = true;
   if (!Array.isArray(prefs.selectedChains) || !prefs.selectedChains.length) {
     prefs.selectedChains = [...PREF_DEFAULT.selectedChains];
   }
   let sale = { id: null, items: new Map(), loadedAll: false };    // שם מנורמל / pid / itemSalesId -> מוצר במכירה
   let live = null;                              // ההזמנה הנוכחית: {orderId, saleId, clientId, lines: Map}
+  let viewedOrder = null;                       // הזמנת עבר שנצפתה באתר: {orderId, saleId, week, date, lines: Map}
+  let historyRenderItems = new Map();           // מפת מוצרים מהזמנות עבר לצביעה/השוואה בדפי היסטוריה
   let currentCardMap = new Map();               // כרטיס מוצר פעיל בדף -> {key, leaf}
   const debugBuf = [];
 
@@ -108,13 +112,20 @@
     '/policy'
   ];
 
+  function isHistoryPage() {
+    const p = (location.pathname || '').toLowerCase();
+    return /^\/(orders|history|order-history|previous-orders)\b/i.test(p);
+  }
+
   function isProductSelectionPage() {
     if (isExcludedPage()) return false;
     const p = (location.pathname || '').toLowerCase();
     if (p.includes('login') || p.includes('auth') || p.includes('register')) return false;
-    const isOrderOrCatalog = /^\/(order|orders|sale|catalog|cart)\b/i.test(p);
+    const isOrderOrCatalog = /^\/(order|orders|sale|catalog|cart|history|order-history|previous-orders)\b/i.test(p);
     const hasCards = (typeof currentCardMap !== 'undefined' && currentCardMap && currentCardMap.size > 0);
-    const hasSaleData = (sale && sale.items && sale.items.size > 0) || (live && (live.saleId || (live.lines && live.lines.size > 0)));
+    const hasSaleData = (sale && sale.items && sale.items.size > 0)
+      || (live && (live.saleId || (live.lines && live.lines.size > 0)))
+      || (viewedOrder && viewedOrder.lines && viewedOrder.lines.size > 0);
     return isOrderOrCatalog || hasCards || hasSaleData;
   }
 
@@ -138,7 +149,7 @@
 
   /* ---------- חילוץ saleId ו-orderId ישירות מכתובת הדף ---------- */
   function extractOrderIdFromUrl() {
-    const m = location.pathname.match(/\/order\/(\d+)/);
+    const m = location.pathname.match(/\/orders?\/(\d+)/);
     return m ? Number(m[1]) : null;
   }
 
@@ -507,6 +518,63 @@ function showToast(msg, type = 'success') {
     saveItemPrices();
   }
 
+  function populateHistoryRenderFromOrder(o) {
+    if (!o || !Array.isArray(o.items)) return;
+    const linesMap = new Map();
+    o.items.filter(it => !it.del).forEach(it => {
+      const l = lineFrom(it);
+      if (!l) return;
+      linesMap.set(l.sid || l.key, l);
+      const itemObj = {
+        pid: Number(l.pid),
+        name: l.name,
+        image: l.image || '',
+        price: l.price || 0,
+        itemSalesId: l.sid || null
+      };
+      historyRenderItems.set(norm(l.name), itemObj);
+      historyRenderItems.set('p' + l.pid, itemObj);
+      if (l.sid) historyRenderItems.set('s' + l.sid, itemObj);
+    });
+    saveProductImages();
+    saveItemPrices();
+    if (linesMap.size > 0) {
+      viewedOrder = {
+        orderId: o.id,
+        saleId: o.saleID,
+        week: o.week || o.sale?.name || o.sale?.week || saleMeta[o.saleID]?.week || `מכירה ${o.saleID || ''}`.trim(),
+        date: o.created_at || o.date || '',
+        lines: linesMap
+      };
+    }
+  }
+
+  let cachedHistFallbackLen = -1;
+  let histFallbackMap = new Map();
+  function getHistoryLookupItem(normName) {
+    const direct = historyRenderItems.get(normName);
+    if (direct) return direct;
+    if (!isHistoryPage()) return null;
+    if (cachedHistFallbackLen !== state.history.length) {
+      histFallbackMap = new Map();
+      for (const ord of state.history) {
+        if (!Array.isArray(ord.items)) continue;
+        for (const it of ord.items) {
+          if (!it || !it.name) continue;
+          const itemObj = {
+            pid: Number(it.pid || 0),
+            name: it.name,
+            image: it.image || '',
+            price: it.price || itemPrices[it.key] || 0
+          };
+          histFallbackMap.set(norm(it.name), itemObj);
+        }
+      }
+      cachedHistFallbackLen = state.history.length;
+    }
+    return histFallbackMap.get(normName) || null;
+  }
+
   function handleApi(d) {
     const u = new URL(d.url), path = u.pathname, j = d.json; let m;
     if (CONFIG.debugPaths.test(path)) {
@@ -545,11 +613,17 @@ function showToast(msg, type = 'success') {
         chrome?.runtime?.sendMessage?.({ type: 'updateSalesMeta', sales });
       } catch (e) {}
 
+    } else if (d.method === 'GET' && path === '/api/orders') {
+      const list = Array.isArray(j?.data) ? j.data : (Array.isArray(j) ? j : []);
+      list.forEach(o => { if (o && Array.isArray(o.items) && o.items.length) populateHistoryRenderFromOrder(o); });
+      scheduleRender();
+      updateSavingsUI();
+
     } else if (d.method === 'GET' && (m = path.match(/^\/api\/orders\/(\d+)$/))) {
       const o = j && j.order; if (!o) return;
       const ordId = Number(m[1]);
       const curOrdId = extractOrderIdFromUrl();
-      if (!curOrdId || ordId === curOrdId) {
+      if ((!curOrdId || ordId === curOrdId) && !isHistoryPage()) {
         if (o.saleID) sale.id = o.saleID;
         live = { orderId: o.id, saleId: o.saleID, clientId: o.clientID, lines: new Map() };
         let itemSum = 0;
@@ -561,6 +635,7 @@ function showToast(msg, type = 'success') {
             itemSum += (l.qty || 1) * (l.price || itemPrices['p' + l.pid] || 0);
           }
         });
+        populateHistoryRenderFromOrder(o);
         const serverTotal = parseFloat(o.total_list ?? o.total ?? o.sum ?? o.total_price ?? 0) || null;
         if (serverTotal !== null && serverTotal > 0) {
           live.serverTotal = serverTotal;
@@ -573,8 +648,10 @@ function showToast(msg, type = 'success') {
         updateBudgetUI();
         updateForgottenUI();
         updateSavingsUI();
+        if (sale.items.size === 0) scheduleRender();
       } else {
         // זו הזמנת עבר שנטענה (למשל מתוך היסטוריית הזמנות באתר)
+        populateHistoryRenderFromOrder(o);
         const items = (o.items || [])
           .filter(it => !it.del)
           .map(lineFrom)
@@ -590,6 +667,8 @@ function showToast(msg, type = 'success') {
           });
           save();
         }
+        updateSavingsUI();
+        scheduleRender();
       }
 
     } else if (d.method === 'POST' && /^\/api\/(add_item|update_item)\//.test(path)) {
@@ -822,9 +901,15 @@ function showToast(msg, type = 'success') {
     const c = counts();
 
     // 1. אלמנטי טקסט ששמם זהה למוצר, ואייקוני לב (החרגה מלאה של סל הקניות ומודאלים)
+    const onHistoryPage = isHistoryPage();
+    const allowHistoryCompare = prefs.compareInHistory !== false;
     const leaves = [], hearts = [];
     // ניקוי סימוני leaf ישנים (האתר ממחזר אלמנטים בגלילה — טקסט מתחלף אך התכונה נשארת)
-    $$('[data-myleaf]').forEach(e => e.removeAttribute('data-myleaf'));
+    $$('[data-myleaf]').forEach(e => {
+      e.removeAttribute('data-myleaf');
+      e.removeAttribute('data-myprice');
+      e.removeAttribute('data-myhist');
+    });
     document.body.querySelectorAll('*').forEach(el => {
       if (heartLike(el)) hearts.push(el);
       if (el.children.length || /^(SCRIPT|STYLE|BUTTON|NOSCRIPT)$/.test(el.tagName)) return;
@@ -832,8 +917,18 @@ function showToast(msg, type = 'success') {
       if (!t || t.length < 2 || t.length > 200) return;
       // החרגה גורפת של סל הקניות של משנת יוסף כדי למנוע הופעת רקע ומסגרת זהב בסל!
       if (el.closest('#myfam-panel, #myfam-body, #myfam-modal, #myfam-forgotten-modal, #myfam-savings-modal, .myfam-tag, #cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i], header, nav, dialog')) return;
-      const hit = sale.items.get(norm(t));
-      if (hit) { el.setAttribute('data-myleaf', 'p' + hit.pid); leaves.push(el); }
+      const nt = norm(t);
+      const hitSale = sale.items.get(nt);
+      const hitHist = (!hitSale && allowHistoryCompare && (onHistoryPage || sale.items.size === 0 || (viewedOrder && viewedOrder.lines && viewedOrder.lines.size > 0)))
+        ? getHistoryLookupItem(nt)
+        : null;
+      const hit = hitSale || hitHist;
+      if (hit) {
+        el.setAttribute('data-myleaf', hit.pid ? ('p' + hit.pid) : nt);
+        if (hit.price > 0) el.setAttribute('data-myprice', String(hit.price));
+        if (!hitSale) el.setAttribute('data-myhist', '1');
+        leaves.push(el);
+      }
     });
 
     // 2. עולים לכרטיס המוצר המדויק
@@ -892,8 +987,13 @@ function showToast(msg, type = 'success') {
       cd.classList.toggle('myfam-hide', !show);
       if (cd === leaf) return;
 
+      const isTableRow = cd.tagName === 'TR';
+      const isHistItem = leaf.getAttribute('data-myhist') === '1';
+      const leafPrice = parseFloat(leaf.getAttribute('data-myprice') || '0') || 0;
+      const cardHost = isTableRow ? (leaf.closest('td,th') || leaf.parentElement || cd) : cd;
+
       cd.classList.add('myfam-card');
-      if (getComputedStyle(cd).position === 'static') cd.style.position = 'relative';
+      if (!isTableRow && getComputedStyle(cd).position === 'static') cd.style.position = 'relative';
 
       // כפתור כוכב (מופיע רק במעבר עכבר / טאפ, או כשהוא כבר מסומן כקבוע)
       let star = cd.querySelector('.myfam-starbtn');
@@ -913,7 +1013,7 @@ function showToast(msg, type = 'success') {
             );
           }
         };
-        cd.appendChild(star);
+        cardHost.appendChild(star);
       }
       star.dataset.key = key;   // מתעדכן בכל רינדור — כרטיס ממוחזר מקבל את המוצר הנכון
       // הסרת תגיות של מוצר קודם שהיה בכרטיס זה לפני מיחזור
@@ -921,7 +1021,7 @@ function showToast(msg, type = 'success') {
       star.className = 'myfam-starbtn' + (fx ? ' on' : '');
       star.innerHTML = fx ? ICONS.starBtnFilled : ICONS.starBtnEmpty;
       star.title = fx ? 'בטל סימון כמוצר קבוע' : 'סמן כמוצר קבוע';
-      stars.push({ cd, star });
+      if (!isTableRow) stars.push({ cd, star });
 
       // שמירת תמונת המוצר המדויקת (מסנן חותמות כשרות ולוגואים) לטובת הדפסה
       const realImgSrc = findProductImage(cd);
@@ -932,13 +1032,13 @@ function showToast(msg, type = 'success') {
       }
 
       // תגית המוצר: מוצמדת ישירות מעל בלוק המידע של המוצר בתוך הכרטיס (מבנה פלקס טבעי ללא בריחה)
-      if (n > 0) {
+      if (n > 0 && !isTableRow) {
         let tag = cd.querySelector(`:scope > .myfam-tag[data-tag-key="${key}"]`);
         if (!tag) {
           cd.querySelectorAll('.myfam-tag').forEach(t => t.remove());
           tag = document.createElement('div');
           tag.setAttribute('data-tag-key', key);
-          cd.appendChild(tag);   // ילד ישיר של הכרטיס (position:relative) — ממוקם אבסולוטית, לא משפיע על הפריסה
+          cardHost.appendChild(tag);   // ילד ישיר של הכרטיס (position:relative) — ממוקם אבסולוטית, לא משפיע על הפריסה
         }
         {
           tag.className = 'myfam-tag' + (fx ? ' fixed' : '');
@@ -952,11 +1052,12 @@ function showToast(msg, type = 'success') {
 
       // תגית השוואת מחיר מול רשתות השיווק - מינימליסטית, אלגנטית ולא מפריעה
       const pName = (leaf.textContent || '').trim();
-      const rawComp = findMarketComparison(pName, '');
+      const showCompareHere = !isHistItem || allowHistoryCompare;
+      const rawComp = showCompareHere ? findMarketComparison(pName, '') : null;
       const compItem = rawComp ? getEffectiveMarketComparison(rawComp) : null;
 
       // מציאת מחיר המוצר: מתוך המאגר המקומי או ישירות מהטקסט בכרטיס
-      let myPrice = itemPrices[key] || 0;
+      let myPrice = itemPrices[key] || leafPrice || 0;
       let priceEl = null;
       const allEls = [...cd.querySelectorAll('*')];
       for (const el of allEls) {
@@ -994,26 +1095,30 @@ function showToast(msg, type = 'success') {
             } else if (leaf && leaf.parentElement) {
               leaf.insertAdjacentElement('afterend', compTag);
             } else {
-              cd.appendChild(compTag);
+              cardHost.appendChild(compTag);
             }
           }
           const selChainNames = (compItem.activeChainEntries && compItem.activeChainEntries.length)
             ? compItem.activeChainEntries.map(([c]) => ALL_CHAINS[c]?.name || c).join(', ')
             : 'רשתות שיווק';
+          const eqSuffix = compItem.isEquivalentBrand ? ' (מקביל)' : '';
+          const eqNote = compItem.isEquivalentBrand
+            ? `\n* הערה: השוואה למותג מקביל שאינו זהה (${compItem.matchedName || 'מוצר מקביל דומה'}).`
+            : '';
 
           if (diff >= 0.3) {
             compTag.className = 'myfam-price-comp-tag tag-saving';
-            compTag.innerHTML = `⚡ חסכון ₪${diff.toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+            compTag.innerHTML = `⚡ חסכון ₪${diff.toFixed(1)}${eqSuffix}`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           } else if (diff <= -0.3) {
             compTag.className = 'myfam-price-comp-tag tag-expensive';
-            compTag.innerHTML = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+            compTag.innerHTML = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}${eqSuffix}`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           } else {
             // מחיר זהה או הפרש זניח מול הרשתות (למשל מוצרים בפיקוח כמו חלב, סוכר, מלח)
             compTag.className = 'myfam-price-comp-tag tag-equal';
-            compTag.innerHTML = `= ברשתות ₪${compItem.effectivePrice.toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (מחיר זהה)\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+            compTag.innerHTML = `= ברשתות ₪${compItem.effectivePrice.toFixed(1)}${eqSuffix}`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (מחיר זהה)${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           }
         } else {
           cd.querySelector('.myfam-price-comp-tag')?.remove();
@@ -1084,8 +1189,13 @@ function showToast(msg, type = 'success') {
 
     const info = $('#myfam-info');
     if (info) {
-      info.textContent = (sale.items.size ? `מוצרים בדף: ${inList} · במכירה: ${sale.items.size}` : 'ממתין לנתוני המכירה…')
-        ;
+      if (sale.items.size) {
+        info.textContent = `מוצרים בדף: ${inList} · במכירה: ${sale.items.size}`;
+      } else if (onHistoryPage || (viewedOrder && viewedOrder.lines && viewedOrder.lines.size)) {
+        info.textContent = inList ? `היסטוריית הזמנות · זוהו ${inList} מוצרים בדף` : 'דף היסטוריית הזמנות';
+      } else {
+        info.textContent = 'ממתין לנתוני המכירה…';
+      }
     }
     placePanel(toolbarHeart);
     updateBudgetUI();
@@ -4921,10 +5031,24 @@ function showToast(msg, type = 'success') {
     };
   }
 
-  function getCartSavingsStats() {
-    if (!live || !live.lines) return null;
-    const lines = [...live.lines.values()];
-    if (!lines.length) return null;
+  function getCartSavingsStats(customLines = null, customLabel = null) {
+    let lines = null;
+    let isHistorical = false;
+    let label = customLabel || '';
+
+    if (Array.isArray(customLines) && customLines.length) {
+      lines = customLines;
+      isHistorical = true;
+    } else if (live && live.lines && live.lines.size > 0 && !isHistoryPage()) {
+      lines = [...live.lines.values()];
+    } else if (prefs.compareInHistory !== false && viewedOrder && viewedOrder.lines && viewedOrder.lines.size > 0) {
+      lines = [...viewedOrder.lines.values()];
+      isHistorical = true;
+      label = viewedOrder.week || 'הזמנה היסטורית';
+    } else if (live && live.lines && live.lines.size > 0) {
+      lines = [...live.lines.values()];
+    }
+    if (!lines || !lines.length) return null;
 
     let matchedCount = 0;
     let totalMyCost = 0;
@@ -4933,7 +5057,7 @@ function showToast(msg, type = 'success') {
     const matchedItems = [];
 
     for (const l of lines) {
-      const myUnitPrice = l.price || itemPrices['p' + l.pid] || 0;
+      const myUnitPrice = l.price || itemPrices['p' + l.pid] || itemPrices[l.key] || 0;
       if (myUnitPrice <= 0) continue;
 
       const rawMatch = findMarketComparison(l.name, '');
@@ -4974,7 +5098,9 @@ function showToast(msg, type = 'success') {
         marketItemTotal,
         itemSavings,
         savingsPct: marketItemTotal > 0 ? (itemSavings / marketItemTotal) * 100 : 0,
-        chains: activeChains
+        chains: activeChains,
+        isEquivalentBrand: !!match.isEquivalentBrand,
+        matchedName: match.matchedName || ''
       });
     }
 
@@ -4982,6 +5108,8 @@ function showToast(msg, type = 'success') {
     const isReliable = matchedCount >= 3;
 
     return {
+      isHistorical,
+      label,
       matchedCount,
       totalLines: lines.length,
       coveragePct,
@@ -5007,7 +5135,7 @@ function showToast(msg, type = 'success') {
         savVal.textContent = '₪0.0';
         savVal.style.color = '#059669';
       }
-      if (savDetail) savDetail.textContent = 'בסל הנוכחי';
+      if (savDetail) savDetail.textContent = isHistoryPage() ? 'בהזמנה היסטורית' : 'בסל הנוכחי';
       return;
     }
 
@@ -5017,10 +5145,11 @@ function showToast(msg, type = 'success') {
       savVal.style.color = stats.totalSavings < 0 ? '#dc2626' : '#059669';
     }
     if (savDetail) {
+      const ctxSuffix = stats.isHistorical ? ' · היסטוריה' : '';
       if (stats.totalSavings >= 0) {
-        savDetail.textContent = `(${Math.round(stats.savingsPct)}% חיסכון) (${stats.matchedCount} מוצרים)`;
+        savDetail.textContent = `(${Math.round(stats.savingsPct)}% חיסכון) (${stats.matchedCount} מוצרים${ctxSuffix})`;
       } else {
-        savDetail.textContent = `(יקר יותר מהרשתות) (${stats.matchedCount} מוצרים)`;
+        savDetail.textContent = `(יקר יותר מהרשתות) (${stats.matchedCount} מוצרים${ctxSuffix})`;
       }
     }
 
@@ -5032,7 +5161,7 @@ function showToast(msg, type = 'success') {
           <span style="font-size:14px;">💰</span>
           <span>חיסכון: <b>₪${Math.round(stats.totalSavings)}</b></span>
         `;
-        pill.title = `חיסכון משוער של ₪${stats.totalSavings.toFixed(2)} (${Math.round(stats.savingsPct)}%) מול רשתות השיווק ב-${stats.matchedCount} מוצרים בסל. לחץ לצפייה בדוח!`;
+        pill.title = `חיסכון משוער של ₪${stats.totalSavings.toFixed(2)} (${Math.round(stats.savingsPct)}%) מול רשתות השיווק ב-${stats.matchedCount} מוצרים${stats.isHistorical ? ' (הזמנה היסטורית)' : ' בסל'}. לחץ לצפייה בדוח!`;
         pill.onclick = e => {
           e.stopPropagation();
           showSavingsModal();
@@ -5043,12 +5172,12 @@ function showToast(msg, type = 'success') {
     }
   }
 
-  function showSavingsModal() {
+  function showSavingsModal(customLines = null, customLabel = null) {
     $('#myfam-savings-modal')?.remove();
-    const stats = getCartSavingsStats();
+    const stats = getCartSavingsStats(customLines, customLabel);
 
     if (!stats || !stats.items.length) {
-      showAppAlert('טרם אותרו מוצרים בסל הנוכחי הניתנים להשוואה מול רשתות השיווק.\n(ההשוואה מתבצעת על מוצרי מזווה, חלב, יסוד, שימורים וניקיון עם מחיר מאומת).', 'השוואת מחירים וחיסכון');
+      showAppAlert('טרם אותרו מוצרים עם מחיר ותואם להשוואה מול רשתות השיווק בהזמנה זו.\n(אם זו הזמנת עבר, ודא שסונכרנו מחיריה מהאתר).', 'השוואת מחירים וחיסכון');
       return;
     }
 
@@ -5066,6 +5195,9 @@ function showToast(msg, type = 'success') {
           const heName = ALL_CHAINS[cName]?.name || cName;
           return `<span class="myfam-chain-pill">${heName}: ₪${Number(cPrice).toFixed(2)}</span>`;
         }).join('');
+      const eqBadge = it.isEquivalentBrand
+        ? `<div style="font-size:11px; color:#92400e; background:#fef3c7; border:1px solid #fde68a; border-radius:4px; padding:1px 6px; display:inline-block; margin-top:3px;">מותג מקביל שאינו זהה${it.matchedName ? `: ${esc(it.matchedName)}` : ''}</div>`
+        : '';
 
       return `
         <tr>
@@ -5074,6 +5206,7 @@ function showToast(msg, type = 'success') {
           </td>
           <td>
             <div style="font-weight:700; color:#1e293b;">${esc(it.name)}</div>
+            ${eqBadge}
             ${chainsText ? `<div class="myfam-chain-pills">${chainsText}</div>` : ''}
           </td>
           <td style="text-align:center; font-weight:700;">${it.qty} יח'</td>
@@ -5097,6 +5230,10 @@ function showToast(msg, type = 'success') {
       `;
     }).join('');
 
+    const modalSub = stats.isHistorical
+      ? `השוואת הזמנה היסטורית (${esc(stats.label || 'הזמנת עבר')}) מול רשתות השיווק המובילות`
+      : 'השוואת סל הקניות הנוכחי מול רשתות השיווק המובילות';
+
     m.innerHTML = `
       <div class="myfam-savings-box">
         <button class="myfam-x" title="סגור">${ICONS.close}</button>
@@ -5106,7 +5243,7 @@ function showToast(msg, type = 'success') {
             <div class="myfam-savings-h-icon">💰</div>
             <div class="myfam-savings-h-text">
               <h3>מחשבון חיסכון והשוואת מחירים</h3>
-              <div>השוואת סל הקניות הנוכחי מול רשתות השיווק המובילות</div>
+              <div>${modalSub}</div>
             </div>
           </div>
           <button id="myfam-btn-print-savings" class="myfam-sec-btn" style="display:flex;align-items:center;gap:6px;">
@@ -5801,6 +5938,9 @@ function showToast(msg, type = 'success') {
                   <span class="myfam-hist-pill pill-gray">${o.items.length} מוצרים · ${totalOrderQty} יח'</span>
                 </div>
                 <div class="myfam-hist-order-actions">
+                  <button class="myfam-hist-print-order-btn myfam-hist-compare-order-btn" data-compare-ord="${esc(o.id)}" title="השווה מחירי הזמנה זו מול רשתות השיווק">
+                    <span>💰 השווה מחירים</span>
+                  </button>
                   <button class="myfam-hist-print-order-btn" data-print-ord="${esc(o.id)}" title="הדפס רשימת איסוף להזמנה זו">
                     ${ICONS.print} <span>הדפס רשימת איסוף</span>
                   </button>
@@ -5997,8 +6137,47 @@ function showToast(msg, type = 'success') {
         };
       });
 
+      // כפתורי השוואת מחירים להזמנה ספציפית מהיסטוריה
+      m.querySelectorAll('.myfam-hist-compare-order-btn').forEach(btn => {
+        btn.onclick = async ev => {
+          ev.stopPropagation();
+          const ordId = btn.dataset.compareOrd;
+          const targetOrd = validOrders.find(o => o.id === ordId);
+          if (!targetOrd || !targetOrd.items || !targetOrd.items.length) {
+            showAppAlert('לא נמצאו פריטים בהזמנה זו להשוואה.', 'השוואת מחירים');
+            return;
+          }
+          const hasPrices = targetOrd.items.some(it => (it.price && it.price > 0) || itemPrices[it.key] > 0);
+          if (!hasPrices) {
+            try {
+              const numericId = (targetOrd.id || '').replace(/^sale-\d+-/, '');
+              const realId = targetOrd.orderId || (numericId && !isNaN(numericId) ? numericId : null);
+              if (realId) {
+                const oData = await siteApiRequest(`${API_HOST}/api/orders/${realId}`, 'GET');
+                const o = oData?.order;
+                if (o && Array.isArray(o.items)) {
+                  o.items.forEach(it => {
+                    if (it.del) return;
+                    const l = lineFrom(it);
+                    if (l && l.price > 0) {
+                      const match = targetOrd.items.find(x => x.key === l.key || norm(x.name) === norm(l.name));
+                      if (match) match.price = l.price;
+                    }
+                  });
+                  saveItemPrices();
+                  save();
+                }
+              }
+            } catch (e) {
+              console.warn('[myfam compareOrder fetch]', e);
+            }
+          }
+          showSavingsModal(targetOrd.items, targetOrd.week || 'הזמנה היסטורית');
+        };
+      });
+
       // כפתורי הדפסת הזמנה ספציפית לאיסוף
-      m.querySelectorAll('.myfam-hist-print-order-btn').forEach(btn => {
+      m.querySelectorAll('.myfam-hist-print-order-btn[data-print-ord]').forEach(btn => {
         btn.onclick = async ev => {
           ev.stopPropagation();
           const ordId = btn.dataset.printOrd;
@@ -6263,6 +6442,10 @@ function showToast(msg, type = 'success') {
         <div id="mf-chain-warning" style="display:none; color:#dc2626; font-size:11.5px; margin-top:6px; font-weight:bold;">
           ⚠️ יש לבחור לפחות רשת שיווק אחת להשוואה.
         </div>
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12.5px; font-weight:600; color:#1e293b; margin-top:10px; padding-top:10px; border-top:1px dashed #bbf7d0;">
+          <input type="checkbox" id="mf-compare-history" style="accent-color:#2e9e5b; width:16px; height:16px;">
+          <span>הצג השוואת מחירים גם בדפי היסטוריית ההזמנות באתר</span>
+        </label>
       </div>
 
       <!-- חלק 5: סנכרון מאובטח -->
@@ -6313,8 +6496,21 @@ function showToast(msg, type = 'success') {
       $$('.mf-chain-cb', m).forEach(cb => {
         cb.checked = selChains.includes(cb.value);
       });
+      const cmpHistCb = g('mf-compare-history');
+      if (cmpHistCb) cmpHistCb.checked = prefs.compareInHistory !== false;
     };
     fill();
+
+    const cmpHistCb = g('mf-compare-history');
+    if (cmpHistCb) {
+      cmpHistCb.onchange = () => {
+        prefs = { ...prefs, compareInHistory: cmpHistCb.checked };
+        jset('prefs', prefs);
+        syncSaveGoogle({ myfam_prefs: prefs });
+        render();
+        updateSavingsUI();
+      };
+    }
 
     $$('.mf-chain-cb', m).forEach(cb => {
       cb.onchange = () => {
