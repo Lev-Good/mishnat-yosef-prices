@@ -239,6 +239,7 @@ async function main() {
   }
 
   // שילוב מוצרים חדשים מקטלוג משנת יוסף החי (אם נשלף בסבב הנוכחי)
+  const candidates = [];
   const LIVE_CATALOG_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
   if (fs.existsSync(LIVE_CATALOG_FILE)) {
     try {
@@ -254,7 +255,7 @@ async function main() {
         }
         const exists = prices.some(p => p.id === `my_${item.id}` || p.name === item.name || (p.aliases && p.aliases.includes(item.name)));
         if (!exists) {
-          prices.push({
+          candidates.push({
             id: `my_${item.id}`,
             name: item.name,
             aliases: [item.name],
@@ -274,7 +275,7 @@ async function main() {
     }
   }
 
-  let targetList = prices;
+  let targetList = [...prices, ...candidates];
   if (targetId) {
     targetList = prices.filter(p => p.id === targetId);
     if (targetList.length === 0) {
@@ -299,7 +300,7 @@ async function main() {
     const results = await queryGeminiPricesForBatch(batch, mappingCache);
 
     for (const res of results) {
-      const item = prices.find(p => p.id === res.id);
+      const item = targetList.find(p => p.id === res.id);
       if (!item) continue;
 
       const targetUnits = parseProductUnits(item.name);
@@ -349,6 +350,9 @@ async function main() {
       item.chains = validChainPrices;
       item.supermarketPrice = newAvg;
       item.lastVerified = todayStr;
+      if (!prices.some(p => p.id === item.id)) {
+        prices.push(item);
+      }
       updatedCount++;
 
       // עדכון מטמון המיפוי
@@ -370,7 +374,8 @@ async function main() {
   console.log(`\n🎉 סיום עיבוד. עודכנו ${updatedCount} פריטים בהצלחה.`);
 
   if (!isDryRun && updatedCount > 0) {
-    fs.writeFileSync(PRICES_FILE, JSON.stringify(prices, null, 2) + '\n', 'utf8');
+    const cleanPrices = prices.filter(p => typeof p.supermarketPrice === 'number' && p.supermarketPrice > 0);
+    fs.writeFileSync(PRICES_FILE, JSON.stringify(cleanPrices, null, 2) + '\n', 'utf8');
     fs.writeFileSync(MAPPING_FILE, JSON.stringify(mappingCache, null, 2) + '\n', 'utf8');
     console.log(`💾 נשמר בהצלחה לקבצים: ${PRICES_FILE}, ${MAPPING_FILE}`);
   } else if (isDryRun) {
