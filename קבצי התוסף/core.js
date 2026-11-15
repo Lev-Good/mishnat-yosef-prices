@@ -7,7 +7,9 @@
   const T = window.__MY_T;
 
   const APP_NAME = 'מוסיף למשנת';
+  const APP_VERSION = '0.6.1';
   const ICONS = {
+    info: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
     basket: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
     cart: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
     star: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
@@ -994,11 +996,11 @@ function showToast(msg, type = 'success') {
           if (diff >= 0.3) {
             compTag.className = 'myfam-price-comp-tag tag-saving';
             compTag.innerHTML = `⚡ חסכון ₪${diff.toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           } else if (diff <= -0.3) {
             compTag.className = 'myfam-price-comp-tag tag-expensive';
             compTag.innerHTML = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})`;
+            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           } else {
             // הפרש זניח - מסירים כדי לשמור על עיצוב נקי ומינימליסטי
             compTag.remove();
@@ -4642,7 +4644,8 @@ function showToast(msg, type = 'success') {
         })()}
 
         <div class="myfam-savings-disclaimer">
-          ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול הרשתות שנבחרו בהגדרות (${selChainNames}). ירקות, פירות, מוצרים שקילים ומוצרים ייחודיים אינם נכללים בהשוואה.
+          ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול הרשתות שנבחרו בהגדרות (${selChainNames}).<br>
+          <b>הבהרה ואחריות:</b> נתוני המחירים וחישובי החיסכון מוצגים כ<b>הערכה והמלצה בלבד</b> לצורך קבלת אינדיקציה כללית. המחירים ברשתות השיווק משתנים תדיר בין סניפים, אזורים ומבצעים, ואין המפתחים אחראים לדיוקם או לכל החלטת רכישה שתתקבל על בסיסם (ט.ל.ח).
         </div>
 
         <div class="myfam-savings-table-wrap">
@@ -4773,8 +4776,8 @@ function showToast(msg, type = 'success') {
     <tbody>${rowsHtml}</tbody>
   </table>
   <div class="footer">
-    <div>הופק באמצעות תוסף "מוסיף למשנת" · פותח ע"י <b>לב טוב דיגיטל</b> (https://digital.levtov.uk/)</div>
-    <div>ההשוואה מבוססת על מחירי רשתות מובילות שנבחרו (${selChainNames}).</div>
+    <div>הופק באמצעות תוסף "מוסיף למשנת" (גרסה ${APP_VERSION}) · פותח ע"י <b>לב טוב דיגיטל</b> (https://digital.levtov.uk/)</div>
+    <div>ההשוואה מול הרשתות (${selChainNames}) מוצגת כהערכה והמלצה בלבד וללא אחריות (ט.ל.ח).</div>
   </div>
 </body>
 </html>`);
@@ -5777,6 +5780,17 @@ function showToast(msg, type = 'success') {
         </div>
       </div>
 
+      <!-- חלק 6: אודות ותנאי שימוש -->
+      <div class="myfam-set-section" style="background:#fffbeb; border-color:#fde68a;">
+        <h4 class="myfam-set-sec-title" style="color:#92400e; display:flex; align-items:center; justify-content:space-between;">
+          <span>ℹ️ אודות והגבלת אחריות (גרסה ${APP_VERSION})</span>
+          <button id="mf-open-about" style="background:#ffffff; border:1px solid #f59e0b; color:#92400e; border-radius:6px; padding:3px 9px; font-size:11.5px; font-weight:bold; cursor:pointer;">קרא בהרחבה</button>
+        </h4>
+        <div style="font-size:12px; color:#78350f; line-height:1.55;">
+          נתוני השוואת המחירים וחישובי החיסכון מוצגים כ<b>המלצה והערכה בלבד</b> לצורך מידע כללי. אין המפתחים אחראים לדיוק המחירים, לזמינות המוצרים או לכל החלטת רכישה או נזק ישיר/עקיף הנובע מהסתמכות על הנתונים (ט.ל.ח).
+        </div>
+      </div>
+
       <!-- דירוג ומשוב -->
       <div style="margin-top:14px; text-align:center;">
         <button id="mf-open-feedback" style="background:#fffbeb; border:1px solid #fde68a; width:100%; padding:9px; border-radius:8px; font-weight:bold; color:#92400e; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px;">
@@ -5914,11 +5928,72 @@ function showToast(msg, type = 'success') {
       }
     };
     g('mf-open-feedback').onclick = () => { m.remove(); openFeedbackPage(); };
+    const openAboutBtn = g('mf-open-about');
+    if (openAboutBtn) openAboutBtn.onclick = () => { m.remove(); showAboutModal(); };
 
     // סגירה ודאית באמצעות X או לחיצה על הרקע
     const closeBtn = $('.myfam-x', m);
     if (closeBtn) closeBtn.onclick = () => m.remove();
     m.onclick = e => { if (e.target === m || e.target.closest('.myfam-x')) m.remove(); };
+  }
+
+  /* ---------- חלון אודות, תנאי שימוש והגבלת אחריות ---------- */
+  function showAboutModal() {
+    $('#myfam-modal')?.remove();
+    const m = document.createElement('div');
+    m.id = 'myfam-modal';
+    m.innerHTML = `<div class="myfam-box myfam-set" style="max-width:510px;">
+      <button class="myfam-x" title="סגור">${ICONS.close}</button>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e2e8f0;">
+        <div style="background:#eef7f1;color:#2e9e5b;padding:10px;border-radius:12px;display:flex;">${ICONS.basket}</div>
+        <div>
+          <h3 style="margin:0;font-size:18px;color:#0f172a;">אודות "${APP_NAME}" · גרסה ${APP_VERSION}</h3>
+          <div style="font-size:12.5px;color:#64748b;">מידע כללי, פרטיות, תנאי שימוש והגבלת אחריות</div>
+        </div>
+      </div>
+
+      <div class="myfam-set-section" style="background:#f8fafc;border-color:#e2e8f0;">
+        <h4 class="myfam-set-sec-title" style="color:#0f172a;">✨ על התוסף</h4>
+        <div style="font-size:13px;color:#334155;line-height:1.6;">
+          <b>"${APP_NAME}"</b> הוא עוזר קניות חכם ופרטי שפותח במטרה להקל ולייעל את חוויית הקנייה השבועית באתר "משנת יוסף" — באמצעות סימון מוצרים קבועים, הוספה מהירה לסל, מעקב תקציב, הדפסת רשימת איסוף נוחה והשוואת מחירים.
+        </div>
+      </div>
+
+      <div class="myfam-set-section" style="background:#fffbeb;border-color:#fde68a;">
+        <h4 class="myfam-set-sec-title" style="color:#92400e;">⚖️ כתב ויתור והגבלת אחריות (השוואת מחירים)</h4>
+        <ul style="margin:0;padding-right:18px;font-size:12.5px;color:#78350f;line-height:1.65;">
+          <li><b>המלצה והערכה בלבד:</b> כל נתוני המחירים של רשתות השיווק, אחוזי החיסכון ותגיות ההשוואה המוצגים בתוסף הינם בגדר <b>הערכה, אינדיקציה כללית והמלצה בלבד</b>.</li>
+          <li><b>אין אחריות לדיוק הנתונים:</b> מחירי הרשתות נאספים ממקורות פומביים ועשויים להשתנות בכל עת בין סניפים שונים, ערים שונות, מבצעים נקודתיים, הבדלי כשרות, מותגים או אריזות.</li>
+          <li><b>אחריות המשתמש:</b> התוסף מסופק כמות שהוא ("AS-IS"). מפתחי התוסף ("לב טוב דיגיטל") אינם נושאים בכל אחריות, ישירה או עקיפה, לטעויות, אי-דיוקים, הפרשי מחירים או לכל החלטת קנייה, הפסד או נזק שייגרמו כתוצאה מהסתמכות על המידע המוצג בתוסף (ט.ל.ח).</li>
+        </ul>
+      </div>
+
+      <div class="myfam-set-section" style="background:#f0fdf4;border-color:#bbf7d0;">
+        <h4 class="myfam-set-sec-title" style="color:#166534;">🔒 פרטיות ועצמאות</h4>
+        <div style="font-size:12.5px;color:#1e293b;line-height:1.6;">
+          • <b>תוסף עצמאי:</b> תוסף זה פותח באופן עצמאי על ידי "לב טוב דיגיטל" ואינו קשור, מופעל או נתמך על ידי ארגון או מערכת "משנת יוסף".<br>
+          • <b>פרטיות מלאה:</b> נתוני ההזמנות והמוצרים הקבועים שלכם נשמרים מקומית בדפדפן ובחשבון ה-Google האישי שלכם בלבד, ואינם מועברים לשום גורם צד שלישי.
+        </div>
+      </div>
+
+      <div class="myfam-footer-credits" style="margin-top:12px;padding-top:10px;">
+        פותח ע"י <b><a href="https://digital.levtov.uk/" target="_blank" rel="noopener">לב טוב דיגיטל</a></b> | לפניות: <a href="mailto:mytovmail@gmail.com">mytovmail@gmail.com</a><br>
+        <small>© כל הזכויות שמורות · גרסה ${APP_VERSION}</small>
+      </div>
+
+      <div style="margin-top:14px;display:flex;justify-content:flex-end;">
+        <button id="myfam-about-close" class="myfam-btn-primary">הבנתי, סגור</button>
+      </div>
+    </div>`;
+    document.body.appendChild(m);
+
+    const close = () => m.remove();
+    const xBtn = $('.myfam-x', m);
+    if (xBtn) xBtn.onclick = close;
+    const btnClose = $('#myfam-about-close', m);
+    if (btnClose) btnClose.onclick = close;
+    m.onclick = e => { if (e.target === m || e.target.closest('.myfam-x')) close(); };
   }
 
   /* ---------- מדריך וטיפים לשימוש (סיור מודרך) ---------- */
@@ -6601,16 +6676,21 @@ function showToast(msg, type = 'success') {
       <!-- הגדרות, סטטוס וקרדיטים -->
       <div class="myfam-bottom-panel">
         <div id="myfam-bottom-toggle" class="myfam-bottom-header">
-          <span>⚙️ הגדרות והתראות</span>
+          <span>⚙️ הגדרות, היסטוריה ואודות</span>
           <span id="myfam-bottom-arrow">▼</span>
         </div>
         <div id="myfam-bottom-links" class="myfam-bottom-links" style="display:none;">
           <button id="myfam-b-hist">${ICONS.history} <span>היסטוריית קניות מפורטת</span></button>
           <button id="myfam-b-set">${ICONS.settings} <span>הגדרות התוסף והתראות</span></button>
+          <button id="myfam-b-about">${ICONS.info} <span>אודות ותנאי שימוש (הגבלת אחריות)</span></button>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2px;">
           <div><span class="myfam-status-dot"></span><span id="myfam-info">ממתין לנתוני המכירה...</span></div>
-          <a href="https://digital.levtov.uk/" target="_blank" rel="noopener" class="myfam-author-link">לב טוב דיגיטל</a>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <button id="myfam-b-about-inline" style="background:none;border:none;color:#64748b;font-size:11px;cursor:pointer;padding:0;text-decoration:underline;" title="אודות והגבלת אחריות">אודות (v${APP_VERSION})</button>
+            <span>·</span>
+            <a href="https://digital.levtov.uk/" target="_blank" rel="noopener" class="myfam-author-link">לב טוב דיגיטל</a>
+          </div>
         </div>
       </div>
     `;
@@ -6688,6 +6768,8 @@ function showToast(msg, type = 'success') {
 
     $('#myfam-b-hist').onclick = () => { b.classList.add('collapsed'); showHistory(); };
     $('#myfam-b-set').onclick  = () => { b.classList.add('collapsed'); showSettings(); };
+    $('#myfam-b-about').onclick = () => { b.classList.add('collapsed'); showAboutModal(); };
+    $('#myfam-b-about-inline').onclick = () => { b.classList.add('collapsed'); showAboutModal(); };
   }
 
   function ensureUI() {
