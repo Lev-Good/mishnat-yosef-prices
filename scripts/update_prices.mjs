@@ -28,7 +28,7 @@ const targetIdIndex = args.indexOf('--id');
 const targetId = targetIdIndex !== -1 ? args[targetIdIndex + 1] : null;
 const disableSearchFallback = args.includes('--no-search-fallback');
 const searchBatchSizeIndex = args.indexOf('--search-batch-size');
-const SEARCH_BATCH_SIZE = searchBatchSizeIndex !== -1 ? parseInt(args[searchBatchSizeIndex + 1], 10) : 8;
+const SEARCH_BATCH_SIZE = searchBatchSizeIndex !== -1 ? parseInt(args[searchBatchSizeIndex + 1], 10) : 6;
 
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 let ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
@@ -42,9 +42,9 @@ const CANDIDATE_MODELS = [
   'gemma-4-26b-a4b-it'
 ];
 const SEARCH_GROUNDING_MODELS = [
+  'gemini-3.5-flash-lite',
   'gemini-3.8-flash',
   'gemini-2.5-flash',
-  'gemini-3.5-flash-lite',
   'gemini-2.5-flash-lite',
   'gemini-flash-latest'
 ];
@@ -470,44 +470,33 @@ async function fetchChpPricesMultiCity(candidate) {
   return { chains: finalChains, resolvedTitle };
 }
 
-async function generateWithFallback(prompt, extraConfig = {}, candidateModels = CANDIDATE_MODELS) {
+function isRetryableModelError(err) {
+  const msg = String(err?.message || err);
+  return (
+    msg.includes('404') ||
+    msg.includes('429') ||
+    msg.includes('400') ||
+    msg.includes('RESOURCE_EXHAUSTED') ||
+    msg.includes('quota') ||
+    msg.includes('not found') ||
+    msg.includes('not supported')
+  );
+}
+
+async function runWithModelFallback(candidateModels, currentActive, onModelSuccess, invokeFn) {
   let lastErr = null;
-  const isDefaultModels = candidateModels === CANDIDATE_MODELS;
-  const currentActive = isDefaultModels ? activeModel : activeSearchModel;
   const modelsToTry = [currentActive, ...candidateModels.filter(m => m !== currentActive)];
 
   for (const modelName of modelsToTry) {
     try {
-      const reqConfig = { ...extraConfig };
-      if (!/^gemini-(?:3\.[5-9]|4)/.test(modelName) && reqConfig.temperature === undefined) {
-        reqConfig.temperature = 0.1;
-      }
-      const response = await ai.models.generateContent({
-        model: modelName,
-        contents: prompt,
-        config: reqConfig
-      });
-      if (isDefaultModels && activeModel !== modelName) {
-        console.log(`ℹ️ עבר למודל פעיל: ${modelName}`);
-        activeModel = modelName;
-      } else if (!isDefaultModels && activeSearchModel !== modelName) {
-        console.log(`ℹ️ עבר למודל חיפוש פעיל: ${modelName}`);
-        activeSearchModel = modelName;
-      }
-      response._usedModel = modelName;
-      return response;
+      const result = await invokeFn(modelName);
+      onModelSuccess(modelName);
+      if (result && typeof result === 'object') result._usedModel = modelName;
+      return result;
     } catch (err) {
       lastErr = err;
       const msg = String(err?.message || err);
-      if (
-        msg.includes('404') ||
-        msg.includes('429') ||
-        msg.includes('400') ||
-        msg.includes('RESOURCE_EXHAUSTED') ||
-        msg.includes('quota') ||
-        msg.includes('not found') ||
-        msg.includes('not supported')
-      ) {
+      if (isRetryableModelError(err)) {
         console.warn(`⚠️ מודל ${modelName} לא זמין לבקשה זו (${msg.slice(0, 120)}) - מנסה מודל חלופי...`);
         if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED')) {
           await sleep(2000);
@@ -520,10 +509,38 @@ async function generateWithFallback(prompt, extraConfig = {}, candidateModels = 
   throw lastErr;
 }
 
-function parseModelJsonResponse(response) {
-  let text = response?.text || '';
-  if (!text && response?.candidates?.[0]?.content?.parts) {
-    text = response.candidates[0].content.parts.map(pt => pt.text || '').join('\n');
+async function generateWithFallback(prompt, extraConfig = {}, candidateModels = CANDIDATE_MODELS) {
+  return runWithModelFallback(
+    candidateModels,
+    activeModel,
+    modelName => {
+      if (activeModel !== modelName) {
+        console.log(`ℹ️ עבר למודל פעיל: ${modelName}`);
+        activeModel = modelName;
+      }
+    },
+    modelName => {
+      const reqConfig = { ...extraConfig };
+      if (!/^gemini-(?:3\.[5-9]|4)/.test(modelName) && reqConfig.temperature === undefined) {
+        reqConfig.temperature = 0.1;
+      }
+      return ai.models.generateContent({ model: modelName, contents: prompt, config: reqConfig });
+    }
+  );
+}
+
+function parseModelJsonResponse(responseOrText) {
+  let text = typeof responseOrText === 'string'
+    ? responseOrText
+    : (responseOrText?.output_text || responseOrText?.text || '');
+  if (!text && responseOrText?.candidates?.[0]?.content?.parts) {
+    text = responseOrText.candidates[0].content.parts.map(pt => pt.text || '').join('\n');
+  }
+  if (!text && Array.isArray(responseOrText?.steps)) {
+    text = responseOrText.steps
+      .filter(s => s?.type === 'model_output' && Array.isArray(s.content))
+      .flatMap(s => s.content.map(c => c?.text || ''))
+      .join('\n');
   }
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (!jsonMatch) {
@@ -647,20 +664,63 @@ ${JSON.stringify(payload, null, 2)}
 `;
 
   try {
-    const response = await generateWithFallback(
-      prompt,
-      { tools: [{ googleSearch: {} }] },
-      SEARCH_GROUNDING_MODELS
-    );
-    const groundingMeta = response?.candidates?.[0]?.groundingMetadata;
-    const hasGroundingQueries = Array.isArray(groundingMeta?.webSearchQueries) && groundingMeta.webSearchQueries.length > 0;
-    const hasGroundingChunks = Array.isArray(groundingMeta?.groundingChunks) && groundingMeta.groundingChunks.length > 0;
-    if (!hasGroundingQueries && !hasGroundingChunks) {
-      const sampleText = String(response?.text || '').replace(/\s+/g, ' ').slice(0, 140);
-      console.warn(`⚠️ אזהרה (${response?._usedModel || 'unknown'}): תשובת החיפוש ההיברידי לא החזירה מטא-דאטה של Google Search Grounding (meta=${JSON.stringify(groundingMeta || null)}, sample="${sampleText}") - מדלג על האצווה.`);
-      return [];
+    let parsed = null;
+
+    if (ai?.interactions?.create) {
+      try {
+        const interaction = await runWithModelFallback(
+          SEARCH_GROUNDING_MODELS,
+          activeSearchModel,
+          modelName => {
+            if (activeSearchModel !== modelName) {
+              console.log(`ℹ️ עבר למודל חיפוש פעיל: ${modelName}`);
+              activeSearchModel = modelName;
+            }
+          },
+          modelName => ai.interactions.create({
+            model: modelName,
+            input: prompt,
+            tools: [{ type: 'google_search' }]
+          })
+        );
+
+        const steps = Array.isArray(interaction?.steps) ? interaction.steps : [];
+        const searchCalls = steps.filter(s => s?.type === 'google_search_call' || s?.type === 'google_search_result');
+        const hasCitations = steps.some(s =>
+          s?.type === 'model_output' &&
+          Array.isArray(s.content) &&
+          s.content.some(c => Array.isArray(c?.annotations) && c.annotations.some(a => a?.type === 'url_citation'))
+        );
+        const toolCount = Number(interaction?.usage?.grounding_tool_count?.google_search || 0);
+
+        if (searchCalls.length > 0 || hasCitations || toolCount > 0) {
+          console.log(`🌐 [Interactions ${interaction._usedModel}] בוצעו ${searchCalls.length || toolCount} פעולות חיפוש Google Search.`);
+          parsed = parseModelJsonResponse(interaction);
+        } else {
+          console.warn(`⚠️ [Interactions ${interaction?._usedModel || 'unknown'}] לא תועדו קריאות google_search (${JSON.stringify(steps.map(s => s?.type))}) - עובר לבדיקה ב-generateContent.`);
+        }
+      } catch (interErr) {
+        console.warn(`⚠️ שגיאת Interactions API (${interErr.message}) - עובר לבדיקה ב-generateContent.`);
+      }
     }
-    const parsed = parseModelJsonResponse(response);
+
+    if (!parsed) {
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: { tools: [{ googleSearch: {} }], temperature: 0.1 }
+      });
+      const groundingMeta = response?.candidates?.[0]?.groundingMetadata;
+      const hasGroundingQueries = Array.isArray(groundingMeta?.webSearchQueries) && groundingMeta.webSearchQueries.length > 0;
+      const hasGroundingChunks = Array.isArray(groundingMeta?.groundingChunks) && groundingMeta.groundingChunks.length > 0;
+      if (!hasGroundingQueries && !hasGroundingChunks) {
+        console.warn('⚠️ אזהרה (gemini-2.5-flash): תשובת החיפוש ההיברידי לא החזירה מטא-דאטה של Google Search Grounding - מדלג על האצווה.');
+        return [];
+      }
+      console.log(`🌐 [generateContent gemini-2.5-flash] בוצעו ${groundingMeta?.webSearchQueries?.length || groundingMeta?.groundingChunks?.length || 1} אימותי Google Search.`);
+      parsed = parseModelJsonResponse(response);
+    }
+
     return parsed?.results || [];
   } catch (err) {
     console.error('❌ שגיאה בשלב הגיבוי (Google Search Grounding):', err.message);
