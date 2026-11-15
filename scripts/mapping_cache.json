@@ -14,9 +14,9 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "milk_1": {
     "id": "milk_1",
@@ -90,11 +90,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "cheese_white_5": {
     "id": "cheese_white_5",
@@ -164,11 +162,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "ramiLevy"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "butter_100": {
     "id": "butter_100",

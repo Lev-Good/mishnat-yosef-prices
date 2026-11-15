@@ -7,14 +7,14 @@
       "חלב תנובה 3%",
       "חלב טרי 3%"
     ],
-    "supermarketPrice": 7.11,
+    "supermarketPrice": 7.25,
     "chains": {
-      "osherAd": 7.11,
-      "ramiLevy": 7.11,
-      "yeshHesed": 7.11,
-      "netoChisachon": 7.11
+      "osherAd": 7.2,
+      "ramiLevy": 7.2,
+      "yeshHesed": 7.35,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "milk_1",
@@ -77,14 +77,14 @@
       "12 ביצים l",
       "12 ביצים"
     ],
-    "supermarketPrice": 15.2,
+    "supermarketPrice": 14.54,
     "chains": {
-      "osherAd": 14.9,
-      "ramiLevy": 15.2,
-      "yeshHesed": 15.2,
-      "netoChisachon": 15.05
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 14.54,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "cheese_white_5",
@@ -143,14 +143,14 @@
       "גלבוע 200",
       "צהובה גלבוע"
     ],
-    "supermarketPrice": 13.43,
+    "supermarketPrice": 15.5,
     "chains": {
-      "osherAd": 12.9,
-      "ramiLevy": 13.5,
-      "yeshHesed": 13.9,
-      "netoChisachon": 13.4
+      "osherAd": null,
+      "ramiLevy": 15.5,
+      "yeshHesed": null,
+      "netoChisachon": null
     },
-    "lastVerified": "2026-11-09"
+    "lastVerified": "2026-11-15"
   },
   {
     "id": "butter_100",
