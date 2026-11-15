@@ -29,12 +29,13 @@ async function login(email, password) {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, username: email, password }),
       signal: AbortSignal.timeout(15000)
     });
 
     if (!res.ok) {
-      console.error(`❌ התחברות נכשלה (סטטוס: ${res.status} ${res.statusText})`);
+      const errText = await res.text().catch(() => '');
+      console.error(`❌ התחברות נכשלה (סטטוס: ${res.status} ${res.statusText}): ${errText.slice(0, 300)}`);
       return null;
     }
 

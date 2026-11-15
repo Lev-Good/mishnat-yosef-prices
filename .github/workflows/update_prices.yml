@@ -66,11 +66,14 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # בדיקה האם היו שינויים בקובץ המחירים או המיפוי
-          if git status --porcelain prices.json scripts/mapping_cache.json scripts/mishnat_live_catalog.json | grep -q .; then
+          git add prices.json scripts/mapping_cache.json
+          if [ -f scripts/mishnat_live_catalog.json ]; then
+            git add scripts/mishnat_live_catalog.json
+          fi
+          if git diff --staged --quiet; then
+            echo "לא חלו שינויים במחירים השבוע. אין צורך ב-Commit."
+          else
             echo "נמצאו עדכוני מחירים חדשים. מבצע Commit ו-Push..."
-            git add prices.json scripts/mapping_cache.json scripts/mishnat_live_catalog.json
             git commit -m "chore(prices): weekly automated supermarket price refresh [skip ci]"
             git push
-          else
-            echo "לא חלו שינויים במחירים השבוע. אין צורך ב-Commit."
           fi
