@@ -225,6 +225,8 @@ async function main() {
   console.log(`מצב Dry-Run: ${isDryRun ? 'כן (לא יישמרו שינויים)' : 'לא'}`);
   console.log(`גודל אצווה: ${BATCH_SIZE}, מגבלת פריטים: ${limit === Infinity ? 'הכל' : limit}`);
 
+  const todayStr = new Date().toISOString().split('T')[0];
+
   if (!fs.existsSync(PRICES_FILE)) {
     console.error(`❌ קובץ המחירים לא נמצא בנתיב: ${PRICES_FILE}`);
     process.exit(1);
@@ -288,7 +290,6 @@ async function main() {
   console.log(`סה"כ מוצרים לסריקה ועדכון: ${targetList.length}`);
 
   let updatedCount = 0;
-  const todayStr = new Date().toISOString().split('T')[0];
 
   // עיבוד באצוות
   for (let i = 0; i < targetList.length; i += BATCH_SIZE) {
