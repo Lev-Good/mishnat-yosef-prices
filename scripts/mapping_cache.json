@@ -305,10 +305,9 @@
     "harediOnlyProduce": false,
     "verifiedChains": [
       "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "ramiLevy"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "sugar_white": {
     "id": "sugar_white",
@@ -451,9 +450,9 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "yeshHesed"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "pasta_osem_penne": {
     "id": "pasta_osem_penne",
@@ -527,11 +526,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "ramiLevy"
+    ],
+    "lastVerified": "2026-11-15"
   },
   "corn_can": {
     "id": "corn_can",
