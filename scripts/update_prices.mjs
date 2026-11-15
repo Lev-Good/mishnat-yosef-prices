@@ -20,7 +20,9 @@ const isDryRun = args.includes('--dry-run');
 const limitIndex = args.indexOf('--limit');
 const limit = limitIndex !== -1 ? parseInt(args[limitIndex + 1], 10) : Infinity;
 const batchSizeIndex = args.indexOf('--batch-size');
-const BATCH_SIZE = batchSizeIndex !== -1 ? parseInt(args[batchSizeIndex + 1], 10) : 4;
+const BATCH_SIZE = batchSizeIndex !== -1 ? parseInt(args[batchSizeIndex + 1], 10) : 6;
+const candidateLimitIndex = args.indexOf('--candidate-limit');
+const MAX_CANDIDATES = candidateLimitIndex !== -1 ? parseInt(args[candidateLimitIndex + 1], 10) : Infinity;
 const targetIdIndex = args.indexOf('--id');
 const targetId = targetIdIndex !== -1 ? args[targetIdIndex + 1] : null;
 
@@ -245,12 +247,12 @@ async function main() {
     try {
       const liveCatalog = JSON.parse(fs.readFileSync(LIVE_CATALOG_FILE, 'utf8'));
       console.log(`ℹ️ נטען קטלוג משנת יוסף חי (${liveCatalog.length} פריטים). בודק מוצרים חדשים למיפוי...`);
-      const foodCategories = /(?:חלב|מקרר|סלטים|שימורים|אפיה|חטיפים|ממתקים|שתיה|קפואים|נקיון|היגיינה|טואלטיקה|דגנים|פסטה)/i;
+      const nonSupermarketCategories = /(?:הלבשה|בגדים|גרביים|מצעים|ספרים|צעצועים|משחקים|כלי\s*בית|ביגוד)/i;
       
       let candidateCount = 0;
       for (const item of liveCatalog) {
         if (!item.name || item.name.length < 3) continue;
-        if (item.category && !foodCategories.test(item.category) && !foodCategories.test(item.subCategory || '')) {
+        if (item.category && nonSupermarketCategories.test(item.category)) {
           continue;
         }
         // בדיקה האם המוצר כבר מותאם לפריט קיים במאגר
@@ -274,7 +276,7 @@ async function main() {
             lastVerified: todayStr
           });
           candidateCount++;
-          if (candidateCount >= 40) break; // מגבלת 40 פריטים חדשים בכל ריצה לשמירה על מכסות
+          if (candidateCount >= MAX_CANDIDATES) break;
         }
       }
       if (candidateCount > 0) {

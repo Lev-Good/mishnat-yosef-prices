@@ -66,10 +66,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # בדיקה האם היו שינויים בקובץ המחירים או המיפוי
-          git add prices.json scripts/mapping_cache.json
-          if [ -f scripts/mishnat_live_catalog.json ]; then
-            git add scripts/mishnat_live_catalog.json
-          fi
+          git add -A prices.json scripts/
           if git diff --staged --quiet; then
             echo "לא חלו שינויים במחירים השבוע. אין צורך ב-Commit."
           else
