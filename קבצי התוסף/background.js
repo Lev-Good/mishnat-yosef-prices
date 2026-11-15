@@ -229,6 +229,8 @@ chrome.runtime.onMessage.addListener((m, s, send) => {
       });
       return true;
     }
+    send({ ok: false });
+    return false;
   }
 
   if (m.type === 'testNotification') {

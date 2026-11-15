@@ -2,7 +2,7 @@
  * scripts/update_prices.mjs
  * 
  * Pipeline אוטונומי לרענון מחירי סופרמרקטים שבועי עבור "מוסיף למשנת".
- * משתמש ב-Gemini 3.8 Flash עם Google Search Grounding לשליפת מחירי אמת עדכניים.
+ * משתמש ב-Gemini עם Google Search Grounding לשליפת מחירי אמת עדכניים.
  * מופעל מדי יום ראשון ב-GitHub Actions או ידנית.
  */
 
@@ -34,11 +34,56 @@ if (!apiKey) {
 
 const ai = new GoogleGenAI({ apiKey });
 
+const CANDIDATE_MODELS = [
+  'gemini-3.8-flash',
+  'gemini-flash-latest',
+  'gemini-2.5-flash'
+];
+let activeModel = CANDIDATE_MODELS[0];
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function queryGeminiPricesForBatch(batchItems) {
+function isProduceItem(name, mappingEntry) {
+  if (mappingEntry && typeof mappingEntry.isProduce === 'boolean') {
+    return mappingEntry.isProduce;
+  }
+  return /(?:בצל|תפוחי?\s*אדמה|עגבני[הו]|מלפפון|גזר|פלפל|חסה|כרוב|בטטה|שום)/i.test(name || '');
+}
+
+async function generateWithFallback(prompt) {
+  let lastErr = null;
+  const modelsToTry = [activeModel, ...CANDIDATE_MODELS.filter(m => m !== activeModel)];
+
+  for (const modelName of modelsToTry) {
+    try {
+      const response = await ai.models.generateContent({
+        model: modelName,
+        contents: prompt,
+        config: {
+          tools: [{ googleSearch: {} }],
+          temperature: 0.1,
+        }
+      });
+      if (activeModel !== modelName) {
+        console.log(`ℹ️ עבר למודל פעיל: ${modelName}`);
+        activeModel = modelName;
+      }
+      return response;
+    } catch (err) {
+      lastErr = err;
+      const msg = String(err?.message || err);
+      if (msg.includes('404') || msg.includes('not found') || msg.includes('not supported')) {
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastErr;
+}
+
+async function queryGeminiPricesForBatch(batchItems, mappingCache) {
   const prompt = `
 אתה מומחה ישראלי להשוואת מחירי מזון ומוצרי צריכה ברשתות השיווק בישראל.
 משימתך היא למצוא את מחירי המדף המדויקים והעדכניים ביותר בישראל (נכון לשבוע הנוכחי) עבור רשימת המוצרים הבאה.
@@ -62,7 +107,7 @@ ${JSON.stringify(batchItems.map(p => ({
   name: p.name,
   aliases: p.aliases || [],
   lastKnownPrice: p.supermarketPrice,
-  isProduce: Boolean(p.isProduce)
+  isProduce: isProduceItem(p.name, mappingCache[p.id])
 })), null, 2)}
 
 פורמט התשובה המבוקש (JSON בלבד):
@@ -84,17 +129,13 @@ ${JSON.stringify(batchItems.map(p => ({
 `;
 
   try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: prompt,
-      config: {
-        tools: [{ googleSearch: {} }],
-        temperature: 0.1,
-      }
-    });
+    const response = await generateWithFallback(prompt);
 
-    const text = response.text || '';
-    
+    let text = response.text || '';
+    if (!text && response.candidates?.[0]?.content?.parts) {
+      text = response.candidates[0].content.parts.map(pt => pt.text || '').join('\n');
+    }
+
     // חילוץ ה-JSON מתוך תשובת המודל
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
@@ -149,7 +190,7 @@ async function main() {
     const batch = targetList.slice(i, i + BATCH_SIZE);
     console.log(`\n📦 מעבד אצווה ${Math.floor(i / BATCH_SIZE) + 1} מתוך ${Math.ceil(targetList.length / BATCH_SIZE)} (${batch.map(b => b.name).join(', ')})...`);
 
-    const results = await queryGeminiPricesForBatch(batch);
+    const results = await queryGeminiPricesForBatch(batch, mappingCache);
 
     for (const res of results) {
       const item = prices.find(p => p.id === res.id);
@@ -179,24 +220,32 @@ async function main() {
             validChainPrices[chain] = Math.round(val * 100) / 100;
           }
         } else {
-          // אם אין מחיר מאומת - נשאר null
+          // אם אין מחיר מאומת - נשאר null (ללא ניחושים)
           validChainPrices[chain] = null;
         }
       }
 
       // חישוב ממוצע חדש לרשתות שזמינות
-      const activeValues = Object.values(validChainPrices).filter(v => typeof v === 'number');
-      let newAvg = item.supermarketPrice;
-      if (activeValues.length > 0) {
-        const sum = activeValues.reduce((a, b) => a + b, 0);
-        newAvg = Math.round((sum / activeValues.length) * 100) / 100;
+      const activeValues = Object.values(validChainPrices).filter(v => typeof v === 'number' && v > 0);
+      if (activeValues.length === 0) {
+        console.warn(`ℹ️ לא נמצאו מחירי רשתות מאומתים עבור "${item.name}" השבוע - שומר על נתונים קיימים.`);
+        continue;
       }
+
+      const sum = activeValues.reduce((a, b) => a + b, 0);
+      const newAvg = Math.round((sum / activeValues.length) * 100) / 100;
 
       // עדכון הפריט
       item.chains = validChainPrices;
       item.supermarketPrice = newAvg;
       item.lastVerified = todayStr;
       updatedCount++;
+
+      // עדכון מטמון המיפוי
+      if (mappingCache[item.id]) {
+        mappingCache[item.id].verifiedChains = Object.keys(validChainPrices).filter(c => validChainPrices[c] != null);
+        mappingCache[item.id].lastVerified = todayStr;
+      }
 
       console.log(`✅ עודכן: ${item.name} -> ממוצע: ${newAvg} ש"ח (אושר עד: ${validChainPrices.osherAd ?? '-'}, רמי לוי: ${validChainPrices.ramiLevy ?? '-'}, יש חסד: ${validChainPrices.yeshHesed ?? '-'}, נטו חיסכון: ${validChainPrices.netoChisachon ?? '-'})`);
     }
@@ -211,8 +260,9 @@ async function main() {
   console.log(`\n🎉 סיום עיבוד. עודכנו ${updatedCount} פריטים בהצלחה.`);
 
   if (!isDryRun && updatedCount > 0) {
-    fs.writeFileSync(PRICES_FILE, JSON.stringify(prices, null, 2), 'utf8');
-    console.log(`💾 נשמר בהצלחה לקובץ: ${PRICES_FILE}`);
+    fs.writeFileSync(PRICES_FILE, JSON.stringify(prices, null, 2) + '\n', 'utf8');
+    fs.writeFileSync(MAPPING_FILE, JSON.stringify(mappingCache, null, 2) + '\n', 'utf8');
+    console.log(`💾 נשמר בהצלחה לקבצים: ${PRICES_FILE}, ${MAPPING_FILE}`);
   } else if (isDryRun) {
     console.log('ℹ️ מצב Dry-Run פעיל - לא נשמרו שינויים לקובץ.');
   }

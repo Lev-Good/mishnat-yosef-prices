@@ -9,6 +9,8 @@
 // @match        https://mishnatyosef.org/*
 // @match        https://*.mishnatyosef.org/*
 // @connect      digital.levtov.uk
+// @connect      raw.githubusercontent.com
+// @connect      cdn.jsdelivr.net
 // @grant        GM_xmlhttpRequest
 // @grant        GM_notification
 // @grant        GM_setValue
@@ -2635,8 +2637,9 @@ function showToast(msg, type = 'success') {
     "id": "milk_3",
     "name": "חלב תנובה 3% 1 ליטר",
     "aliases": [
-      "חלב 3",
-      "חלב תנובה 3"
+      "חלב 3%",
+      "חלב תנובה 3%",
+      "חלב טרי 3%"
     ],
     "supermarketPrice": 7.11,
     "chains": {
@@ -2651,8 +2654,9 @@ function showToast(msg, type = 'success') {
     "id": "milk_1",
     "name": "חלב תנובה 1% 1 ליטר",
     "aliases": [
-      "חלב 1",
-      "חלב תנובה 1"
+      "חלב 1%",
+      "חלב תנובה 1%",
+      "חלב טרי 1%"
     ],
     "supermarketPrice": 6.55,
     "chains": {
@@ -2667,9 +2671,10 @@ function showToast(msg, type = 'success') {
     "id": "eggs_l30",
     "name": "ביצים L תבנית 30",
     "aliases": [
-      "ביצים l",
-      "ביצים גודל l",
-      "תבנית 30"
+      "ביצים l 30",
+      "ביצים גודל l 30",
+      "תבנית 30 ביצים l",
+      "תבנית 30 ביצים"
     ],
     "supermarketPrice": 38,
     "chains": {
@@ -2684,8 +2689,9 @@ function showToast(msg, type = 'success') {
     "id": "eggs_m30",
     "name": "ביצים M תבנית 30",
     "aliases": [
-      "ביצים m",
-      "ביצים גודל m"
+      "ביצים m 30",
+      "ביצים גודל m 30",
+      "תבנית 30 ביצים m"
     ],
     "supermarketPrice": 34.5,
     "chains": {
@@ -2700,7 +2706,9 @@ function showToast(msg, type = 'success') {
     "id": "eggs_l12",
     "name": "ביצים L מארז 12",
     "aliases": [
-      "מארז 12",
+      "ביצים l 12",
+      "מארז 12 ביצים",
+      "12 ביצים l",
       "12 ביצים"
     ],
     "supermarketPrice": 15.2,
@@ -2732,8 +2740,9 @@ function showToast(msg, type = 'success') {
     "id": "cottage_5",
     "name": "קוטג' תנובה 5% 250 גרם",
     "aliases": [
-      "קוטג 5",
-      "קוטג' 5"
+      "קוטג 5%",
+      "קוטג תנובה 5%",
+      "קוטג 250"
     ],
     "supermarketPrice": 6.87,
     "chains": {
@@ -2878,7 +2887,7 @@ function showToast(msg, type = 'success') {
     "name": "שמן סויה 1 ליטר",
     "aliases": [
       "שמן סויה",
-      "סויה 1 ליטר"
+      "שמן סויה 1 ליטר"
     ],
     "supermarketPrice": 8.43,
     "chains": {
@@ -3175,9 +3184,9 @@ function showToast(msg, type = 'success') {
   },
   {
     "id": "tomato_paste_100",
-    "name": "רסק עגבניות 28-30% 100 גרם (שלישייה/יחידה)",
+    "name": "רסק עגבניות 28-30% 100 גרם",
     "aliases": [
-      "רסק עגבניות",
+      "רסק עגבניות 100",
       "רסק 100 גרם"
     ],
     "supermarketPrice": 2.03,
@@ -3260,10 +3269,10 @@ function showToast(msg, type = 'success') {
     "id": "bread_wholewheat",
     "name": "לחם 100% חיטה מלאה פרוס (דגנית עין בר/ברמן/אנגל)",
     "aliases": [
-      "חיטה מלאה",
-      "דגנית עין בר",
-      "לחם מלא",
-      "מחיטה מלאה"
+      "לחם חיטה מלאה",
+      "לחם דגנית עין בר",
+      "לחם מלא פרוס",
+      "לחם מחיטה מלאה"
     ],
     "supermarketPrice": 12.43,
     "chains": {
@@ -3415,7 +3424,7 @@ function showToast(msg, type = 'success') {
     "aliases": [
       "קוקה קולה שישיה",
       "קולה שישיה",
-      "קוקה קולה 1.5"
+      "שישיית קוקה קולה"
     ],
     "supermarketPrice": 43.57,
     "chains": {
@@ -3432,7 +3441,7 @@ function showToast(msg, type = 'success') {
     "aliases": [
       "קולה זירו שישיה",
       "זירו שישיה",
-      "קוקה קולה זירו"
+      "שישיית קוקה קולה זירו"
     ],
     "supermarketPrice": 43.57,
     "chains": {
@@ -3528,8 +3537,9 @@ function showToast(msg, type = 'success') {
     "id": "fairy_dish",
     "name": "נוזל כלים פיירי 650 מ\"ל",
     "aliases": [
-      "פיירי",
-      "נוזל כלים פיירי"
+      "נוזל כלים פיירי",
+      "סבון כלים פיירי 650",
+      "פיירי 650"
     ],
     "supermarketPrice": 12.2,
     "chains": {
@@ -3544,8 +3554,8 @@ function showToast(msg, type = 'success') {
     "id": "persil_gel",
     "name": "ג'ל כביסה פרסיל / אריאל 2.5 ליטר",
     "aliases": [
-      "ג'ל כביסה",
-      "גל כביסה",
+      "ג'ל כביסה פרסיל",
+      "גל כביסה פרסיל",
       "פרסיל כביסה",
       "אריאל ג'ל"
     ],
@@ -3578,7 +3588,8 @@ function showToast(msg, type = 'success') {
     "id": "sano_bleach",
     "name": "אקונומיקה סנו ג'ל 750 מ\"ל",
     "aliases": [
-      "אקונומיקה סנו",
+      "אקונומיקה סנו ג'ל",
+      "אקונומיקה סנו גל",
       "סנו ג'ל"
     ],
     "supermarketPrice": 10.97,
@@ -4288,65 +4299,142 @@ function showToast(msg, type = 'success') {
 
   /* ---------- מנוע זיהוי יחידות מידה ומשקלים (Weight & Unit Parser) ---------- */
   function parseProductUnits(rawStr) {
-    if (!rawStr) return { weightGrams: null, volumeMl: null, packCount: null, isBig: false, isSmall: false };
+    if (!rawStr) {
+      return {
+        weightGrams: null, weightMin: null, weightMax: null,
+        volumeMl: null, volumeMin: null, volumeMax: null,
+        packCount: null, packMin: null, packMax: null,
+        isBig: false, isSmall: false
+      };
+    }
     const s = rawStr.toString().toLowerCase();
 
-    let weightGrams = null;
-    let volumeMl = null;
-    let packCount = null;
+    let weightGrams = null, weightMin = null, weightMax = null;
+    let volumeMl = null, volumeMin = null, volumeMax = null;
+    let packCount = null, packMin = null, packMax = null;
 
-    // 1. משקל בקילוגרמים: 1.5 ק"ג, 1 קג, 2 קילו, 1.25 ק''ג, kg
-    const kgMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:ק["'״׳]?ג|קג|קילו|kg)(?:[^\u0590-\u05fea-z0-9]|$)/i);
-    if (kgMatch) {
-      weightGrams = Math.round(parseFloat(kgMatch[1]) * 1000);
-    }
-
-    // 2. משקל בגרמים: 70 גרם, 250 גר', 500 ג', 100 גר, 100ג, g, gr
-    if (!weightGrams) {
-      const gMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:גרם|גר["'״׳]|ג["'״׳]|גר|ג|gr|g)(?:[^\u0590-\u05fea-z0-9]|$)/i);
-      if (gMatch) {
-        weightGrams = Math.round(parseFloat(gMatch[1]));
-      }
-    }
-
-    // 3. נפח בליטרים: 1.5 ליטר, 1 ל', 2ל, liter, l
-    const lMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:ליטר|ל["'״׳]|ל|liter|l)(?:[^\u0590-\u05fea-z0-9]|$)/i);
-    if (lMatch) {
-      volumeMl = Math.round(parseFloat(lMatch[1]) * 1000);
-    }
-
-    // 4. נפח במיליליטר: 330 מ"ל, 250 מל, 750 מ''ל, ml
-    if (!volumeMl) {
-      const mlMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:מ["'״׳]?ל|מל|ml)(?:[^\u0590-\u05fea-z0-9]|$)/i);
-      if (mlMatch) {
-        volumeMl = Math.round(parseFloat(mlMatch[1]));
-      }
-    }
-
-    // 5. מארזים וכמויות: מארז 4 יח', 6 יחידות, תבנית 30, מארז 12, רביעיית, שישיית, זוג, שלישייה
-    const packMatch = s.match(/(?:מארז|תבנית|חבילת|רביעיית|שישיית|זוג|שלישיית|עשיריית)\s*(\d+)?(?:\s*יח['"״׳]?|\s*יחידות)?/i);
-    if (packMatch && packMatch[1]) {
-      packCount = parseInt(packMatch[1], 10);
-    } else if (/זוג(?:\s|$)/.test(s)) {
-      packCount = 2;
-    } else if (/שלישיי?ה|שלישיית/.test(s)) {
-      packCount = 3;
-    } else if (/רביעיי?ה|רביעיית/.test(s)) {
-      packCount = 4;
-    } else if (/חמישיי?ה|חמישיית/.test(s)) {
-      packCount = 5;
-    } else if (/שישיי?ה|שישיית/.test(s)) {
-      packCount = 6;
-    } else if (/שמינ?יי?ה|שמינ?יית/.test(s)) {
-      packCount = 8;
-    } else if (/עשיריי?ה|עשיריית/.test(s)) {
-      packCount = 10;
+    // 1. משקל בקילוגרמים (כולל תמיכה בטווח כגון 1.5-2 ק"ג)
+    const kgRangeMatch = s.match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*(?:ק["'״׳]?ג|קג|קילו|kg)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+    if (kgRangeMatch) {
+      weightMin = Math.round(parseFloat(kgRangeMatch[1]) * 1000);
+      weightMax = Math.round(parseFloat(kgRangeMatch[2]) * 1000);
+      weightGrams = weightMax;
     } else {
-      const multiMatch = s.match(/(\d+)\s*[\*xX×]\s*(\d+)/);
+      const kgMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:ק["'״׳]?ג|קג|קילו|kg)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (kgMatch) {
+        weightGrams = Math.round(parseFloat(kgMatch[1]) * 1000);
+        weightMin = weightGrams;
+        weightMax = weightGrams;
+      }
+    }
+
+    // 2. משקל בגרמים (כולל תמיכה בטווח כגון 150-200 גרם, 400-500 גרם)
+    if (!weightGrams) {
+      const gRangeMatch = s.match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*(?:גרם|גר["'״׳]|ג["'״׳]|גר|ג|gr|g)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (gRangeMatch) {
+        weightMin = Math.round(parseFloat(gRangeMatch[1]));
+        weightMax = Math.round(parseFloat(gRangeMatch[2]));
+        weightGrams = weightMax;
+      } else {
+        const gMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:גרם|גר["'״׳]|ג["'״׳]|גר|ג|gr|g)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+        if (gMatch) {
+          weightGrams = Math.round(parseFloat(gMatch[1]));
+          weightMin = weightGrams;
+          weightMax = weightGrams;
+        }
+      }
+    }
+
+    // 3. נפח: בדיקת טווח משולב (כגון 750 מ"ל - 1 ליטר)
+    const mixedVolRange = s.match(/(\d+(?:\.\d+)?)\s*(?:מ["'״׳]?ל|מל|ml)\s*-\s*(\d+(?:\.\d+)?)\s*(?:ליטר|ל["'״׳]|ל|liter|l)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+    if (mixedVolRange) {
+      volumeMin = Math.round(parseFloat(mixedVolRange[1]));
+      volumeMax = Math.round(parseFloat(mixedVolRange[2]) * 1000);
+      volumeMl = volumeMax;
+    }
+
+    // 4. נפח בליטרים (כולל תמיכה בטווח)
+    if (!volumeMl) {
+      const lRangeMatch = s.match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*(?:ליטר|ל["'״׳]|ל|liter|l)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (lRangeMatch) {
+        volumeMin = Math.round(parseFloat(lRangeMatch[1]) * 1000);
+        volumeMax = Math.round(parseFloat(lRangeMatch[2]) * 1000);
+        volumeMl = volumeMax;
+      } else {
+        const lMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:ליטר|ל["'״׳]|ל|liter|l)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+        if (lMatch) {
+          volumeMl = Math.round(parseFloat(lMatch[1]) * 1000);
+          volumeMin = volumeMl;
+          volumeMax = volumeMl;
+        }
+      }
+    }
+
+    // 5. נפח במיליליטר (כולל תמיכה בטווח כגון 150-200 מ"ל)
+    if (!volumeMl) {
+      const mlRangeMatch = s.match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*(?:מ["'״׳]?ל|מל|ml)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (mlRangeMatch) {
+        volumeMin = Math.round(parseFloat(mlRangeMatch[1]));
+        volumeMax = Math.round(parseFloat(mlRangeMatch[2]));
+        volumeMl = volumeMax;
+      } else {
+        const mlMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:מ["'״׳]?ל|מל|ml)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+        if (mlMatch) {
+          volumeMl = Math.round(parseFloat(mlMatch[1]));
+          volumeMin = volumeMl;
+          volumeMax = volumeMl;
+        }
+      }
+    }
+
+    // 6. מארזים וכמויות:
+    if (/(?:^|\s)זוג(?:\s|$)/.test(s)) {
+      packCount = 2; packMin = 2; packMax = 2;
+    } else if (/שלישיי?ה|שלישיית/.test(s)) {
+      packCount = 3; packMin = 3; packMax = 3;
+    } else if (/רביעיי?ה|רביעיית/.test(s)) {
+      packCount = 4; packMin = 4; packMax = 4;
+    } else if (/חמישיי?ה|חמישיית/.test(s)) {
+      packCount = 5; packMin = 5; packMax = 5;
+    } else if (/שישיי?ה|שישיית/.test(s)) {
+      packCount = 6; packMin = 6; packMax = 6;
+    } else if (/שמינ?יי?ה|שמינ?יית/.test(s)) {
+      packCount = 8; packMin = 8; packMax = 8;
+    } else if (/עשיריי?ה|עשיריית/.test(s)) {
+      packCount = 10; packMin = 10; packMax = 10;
+    } else if (/תריסר/.test(s)) {
+      packCount = 12; packMin = 12; packMax = 12;
+    }
+
+    if (!packCount) {
+      const unitCountMatch = s.match(/(\d+)(?:\s*-\s*(\d+))?\s*(?:יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים|פחיות|בקבוקים)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      if (unitCountMatch) {
+        packMin = parseInt(unitCountMatch[1], 10);
+        packMax = unitCountMatch[2] ? parseInt(unitCountMatch[2], 10) : packMin;
+        packCount = packMax;
+      }
+    }
+
+    if (!packCount) {
+      const packMatch = s.match(/(?:מארז|תבנית)\s*(\d+)(?:\s*-\s*(\d+))?(?!\s*(?:\.\d+)?\s*(?:גר|ג['"״׳]?|ק["'״׳]?ג|קג|קילו|מ["'״׳]?ל|מל|ליטר|ל['"״׳]?|kg|gr|ml|l\b|%))/i);
+      if (packMatch && packMatch[1]) {
+        packMin = parseInt(packMatch[1], 10);
+        packMax = packMatch[2] ? parseInt(packMatch[2], 10) : packMin;
+        packCount = packMax;
+      }
+    }
+
+    if (!packCount) {
+      const multiMatch = s.match(/(\d+)\s*[\*xX×]\s*(\d+(?:\.\d+)?)\s*(גרם|גר['"״׳]?|ג['"״׳]?|gr|g)?/i);
       if (multiMatch) {
         packCount = parseInt(multiMatch[1], 10);
-        if (!weightGrams && multiMatch[2]) {
-          weightGrams = packCount * parseInt(multiMatch[2], 10);
+        packMin = packCount;
+        packMax = packCount;
+        if (multiMatch[3]) {
+          const totalG = Math.round(packCount * parseFloat(multiMatch[2]));
+          weightGrams = totalG;
+          weightMin = totalG;
+          weightMax = totalG;
         }
       }
     }
@@ -4356,32 +4444,73 @@ function showToast(msg, type = 'success') {
     const isSmall = /(?:אישי|קטן|מיני|כיס)/i.test(s) 
       || (weightGrams != null && weightGrams <= 80 && /(?:חטיף|ביסלי|במבה|תפוצ[יפ]ס|דוריטוס)/i.test(s));
 
-    return { weightGrams, volumeMl, packCount, isBig, isSmall };
+    return {
+      weightGrams, weightMin, weightMax,
+      volumeMl, volumeMin, volumeMax,
+      packCount, packMin, packMax,
+      isBig, isSmall
+    };
+  }
+
+  function rangesCompatible(min1, max1, min2, max2, tolerance = 0.08) {
+    const aMin = min1 ?? max1;
+    const aMax = max1 ?? min1;
+    const bMin = min2 ?? max2;
+    const bMax = max2 ?? min2;
+    if (aMin == null || bMin == null) return true;
+
+    if (aMax < bMin) {
+      return (bMin - aMax) / bMin <= tolerance;
+    }
+    if (bMax < aMin) {
+      return (aMin - bMax) / aMin <= tolerance;
+    }
+    return true;
   }
 
   function areUnitsCompatible(u1, u2) {
     if (!u1 || !u2) return true;
 
-    // 1. בדיקת משקל (אם לשניהם זוהה משקל): חייב להיות תואם (סטייה מקסימלית של 8% למניעת פערי עיגול)
+    // 1. בדיקת משקל (כולל תמיכה בטווחים ובסטייה של עד 8%)
     if (u1.weightGrams && u2.weightGrams) {
-      const diffPct = Math.abs(u1.weightGrams - u2.weightGrams) / Math.max(u1.weightGrams, u2.weightGrams);
-      if (diffPct > 0.08) return false;
+      if (!rangesCompatible(u1.weightMin, u1.weightMax, u2.weightMin, u2.weightMax, 0.08)) {
+        return false;
+      }
     }
 
-    // 2. בדיקת נפח (אם לשניהם זוהה נפח): חייב להיות תואם (סטייה מקסימלית של 8%)
+    // 2. בדיקת נפח (כולל תמיכה בטווחים ובסטייה של עד 8%)
     if (u1.volumeMl && u2.volumeMl) {
-      const diffPct = Math.abs(u1.volumeMl - u2.volumeMl) / Math.max(u1.volumeMl, u2.volumeMl);
-      if (diffPct > 0.08) return false;
+      if (!rangesCompatible(u1.volumeMin, u1.volumeMax, u2.volumeMin, u2.volumeMax, 0.08)) {
+        return false;
+      }
     }
 
-    // 3. בדיקת כמות במארז (אם לשניהם זוהתה כמות מארז): חייב להיות שווה
+    // 2ב. אי-תאימות בין משקל לנפח (למשל 100 גרם מול 1 ליטר = 1000 מ"ל)
+    if (u1.weightGrams && !u1.volumeMl && u2.volumeMl && !u2.weightGrams) {
+      if (!rangesCompatible(u1.weightMin, u1.weightMax, u2.volumeMin, u2.volumeMax, 0.15)) {
+        return false;
+      }
+    }
+    if (u1.volumeMl && !u1.weightGrams && u2.weightGrams && !u2.volumeMl) {
+      if (!rangesCompatible(u1.volumeMin, u1.volumeMax, u2.weightMin, u2.weightMax, 0.15)) {
+        return false;
+      }
+    }
+
+    // 3. בדיקת כמות במארז (כולל תמיכה בטווח כגון 50-60 יח')
     if (u1.packCount && u2.packCount) {
-      if (u1.packCount !== u2.packCount) return false;
+      if (!rangesCompatible(u1.packMin, u1.packMax, u2.packMin, u2.packMax, 0.0)) {
+        return false;
+      }
     }
 
-    // 4. אי-התאמה של מארז מול יחידה בודדת
+    // 4. אי-התאמה של מארז מול יחידה בודדת (אלא אם המשקל הכולל זהה לחלוטין)
     if ((u1.packCount && u1.packCount > 1 && !u2.packCount) || (u2.packCount && u2.packCount > 1 && !u1.packCount)) {
-      return false;
+      const sameTotalWeight = u1.weightGrams && u2.weightGrams && !u1.volumeMl && !u2.volumeMl
+        && rangesCompatible(u1.weightMin, u1.weightMax, u2.weightMin, u2.weightMax, 0.05);
+      if (!sameTotalWeight) {
+        return false;
+      }
     }
 
     // 5. בדיקת אריזה גדולה מול אריזה אישית/קטנה
@@ -4392,33 +4521,57 @@ function showToast(msg, type = 'success') {
     return true;
   }
 
+  function tokenMatches(n, nWords, tok) {
+    if (/\d/.test(tok)) {
+      return nWords.includes(tok);
+    }
+    return n.includes(tok);
+  }
+
   function findMarketComparison(itemName, barcode = '') {
     if (!itemName) return null;
     const n = norm(itemName);
+    const nWords = n.split(/\s+/);
     const catalog = dynamicMarketItems || MARKET_ANCHOR_ITEMS;
     if (!Array.isArray(catalog)) return null;
 
     const targetUnits = parseProductUnits(itemName);
+    const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
 
-    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (כולל נירמול גרשיים ורווחים)
+    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (בחירת ההתאמה הספציפית/ארוכה ביותר)
+    let bestStep1 = null;
+    let bestStep1Len = 0;
     for (const item of catalog) {
+      if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
       const itemUnits = parseProductUnits(item.name);
       if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
 
-      if (item.aliases && item.aliases.some(alias => {
-        const na = norm(alias);
-        return na.length >= 2 && n.includes(na);
-      })) {
-        return item;
-      }
       const iname = norm(item.name);
       if (iname.length >= 3 && (n.includes(iname) || (iname.includes(n) && n.length >= iname.length * 0.7))) {
-        return item;
+        const score = iname.length + 100;
+        if (score > bestStep1Len) {
+          bestStep1Len = score;
+          bestStep1 = item;
+        }
+      }
+
+      if (item.aliases) {
+        for (const alias of item.aliases) {
+          const na = norm(alias);
+          if (na.length >= 2 && n.includes(na)) {
+            if (na.length > bestStep1Len) {
+              bestStep1Len = na.length;
+              bestStep1 = item;
+            }
+          }
+        }
       }
     }
+    if (bestStep1) return bestStep1;
 
-    // 2. התאמה חכמה לפי מילות מפתח (מילים מהותיות בסדר שונה, כגון "חלב 3% 1 ליטר תנובה" מול "חלב תנובה 3")
+    // 2. התאמה חכמה לפי מילות מפתח (מילים מהותיות בסדר שונה, כגון "חלב 3% 1 ליטר תנובה" מול "חלב תנובה 3%")
     for (const item of catalog) {
+      if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
       const itemUnits = parseProductUnits(item.name);
       if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
 
@@ -4426,13 +4579,13 @@ function showToast(msg, type = 'success') {
         for (const alias of item.aliases) {
           const na = norm(alias);
           const tokens = na.split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
-          if (tokens.length >= 2 && tokens.every(tok => n.includes(tok))) {
+          if (tokens.length >= 2 && tokens.every(tok => tokenMatches(n, nWords, tok))) {
             return item;
           }
         }
       }
-      const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3);
-      if (itemTokens.length >= 3 && itemTokens.every(tok => n.includes(tok))) {
+      const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3 || /\d/.test(w));
+      if (itemTokens.length >= 3 && itemTokens.every(tok => tokenMatches(n, nWords, tok))) {
         return item;
       }
     }
@@ -4449,7 +4602,7 @@ function showToast(msg, type = 'success') {
     const chains = item.chains || {};
     const activeChainEntries = [];
     for (const c of selChains) {
-      if (chains[c] != null && chains[c] > 0) {
+      if (chains[c] != null && typeof chains[c] === 'number' && chains[c] > 0) {
         activeChainEntries.push([c, Number(chains[c])]);
       }
     }
@@ -4458,7 +4611,7 @@ function showToast(msg, type = 'success') {
     if (activeChainEntries.length > 0) {
       const sum = activeChainEntries.reduce((acc, [, price]) => acc + price, 0);
       effectivePrice = Math.round((sum / activeChainEntries.length) * 100) / 100;
-    } else {
+    } else if (!item.chains || Object.keys(item.chains).length === 0) {
       effectivePrice = item.supermarketPrice || 0;
     }
 
@@ -6808,5 +6961,4 @@ function showToast(msg, type = 'success') {
 
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();
-
 })();
