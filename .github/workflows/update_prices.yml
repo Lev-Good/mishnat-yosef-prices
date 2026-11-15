@@ -2,8 +2,8 @@ name: Weekly Supermarket Price Refresh
 
 on:
   schedule:
-    # רץ בכל בוקר בימי חול (ראשון עד חמישי) בשעה 05:00 UTC (07:00 / 08:00 שעון ישראל)
-    - cron: '0 5 * * 0-4'
+    # רץ פעם בשבוע ביום חמישי בערב בשעה 19:00 UTC (21:00 שעון חורף / 22:00 שעון קיץ)
+    - cron: '0 19 * * 4'
   workflow_dispatch:
     inputs:
       dry_run:
