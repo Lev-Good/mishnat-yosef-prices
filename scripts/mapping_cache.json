@@ -12,7 +12,6 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
       "ramiLevy",
       "yeshHesed"
     ],
