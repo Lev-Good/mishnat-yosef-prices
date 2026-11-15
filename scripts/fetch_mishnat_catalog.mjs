@@ -1,0 +1,191 @@
+/**
+ * scripts/fetch_mishnat_catalog.mjs
+ * 
+ * שולף באופן אוטונומי את כל מוצרי המכירה הפתוחה של משנת יוסף
+ * תוך שימוש בסודות השמורים ב-GitHub Secrets (MISHNAT_EMAIL, MISHNAT_PASSWORD).
+ */
+
+import fs from 'fs';
+import path from 'path';
+
+const API_BASE = 'https://v2.mishnatyosef.org/api';
+const OUTPUT_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
+
+const email = process.env.MISHNAT_EMAIL;
+const password = process.env.MISHNAT_PASSWORD;
+
+async function login(email, password) {
+  if (!email || !password) {
+    console.warn('⚠️ MISHNAT_EMAIL או MISHNAT_PASSWORD אינם מוגדרים בסביבה.');
+    return null;
+  }
+
+  console.log(`🔑 מתחבר לאתר משנת יוסף כמשתמש: ${email.replace(/(.{2})(.*)(@.*)/, '$1***$3')}...`);
+  try {
+    const res = await fetch(`${API_BASE}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      },
+      body: JSON.stringify({ email, password }),
+      signal: AbortSignal.timeout(15000)
+    });
+
+    if (!res.ok) {
+      console.error(`❌ התחברות נכשלה (סטטוס: ${res.status} ${res.statusText})`);
+      return null;
+    }
+
+    const data = await res.json();
+    const token = data.access_token || data.token || (data.data && data.data.token);
+    if (!token) {
+      console.error('❌ לא התקבל access_token מתשובת ההתחברות:', JSON.stringify(data).slice(0, 200));
+      return null;
+    }
+
+    console.log('✅ התחברות הצליחה! התקבל Token מאובטח.');
+    return token;
+  } catch (err) {
+    console.error('❌ שגיאה במהלך התחברות למשנת יוסף:', err.message);
+    return null;
+  }
+}
+
+async function fetchOpenSales(token) {
+  try {
+    const res = await fetch(`${API_BASE}/profile/open_sales`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      },
+      signal: AbortSignal.timeout(12000)
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return Array.isArray(json?.data) ? json.data : (Array.isArray(json) ? json : []);
+  } catch (err) {
+    console.warn('⚠️ שגיאה בשליפת מכירות פתוחות:', err.message);
+    return [];
+  }
+}
+
+async function fetchLatestOrders(token) {
+  try {
+    const res = await fetch(`${API_BASE}/orders?page=1`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      },
+      signal: AbortSignal.timeout(12000)
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return Array.isArray(json?.data) ? json.data : (Array.isArray(json) ? json : []);
+  } catch (err) {
+    console.warn('⚠️ שגיאה בשליפת הזמנות אחרונות:', err.message);
+    return [];
+  }
+}
+
+async function fetchSaleItems(token, targetId) {
+  const allItems = [];
+  let page = 1;
+  let totalPages = 1;
+
+  while (page <= totalPages && page <= 10) {
+    try {
+      console.log(`📦 שולף מוצרים עמוד ${page}...`);
+      const url = `${API_BASE}/get_items_for_sale/${targetId}/null?page=${page}&limit=500`;
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        },
+        signal: AbortSignal.timeout(15000)
+      });
+
+      if (!res.ok) {
+        console.warn(`⚠️ שגיאה בעמוד ${page}: ${res.status}`);
+        break;
+      }
+
+      const json = await res.json();
+      const rows = Array.isArray(json?.data) ? json.data : (Array.isArray(json) ? json : []);
+      if (!rows.length) break;
+
+      allItems.push(...rows);
+
+      if (json.pagination && json.pagination.total_pages) {
+        totalPages = parseInt(json.pagination.total_pages, 10);
+      } else {
+        totalPages = 1;
+      }
+      page++;
+    } catch (err) {
+      console.warn(`⚠️ שגיאה בשליפת עמוד ${page}:`, err.message);
+      break;
+    }
+  }
+
+  return allItems;
+}
+
+async function main() {
+  const token = await login(email, password);
+  if (!token) {
+    console.log('ℹ️ דילוג על שאיבת קטלוג משנת יוסף (אין גישה פעילה).');
+    return;
+  }
+
+  const sales = await fetchOpenSales(token);
+  console.log(`ℹ️ נמצאו ${sales.length} מכירות פתוחות.`);
+
+  const orders = await fetchLatestOrders(token);
+  console.log(`ℹ️ נמצאו ${orders.length} הזמנות בחשבון.`);
+
+  // איתור מזהה להזמנה/מכירה פתוחה
+  let targetId = null;
+  if (orders.length > 0 && orders[0].id) {
+    targetId = orders[0].id;
+    console.log(`🎯 משתמש בהזמנה אחרונה: #${targetId}`);
+  } else if (sales.length > 0 && sales[0].id) {
+    targetId = sales[0].id;
+    console.log(`🎯 משתמש במכירה פתוחה: #${targetId}`);
+  }
+
+  if (!targetId) {
+    console.warn('⚠️ לא נמצא מזהה מכירה/הזמנה לשליפת קטלוג.');
+    return;
+  }
+
+  const rawItems = await fetchSaleItems(token, targetId);
+  console.log(`🎉 נשלפו ${rawItems.length} מוצרים ממשנת יוסף!`);
+
+  if (rawItems.length > 0) {
+    const cleanCatalog = rawItems.map(r => {
+      const name = r.name || (r.product && r.product.name);
+      const pid = r.itemID != null ? r.itemID : (r.product && r.product.id);
+      const price = parseFloat(r.price ?? (r.item_sale && r.item_sale.price) ?? r.cost ?? 0) || 0;
+      return {
+        id: pid,
+        name,
+        price,
+        category: r.category_name || r.category || (r.product && r.product.category_name) || '',
+        subCategory: r.sub_category_name || (r.product && r.product.sub_category_name) || '',
+        itemSalesId: r.id != null ? r.id : r.item_salesID
+      };
+    }).filter(it => it.name && it.id);
+
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(cleanCatalog, null, 2), 'utf8');
+    console.log(`💾 קטלוג משנת יוסף נשמר בהצלחה: ${OUTPUT_FILE} (${cleanCatalog.length} פריטים)`);
+  }
+}
+
+main().catch(err => {
+  console.error('❌ שגיאה כללית בריצת שאיבת הקטלוג:', err);
+});

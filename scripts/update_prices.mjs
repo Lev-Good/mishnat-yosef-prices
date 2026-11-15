@@ -236,6 +236,42 @@ async function main() {
     mappingCache = JSON.parse(fs.readFileSync(MAPPING_FILE, 'utf8'));
   }
 
+  // שילוב מוצרים חדשים מקטלוג משנת יוסף החי (אם נשלף בסבב הנוכחי)
+  const LIVE_CATALOG_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
+  if (fs.existsSync(LIVE_CATALOG_FILE)) {
+    try {
+      const liveCatalog = JSON.parse(fs.readFileSync(LIVE_CATALOG_FILE, 'utf8'));
+      console.log(`ℹ️ נטען קטלוג משנת יוסף חי (${liveCatalog.length} פריטים). בודק מוצרים חדשים למיפוי...`);
+      const foodCategories = /(?:חלב|מקרר|סלטים|שימורים|אפיה|חטיפים|ממתקים|שתיה|קפואים|נקיון|היגיינה|טואלטיקה|דגנים|פסטה)/i;
+      
+      let candidateCount = 0;
+      for (const item of liveCatalog) {
+        if (!item.name || item.name.length < 3) continue;
+        if (item.category && !foodCategories.test(item.category) && !foodCategories.test(item.subCategory || '')) {
+          continue;
+        }
+        const exists = prices.some(p => p.id === `my_${item.id}` || p.name === item.name || (p.aliases && p.aliases.includes(item.name)));
+        if (!exists) {
+          prices.push({
+            id: `my_${item.id}`,
+            name: item.name,
+            aliases: [item.name],
+            supermarketPrice: 0,
+            chains: { osherAd: null, ramiLevy: null, yeshHesed: null, netoChisachon: null },
+            lastVerified: todayStr
+          });
+          candidateCount++;
+          if (candidateCount >= 25) break; // מגבלת 25 פריטים חדשים בכל ריצה לשמירה על מכסות
+        }
+      }
+      if (candidateCount > 0) {
+        console.log(`✨ נוספו ${candidateCount} מוצרים חדשים מקטלוג משנת יוסף לבדיקת מחירי רשתות!`);
+      }
+    } catch (e) {
+      console.warn('⚠️ שגיאה בקריאת mishnat_live_catalog.json:', e.message);
+    }
+  }
+
   let targetList = prices;
   if (targetId) {
     targetList = prices.filter(p => p.id === targetId);
@@ -297,7 +333,11 @@ async function main() {
       // חישוב ממוצע חדש לרשתות שזמינות
       const activeValues = Object.values(validChainPrices).filter(v => typeof v === 'number' && v > 0);
       if (activeValues.length === 0) {
-        console.warn(`ℹ️ לא נמצאו מחירי רשתות מאומתים עבור "${item.name}" השבוע - שומר על נתונים קיימים.`);
+        if (item.id.startsWith('my_') && item.supermarketPrice === 0) {
+          const idx = prices.indexOf(item);
+          if (idx !== -1) prices.splice(idx, 1);
+        }
+        console.warn(`ℹ️ לא נמצאו מחירי רשתות מאומתים עבור "${item.name}" השבוע - מדלג.`);
         continue;
       }
 

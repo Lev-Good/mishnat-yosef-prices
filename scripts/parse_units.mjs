@@ -112,9 +112,9 @@ export function parseProductUnits(rawStr) {
     packCount = 12; packMin = 12; packMax = 12;
   }
 
-  // ב. מספר לפני יחידת מנייה מפורשת (כגון: 30 יח', 50-60 יח', 30 גלילים, 100 שקיקים, 12 ביצים)
+  // ב. מספר לפני יחידת מנייה מפורשת (כגון: 30 יח', 50-60 יח', 30 גלילים, 100 שקיקים, 12 ביצים, 8 גביעים)
   if (!packCount) {
-    const unitCountMatch = s.match(/(\d+)(?:\s*-\s*(\d+))?\s*(?:יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים|פחיות|בקבוקים)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+    const unitCountMatch = s.match(/(\d+)(?:\s*-\s*(\d+))?\s*(?:יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים|פחיות|בקבוקים|גביעים|כוסות|חבילות|שלגונים|ארטיקים)(?:[^\u0590-\u05fea-z0-9]|$)/i);
     if (unitCountMatch) {
       packMin = parseInt(unitCountMatch[1], 10);
       packMax = unitCountMatch[2] ? parseInt(unitCountMatch[2], 10) : packMin;

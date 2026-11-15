@@ -3167,7 +3167,10 @@ function showToast(msg, type = 'success') {
     "name": "במבה אסם 80 גרם",
     "aliases": [
       "במבה אסם",
-      "במבה 80"
+      "במבה 80",
+      "במבה 80 גרם",
+      "במבה אסם 80",
+      "שקית במבה 80"
     ],
     "supermarketPrice": 4.53,
     "chains": {
@@ -3185,7 +3188,9 @@ function showToast(msg, type = 'success') {
       "ביסלי גריל 70",
       "ביסלי ברביקיו 70",
       "ביסלי בצל 70",
-      "ביסלי 70 גרם"
+      "ביסלי 70 גרם",
+      "חטיף ביסלי גריל 70",
+      "ביסלי גריל אסם"
     ],
     "supermarketPrice": 4.53,
     "chains": {
@@ -4290,6 +4295,131 @@ function showToast(msg, type = 'success') {
       "netoChisachon": 5.9
     },
     "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cheese_white_tara_5_500g",
+    "name": "גבינה לבנה 5% טרה 500 גרם",
+    "aliases": [
+      "גבינה 5% - טרה 500",
+      "גבינה 5% טרה 500",
+      "גבינה 5% - טרה",
+      "גבינה 5% טרה",
+      "גבינה לבנה טרה 500"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": 10.9,
+      "ramiLevy": 10.8,
+      "yeshHesed": 11.2,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cheese_emek_600g",
+    "name": "גבינה צהובה עמק 28% תנובה 600 גרם",
+    "aliases": [
+      "גבינה צהובה עמק - 600",
+      "גבינה צהובה עמק 600",
+      "פרוסות גבינה צהובה בוואקום",
+      "גבינה צהובה עמק - 600 גר'"
+    ],
+    "supermarketPrice": 37.4,
+    "chains": {
+      "osherAd": 36.9,
+      "ramiLevy": 37.4,
+      "yeshHesed": 37.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "carlo_choco_8",
+    "name": "מאגדת מעדן קרלו שוקו תנובה 8 גביעים",
+    "aliases": [
+      "מאגדת קרלו בטעם שוקו (חום)",
+      "מאגדת קרלו בטעם שוקו",
+      "קרלו שוקו 8",
+      "קרלו 8 גביעים",
+      "מעדן קרלו שוקו"
+    ],
+    "supermarketPrice": 15.5,
+    "chains": {
+      "osherAd": 14.9,
+      "ramiLevy": 15.5,
+      "yeshHesed": 16.2,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cookies_tirosh_half_moon_175g",
+    "name": "עוגיות ביסקוויט חצי ירח תירוש 175 גרם",
+    "aliases": [
+      "עוגיות חצי ירח - תירוש",
+      "עוגיות חצי ירח תירוש",
+      "חצי ירח - תירוש",
+      "עוגיות חצי ירח"
+    ],
+    "supermarketPrice": 9.9,
+    "chains": {
+      "osherAd": 8.9,
+      "ramiLevy": 9.9,
+      "yeshHesed": 10.9,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cheese_tara_5_250g",
+    "name": "גבינה לבנה 5% טרה 250 גרם",
+    "aliases": [
+      "גבינה 5% - טרה 250",
+      "גבינה 5% טרה 250",
+      "גבינה לבנה טרה 250"
+    ],
+    "supermarketPrice": 5.75,
+    "chains": {
+      "osherAd": 5.75,
+      "ramiLevy": 5.75,
+      "yeshHesed": 5.75,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cheese_noam_200g",
+    "name": "גבינה צהובה נעם 28% טרה 200 גרם",
+    "aliases": [
+      "גבינה צהובה נעם 200",
+      "נעם פרוסות 200",
+      "גבינה צהובה נעם טרה 200"
+    ],
+    "supermarketPrice": 14.5,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 14.5,
+      "yeshHesed": 15.2,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
+  },
+  {
+    "id": "cottage_tara_5_250g",
+    "name": "קוטג' 5% טרה 250 גרם",
+    "aliases": [
+      "קוטג' טרה 5%",
+      "קוטג' 5% טרה",
+      "קוטג' טרה 250"
+    ],
+    "supermarketPrice": 6.9,
+    "chains": {
+      "osherAd": 6.8,
+      "ramiLevy": 6.9,
+      "yeshHesed": 7.1,
+      "netoChisachon": null
+    },
+    "lastVerified": "2026-11-15"
   }
 ];
 
@@ -4451,7 +4581,7 @@ function showToast(msg, type = 'success') {
     }
 
     if (!packCount) {
-      const unitCountMatch = s.match(/(\d+)(?:\s*-\s*(\d+))?\s*(?:יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים|פחיות|בקבוקים)(?:[^\u0590-\u05fea-z0-9]|$)/i);
+      const unitCountMatch = s.match(/(\d+)(?:\s*-\s*(\d+))?\s*(?:יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים|פחיות|בקבוקים|גביעים|כוסות|חבילות|שלגונים|ארטיקים)(?:[^\u0590-\u05fea-z0-9]|$)/i);
       if (unitCountMatch) {
         packMin = parseInt(unitCountMatch[1], 10);
         packMax = unitCountMatch[2] ? parseInt(unitCountMatch[2], 10) : packMin;

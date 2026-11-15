@@ -39,9 +39,17 @@ jobs:
       - name: 🧪 הרצת בדיקות תקינות יחידות (Unit Parser Test)
         run: npm run test-units
 
+      - name: 🛒 שאיבת קטלוג המכירה ממשנת יוסף (באמצעות סודות המאגר)
+        env:
+          MISHNAT_EMAIL: ${{ secrets.MISHNAT_EMAIL }}
+          MISHNAT_PASSWORD: ${{ secrets.MISHNAT_PASSWORD }}
+        run: node scripts/fetch_mishnat_catalog.mjs
+
       - name: 🤖 הרצת מנוע רענון המחירים (Gemini Search Grounding)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MISHNAT_EMAIL: ${{ secrets.MISHNAT_EMAIL }}
+          MISHNAT_PASSWORD: ${{ secrets.MISHNAT_PASSWORD }}
         run: |
           ARGS=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then
@@ -58,9 +66,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # בדיקה האם היו שינויים בקובץ המחירים או המיפוי
-          if git status --porcelain prices.json scripts/mapping_cache.json | grep -q .; then
+          if git status --porcelain prices.json scripts/mapping_cache.json scripts/mishnat_live_catalog.json | grep -q .; then
             echo "נמצאו עדכוני מחירים חדשים. מבצע Commit ו-Push..."
-            git add prices.json scripts/mapping_cache.json
+            git add prices.json scripts/mapping_cache.json scripts/mishnat_live_catalog.json
             git commit -m "chore(prices): weekly automated supermarket price refresh [skip ci]"
             git push
           else

@@ -163,8 +163,23 @@ for (const item of catalog) {
   }
 }
 
+const userPositiveTests = [
+  { input: "גבינה 5% - טרה 500 גר'", expectedId: "cheese_white_tara_5_500g" },
+  { input: "גבינה צהובה עמק - 600 גר' פרוסות גבינה צהובה בוואקום", expectedId: "cheese_emek_600g" },
+  { input: "מאגדת קרלו בטעם שוקו (חום) 8 גביעים של 100 גרם", expectedId: "carlo_choco_8" },
+  { input: "עוגיות חצי ירח - תירוש 175 גרם, ביסקוויט מצופה שוקולד צד אחד", expectedId: "cookies_tirosh_half_moon_175g" }
+];
+
+for (const t of userPositiveTests) {
+  const m = findMarketComparison(t.input);
+  if (!m || m.id !== t.expectedId) {
+    console.error(`FAIL User Positive Test: "${t.input}" expected ${t.expectedId}, got ${m ? m.id : 'null'}`);
+    allPassed = false;
+  }
+}
+
 if (allPassed) {
-  console.log(`SUCCESS: All unit, range, negative (${negativeTests.length}), and catalog self-match (${catalog.length}) tests passed cleanly!`);
+  console.log(`SUCCESS: All unit, range, user positive (${userPositiveTests.length}), negative (${negativeTests.length}), and catalog self-match (${catalog.length}) tests passed cleanly!`);
 } else {
   process.exit(1);
 }
