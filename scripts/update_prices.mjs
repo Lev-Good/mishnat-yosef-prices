@@ -544,7 +544,12 @@ function parseModelJsonResponse(responseOrText) {
     console.warn('⚠️ אזהרה: לא נמצא מבנה JSON בתשובת המודל.');
     return null;
   }
-  return JSON.parse(jsonMatch[0]);
+  try {
+    return JSON.parse(jsonMatch[0]);
+  } catch (e) {
+    console.warn('⚠️ שגיאה בפענוח JSON מתשובת המודל:', e.message);
+    return null;
+  }
 }
 
 function isPriceSane(item, sourceName, val, livePrice) {
@@ -760,7 +765,11 @@ async function main() {
   const prices = JSON.parse(fs.readFileSync(PRICES_FILE, 'utf8'));
   let mappingCache = {};
   if (fs.existsSync(MAPPING_FILE)) {
-    mappingCache = JSON.parse(fs.readFileSync(MAPPING_FILE, 'utf8'));
+    try {
+      mappingCache = JSON.parse(fs.readFileSync(MAPPING_FILE, 'utf8'));
+    } catch (_) {
+      mappingCache = {};
+    }
   }
 
   // שילוב מוצרים חדשים מקטלוג משנת יוסף החי (ללא סינון קטגוריות) + שמירת מחיר משנת יוסף כעוגן שפיות

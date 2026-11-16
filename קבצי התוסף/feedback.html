@@ -211,19 +211,6 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('shareBtn').onclick = () => {
-      // קישור התוסף בחנות כרום לשיתוף
-      const storeUrl = document.getElementById('rateBtn').href;
-      const text = 'היי! מומלץ בחום להתקין את תוסף "מוסיף למשנת" לקניות קלות ומהירות במשנת יוסף: ' + storeUrl;
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('shareToast');
-        toast.style.display = 'block';
-        setTimeout(() => toast.style.display = 'none', 3000);
-      }).catch(() => {
-        prompt('העתק את הקישור לשיתוף:', storeUrl);
-      });
-    };
-  </script>
+  <script src="feedback.js"></script>
 </body>
 </html>

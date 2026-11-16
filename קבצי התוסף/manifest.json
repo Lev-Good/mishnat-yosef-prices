@@ -43,7 +43,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["feedback.html"],
+      "resources": ["feedback.html", "feedback.js"],
       "matches": ["https://mishnatyosef.org/*", "https://*.mishnatyosef.org/*"]
     }
   ]

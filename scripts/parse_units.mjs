@@ -150,7 +150,7 @@ export function parseProductUnits(rawStr) {
 
   // ה. תבניות ביצים (כגון "תבנית ביצים L 30", "תבנית 30 ביצים")
   if (!packCount) {
-    const trayMatch = s.match(/(?:תבנית|מארז)\s+(?:[^\d\s]+\s+)*(\d+)/i);
+    const trayMatch = s.match(/(?:תבנית|מארז)(?:\s+[^\d\s]+){0,4}\s+(\d+)/i);
     if (trayMatch) {
       const n = parseInt(trayMatch[1], 10);
       if (n >= 6 && n <= 60) {

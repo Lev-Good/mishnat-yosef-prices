@@ -404,17 +404,17 @@
     `;
     document.body.appendChild(d);
 
-    const close = () => d.remove();
+    const close = () => {
+      d.remove();
+      document.removeEventListener('keydown', escHandler);
+    };
     d.querySelector('.myfam-app-dialog-x').onclick = close;
     d.querySelector('.myfam-app-dialog-btn-primary').onclick = close;
     d.querySelector('.myfam-app-dialog-overlay').onclick = e => {
       if (e.target === d.querySelector('.myfam-app-dialog-overlay')) close();
     };
     const escHandler = e => {
-      if (e.key === 'Escape') {
-        close();
-        document.removeEventListener('keydown', escHandler);
-      }
+      if (e.key === 'Escape') close();
     };
     document.addEventListener('keydown', escHandler);
   }
@@ -843,6 +843,11 @@ function showToast(msg, type = 'success') {
       const r = p.getBoundingClientRect();
       startLeft = r.left;
       startTop = r.top;
+
+      window.addEventListener('mousemove', onPointerMove, { passive: true });
+      window.addEventListener('mouseup', onPointerUp);
+      window.addEventListener('touchmove', onPointerMove, { passive: false });
+      window.addEventListener('touchend', onPointerUp);
     };
 
     const onPointerMove = e => {
@@ -867,6 +872,11 @@ function showToast(msg, type = 'success') {
     };
 
     const onPointerUp = () => {
+      window.removeEventListener('mousemove', onPointerMove);
+      window.removeEventListener('mouseup', onPointerUp);
+      window.removeEventListener('touchmove', onPointerMove);
+      window.removeEventListener('touchend', onPointerUp);
+
       if (!panelDragging) return;
       panelDragging = false;
       p.classList.remove('dragging');
@@ -879,12 +889,7 @@ function showToast(msg, type = 'success') {
     };
 
     t.addEventListener('mousedown', onPointerDown);
-    window.addEventListener('mousemove', onPointerMove, { passive: true });
-    window.addEventListener('mouseup', onPointerUp);
-
     t.addEventListener('touchstart', onPointerDown, { passive: true });
-    window.addEventListener('touchmove', onPointerMove, { passive: false });
-    window.addEventListener('touchend', onPointerUp);
   }
 
   function placePanel(h) {
@@ -4861,7 +4866,7 @@ function showToast(msg, type = 'success') {
     }
 
     if (!packCount) {
-      const trayMatch = s.match(/(?:תבנית|מארז)\s+(?:[^\d\s]+\s+)*(\d+)/i);
+      const trayMatch = s.match(/(?:תבנית|מארז)(?:\s+[^\d\s]+){0,4}\s+(\d+)/i);
       if (trayMatch) {
         const n = parseInt(trayMatch[1], 10);
         if (n >= 6 && n <= 60) {
@@ -7471,19 +7476,24 @@ function showToast(msg, type = 'success') {
       positionBody();
     };
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !b.classList.contains('collapsed')) {
-        b.classList.add('collapsed');
-      }
-    });
+    if (!window._myfamGlobalListenersBound) {
+      window._myfamGlobalListenersBound = true;
+      document.addEventListener('keydown', e => {
+        const bodyEl = $('#myfam-body');
+        if (e.key === 'Escape' && bodyEl && !bodyEl.classList.contains('collapsed')) {
+          bodyEl.classList.add('collapsed');
+        }
+      });
 
-    document.addEventListener('click', e => {
-      if (!b.classList.contains('collapsed') && !e.target.closest('#myfam-panel,#myfam-body,#myfam-modal')) {
-        b.classList.add('collapsed');
-      }
-    });
+      document.addEventListener('click', e => {
+        const bodyEl = $('#myfam-body');
+        if (bodyEl && !bodyEl.classList.contains('collapsed') && !e.target.closest('#myfam-panel,#myfam-body,#myfam-modal')) {
+          bodyEl.classList.add('collapsed');
+        }
+      });
 
-    addEventListener('scroll', positionBody, { passive: true, capture: true });
+      addEventListener('scroll', positionBody, { passive: true, capture: true });
+    }
 
     // כפתורי כותרת עליונה
     $('#myfam-btn-header-tips').onclick = () => { b.classList.add('collapsed'); showTipsTour(0); };
@@ -7588,7 +7598,6 @@ function showToast(msg, type = 'success') {
 
   function init() {
     if (checkExcluded()) {
-      window.addEventListener('popstate', onRouteChanged);
       return;
     }
     extractSaleIdFromUrl();

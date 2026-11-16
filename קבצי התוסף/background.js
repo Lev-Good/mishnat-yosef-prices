@@ -160,6 +160,10 @@ function showNotification(id, title, message) {
 }
 
 chrome.runtime.onMessage.addListener((m, s, send) => {
+  const safeSend = data => {
+    try { send(data); } catch (_) {}
+  };
+
   if (m.type === 'req') {
     const o = m.o || {};
     const headers = { 'Accept': 'application/json' };
@@ -168,56 +172,60 @@ chrome.runtime.onMessage.addListener((m, s, send) => {
     }
     const auth = o.headers?.['Authorization'] || o.headers?.['authorization'] || o.auth;
     if (auth) headers['Authorization'] = auth;
-    fetch(o.url, {
-      method: o.method || 'GET',
-      body: o.body,
-      headers: headers,
-      credentials: 'include'
-    }).then(async r => {
-      const ct = r.headers.get('content-type') || '';
-      if (r.status === 401) {
-        send({ error: 'unauthorized', status: 401 });
-        return;
-      }
-      if (ct.includes('json')) {
-        const data = await r.json();
-        if (r.ok) {
-          send({ data, status: r.status });
-        } else {
-          send({ error: data.message || `HTTP ${r.status}`, status: r.status, data });
+    try {
+      fetch(o.url, {
+        method: o.method || 'GET',
+        body: o.body,
+        headers: headers,
+        credentials: 'include'
+      }).then(async r => {
+        const ct = r.headers.get('content-type') || '';
+        if (r.status === 401) {
+          safeSend({ error: 'unauthorized', status: 401 });
+          return;
         }
-      } else {
-        const text = await r.text();
-        if (r.ok) {
-          try {
-            send({ data: JSON.parse(text), status: r.status });
-          } catch (e) {
-            send({ error: 'HTML received (' + r.status + ')', status: r.status, text: text.slice(0, 200) });
+        if (ct.includes('json')) {
+          const data = await r.json();
+          if (r.ok) {
+            safeSend({ data, status: r.status });
+          } else {
+            safeSend({ error: data.message || `HTTP ${r.status}`, status: r.status, data });
           }
         } else {
-          send({ error: `HTTP ${r.status}`, status: r.status, text: text.slice(0, 200) });
+          const text = await r.text();
+          if (r.ok) {
+            try {
+              safeSend({ data: JSON.parse(text), status: r.status });
+            } catch (e) {
+              safeSend({ error: 'HTML received (' + r.status + ')', status: r.status, text: text.slice(0, 200) });
+            }
+          } else {
+            safeSend({ error: `HTTP ${r.status}`, status: r.status, text: text.slice(0, 200) });
+          }
         }
-      }
-    }).catch(e => {
-      send({ error: String(e.message || e) });
-    });
+      }).catch(e => {
+        safeSend({ error: String(e.message || e) });
+      });
+    } catch (fetchErr) {
+      safeSend({ error: String(fetchErr.message || fetchErr) });
+    }
     return true;
   }
 
   if (m.type === 'getCookies') {
     try {
       chrome.cookies.getAll({ domain: 'mishnatyosef.org' }, cookies => {
-        send({ cookies: cookies || [] });
+        safeSend({ cookies: cookies || [] });
       });
     } catch (e) {
-      send({ error: String(e) });
+      safeSend({ error: String(e) });
     }
     return true;
   }
 
   if (m.type === 'openFeedback') {
     chrome.tabs.create({ url: chrome.runtime.getURL('feedback.html') });
-    send({ ok: true });
+    safeSend({ ok: true });
     return true;
   }
 
@@ -225,17 +233,17 @@ chrome.runtime.onMessage.addListener((m, s, send) => {
     if (Array.isArray(m.sales) && m.sales.length) {
       chrome.storage.local.set({ last_known_sales: m.sales }, () => {
         // המטא עודכן מתוך הדף הפעיל – אין צורך להקפיץ התראה כעת כי המשתמש כבר באתר
-        send({ ok: true });
+        safeSend({ ok: true });
       });
       return true;
     }
-    send({ ok: false });
+    safeSend({ ok: false });
     return false;
   }
 
   if (m.type === 'testNotification') {
     showNotification('test_' + Date.now(), 'התראת בדיקה - מוסיף למשנת 🔔', 'ההתראות פועלות כשורה! תקבלו תזכורות בזמן על פתיחת וסגירת מכירות.');
-    send({ ok: true });
+    safeSend({ ok: true });
     return true;
   }
 });

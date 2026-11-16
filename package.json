@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "update-prices": "node scripts/update_prices.mjs",
-    "test-units": "node scripts/test_units.mjs"
+    "test-units": "node scripts/test_units.mjs",
+    "audit": "node scripts/audit_codebase.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.29.1"
