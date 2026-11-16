@@ -7,7 +7,7 @@
   const T = window.__MY_T;
 
   const APP_NAME = 'מוסיף למשנת';
-  const APP_VERSION = '0.6.3';
+  const APP_VERSION = '0.6.4';
   const ICONS = {
     info: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
     basket: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
@@ -32,7 +32,9 @@
     trash: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
     chevronDown: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polyline points="6 9 12 15 18 9"/></svg>`,
     lightbulb: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>`,
-    check: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polyline points="20 6 9 17 4 12"/></svg>`
+    check: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polyline points="20 6 9 17 4 12"/></svg>`,
+    expand: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`,
+    shrink: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`
   };
   const CONFIG = {
     autoFixedAfter: 3,
@@ -172,16 +174,53 @@
   function counts() {
     const m = {}, seen = new Set();
     const curSaleId = sale.id || extractSaleIdFromUrl();
-    for (const o of state.history) {
+    const sorted = [...state.history].sort((a, b) => ((a.date || '') < (b.date || '') ? -1 : 1));
+    for (const o of sorted) {
       if (curSaleId != null && String(o.saleId) === String(curSaleId)) continue;
       for (const it of o.items) {
         const sk = o.saleId + '|' + it.key;
         if (seen.has(sk)) continue; seen.add(sk);
-        const c = m[it.key] || (m[it.key] = { name: it.name, count: 0 });
+        const qty = Math.max(1, Number(it.qty) || 1);
+        const c = m[it.key] || (m[it.key] = { name: it.name, count: 0, totalQty: 0, lastQty: 0 });
         c.count++;
+        c.totalQty += qty;
+        c.lastQty = qty;
       }
     }
     return m;
+  }
+
+  function formatOrderBadge(n, info) {
+    const lastQty = info?.lastQty || 0;
+    const totalQty = info?.totalQty || 0;
+    if (n === 1) {
+      return lastQty > 0 ? `הוזמן פעם אחת (${lastQty} יח')` : `הוזמן ${times(n)}`;
+    }
+    if (totalQty > 0) {
+      return `הוזמן ${times(n)} · ${lastQty} יח' (סה"כ ${totalQty})`;
+    }
+    return `הוזמן ${times(n)}`;
+  }
+
+  function attachModalFullscreenBtn(boxEl, fsState) {
+    if (!boxEl) return;
+    boxEl.querySelector('.myfam-fs-btn')?.remove();
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'myfam-fs-btn';
+    const syncUi = () => {
+      const isFs = !!fsState.value;
+      boxEl.classList.toggle('myfam-modal-fs', isFs);
+      btn.innerHTML = isFs ? ICONS.shrink : ICONS.expand;
+      btn.title = isFs ? 'יציאה ממסך מלא' : 'הגדל למסך מלא';
+    };
+    syncUi();
+    btn.onclick = ev => {
+      ev.stopPropagation();
+      fsState.value = !fsState.value;
+      syncUi();
+    };
+    boxEl.appendChild(btn);
   }
 
   function isFixed(key, c) {
@@ -1041,10 +1080,15 @@ function showToast(msg, type = 'success') {
           cardHost.appendChild(tag);   // ילד ישיר של הכרטיס (position:relative) — ממוקם אבסולוטית, לא משפיע על הפריסה
         }
         {
+          const badgeInfo = c[key];
+          const badgeText = formatOrderBadge(n, badgeInfo);
           tag.className = 'myfam-tag' + (fx ? ' fixed' : '');
-          tag.innerHTML = fx 
-            ? `${ICONS.starFilled} <span>הוזמן ${times(n)}</span>`
-            : `<span>הוזמן ${times(n)}</span>`;
+          tag.innerHTML = fx
+            ? `${ICONS.starFilled} <span>${badgeText}</span>`
+            : `<span>${badgeText}</span>`;
+          if (badgeInfo && badgeInfo.totalQty > 0) {
+            tag.title = `הוזמן ${times(n)} | בהזמנה האחרונה: ${badgeInfo.lastQty} יח' | סה"כ בכל ההזמנות: ${badgeInfo.totalQty} יח'`;
+          }
         }
       } else {
         cd.querySelector(`.myfam-tag[data-tag-key="${key}"]`)?.remove();
@@ -2386,6 +2430,7 @@ function showToast(msg, type = 'success') {
     `;
 
     document.body.appendChild(m);
+    attachModalFullscreenBtn($('.myfam-forgotten-box', m), { value: false });
 
     // טיפול בהוספת מוצר בודד
     m.querySelectorAll('.myfam-btn-add-single').forEach(btn => {
@@ -5312,6 +5357,7 @@ function showToast(msg, type = 'success') {
     `;
 
     document.body.appendChild(m);
+    attachModalFullscreenBtn($('.myfam-savings-box', m), { value: false });
 
     const btnPrint = $('#myfam-btn-print-savings', m);
     if (btnPrint) {
@@ -5628,6 +5674,10 @@ function showToast(msg, type = 'success') {
           body.narrow-slip .prod-name { font-size: 12.5px !important; }
           body.narrow-slip .footer { flex-direction: column; gap: 4px; font-size: 10px !important; text-align: center; }
 
+          .cuts-notice { background: #fffbeb; border: 1px solid #f59e0b; border-radius: 8px; padding: 7px 11px; margin-bottom: 12px; font-size: 12px; line-height: 1.45; color: #78350f; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          body.dense .cuts-notice { padding: 4px 8px !important; margin-bottom: 6px !important; font-size: 10.5px !important; }
+          body.narrow-slip .cuts-notice { padding: 5px 8px !important; margin-bottom: 8px !important; font-size: 10.5px !important; }
+
           .footer { margin-top: 16px; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 8px; }
 
           @media print {
@@ -5672,6 +5722,10 @@ function showToast(msg, type = 'success') {
               <div class="main-num">סה"כ ${lines.length} מוצרים</div>
               <div class="sub-num">${totalQty} יחידות</div>
             </div>
+          </div>
+
+          <div class="cuts-notice">
+            <b>⚠️ שימו לב לקיצוצים:</b> ייתכן שמוצר מסוים יופיע ברשימה זו (ואף יחולק בתחנה עבור מזמינים אחרים) אך יקוצץ מהזמנתכם האישית עקב חוסר במלאי. מומלץ תמיד לוודא מול דפי החלוקה הרשמיים של משנת יוסף.
           </div>
 
           <!-- טבלת המוצרים לאיסוף -->
@@ -5841,6 +5895,7 @@ function showToast(msg, type = 'success') {
     let searchQuery = '';
     let filterFixedOnly = false;
     let sortBy = 'orders'; // 'orders' | 'qty' | 'name'
+    const histFsState = { value: false };
 
     const m = document.createElement('div');
     m.id = 'myfam-modal';
@@ -5890,7 +5945,7 @@ function showToast(msg, type = 'success') {
               <tbody>
                 ${filteredProducts.map(p => {
                   const lastSale = p.sales[p.sales.length - 1];
-                  const lastInfo = lastSale ? `${esc(lastSale.week)}${lastSale.date ? ` (${lastSale.date})` : ''}` : '—';
+                  const lastInfo = lastSale ? `${esc(lastSale.week)}${lastSale.date ? ` (${lastSale.date})` : ''} · ${lastSale.qty} יח'` : '—';
                   return `
                     <tr class="${p.isFixed ? 'myfam-row-fixed' : ''}">
                       <td style="text-align:center;">
@@ -6243,6 +6298,8 @@ function showToast(msg, type = 'success') {
           if (card) card.classList.toggle('collapsed');
         };
       });
+
+      attachModalFullscreenBtn($('.myfam-hist-box', m), histFsState);
     }
 
     renderModalContent();
@@ -6875,7 +6932,7 @@ function showToast(msg, type = 'success') {
       [id*="cart" i] .myfam-fixed, [id*="cart" i] .myfam-fill, [id*="cart" i] .myfam-seen,
       [class*="cart-product" i] { outline: none !important; background-color: transparent !important; }
       .myfam-hide{display:none!important}
-      .myfam-tag{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;display:inline-flex;align-items:center;gap:4px;width:fit-content;max-width:calc(100% - 130px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;padding:2px 8px;background:#fff7ed;color:#c2410c;border:1px solid #ffedd5;border-radius:10px;font:bold 12px sans-serif;direction:rtl;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+      .myfam-tag{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:auto;display:inline-flex;align-items:center;gap:4px;width:fit-content;max-width:calc(100% - 110px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;padding:2px 8px;background:#fff7ed;color:#c2410c;border:1px solid #ffedd5;border-radius:10px;font:bold 11.5px sans-serif;direction:rtl;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.12);cursor:help}
       .myfam-tag.fixed{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
       .myfam-tag svg{flex-shrink:0}
 
@@ -6976,10 +7033,14 @@ function showToast(msg, type = 'success') {
       .myfam-box{background:#fff;max-height:88vh;overflow:auto;padding:24px;border-radius:18px;min-width:320px;position:relative;box-shadow:0 24px 50px -12px rgba(15,23,42,0.28);box-sizing:border-box}
       .myfam-set{width:min(470px,94vw)}
       
-      /* כפתור סגירה X - אמין וחסין ללחיצות על svg */
-      .myfam-x{position:absolute;top:14px;left:14px;border:none;background:#f1f5f9;color:#64748b;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:all .15s}
+      /* כפתור סגירה X + כפתור מסך מלא - אמין וחסין ללחיצות על svg */
+      .myfam-x{position:absolute;top:14px;left:14px;border:none;background:#f1f5f9;color:#64748b;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:all .15s;z-index:5}
       .myfam-x:hover{background:#e2e8f0;color:#0f172a;transform:scale(1.05)}
-      .myfam-x svg,.myfam-x line,.myfam-x path{pointer-events:none}
+      .myfam-x svg,.myfam-x line,.myfam-x path,.myfam-fs-btn svg,.myfam-fs-btn polyline,.myfam-fs-btn line{pointer-events:none}
+      .myfam-fs-btn{position:absolute;top:14px;left:52px;border:none;background:#f1f5f9;color:#475569;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:all .15s;z-index:5}
+      .myfam-fs-btn:hover{background:#e2e8f0;color:#0f172a;transform:scale(1.05)}
+      .myfam-modal-fs{width:98vw !important;max-width:98vw !important;height:95vh !important;max-height:95vh !important;border-radius:12px !important}
+      .myfam-modal-fs .myfam-hist-body,.myfam-modal-fs .myfam-savings-table-wrap,.myfam-modal-fs .myfam-forgotten-list{max-height:none !important;flex:1 !important}
 
       /* רכיבי הגדרות מעוצבים */
       .myfam-set-section{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;margin-bottom:12px}
@@ -7000,8 +7061,8 @@ function showToast(msg, type = 'success') {
       .myfam-footer-credits a{color:#2e9e5b;text-decoration:none;font-weight:600}
 
       /* עיצוב חלונית היסטוריית קניות מורחבת */
-      .myfam-hist-box{width:min(780px,95vw);max-height:90vh;display:flex;flex-direction:column;padding:22px 24px}
-      .myfam-hist-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e2e8f0;flex-wrap:wrap}
+      .myfam-hist-box{width:min(940px,95vw);max-height:90vh;display:flex;flex-direction:column;padding:22px 24px}
+      .myfam-hist-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;padding-left:82px;border-bottom:1px solid #e2e8f0;flex-wrap:wrap}
       .myfam-hist-sync-btn,.myfam-hist-print-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer}
       .myfam-hist-sync-btn{background:#eef7f1;border:1px solid #2e9e5b;color:#1e6b3e}
       .myfam-hist-sync-btn:hover{background:#dcf2e3}
@@ -7181,8 +7242,8 @@ function showToast(msg, type = 'success') {
 
       /* מודאל מוצרים שנשכחו */
       #myfam-forgotten-modal{position:fixed;inset:0;background:rgba(15,23,42,0.6);backdrop-filter:blur(3px);z-index:100006;display:flex;align-items:center;justify-content:center;direction:rtl;font-family:system-ui,-apple-system,sans-serif}
-      .myfam-forgotten-box{width:min(480px,94vw);max-height:86vh;background:#fff;border-radius:18px;padding:22px 24px;position:relative;box-shadow:0 24px 50px -12px rgba(15,23,42,0.32);display:flex;flex-direction:column;box-sizing:border-box}
-      .myfam-forgotten-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e2e8f0}
+      .myfam-forgotten-box{width:min(620px,94vw);max-height:88vh;background:#fff;border-radius:18px;padding:22px 24px;position:relative;box-shadow:0 24px 50px -12px rgba(15,23,42,0.32);display:flex;flex-direction:column;box-sizing:border-box}
+      .myfam-forgotten-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;padding-left:82px;border-bottom:1px solid #e2e8f0}
       .myfam-forgotten-icon{width:42px;height:42px;border-radius:10px;background:#fff7ed;border:1px solid #ffedd5;color:#ea580c;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
       .myfam-forgotten-title{margin:0 0 3px;font-size:17px;font-weight:800;color:#0f172a}
       .myfam-forgotten-subtitle{font-size:12.5px;color:#64748b;line-height:1.4}
@@ -7231,8 +7292,8 @@ function showToast(msg, type = 'success') {
 
       /* מודאל השוואת מחירים וחיסכון */
       #myfam-savings-modal{position:fixed;inset:0;background:rgba(15,23,42,0.6);backdrop-filter:blur(3px);z-index:100007;display:flex;align-items:center;justify-content:center;direction:rtl;font-family:system-ui,-apple-system,sans-serif}
-      .myfam-savings-box{width:min(720px,95vw);max-height:88vh;background:#fff;border-radius:20px;padding:24px 26px;position:relative;box-shadow:0 24px 50px -12px rgba(15,23,42,0.32);display:flex;flex-direction:column;box-sizing:border-box}
-      .myfam-savings-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
+      .myfam-savings-box{width:min(900px,95vw);max-height:90vh;background:#fff;border-radius:20px;padding:24px 26px;position:relative;box-shadow:0 24px 50px -12px rgba(15,23,42,0.32);display:flex;flex-direction:column;box-sizing:border-box}
+      .myfam-savings-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:12px;padding-left:82px;border-bottom:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
       .myfam-savings-h-title{display:flex;align-items:center;gap:10px}
       .myfam-savings-h-icon{width:42px;height:42px;border-radius:12px;background:#ecfdf5;border:1px solid #a7f3d0;color:#059669;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
       .myfam-savings-h-text h3{margin:0 0 2px;font-size:18px;font-weight:800;color:#0f172a}
