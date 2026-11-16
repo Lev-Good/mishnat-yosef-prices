@@ -2,8 +2,11 @@ name: Weekly Supermarket Price Refresh
 
 on:
   schedule:
-    # רץ פעם בשבוע בליל שישי (חמישי בערב אחרי 23:00) בשעה 21:15 UTC (23:15 שעון חורף / 00:15 אור לשישי שעון קיץ)
-    - cron: '15 21 * * 4'
+    # דגימה מהירה כל 15 דקות מחמישי בערב ועד שישי בבוקר (שעון ישראל) לזיהוי מיידי של פתיחת המכירה
+    - cron: '*/15 17-23 * * 4'
+    - cron: '*/15 0-5 * * 5'
+    # דגימת גיבוי כל 4 שעות בשאר ימות השבוע (למכירות מיוחדות / חגים)
+    - cron: '0 */4 * * 0,1,2,3,6'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -16,6 +19,10 @@ on:
         required: false
         type: string
         default: ''
+
+concurrency:
+  group: mishnat-yosef-price-refresh
+  cancel-in-progress: false
 
 jobs:
   refresh-prices:
@@ -36,16 +43,19 @@ jobs:
       - name: 📦 התקנת תלויות
         run: npm install
 
-      - name: 🧪 הרצת בדיקות תקינות יחידות (Unit Parser Test)
-        run: npm run test-units
-
-      - name: 🛒 שאיבת קטלוג המכירה ממשנת יוסף (באמצעות סודות המאגר)
+      - name: 🛒 בדיקה ושאיבת קטלוג המכירה ממשנת יוסף
+        id: check_catalog
         env:
           MISHNAT_EMAIL: ${{ secrets.MISHNAT_EMAIL }}
           MISHNAT_PASSWORD: ${{ secrets.MISHNAT_PASSWORD }}
         run: node scripts/fetch_mishnat_catalog.mjs
 
+      - name: 🧪 הרצת בדיקות תקינות יחידות (Unit Parser Test)
+        if: steps.check_catalog.outputs.catalog_changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: npm run test-units
+
       - name: 🤖 הרצת מנוע רענון המחירים (Gemini Search Grounding)
+        if: steps.check_catalog.outputs.catalog_changed == 'true' || github.event_name == 'workflow_dispatch'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           MISHNAT_EMAIL: ${{ secrets.MISHNAT_EMAIL }}
@@ -61,16 +71,17 @@ jobs:
           node scripts/update_prices.mjs $ARGS
 
       - name: 💾 שמירה ודחיפת המחירים המעודכנים ל-Git
+        if: steps.check_catalog.outputs.catalog_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # בדיקה האם היו שינויים בקובץ המחירים או המיפוי
+          # בדיקה האם היו שינויים בקובץ המחירים, המיפוי או מצב הקטלוג
           git add -A prices.json scripts/
           if git diff --staged --quiet; then
             echo "לא חלו שינויים במחירים השבוע. אין צורך ב-Commit."
           else
             echo "נמצאו עדכוני מחירים חדשים. מבצע Commit ו-Push..."
-            git commit -m "chore(prices): weekly automated supermarket price refresh [skip ci]"
+            git commit -m "chore(prices): automated supermarket price refresh [skip ci]"
             git push
           fi

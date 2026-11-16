@@ -7,9 +7,11 @@
 
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
 const API_BASE = 'https://v2.mishnatyosef.org/api';
 const OUTPUT_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
+const STATE_FILE = path.resolve('scripts', 'catalog_state.json');
 
 const email = process.env.MISHNAT_EMAIL;
 const password = process.env.MISHNAT_PASSWORD;
@@ -136,10 +138,47 @@ async function fetchSaleItems(token, targetId) {
   return allItems;
 }
 
+function setGithubOutput(key, value) {
+  const outPath = process.env.GITHUB_OUTPUT;
+  if (outPath) {
+    try {
+      fs.appendFileSync(outPath, `${key}=${value}\n`, 'utf8');
+    } catch (err) {
+      console.warn(`⚠️ לא ניתן לכתוב ל-GITHUB_OUTPUT (${key}):`, err.message);
+    }
+  }
+}
+
+function computeCatalogHash(catalog) {
+  const normalized = [...catalog]
+    .sort((a, b) => Number(a.id) - Number(b.id))
+    .map(it => `${it.id}|${it.name}|${it.price}`)
+    .join('\n');
+  return crypto.createHash('sha256').update(normalized, 'utf8').digest('hex');
+}
+
+function formatIsraelTime(date = new Date()) {
+  try {
+    return new Intl.DateTimeFormat('he-IL', {
+      timeZone: 'Asia/Jerusalem',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).format(date);
+  } catch {
+    return date.toISOString();
+  }
+}
+
 async function main() {
   const token = await login(email, password);
   if (!token) {
     console.log('ℹ️ דילוג על שאיבת קטלוג משנת יוסף (אין גישה פעילה).');
+    setGithubOutput('catalog_changed', 'false');
     return;
   }
 
@@ -149,44 +188,108 @@ async function main() {
   const orders = await fetchLatestOrders(token);
   console.log(`ℹ️ נמצאו ${orders.length} הזמנות בחשבון.`);
 
-  // איתור מזהה להזמנה/מכירה פתוחה
-  let targetId = null;
+  // תעדוף מכירה פתוחה עדכנית על פני הזמנה קודמת, עם גיבוי להזמנה האחרונה אם נדרש
+  const candidateTargets = [];
+  if (sales.length > 0) {
+    const sortedSales = [...sales].sort((a, b) => Number(b.id || 0) - Number(a.id || 0));
+    for (const s of sortedSales) {
+      if (s.id) candidateTargets.push({ id: s.id, type: 'sale', name: s.name || s.week || '' });
+    }
+  }
   if (orders.length > 0 && orders[0].id) {
-    targetId = orders[0].id;
-    console.log(`🎯 משתמש בהזמנה אחרונה: #${targetId}`);
-  } else if (sales.length > 0 && sales[0].id) {
-    targetId = sales[0].id;
-    console.log(`🎯 משתמש במכירה פתוחה: #${targetId}`);
+    candidateTargets.push({ id: orders[0].id, type: 'order', name: orders[0].sale?.name || '' });
   }
 
-  if (!targetId) {
+  if (candidateTargets.length === 0) {
     console.warn('⚠️ לא נמצא מזהה מכירה/הזמנה לשליפת קטלוג.');
+    setGithubOutput('catalog_changed', 'false');
     return;
   }
 
-  const rawItems = await fetchSaleItems(token, targetId);
+  let rawItems = [];
+  let usedTarget = null;
+  for (const target of candidateTargets) {
+    console.log(`🎯 מנסה לשלוף קטלוג מ-${target.type} #${target.id}${target.name ? ` (${target.name})` : ''}...`);
+    rawItems = await fetchSaleItems(token, target.id);
+    if (rawItems.length > 0) {
+      usedTarget = target;
+      break;
+    }
+  }
+
   console.log(`🎉 נשלפו ${rawItems.length} מוצרים ממשנת יוסף!`);
 
-  if (rawItems.length > 0) {
-    const cleanCatalog = rawItems.map(r => {
-      const name = r.name || (r.product && r.product.name);
-      const pid = r.itemID != null ? r.itemID : (r.product && r.product.id);
-      const price = parseFloat(r.price ?? (r.item_sale && r.item_sale.price) ?? r.cost ?? 0) || 0;
-      return {
-        id: pid,
-        name,
-        price,
-        category: r.category_name || r.category || (r.product && r.product.category_name) || '',
-        subCategory: r.sub_category_name || (r.product && r.product.sub_category_name) || '',
-        itemSalesId: r.id != null ? r.id : r.item_salesID
-      };
-    }).filter(it => it.name && it.id);
-
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(cleanCatalog, null, 2), 'utf8');
-    console.log(`💾 קטלוג משנת יוסף נשמר בהצלחה: ${OUTPUT_FILE} (${cleanCatalog.length} פריטים)`);
+  if (rawItems.length === 0) {
+    console.warn('⚠️ לא התקבלו מוצרים מהקטלוג.');
+    setGithubOutput('catalog_changed', 'false');
+    return;
   }
+
+  const cleanCatalog = rawItems.map(r => {
+    const name = r.name || (r.product && r.product.name);
+    const pid = r.itemID != null ? r.itemID : (r.product && r.product.id);
+    const price = parseFloat(r.price ?? (r.item_sale && r.item_sale.price) ?? r.cost ?? 0) || 0;
+    return {
+      id: pid,
+      name,
+      price,
+      category: r.category_name || r.category || (r.product && r.product.category_name) || '',
+      subCategory: r.sub_category_name || (r.product && r.product.sub_category_name) || '',
+      itemSalesId: r.id != null ? r.id : r.item_salesID
+    };
+  }).filter(it => it.name && it.id);
+
+  const currentHash = computeCatalogHash(cleanCatalog);
+  let prevState = {};
+  if (fs.existsSync(STATE_FILE)) {
+    try {
+      prevState = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    } catch {
+      prevState = {};
+    }
+  }
+
+  const isChanged = prevState.lastHash !== currentHash;
+  const now = new Date();
+  const israelTime = formatIsraelTime(now);
+
+  if (!isChanged) {
+    console.log(`⏸️ הקטלוג לא השתנה מאז העדכון האחרון (${prevState.lastUpdatedIsraelTime || 'לא ידוע'}, Hash: ${currentHash.slice(0, 10)}). מדלג על סריקת AI.`);
+    setGithubOutput('catalog_changed', 'false');
+    return;
+  }
+
+  console.log(`🆕 זוהה שינוי בקטלוג משנת יוסף! (שעה בישראל: ${israelTime}, פריטים: ${cleanCatalog.length})`);
+  setGithubOutput('catalog_changed', 'true');
+
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(cleanCatalog, null, 2), 'utf8');
+  console.log(`💾 קטלוג משנת יוסף נשמר בהצלחה: ${OUTPUT_FILE} (${cleanCatalog.length} פריטים)`);
+
+  const history = Array.isArray(prevState.history) ? prevState.history : [];
+  history.unshift({
+    targetId: usedTarget?.id || null,
+    targetType: usedTarget?.type || null,
+    saleName: usedTarget?.name || '',
+    detectedAt: now.toISOString(),
+    israelTime,
+    itemCount: cleanCatalog.length,
+    hash: currentHash.slice(0, 12)
+  });
+
+  const nextState = {
+    lastTargetId: usedTarget?.id || null,
+    lastSaleName: usedTarget?.name || '',
+    lastHash: currentHash,
+    lastUpdatedAt: now.toISOString(),
+    lastUpdatedIsraelTime: israelTime,
+    itemCount: cleanCatalog.length,
+    history: history.slice(0, 20)
+  };
+  fs.writeFileSync(STATE_FILE, JSON.stringify(nextState, null, 2), 'utf8');
+  console.log(`🕒 תועדה שעת גילוי העדכון ב-${STATE_FILE}`);
 }
 
 main().catch(err => {
   console.error('❌ שגיאה כללית בריצת שאיבת הקטלוג:', err);
+  setGithubOutput('catalog_changed', 'false');
 });

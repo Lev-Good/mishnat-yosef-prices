@@ -4899,7 +4899,7 @@ function showToast(msg, type = 'success') {
       const cached = localStorage.getItem('myfam_market_prices');
       const cachedTime = localStorage.getItem('myfam_market_prices_time');
       const now = Date.now();
-      if (cached && cachedTime && (now - Number(cachedTime) < 24 * 3600 * 1000)) {
+      if (cached && cachedTime && (now - Number(cachedTime) < 4 * 3600 * 1000)) {
         const parsed = JSON.parse(cached);
         if (Array.isArray(parsed) && parsed.length > 0) {
           dynamicMarketItems = parsed;
