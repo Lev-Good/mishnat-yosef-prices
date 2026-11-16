@@ -251,9 +251,18 @@ export function norm(s) {
     .trim();
 }
 
+const BOUNDARY_START = '(?:^|(?<=[\\s()\\[\\]{}/\\-–—.,:]))';
+const BOUNDARY_END = '(?=$|[\\s()\\[\\]{}/\\-–—.,:])';
+
+function containsWholePhrase(haystackNorm, needleNorm) {
+  if (!haystackNorm || !needleNorm) return false;
+  const escRe = needleNorm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`${BOUNDARY_START}${escRe}${BOUNDARY_END}`).test(haystackNorm);
+}
+
 function tokenMatches(targetNorm, targetTokens, token) {
   if (targetTokens.includes(token)) return true;
-  if (token.length >= 4 && targetNorm.includes(token)) return true;
+  if (token.length >= 4 && containsWholePhrase(targetNorm, token)) return true;
   return false;
 }
 
@@ -263,21 +272,25 @@ export function findMarketComparison(itemName, catalog = []) {
   const nWords = n.split(/\s+/);
   const targetUnits = parseProductUnits(itemName);
   const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
-  const isProduceExcluded = /(?:מרק|אבקת|טבעות|קמח|מלח|סלט|מיץ|עוגת|עוגיות|חטיף|בורקס|שבבי)/i.test(n);
+  const PRODUCE_EXCLUDED_RE = /(?:מרק|אבקת|טבעות|קמח|מלח|חמוץ|חמוצים|סלט|מיץ|עוגת|עוגיות|חטיף|נשנושים|איירביס|בייגל[ה]?|קרקר|צ['׳]?יפס|תפוצ['׳]?יפס|דוריטוס|ביסלי|במבה|בורקס|שבבי|רסק|רוטב|קטשופ|מיונז|חרדל|ממרח|מטבל|שמנת|גבינ[הת]|מחיות|מחית|פאווץ|סיגרים|סיגר|מילוי|במילוי|כרובית|מוקפא|קפוא|שימורים|מיובש|תבלין|מטוגן|קלוי|בטעם|טעם|קרוטונים|גליד[הת]?|ארטיק|סורבה|מעדן|יוגורט|מילקשייק|קונפיטור|ריבת|ממתק|סוכרי|שוקולד|וופל|חליטה|ניחוח|בושם|תרסיס|סבון|שמפו|קרם|נוזל|ג['׳]?ל|כביסה|שניצל|קציצ|פשטיד|פסטה|אטריות|אורז|קוסקוס|מצה|לחם|לחמני|פיתות|חלה|בלינ[צץ])|(?:^|\s)תה(?:\s|$)/i;
+  const isProduceExcluded = PRODUCE_EXCLUDED_RE.test(n);
   const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
+  const isFreshItem = item => !PRODUCE_EXCLUDED_RE.test(norm(item.name))
+    && (item.id.endsWith('_fresh') || item.id === 'onion_dry'
+      || /^(?:אגס|אפרסק|אבוקדו|אבטיח|מלון|קלמנטינה|תפוז|תפוח|בננ|גזר|מלפפון|עגבני|פלפל|חציל|קישוא|דלורית|בטטה|סלק|קולרבי|שום|לימון|כרוב|כוסברה|שמיר|פטרוזיליה|בזיליקום|נענע|חסה|סלרי|בצל\s*ירוק|צנון|צנונית|פומלה|אשכולית|מנגו|רימון|שזיף|ענבים|תות|דובדבן|תמר|פטריות|נבטים)(?:\s|$)/i.test(norm(item.name)));
 
   let bestStep1 = null;
   let bestStep1Len = 0;
   for (const item of catalog) {
     if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
-    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
-    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+    if (isFreshItem(item) && isProduceExcluded) continue;
+    if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
     if (item.id.includes('pasta') && isWholeWheat) continue;
     const itemUnits = parseProductUnits(item.name);
     if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
 
     const iname = norm(item.name);
-    if (iname.length >= 3 && (n.includes(iname) || (iname.includes(n) && n.length >= iname.length * 0.7))) {
+    if (iname.length >= 3 && (containsWholePhrase(n, iname) || (containsWholePhrase(iname, n) && n.length >= iname.length * 0.7))) {
       const score = iname.length + 100;
       if (score > bestStep1Len) {
         bestStep1Len = score;
@@ -287,7 +300,7 @@ export function findMarketComparison(itemName, catalog = []) {
     if (item.aliases) {
       for (const alias of item.aliases) {
         const na = norm(alias);
-        if (na.length >= 2 && n.includes(na) && na.length > bestStep1Len) {
+        if (na.length >= 2 && containsWholePhrase(n, na) && na.length > bestStep1Len) {
           bestStep1Len = na.length;
           bestStep1 = item;
         }
@@ -298,8 +311,8 @@ export function findMarketComparison(itemName, catalog = []) {
 
   for (const item of catalog) {
     if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
-    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
-    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+    if (isFreshItem(item) && isProduceExcluded) continue;
+    if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
     if (item.id.includes('pasta') && isWholeWheat) continue;
     const itemUnits = parseProductUnits(item.name);
     if (!areUnitsCompatible(targetUnits, itemUnits)) continue;

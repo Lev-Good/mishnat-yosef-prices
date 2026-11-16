@@ -52,7 +52,8 @@ let activeModel = CANDIDATE_MODELS[0];
 let activeSearchModel = SEARCH_GROUNDING_MODELS[0];
 
 const TARGET_CITIES = ['ירושלים', 'בני ברק'];
-const ALLOWED_CHAINS = ['osherAd', 'ramiLevy', 'yeshHesed', 'netoChisachon'];
+const ALLOWED_CHAINS = ['osherAd', 'ramiLevy', 'yeshHesed', 'netoChisachon', 'shaareiRevaha'];
+const createEmptyChainsObj = (initVal = null) => Object.fromEntries(ALLOWED_CHAINS.map(c => [c, typeof initVal === 'function' ? initVal() : initVal]));
 const CHP_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 let chpCookie = '';
 
@@ -239,6 +240,7 @@ function mapChpChain(chainName) {
   if (/^רמי\s*לוי(?:\s+מהדרין)?(?:\s|$)/.test(chainName)) return 'ramiLevy';
   if (/^יש\s*חסד(?:\s|$)/.test(chainName)) return 'yeshHesed';
   if (/^נטו\s*חיסכון/.test(chainName)) return 'netoChisachon';
+  if (/^שערי\s*רווחה/.test(chainName)) return 'shaareiRevaha';
   return null;
 }
 
@@ -423,12 +425,7 @@ async function fetchChpCandidates(item, mappingEntry) {
  */
 async function fetchChpPricesMultiCity(candidate) {
   const queryTerm = candidate.barcode || candidate.label;
-  const cityChainPrices = {
-    osherAd: [],
-    ramiLevy: [],
-    yeshHesed: [],
-    netoChisachon: []
-  };
+  const cityChainPrices = createEmptyChainsObj(() => []);
   let resolvedTitle = candidate.label;
 
   const cityResults = await Promise.all(
@@ -443,7 +440,7 @@ async function fetchChpPricesMultiCity(candidate) {
     if (!parsed.found) continue;
     if (parsed.productTitle) resolvedTitle = parsed.productTitle;
 
-    const perChainInCity = { osherAd: [], ramiLevy: [], yeshHesed: [], netoChisachon: [] };
+    const perChainInCity = createEmptyChainsObj(() => []);
     for (const row of parsed.rows) {
       const chainKey = mapChpChain(row.chain);
       if (chainKey) perChainInCity[chainKey].push(row.price);
@@ -637,7 +634,7 @@ async function searchPricesWithGoogleGrounding(batchItems) {
 1. אל תנחש ואל תמציא מחיר בשום אופן! בצע חיפושים ברשת עבור כל פריט והחזר מחיר ("marketPrice") רק אם מצאת בתוצאות החיפוש מחיר ממשי ועדכני בישראל של המוצר (או של מוצר מקביל זהה במהות ובגודל). אם לאחר חיפוש לא נמצא מידע אמין או שמדובר במוצר ייחודי/בלעדי שאין לו מקבילה בשוק, החזר "marketPrice": null.
 2. התאמת גודל/כמות/משקל חובה: ודא שהמחיר שמצאת תואם לאותו נפח, משקל או מספר יחידות במארז (למשל לא להשוות בקבוק 400 מ"ל ל-750 מ"ל או יחידה למארז).
 3. מותג מקביל: אם המותג מצוין במשנת יוסף ונמצא אותו מותג בדיוק — סמן "isEquivalentBrand": false. אם זהו מוצר פרטי/גנרי או כלי בית/טקסטיל כללי והשווית לדגם/מותג מקביל נפוץ בישראל בעל אותם מפרט וגודל — סמן "isEquivalentBrand": true.
-4. אם במקרה נמצאו מחירים באחת מארבע הרשתות המרכזיות (osherAd = אושר עד, ramiLevy = רמי לוי, yeshHesed = יש חסד, netoChisachon = נטו חיסכון), ציין אותם בשדה "chains" (או null אם לא נמצא).
+4. אם במקרה נמצאו מחירים באחת מחמש הרשתות המרכזיות (osherAd = אושר עד, ramiLevy = רמי לוי, yeshHesed = יש חסד, netoChisachon = נטו חיסכון, shaareiRevaha = שערי רווחה), ציין אותם בשדה "chains" (או null אם לא נמצא).
 5. בשדה "sourceLabel" ציין בקצרה (2-4 מילים בעברית) מאילו אתרים/רשתות אומת המחיר (למשל: "זאפ / חנויות רשת", "סופר-פארם / פארם", "רמי לוי / שופרסל").
 
 רשימת המוצרים לבדיקה:
@@ -656,7 +653,8 @@ ${JSON.stringify(payload, null, 2)}
         "osherAd": null,
         "ramiLevy": null,
         "yeshHesed": null,
-        "netoChisachon": null
+        "netoChisachon": null,
+        "shaareiRevaha": null
       }
     }
   ]
@@ -785,9 +783,12 @@ async function main() {
 
         const matchedExisting = findMarketComparison(item.name, prices);
         if (matchedExisting) {
-          if (!matchedExisting.aliases) matchedExisting.aliases = [];
-          if (!matchedExisting.aliases.includes(item.name)) {
-            matchedExisting.aliases.push(item.name);
+          const baseWordCount = norm(matchedExisting.name).split(/\s+/).filter(Boolean).length;
+          if (baseWordCount >= 2 && (matchedExisting.aliases || []).length < 8) {
+            if (!matchedExisting.aliases) matchedExisting.aliases = [];
+            if (!matchedExisting.aliases.includes(item.name)) {
+              matchedExisting.aliases.push(item.name);
+            }
           }
           continue;
         }
@@ -805,7 +806,7 @@ async function main() {
             name: item.name,
             aliases: [item.name],
             supermarketPrice: 0,
-            chains: { osherAd: null, ramiLevy: null, yeshHesed: null, netoChisachon: null },
+            chains: createEmptyChainsObj(null),
             lastVerified: todayStr
           });
           candidateCount++;
@@ -906,7 +907,7 @@ async function main() {
     const fetchedPrices = await mapWithConcurrency(toFetchPrices, 3, async task => {
       const { entry, chosenList } = task;
       const livePrice = getLivePriceForItem(entry.item);
-      const mergedChains = { osherAd: null, ramiLevy: null, yeshHesed: null, netoChisachon: null };
+      const mergedChains = createEmptyChainsObj(null);
       let primaryTitle = null;
       let primaryLabel = chosenList[0].label;
 
@@ -967,7 +968,7 @@ async function main() {
       }
 
       const eqLabel = isEquivalentBrand ? ` [מותג מקביל: ${item.matchedName}]` : '';
-      console.log(`✅ עודכן: ${item.name}${eqLabel} -> ממוצע: ${newAvg} ש"ח (אושר עד: ${validChainPrices.osherAd ?? '-'}, רמי לוי: ${validChainPrices.ramiLevy ?? '-'}, יש חסד: ${validChainPrices.yeshHesed ?? '-'}, נטו חיסכון: ${validChainPrices.netoChisachon ?? '-'})`);
+      console.log(`✅ עודכן: ${item.name}${eqLabel} -> ממוצע: ${newAvg} ש"ח (אושר עד: ${validChainPrices.osherAd ?? '-'}, רמי לוי: ${validChainPrices.ramiLevy ?? '-'}, יש חסד: ${validChainPrices.yeshHesed ?? '-'}, נטו חיסכון: ${validChainPrices.netoChisachon ?? '-'}, שערי רווחה: ${validChainPrices.shaareiRevaha ?? '-'})`);
     }
 
     if (i + BATCH_SIZE < withCandidates.length) {
@@ -1017,7 +1018,7 @@ async function main() {
 
           if (explicitVals.length > 0) {
             finalMarketPrice = Math.round((explicitVals.reduce((a, b) => a + b, 0) / explicitVals.length) * 100) / 100;
-            finalChains = { osherAd: null, ramiLevy: null, yeshHesed: null, netoChisachon: null, ...validExplicitChains };
+            finalChains = { ...createEmptyChainsObj(null), ...validExplicitChains };
           } else if (typeof res.marketPrice === 'number' && isPriceSane(item, 'Google Search', res.marketPrice, livePrice)) {
             finalMarketPrice = Math.round(res.marketPrice * 100) / 100;
           }

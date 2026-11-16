@@ -7,7 +7,7 @@
   const T = window.__MY_T;
 
   const APP_NAME = 'מוסיף למשנת';
-  const APP_VERSION = '0.6.4';
+  const APP_VERSION = '0.6.5';
   const ICONS = {
     info: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
     basket: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
@@ -69,7 +69,7 @@
     seenFill: false, 
     fixedColor: '#e0a800', 
     fixedFill: true,
-    selectedChains: ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy'],
+    selectedChains: ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy', 'shaareiRevaha'],
     compareInHistory: true
   };
   let prefs = { ...PREF_DEFAULT, ...jget('prefs', {}) };
@@ -2593,9 +2593,10 @@ function showToast(msg, type = 'success') {
     yeshHesed: { id: 'yeshHesed', name: 'יש חסד' },
     netoChisachon: { id: 'netoChisachon', name: 'נטו חיסכון' },
     osherAd: { id: 'osherAd', name: 'אושר עד' },
-    ramiLevy: { id: 'ramiLevy', name: 'רמי לוי' }
+    ramiLevy: { id: 'ramiLevy', name: 'רמי לוי' },
+    shaareiRevaha: { id: 'shaareiRevaha', name: 'שערי רווחה' }
   };
-  const DEFAULT_SELECTED_CHAINS = ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy'];
+  const DEFAULT_SELECTED_CHAINS = ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy', 'shaareiRevaha'];
 
   const MARKET_ANCHOR_ITEMS = [
   {
@@ -4966,11 +4967,23 @@ function showToast(msg, type = 'success') {
     return true;
   }
 
+  const PROD_BOUNDARY_START = '(?:^|(?<=[\\s()\\[\\]{}/\\-–—.,:]))';
+  const PROD_BOUNDARY_END = '(?=$|[\\s()\\[\\]{}/\\-–—.,:])';
+
+  function containsWholePhrase(haystackNorm, needleNorm) {
+    if (!haystackNorm || !needleNorm) return false;
+    const escRe = needleNorm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`${PROD_BOUNDARY_START}${escRe}${PROD_BOUNDARY_END}`).test(haystackNorm);
+  }
+
   function tokenMatches(n, nWords, tok) {
-    if (/\d/.test(tok)) {
-      return nWords.includes(tok);
+    if (nWords.includes(tok)) {
+      return true;
     }
-    return n.includes(tok);
+    if (tok.length >= 4) {
+      return containsWholePhrase(n, tok);
+    }
+    return false;
   }
 
   function findMarketComparison(itemName, barcode = '') {
@@ -4982,22 +4995,26 @@ function showToast(msg, type = 'success') {
 
     const targetUnits = parseProductUnits(itemName);
     const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
-    const isProduceExcluded = /(?:מרק|אבקת|טבעות|קמח|מלח|סלט|מיץ|עוגת|עוגיות|חטיף|בורקס|שבבי)/i.test(n);
+    const PRODUCE_EXCLUDED_RE = /(?:מרק|אבקת|טבעות|קמח|מלח|חמוץ|חמוצים|סלט|מיץ|עוגת|עוגיות|חטיף|נשנושים|איירביס|בייגל[ה]?|קרקר|צ['׳]?יפס|תפוצ['׳]?יפס|דוריטוס|ביסלי|במבה|בורקס|שבבי|רסק|רוטב|קטשופ|מיונז|חרדל|ממרח|מטבל|שמנת|גבינ[הת]|מחיות|מחית|פאווץ|סיגרים|סיגר|מילוי|במילוי|כרובית|מוקפא|קפוא|שימורים|מיובש|תבלין|מטוגן|קלוי|בטעם|טעם|קרוטונים|גליד[הת]?|ארטיק|סורבה|מעדן|יוגורט|מילקשייק|קונפיטור|ריבת|ממתק|סוכרי|שוקולד|וופל|חליטה|ניחוח|בושם|תרסיס|סבון|שמפו|קרם|נוזל|ג['׳]?ל|כביסה|שניצל|קציצ|פשטיד|פסטה|אטריות|אורז|קוסקוס|מצה|לחם|לחמני|פיתות|חלה|בלינ[צץ])|(?:^|\s)תה(?:\s|$)/i;
+    const isProduceExcluded = PRODUCE_EXCLUDED_RE.test(n);
     const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
+    const isFreshItem = item => !PRODUCE_EXCLUDED_RE.test(norm(item.name))
+      && (item.id.endsWith('_fresh') || item.id === 'onion_dry'
+        || /^(?:אגס|אפרסק|אבוקדו|אבטיח|מלון|קלמנטינה|תפוז|תפוח|בננ|גזר|מלפפון|עגבני|פלפל|חציל|קישוא|דלורית|בטטה|סלק|קולרבי|שום|לימון|כרוב|כוסברה|שמיר|פטרוזיליה|בזיליקום|נענע|חסה|סלרי|בצל\s*ירוק|צנון|צנונית|פומלה|אשכולית|מנגו|רימון|שזיף|ענבים|תות|דובדבן|תמר|פטריות|נבטים)(?:\s|$)/i.test(norm(item.name)));
 
-    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (בחירת ההתאמה הספציפית/ארוכה ביותר)
+    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (בחירת ההתאמה הספציפית/ארוכה ביותר בגבולות מילה שלמה)
     let bestStep1 = null;
     let bestStep1Len = 0;
     for (const item of catalog) {
       if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
-      if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
-      if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+      if (isFreshItem(item) && isProduceExcluded) continue;
+      if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
       if (item.id.includes('pasta') && isWholeWheat) continue;
       const itemUnits = parseProductUnits(item.name);
       if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
 
       const iname = norm(item.name);
-      if (iname.length >= 3 && (n.includes(iname) || (iname.includes(n) && n.length >= iname.length * 0.7))) {
+      if (iname.length >= 3 && (containsWholePhrase(n, iname) || (containsWholePhrase(iname, n) && n.length >= iname.length * 0.7))) {
         const score = iname.length + 100;
         if (score > bestStep1Len) {
           bestStep1Len = score;
@@ -5008,7 +5025,7 @@ function showToast(msg, type = 'success') {
       if (item.aliases) {
         for (const alias of item.aliases) {
           const na = norm(alias);
-          if (na.length >= 2 && n.includes(na)) {
+          if (na.length >= 2 && containsWholePhrase(n, na)) {
             if (na.length > bestStep1Len) {
               bestStep1Len = na.length;
               bestStep1 = item;
@@ -5022,8 +5039,8 @@ function showToast(msg, type = 'success') {
     // 2. התאמה חכמה לפי מילות מפתח (מילים מהותיות בסדר שונה, כגון "חלב 3% 1 ליטר תנובה" מול "חלב תנובה 3%")
     for (const item of catalog) {
       if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
-      if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
-      if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
+      if (isFreshItem(item) && isProduceExcluded) continue;
+      if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
       if (item.id.includes('pasta') && isWholeWheat) continue;
       const itemUnits = parseProductUnits(item.name);
       if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
@@ -6480,22 +6497,12 @@ function showToast(msg, type = 'success') {
           בחרו את הרשתות שברצונכם להשוות מולן (תגיות המחיר וחישובי החיסכון יותאמו רק לרשתות שסומנו):
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
-            <input type="checkbox" class="mf-chain-cb" value="yeshHesed" style="accent-color:#2e9e5b; width:16px; height:16px;">
-            <span>יש חסד</span>
-          </label>
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
-            <input type="checkbox" class="mf-chain-cb" value="netoChisachon" style="accent-color:#2e9e5b; width:16px; height:16px;">
-            <span>נטו חיסכון</span>
-          </label>
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
-            <input type="checkbox" class="mf-chain-cb" value="osherAd" style="accent-color:#2e9e5b; width:16px; height:16px;">
-            <span>אושר עד</span>
-          </label>
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
-            <input type="checkbox" class="mf-chain-cb" value="ramiLevy" style="accent-color:#2e9e5b; width:16px; height:16px;">
-            <span>רמי לוי</span>
-          </label>
+          ${Object.values(ALL_CHAINS).map(ch => `
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:600; color:#1e293b;">
+              <input type="checkbox" class="mf-chain-cb" value="${ch.id}" style="accent-color:#2e9e5b; width:16px; height:16px;">
+              <span>${ch.name}</span>
+            </label>
+          `).join('')}
         </div>
         <div id="mf-chain-warning" style="display:none; color:#dc2626; font-size:11.5px; margin-top:6px; font-weight:bold;">
           ⚠️ יש לבחור לפחות רשת שיווק אחת להשוואה.

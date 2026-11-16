@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { parseProductUnits, areUnitsCompatible } from './parse_units.mjs';
+import { parseProductUnits, areUnitsCompatible, findMarketComparison } from './parse_units.mjs';
 
 console.log('--- 1. Testing parseProductUnits & areUnitsCompatible ---');
 
@@ -67,80 +67,12 @@ if (areUnitsCompatible(choc100g, milk1L)) {
 
 console.log('--- 2. Testing Catalog Integrity & Matching ---');
 const catalog = JSON.parse(fs.readFileSync('prices.json', 'utf8'));
-const norm = s => (s || '').toString().normalize('NFKD').replace(/[\u0591-\u05C7]/g, '')
-  .replace(/["'׳״“”]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
-
-function tokenMatches(n, nWords, tok) {
-  if (/\d/.test(tok)) return nWords.includes(tok);
-  return n.includes(tok);
-}
-
-function findMarketComparison(itemName) {
-  if (!itemName) return null;
-  const n = norm(itemName);
-  const nWords = n.split(/\s+/);
-  const targetUnits = parseProductUnits(itemName);
-  const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
-  const isProduceExcluded = /(?:מרק|אבקת|טבעות|קמח|מלח|סלט|מיץ|עוגת|עוגיות|חטיף|בורקס|שבבי)/i.test(n);
-  const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
-
-  let bestStep1 = null;
-  let bestStep1Len = 0;
-  for (const item of catalog) {
-    if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
-    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
-    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
-    if (item.id.includes('pasta') && isWholeWheat) continue;
-    const itemUnits = parseProductUnits(item.name);
-    if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
-
-    const iname = norm(item.name);
-    if (iname.length >= 3 && (n.includes(iname) || (iname.includes(n) && n.length >= iname.length * 0.7))) {
-      const score = iname.length + 100;
-      if (score > bestStep1Len) {
-        bestStep1Len = score;
-        bestStep1 = item;
-      }
-    }
-    if (item.aliases) {
-      for (const alias of item.aliases) {
-        const na = norm(alias);
-        if (na.length >= 2 && n.includes(na) && na.length > bestStep1Len) {
-          bestStep1Len = na.length;
-          bestStep1 = item;
-        }
-      }
-    }
-  }
-  if (bestStep1) return bestStep1;
-
-  for (const item of catalog) {
-    if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
-    if ((item.id.endsWith('_fresh') || item.id === 'onion_dry') && isProduceExcluded) continue;
-    if (item.id === 'onion_dry' && n.includes('ירוק')) continue;
-    if (item.id.includes('pasta') && isWholeWheat) continue;
-    const itemUnits = parseProductUnits(item.name);
-    if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
-
-    if (item.aliases) {
-      for (const alias of item.aliases) {
-        const na = norm(alias);
-        const tokens = na.split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
-        if (tokens.length >= 2 && tokens.every(tok => tokenMatches(n, nWords, tok))) {
-          return item;
-        }
-      }
-    }
-    const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3 || /\d/.test(w));
-    if (itemTokens.length >= 3 && itemTokens.every(tok => tokenMatches(n, nWords, tok))) {
-      return item;
-    }
-  }
-  return null;
-}
 
 const negativeTests = [
   'עוגיות חמאה', 'סלט ביצים', 'אבקת מרק בצל', 'בצל ירוק', 'טבעות בצל',
+  "'נשנושים' שמנת בצל", 'מאגדת חטיף דמוי ביסלי {באגסי}', 'שקית פרחי כרובית מוקפאים עד"ח',
+  'רסק/רוטב עגבניות 22 (4 קופסאות) - פרי מבורך', 'סיגרים קפואים במילוי תפוח אדמה - בלינו (לנדא)',
+  "מחיות תפוח בננה לפעוטות בפאווצ' פריפוש - קייטי",
   'קמח תפוחי אדמה', 'מלח לימון', 'שוקולד חלב', 'שוקולד חלב עם אגוזים 100 גרם',
   'לחם שום', 'חלב שקדים 1 ליטר', 'חלב סויה 1 ליטר', 'רוטב סויה 1 ליטר',
   'קמח חיטה מלאה 1 ק"ג', 'פסטה מחיטה מלאה 500 גרם', 'קפסולות פיירי למדיח 50 יח\'',
@@ -148,7 +80,7 @@ const negativeTests = [
 ];
 
 for (const t of negativeTests) {
-  const m = findMarketComparison(t);
+  const m = findMarketComparison(t, catalog);
   if (m) {
     console.error(`FAIL False Positive: "${t}" matched ${m.id} (${m.name})`);
     allPassed = false;
@@ -156,7 +88,7 @@ for (const t of negativeTests) {
 }
 
 for (const item of catalog) {
-  const m = findMarketComparison(item.name);
+  const m = findMarketComparison(item.name, catalog);
   if (!m || m.id !== item.id) {
     console.error(`FAIL Self-Match: [${item.id}] "${item.name}" matched ${m ? m.id : 'null'}`);
     allPassed = false;
@@ -167,11 +99,12 @@ const userPositiveTests = [
   { input: "גבינה 5% - טרה 500 גר'", expectedId: "cheese_white_tara_5_500g" },
   { input: "גבינה צהובה עמק - 600 גר' פרוסות גבינה צהובה בוואקום", expectedId: "cheese_emek_600g" },
   { input: "מאגדת קרלו בטעם שוקו (חום) 8 גביעים של 100 גרם", expectedId: "carlo_choco_8" },
-  { input: "עוגיות חצי ירח - תירוש 175 גרם, ביסקוויט מצופה שוקולד צד אחד", expectedId: "cookies_tirosh_half_moon_175g" }
+  { input: "עוגיות חצי ירח - תירוש 175 גרם, ביסקוויט מצופה שוקולד צד אחד", expectedId: "cookies_tirosh_half_moon_175g" },
+  { input: "בצל יבש", expectedId: "onion_dry" }
 ];
 
 for (const t of userPositiveTests) {
-  const m = findMarketComparison(t.input);
+  const m = findMarketComparison(t.input, catalog);
   if (!m || m.id !== t.expectedId) {
     console.error(`FAIL User Positive Test: "${t.input}" expected ${t.expectedId}, got ${m ? m.id : 'null'}`);
     allPassed = false;
