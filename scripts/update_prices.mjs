@@ -792,7 +792,13 @@ async function main() {
           continue;
         }
 
-        const exists = prices.some(p => p.id === `my_${item.id}` || p.name === item.name || (p.aliases && p.aliases.includes(item.name)));
+        const normName = norm(item.name);
+        const exists = prices.some(p =>
+          p.id === `my_${item.id}` ||
+          p.name === item.name ||
+          norm(p.name) === normName ||
+          (p.aliases && p.aliases.includes(item.name))
+        ) || candidates.some(c => c.id === `my_${item.id}` || norm(c.name) === normName);
         if (!exists) {
           candidates.push({
             id: `my_${item.id}`,
@@ -1054,7 +1060,15 @@ async function main() {
   console.log(`\n🎉 סיום עיבוד. עודכנו ${updatedCount} פריטים בהצלחה מתוך ${targetList.length}.`);
 
   if (!isDryRun && updatedCount > 0) {
-    const cleanPrices = prices.filter(p => typeof p.supermarketPrice === 'number' && p.supermarketPrice > 0);
+    const seenNormNames = new Set();
+    const cleanPrices = [];
+    for (const p of prices) {
+      if (typeof p.supermarketPrice !== 'number' || p.supermarketPrice <= 0) continue;
+      const key = norm(p.name);
+      if (!key || seenNormNames.has(key)) continue;
+      seenNormNames.add(key);
+      cleanPrices.push(p);
+    }
     fs.writeFileSync(PRICES_FILE, JSON.stringify(cleanPrices, null, 2) + '\n', 'utf8');
     fs.writeFileSync(MAPPING_FILE, JSON.stringify(mappingCache, null, 2) + '\n', 'utf8');
     console.log(`💾 נשמר בהצלחה לקבצים: ${PRICES_FILE}, ${MAPPING_FILE}`);

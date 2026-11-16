@@ -7280,33 +7280,6 @@
     "isEquivalentBrand": true
   },
   {
-    "id": "my_9823",
-    "name": "מסקרה במגוון צבעים וסוגים מהמותגים המובילים",
-    "aliases": [
-      "מסקרה במגוון צבעים וסוגים מהמותגים המובילים"
-    ],
-    "supermarketPrice": 49.9,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "PANORAMA מסקרה - L'OREAL PARIS",
-    "source": "google_search",
-    "sourceLabel": "סופר-פארם / פארם",
-    "isEquivalentBrand": true
-  },
-  {
-    "id": "my_9541",
-    "name": "עפרון גבות במגוון צבעים וסוגים - CARELINE",
-    "aliases": [
-      "עפרון גבות במגוון צבעים וסוגים - CARELINE"
-    ],
-    "supermarketPrice": 19.9,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "עיפרון גבות - CARELINE 03",
-    "source": "google_search",
-    "sourceLabel": "סופר-פארם / שופרסל"
-  },
-  {
     "id": "my_11286",
     "name": "עפרון עיניים קולורסטיי שחור0201-REVLON מס'{227}",
     "aliases": [
@@ -7657,19 +7630,6 @@
     "matchedName": "שמפו לשיער גלי עד מתולתל 500 מ\"ל - OLIERE PARIS",
     "source": "google_search",
     "sourceLabel": "סופר-פארם / KSP / אתרי מותגים"
-  },
-  {
-    "id": "my_10972",
-    "name": "מייק-אפ קולורסטיי יבש/רגיל או שמן/מעורב - REVLON",
-    "aliases": [
-      "מייק-אפ קולורסטיי יבש/רגיל או שמן/מעורב - REVLON"
-    ],
-    "supermarketPrice": 35.1,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "רבלון מייק אפ קולורסטיי 30 מ\"ל",
-    "source": "google_search",
-    "sourceLabel": "סופר-פארם / שופרסל / זאפ"
   },
   {
     "id": "my_14021",
