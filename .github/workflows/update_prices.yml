@@ -50,6 +50,13 @@ jobs:
           MISHNAT_PASSWORD: ${{ secrets.MISHNAT_PASSWORD }}
         run: node scripts/fetch_mishnat_catalog.mjs
 
+      - name: 🏘️ שאיבת קטלוג המכירה לקהילה (sales.org.il)
+        if: steps.check_catalog.outputs.catalog_changed == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          KEHILA_EMAIL: ${{ secrets.KEHILA_EMAIL }}
+          KEHILA_PASSWORD: ${{ secrets.KEHILA_PASSWORD }}
+        run: node scripts/fetch_kehila_catalog.mjs
+
       - name: 🧪 הרצת בדיקות תקינות יחידות (Unit Parser Test)
         if: steps.check_catalog.outputs.catalog_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: npm run test-units

@@ -52,7 +52,7 @@ let activeModel = CANDIDATE_MODELS[0];
 let activeSearchModel = SEARCH_GROUNDING_MODELS[0];
 
 const TARGET_CITIES = ['ירושלים', 'בני ברק'];
-const ALLOWED_CHAINS = ['osherAd', 'ramiLevy', 'yeshHesed', 'netoChisachon', 'shaareiRevaha'];
+const ALLOWED_CHAINS = ['osherAd', 'ramiLevy', 'yeshHesed', 'netoChisachon', 'shaareiRevaha', 'mechiraLaKehila'];
 const createEmptyChainsObj = (initVal = null) => Object.fromEntries(ALLOWED_CHAINS.map(c => [c, typeof initVal === 'function' ? initVal() : initVal]));
 const CHP_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 let chpCookie = '';
@@ -1064,6 +1064,70 @@ async function main() {
       }
 
       console.log(`📊 סיכום שלב 3 (Google Search): עודכנו ${searchUpdatedCount} מוצרים נוספים.`);
+    }
+  }
+
+  // שלב 4: שילוב מחירי "המכירה לקהילה" (sales.org.il) אם נשלפו בהצלחה
+  const KEHILA_CATALOG_FILE = path.resolve('scripts', 'kehila_live_catalog.json');
+  if (fs.existsSync(KEHILA_CATALOG_FILE)) {
+    try {
+      const kehilaData = JSON.parse(fs.readFileSync(KEHILA_CATALOG_FILE, 'utf8'));
+      const kehilaItems = Array.isArray(kehilaData?.items) ? kehilaData.items : [];
+      if (kehilaItems.length > 0) {
+        const tokenize = str => cleanMishnatName(str).split(/\s+/).filter(w => w.length >= 2);
+        const parsedKehila = kehilaItems.map(k => ({
+          ...k,
+          normName: norm(k.name),
+          tokens: tokenize(k.name),
+          units: parseProductUnits(k.name)
+        }));
+
+        let kehilaMatched = 0;
+        for (const item of prices) {
+          const itemTokens = tokenize(item.name);
+          if (!itemTokens.length) continue;
+          const itemUnits = parseProductUnits(item.name);
+          const itemNorm = norm(item.name);
+
+          let best = null;
+          let bestScore = 0;
+          for (const k of parsedKehila) {
+            if (k.normName === itemNorm) {
+              best = k;
+              bestScore = 1;
+              break;
+            }
+            if (!isCandidateUnitCompatible(item.name, itemUnits, k.name)) continue;
+            const overlap = itemTokens.filter(t => k.tokens.includes(t)).length;
+            const score = overlap / Math.max(itemTokens.length, k.tokens.length);
+            if (score >= 0.65 && overlap >= 2 && score > bestScore) {
+              best = k;
+              bestScore = score;
+            }
+          }
+
+          if (best && best.price > 0) {
+            const livePrice = getLivePriceForItem(item);
+            if (isPriceSane(item, 'mechiraLaKehila', best.price, livePrice)) {
+              if (!item.chains || typeof item.chains !== 'object') item.chains = {};
+              const rounded = Math.round(best.price * 100) / 100;
+              if (item.chains.mechiraLaKehila !== rounded) {
+                item.chains.mechiraLaKehila = rounded;
+                const vals = Object.values(item.chains).filter(v => typeof v === 'number' && v > 0);
+                if (vals.length > 0) {
+                  item.supermarketPrice = Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 100) / 100;
+                }
+                item.lastVerified = todayStr;
+                kehilaMatched++;
+                updatedCount++;
+              }
+            }
+          }
+        }
+        console.log(`🏘️ שלב 4 (המכירה לקהילה): הותאמו ועודכנו ${kehilaMatched} מוצרים מתוך ${kehilaItems.length} פריטים.`);
+      }
+    } catch (err) {
+      console.warn('⚠️ שגיאה בקריאת קטלוג המכירה לקהילה:', err.message);
     }
   }
 

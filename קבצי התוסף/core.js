@@ -2600,9 +2600,10 @@ function showToast(msg, type = 'success') {
     netoChisachon: { id: 'netoChisachon', name: 'נטו חיסכון' },
     osherAd: { id: 'osherAd', name: 'אושר עד' },
     ramiLevy: { id: 'ramiLevy', name: 'רמי לוי' },
-    shaareiRevaha: { id: 'shaareiRevaha', name: 'שערי רווחה' }
+    shaareiRevaha: { id: 'shaareiRevaha', name: 'שערי רווחה' },
+    mechiraLaKehila: { id: 'mechiraLaKehila', name: 'המכירה לקהילה' }
   };
-  const DEFAULT_SELECTED_CHAINS = ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy', 'shaareiRevaha'];
+  const DEFAULT_SELECTED_CHAINS = ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy', 'shaareiRevaha', 'mechiraLaKehila'];
 
   const MARKET_ANCHOR_ITEMS = [
   {
