@@ -35,10 +35,10 @@ async function openSiteOrExtensionMenu() {
         void chrome.runtime.lastError;
       });
     } else {
-      await chrome.tabs.create({ url: 'https://v2.mishnatyosef.org/' });
+      await chrome.tabs.create({ url: 'https://mishnatyosef.org/sales-board' });
     }
   } catch (_) {
-    chrome.tabs.create({ url: 'https://v2.mishnatyosef.org/' });
+    chrome.tabs.create({ url: 'https://mishnatyosef.org/sales-board' });
   }
 }
 
