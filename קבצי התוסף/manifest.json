@@ -6,11 +6,18 @@
   "icons": {
     "128": "icon128.png"
   },
+  "action": {
+    "default_title": "מוסיף למשנת",
+    "default_icon": {
+      "128": "icon128.png"
+    }
+  },
   "permissions": [
     "storage",
     "cookies",
     "notifications",
-    "alarms"
+    "alarms",
+    "contextMenus"
   ],
   "host_permissions": [
     "https://v2.mishnatyosef.org/*",

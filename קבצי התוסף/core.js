@@ -1023,16 +1023,17 @@ function showToast(msg, type = 'success') {
       if (!region.contains(cd)) return;
       inList++;
       const { key, leaf } = cardMap.get(cd);
+      const isHistItem = leaf.getAttribute('data-myhist') === '1';
+      const suppressHistDecorations = onHistoryPage || isHistItem;
       const n = c[key]?.count || 0, fx = isFixed(key, c);
-      cd.classList.toggle('myfam-fixed', fx);
-      cd.classList.toggle('myfam-seen', n > 0 && !fx);
-      cd.classList.toggle('myfam-fill', fx ? prefs.fixedFill : (n > 0 && prefs.seenFill));
+      cd.classList.toggle('myfam-fixed', !suppressHistDecorations && fx);
+      cd.classList.toggle('myfam-seen', !suppressHistDecorations && n > 0 && !fx);
+      cd.classList.toggle('myfam-fill', !suppressHistDecorations && (fx ? prefs.fixedFill : (n > 0 && prefs.seenFill)));
       const show = filter === 'all' || (filter === 'seen' && n > 0) || (filter === 'fixed' && fx);
       cd.classList.toggle('myfam-hide', !show);
       if (cd === leaf) return;
 
       const isTableRow = cd.tagName === 'TR';
-      const isHistItem = leaf.getAttribute('data-myhist') === '1';
       const leafPrice = parseFloat(leaf.getAttribute('data-myprice') || '0') || 0;
       const cardHost = isTableRow ? (leaf.closest('td,th') || leaf.parentElement || cd) : cd;
 
@@ -1076,7 +1077,7 @@ function showToast(msg, type = 'success') {
       }
 
       // תגית המוצר: מוצמדת ישירות מעל בלוק המידע של המוצר בתוך הכרטיס (מבנה פלקס טבעי ללא בריחה)
-      if (n > 0 && !isTableRow) {
+      if (n > 0 && !isTableRow && !suppressHistDecorations) {
         let tag = cd.querySelector(`:scope > .myfam-tag[data-tag-key="${key}"]`);
         if (!tag) {
           cd.querySelectorAll('.myfam-tag').forEach(t => t.remove());
@@ -5190,14 +5191,48 @@ function showToast(msg, type = 'success') {
     };
   }
 
+  let lastAnimatedSavings = null;
+  function triggerSavingsBannerEffect(container, valEl) {
+    if (!container) return;
+    container.classList.remove('myfam-sav-celebrate');
+    void container.offsetWidth;
+    container.classList.add('myfam-sav-celebrate');
+    setTimeout(() => container.classList.remove('myfam-sav-celebrate'), 850);
+
+    if (valEl) {
+      valEl.classList.remove('myfam-sav-num-pop');
+      void valEl.offsetWidth;
+      valEl.classList.add('myfam-sav-num-pop');
+      setTimeout(() => valEl.classList.remove('myfam-sav-num-pop'), 600);
+    }
+
+    const colors = ['#10b981', '#f59e0b', '#34d399', '#fbbf24', '#059669', '#a3e635'];
+    const rect = container.getBoundingClientRect();
+    const w = Math.max(rect.width || 90, 60);
+    const h = Math.max(rect.height || 36, 28);
+    for (let i = 0; i < 10; i++) {
+      const sp = document.createElement('span');
+      sp.className = 'myfam-sav-spark';
+      sp.style.background = colors[i % colors.length];
+      sp.style.left = Math.round(15 + Math.random() * (w - 30)) + 'px';
+      sp.style.top = Math.round(h * 0.4 + Math.random() * (h * 0.35)) + 'px';
+      sp.style.setProperty('--tx', Math.round((Math.random() - 0.5) * 44) + 'px');
+      sp.style.setProperty('--ty', Math.round(-10 - Math.random() * 24) + 'px');
+      container.appendChild(sp);
+      setTimeout(() => sp.remove(), 900);
+    }
+  }
+
   function updateSavingsUI() {
     if (checkExcluded()) return;
     const pill = $('#myfam-savings-pill');
+    const savCard = $('#myfam-savings-card');
     const savVal = $('#myfam-sav-val');
     const savDetail = $('#myfam-sav-detail');
 
     const stats = getCartSavingsStats();
     if (!stats || !stats.items || !stats.items.length) {
+      lastAnimatedSavings = 0;
       if (pill) pill.style.display = 'none';
       if (savVal) {
         savVal.textContent = '₪0.0';
@@ -5205,6 +5240,11 @@ function showToast(msg, type = 'success') {
       }
       if (savDetail) savDetail.textContent = isHistoryPage() ? 'בהזמנה היסטורית' : 'בסל הנוכחי';
       return;
+    }
+
+    const increased = !stats.isHistorical && lastAnimatedSavings !== null && stats.totalSavings > lastAnimatedSavings + 0.05 && stats.totalSavings > 0;
+    if (!stats.isHistorical) {
+      lastAnimatedSavings = stats.totalSavings;
     }
 
     // עדכון כרטיס החיסכון בתפריט
@@ -5227,7 +5267,7 @@ function showToast(msg, type = 'success') {
         pill.style.display = 'flex';
         pill.innerHTML = `
           <span style="font-size:14px;">💰</span>
-          <span>חיסכון: <b>₪${Math.round(stats.totalSavings)}</b></span>
+          <span>חיסכון: <b class="myfam-pill-num">₪${Math.round(stats.totalSavings)}</b></span>
         `;
         pill.title = `חיסכון משוער של ₪${stats.totalSavings.toFixed(2)} (${Math.round(stats.savingsPct)}%) מול רשתות השיווק ב-${stats.matchedCount} מוצרים${stats.isHistorical ? ' (הזמנה היסטורית)' : ' בסל'}. לחץ לצפייה בדוח!`;
         pill.onclick = e => {
@@ -5237,6 +5277,15 @@ function showToast(msg, type = 'success') {
       }
     } else {
       if (pill) pill.style.display = 'none';
+    }
+
+    if (increased) {
+      if (pill && pill.style.display !== 'none') {
+        triggerSavingsBannerEffect(pill, pill.querySelector('.myfam-pill-num'));
+      }
+      if (savCard) {
+        triggerSavingsBannerEffect(savCard, savVal);
+      }
     }
   }
 
@@ -5334,39 +5383,41 @@ function showToast(msg, type = 'success') {
           </div>
         </div>
 
-        ${(() => {
-          const expensiveItems = stats.items.filter(it => it.itemSavings < -0.4);
-          if (!expensiveItems.length) return '';
-          const totalExtra = expensiveItems.reduce((acc, it) => acc + Math.abs(it.itemSavings), 0);
-          return `
-            <div style="background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;border-radius:10px;padding:9px 14px;margin-bottom:12px;font-size:12.5px;display:flex;align-items:center;gap:8px;">
-              <span style="font-size:16px;">⚠️</span>
-              <span><b>שימו לב:</b> אותרו <b>${expensiveItems.length}</b> מוצרים בסל שבהם משנת יוסף יקרה יותר מרשתות השיווק (בסך מצטבר של ₪${totalExtra.toFixed(2)}). המוצרים מסומנים באדום בטבלה.</span>
-            </div>
-          `;
-        })()}
+        <div class="myfam-savings-scroll">
+          ${(() => {
+            const expensiveItems = stats.items.filter(it => it.itemSavings < -0.4);
+            if (!expensiveItems.length) return '';
+            const totalExtra = expensiveItems.reduce((acc, it) => acc + Math.abs(it.itemSavings), 0);
+            return `
+              <div style="background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;border-radius:10px;padding:9px 14px;margin-bottom:12px;font-size:12.5px;display:flex;align-items:center;gap:8px;">
+                <span style="font-size:16px;">⚠️</span>
+                <span><b>שימו לב:</b> אותרו <b>${expensiveItems.length}</b> מוצרים בסל שבהם משנת יוסף יקרה יותר מרשתות השיווק (בסך מצטבר של ₪${totalExtra.toFixed(2)}). המוצרים מסומנים באדום בטבלה.</span>
+              </div>
+            `;
+          })()}
 
-        <div class="myfam-savings-disclaimer">
-          ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול הרשתות שנבחרו בהגדרות (${selChainNames}).<br>
-          <b>הבהרה ואחריות:</b> נתוני המחירים וחישובי החיסכון מוצגים כ<b>הערכה והמלצה בלבד</b> לצורך קבלת אינדיקציה כללית. המחירים ברשתות השיווק משתנים תדיר בין סניפים, אזורים ומבצעים, ואין המפתחים אחראים לדיוקם או לכל החלטת רכישה שתתקבל על בסיסם (ט.ל.ח).
-        </div>
+          <div class="myfam-savings-disclaimer">
+            ℹ️ ההשוואה התאפשרה ב-<b>${stats.matchedCount}</b> מתוך <b>${stats.totalLines}</b> מוצרים בסל, מול הרשתות שנבחרו בהגדרות (${selChainNames}).<br>
+            <b>הבהרה ואחריות:</b> נתוני המחירים וחישובי החיסכון מוצגים כ<b>הערכה והמלצה בלבד</b> לצורך קבלת אינדיקציה כללית. המחירים ברשתות השיווק משתנים תדיר בין סניפים, אזורים ומבצעים, ואין המפתחים אחראים לדיוקם או לכל החלטת רכישה שתתקבל על בסיסם (ט.ל.ח).
+          </div>
 
-        <div class="myfam-savings-table-wrap">
-          <table class="myfam-savings-table">
-            <thead>
-              <tr>
-                <th style="width:36px;"></th>
-                <th>שם המוצר ומחירי רשתות</th>
-                <th style="width:70px; text-align:center;">כמות</th>
-                <th style="width:110px; text-align:left;">משנת יוסף</th>
-                <th style="width:110px; text-align:left;">ממוצע ברשתות</th>
-                <th style="width:110px; text-align:left;">הפרש חיסכון</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${rowsHtml}
-            </tbody>
-          </table>
+          <div class="myfam-savings-table-wrap">
+            <table class="myfam-savings-table">
+              <thead>
+                <tr>
+                  <th style="width:36px;"></th>
+                  <th>שם המוצר ומחירי רשתות</th>
+                  <th style="width:70px; text-align:center;">כמות</th>
+                  <th style="width:110px; text-align:left;">משנת יוסף</th>
+                  <th style="width:110px; text-align:left;">ממוצע ברשתות</th>
+                  <th style="width:110px; text-align:left;">הפרש חיסכון</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rowsHtml}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #e2e8f0; padding-top:10px;">
@@ -7028,6 +7079,14 @@ function showToast(msg, type = 'success') {
       .tool-tips:hover{background:#fef3c7}
       .tool-import{background:#f5f3ff;border-color:#ddd6fe;color:#6d28d9}
       .tool-import:hover{background:#ede9fe}
+      .tool-hist{background:#fdf2f8;border-color:#fbcfe8;color:#9d174d}
+      .tool-hist:hover{background:#fce7f3}
+      .tool-set{background:#f1f5f9;border-color:#cbd5e1;color:#334155}
+      .tool-set:hover{background:#e2e8f0}
+      .tool-about{background:#ecfeff;border-color:#a5f3fc;color:#0e7490}
+      .tool-about:hover{background:#cffafe}
+      .tool-author{background:#fefce8;border-color:#fef08a;color:#854d0e;text-decoration:none}
+      .tool-author:hover{background:#fef9c3}
 
       /* תחתית הגדרות וסטטוס */
       .myfam-bottom-panel{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:9px 12px;display:flex;flex-direction:column;gap:6px;font-size:11px;color:#64748b}
@@ -7279,8 +7338,22 @@ function showToast(msg, type = 'success') {
       .myfam-forgotten-footer{display:flex;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #e2e8f0}
 
       /* תגית חיסכון צפה ליד כפתור הסל */
-      .myfam-savings-pill{cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 10px;border-radius:10px;background:#ecfdf5;border:1.5px solid #a7f3d0;color:#065f46;font-size:11.5px;font-weight:700;height:42px;box-sizing:border-box;box-shadow:0 3px 10px rgba(16,185,129,0.12);user-select:none;transition:all .18s}
+      .myfam-savings-pill{position:relative;overflow:hidden;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 10px;border-radius:10px;background:#ecfdf5;border:1.5px solid #a7f3d0;color:#065f46;font-size:11.5px;font-weight:700;height:42px;box-sizing:border-box;box-shadow:0 3px 10px rgba(16,185,129,0.12);user-select:none;transition:all .18s}
       .myfam-savings-pill:hover{background:#dcfce7;border-color:#10b981;transform:translateY(-2px);box-shadow:0 5px 14px rgba(16,185,129,0.2)}
+      .myfam-side-card.savings-green{position:relative;overflow:hidden}
+      .myfam-sav-celebrate::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,0.75) 50%,rgba(253,224,71,0.35) 60%,transparent 80%);transform:translateX(-120%);animation:myfam-sav-shimmer .8s ease-out forwards;pointer-events:none;z-index:2}
+      .myfam-sav-num-pop{display:inline-block;animation:myfam-sav-pop .55s cubic-bezier(.34,1.56,.64,1)}
+      .myfam-sav-spark{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:3;animation:myfam-sav-spark .85s cubic-bezier(.16,1,.3,1) forwards}
+      @keyframes myfam-sav-shimmer{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+      @keyframes myfam-sav-pop{0%{transform:scale(1)}40%{transform:scale(1.22);color:#047857}100%{transform:scale(1)}}
+      @keyframes myfam-sav-spark{0%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0.3) rotate(180deg)}}
+
+      /* בועית היכרות מהבהבת בפעם הראשונה */
+      .myfam-first-callout{position:absolute;top:calc(100% + 10px);right:0;width:235px;background:linear-gradient(135deg,#065f46,#047857);color:#fff;border:2px solid #fde047;border-radius:12px;padding:9px 11px 9px 26px;font-size:12px;font-weight:700;line-height:1.45;box-shadow:0 10px 25px rgba(4,120,87,0.35);z-index:100006;cursor:pointer;animation:myfam-callout-pulse 1.5s ease-in-out infinite}
+      .myfam-first-callout-arrow{position:absolute;top:-11px;right:14px;color:#fde047;font-size:12px;line-height:1;text-shadow:0 -1px 0 #065f46}
+      #myfam-first-callout-x{position:absolute;top:5px;left:6px;background:rgba(255,255,255,0.18);border:none;color:#fff;width:18px;height:18px;border-radius:50%;font-size:10px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+      #myfam-first-callout-x:hover{background:rgba(255,255,255,0.35)}
+      @keyframes myfam-callout-pulse{0%,100%{transform:translateY(0);box-shadow:0 8px 20px rgba(4,120,87,0.35),0 0 0 0 rgba(253,224,71,0.7)}50%{transform:translateY(-3px);box-shadow:0 12px 26px rgba(4,120,87,0.5),0 0 0 7px rgba(253,224,71,0)}}
 
       /* וידג'ט חיסכון בתוך הפאנל הראשי */
       .myfam-savings-widget{background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);border:1.5px solid #a7f3d0;border-radius:12px;padding:9px 11px;display:flex;flex-direction:column;gap:5px;margin-bottom:6px;cursor:pointer;transition:all .15s}
@@ -7321,7 +7394,8 @@ function showToast(msg, type = 'success') {
 
       .myfam-savings-disclaimer{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;font-size:11.5px;color:#92400e;line-height:1.4;margin-bottom:12px}
       
-      .myfam-savings-table-wrap{flex:1;overflow-y:auto;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:14px;max-height:44vh}
+      .myfam-savings-scroll{flex:1;min-height:0;overflow-y:auto;padding-left:4px;margin-bottom:12px}
+      .myfam-savings-table-wrap{border:1px solid #e2e8f0;border-radius:10px;overflow-x:auto}
       .myfam-savings-table{width:100%;border-collapse:collapse;font-size:12.5px;text-align:right}
       .myfam-savings-table th{background:#f1f5f9;color:#475569;font-weight:700;padding:8px 10px;border-bottom:1.5px solid #cbd5e1;position:sticky;top:0;z-index:2}
       .myfam-savings-table td{padding:8px 10px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
@@ -7353,11 +7427,18 @@ function showToast(msg, type = 'success') {
     // פאנל כפתור התוסף
     const p = document.createElement('div');
     p.id = 'myfam-panel';
+    const showFirstCallout = !localStorage.getItem(LS + 'menu_opened_once');
     p.innerHTML = `
       <button id="myfam-toggle" title="${APP_NAME}">${ICONS.basket}</button>
       <div id="myfam-budget-pill" class="myfam-budget-pill" style="display:none;"></div>
       <div id="myfam-forgotten-badge" class="myfam-forgotten-badge" style="display:none;" title="מוצרים קבועים שנשכחו - לחץ להצגה והוספה מהירה"></div>
       <div id="myfam-savings-pill" class="myfam-savings-pill" style="display:none;" title="חיסכון משוער בסל - לחץ לדוח השוואה"></div>
+      ${showFirstCallout ? `
+      <div id="myfam-first-callout" class="myfam-first-callout">
+        <span class="myfam-first-callout-arrow">▲</span>
+        <span>פעם ראשונה בחוויית הקנייה עם התוסף שלנו? לחצו על הכפתור הזה לפתיחת התפריט המלא!</span>
+        <button id="myfam-first-callout-x" title="סגור">✕</button>
+      </div>` : ''}
     `;
     document.body.appendChild(p);
 
@@ -7419,7 +7500,7 @@ function showToast(msg, type = 'success') {
         </button>
       </div>
 
-      <!-- אזור כלים ושימוש (2x2) -->
+      <!-- אזור כלים ושימוש (2x4) -->
       <div>
         <div class="myfam-sec-heading">אזור כלים ושימוש</div>
         <div class="myfam-tools-grid">
@@ -7437,33 +7518,53 @@ function showToast(msg, type = 'success') {
           </button>
           <button id="myfam-b-import" class="myfam-tool-btn tool-import">
             ${ICONS.download}
-            <span>ייבוא היסטוריה</span>
+            <span>ייבוא היסטוריית הזמנות</span>
           </button>
+          <button id="myfam-b-hist" class="myfam-tool-btn tool-hist">
+            ${ICONS.history}
+            <span>היסטוריית קניות</span>
+          </button>
+          <button id="myfam-b-set" class="myfam-tool-btn tool-set">
+            ${ICONS.settings}
+            <span>הגדרות והתראות</span>
+          </button>
+          <button id="myfam-b-about" class="myfam-tool-btn tool-about">
+            ${ICONS.info}
+            <span>אודות ותנאי שימוש</span>
+          </button>
+          <a href="https://digital.levtov.uk/" target="_blank" rel="noopener" class="myfam-tool-btn tool-author">
+            ${ICONS.starFilled}
+            <span>פותח ע"י לב טוב דיגיטל</span>
+          </a>
         </div>
       </div>
 
-      <!-- הגדרות, סטטוס וקרדיטים -->
+      <!-- סטטוס וגרסה -->
       <div class="myfam-bottom-panel">
-        <div id="myfam-bottom-toggle" class="myfam-bottom-header">
-          <span>⚙️ הגדרות, היסטוריה ואודות</span>
-          <span id="myfam-bottom-arrow">▼</span>
-        </div>
-        <div id="myfam-bottom-links" class="myfam-bottom-links" style="display:none;">
-          <button id="myfam-b-hist">${ICONS.history} <span>היסטוריית קניות מפורטת</span></button>
-          <button id="myfam-b-set">${ICONS.settings} <span>הגדרות התוסף והתראות</span></button>
-          <button id="myfam-b-about">${ICONS.info} <span>אודות ותנאי שימוש (הגבלת אחריות)</span></button>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
           <div><span class="myfam-status-dot"></span><span id="myfam-info">ממתין לנתוני המכירה...</span></div>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <button id="myfam-b-about-inline" style="background:none;border:none;color:#64748b;font-size:11px;cursor:pointer;padding:0;text-decoration:underline;" title="אודות והגבלת אחריות">אודות (v${APP_VERSION})</button>
-            <span>·</span>
-            <a href="https://digital.levtov.uk/" target="_blank" rel="noopener" class="myfam-author-link">לב טוב דיגיטל</a>
-          </div>
+          <div style="color:#64748b;font-size:11px;font-weight:600;">גרסה ${APP_VERSION}</div>
         </div>
       </div>
     `;
     document.body.appendChild(b);
+
+    const dismissFirstCallout = () => {
+      try { localStorage.setItem(LS + 'menu_opened_once', '1'); } catch (_) {}
+      $('#myfam-first-callout')?.remove();
+    };
+
+    const callout = $('#myfam-first-callout');
+    if (callout) {
+      callout.onclick = e => {
+        e.stopPropagation();
+        dismissFirstCallout();
+        if (!e.target.closest('#myfam-first-callout-x')) {
+          b.classList.remove('collapsed');
+          positionBody();
+        }
+      };
+    }
 
     $('#myfam-toggle').onclick = e => {
       if (panelDragMoved) {
@@ -7472,12 +7573,28 @@ function showToast(msg, type = 'success') {
         return;
       }
       e.stopPropagation();
+      dismissFirstCallout();
       b.classList.toggle('collapsed');
       positionBody();
     };
 
     if (!window._myfamGlobalListenersBound) {
       window._myfamGlobalListenersBound = true;
+      if (typeof chrome !== 'undefined' && chrome?.runtime?.onMessage) {
+        chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+          if (msg && msg.type === 'openExtensionMenu') {
+            if (checkExcluded()) return;
+            ensureUI();
+            const bodyEl = $('#myfam-body');
+            if (bodyEl) {
+              bodyEl.classList.remove('collapsed');
+              positionBody();
+            }
+            dismissFirstCallout();
+            try { sendResponse({ ok: true }); } catch (_) {}
+          }
+        });
+      }
       document.addEventListener('keydown', e => {
         const bodyEl = $('#myfam-body');
         if (e.key === 'Escape' && bodyEl && !bodyEl.classList.contains('collapsed')) {
@@ -7522,28 +7639,9 @@ function showToast(msg, type = 'success') {
     $('#myfam-b-import').onclick = () => { b.classList.add('collapsed'); importHistoryFromSite(); };
     $('#myfam-b-tips').onclick   = () => { b.classList.add('collapsed'); showTipsTour(0); };
 
-    // תחתית הגדרות נפתחת
-    const bottomToggle = $('#myfam-bottom-toggle');
-    const bottomLinks  = $('#myfam-bottom-links');
-    const bottomArrow  = $('#myfam-bottom-arrow');
-    if (bottomToggle && bottomLinks) {
-      bottomToggle.onclick = () => {
-        const isHidden = bottomLinks.style.display === 'none';
-        bottomLinks.style.display = isHidden ? 'flex' : 'none';
-        if (bottomArrow) bottomArrow.textContent = isHidden ? '▲' : '▼';
-        positionBody();
-        if (isHidden) {
-          setTimeout(() => {
-            b.scrollTo({ top: b.scrollHeight, behavior: 'smooth' });
-          }, 60);
-        }
-      };
-    }
-
     $('#myfam-b-hist').onclick = () => { b.classList.add('collapsed'); showHistory(); };
     $('#myfam-b-set').onclick  = () => { b.classList.add('collapsed'); showSettings(); };
     $('#myfam-b-about').onclick = () => { b.classList.add('collapsed'); showAboutModal(); };
-    $('#myfam-b-about-inline').onclick = () => { b.classList.add('collapsed'); showAboutModal(); };
   }
 
   function ensureUI() {

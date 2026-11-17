@@ -1,12 +1,80 @@
-/* מוסיף למשנת - שירות רקע והתראות דפדפן */
+/* מוסיף למשנת - שירות רקע, תפריט הקשר והתראות דפדפן */
+
+const ACTION_MENU_ID = 'myfam_action_menu';
+
+async function syncActionContextMenu() {
+  try {
+    if (!chrome.contextMenus) return;
+    const siteTabs = await chrome.tabs.query({ url: '*://*.mishnatyosef.org/*' });
+    const hasOpenSite = Array.isArray(siteTabs) && siteTabs.length > 0;
+    const title = hasOpenSite
+      ? '🛒 פתח את תפריט התוסף במשנת יוסף'
+      : '🌐 פתח את אתר משנת יוסף';
+    chrome.contextMenus.update(ACTION_MENU_ID, { title }, () => {
+      if (chrome.runtime.lastError) {
+        chrome.contextMenus.create({
+          id: ACTION_MENU_ID,
+          title,
+          contexts: ['action']
+        }, () => { void chrome.runtime.lastError; });
+      }
+    });
+  } catch (_) {}
+}
+
+async function openSiteOrExtensionMenu() {
+  try {
+    const siteTabs = await chrome.tabs.query({ url: '*://*.mishnatyosef.org/*' });
+    if (Array.isArray(siteTabs) && siteTabs.length > 0) {
+      const target = siteTabs.find(t => t.active) || siteTabs[0];
+      await chrome.tabs.update(target.id, { active: true });
+      if (target.windowId != null) {
+        await chrome.windows.update(target.windowId, { focused: true }).catch(() => {});
+      }
+      chrome.tabs.sendMessage(target.id, { type: 'openExtensionMenu' }, () => {
+        void chrome.runtime.lastError;
+      });
+    } else {
+      await chrome.tabs.create({ url: 'https://v2.mishnatyosef.org/' });
+    }
+  } catch (_) {
+    chrome.tabs.create({ url: 'https://v2.mishnatyosef.org/' });
+  }
+}
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.alarms.create('check_sales_periodic', { periodInMinutes: 30 });
+  syncActionContextMenu();
 });
 
 chrome.runtime.onStartup.addListener(() => {
   chrome.alarms.create('check_sales_periodic', { periodInMinutes: 30 });
+  syncActionContextMenu();
 });
+
+if (chrome.contextMenus) {
+  chrome.contextMenus.onClicked.addListener(info => {
+    if (info.menuItemId === ACTION_MENU_ID) {
+      openSiteOrExtensionMenu();
+    }
+  });
+}
+
+if (chrome.action) {
+  chrome.action.onClicked.addListener(() => {
+    openSiteOrExtensionMenu();
+  });
+}
+
+if (chrome.tabs) {
+  chrome.tabs.onCreated.addListener(() => syncActionContextMenu());
+  chrome.tabs.onRemoved.addListener(() => setTimeout(syncActionContextMenu, 150));
+  chrome.tabs.onUpdated.addListener((_tabId, changeInfo) => {
+    if (changeInfo.url || changeInfo.status === 'complete') {
+      syncActionContextMenu();
+    }
+  });
+}
 
 chrome.alarms.onAlarm.addListener(alarm => {
   if (alarm.name === 'check_sales_periodic') {
