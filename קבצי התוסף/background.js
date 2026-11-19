@@ -220,7 +220,8 @@ function showNotification(id, title, message) {
       iconUrl: 'icon128.png',
       title: title,
       message: message,
-      priority: 2
+      priority: 2,
+      silent: false
     });
   } catch (e) {
     console.warn('[myfam notification error]', e);

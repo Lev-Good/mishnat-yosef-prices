@@ -6918,8 +6918,47 @@ function showToast(msg, type = 'success') {
     g('mf-notify-lastday').onchange = saveNotify;
     g('mf-notify-closing').onchange = saveNotify;
     g('mf-notify-hours').onchange = saveNotify;
+    const playNotificationChime = () => {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const now = ctx.currentTime;
+        const playTone = (freq, startOffset, duration) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + startOffset);
+          gain.gain.setValueAtTime(0.001, now + startOffset);
+          gain.gain.exponentialRampToValueAtTime(0.18, now + startOffset + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + startOffset + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + startOffset);
+          osc.stop(now + startOffset + duration + 0.02);
+        };
+        playTone(880, 0, 0.18);
+        playTone(1174.66, 0.14, 0.28);
+        setTimeout(() => { try { ctx.close(); } catch (_) {} }, 700);
+      } catch (_) {}
+    };
+
     g('mf-test-notify').onclick = () => {
-      chrome?.runtime?.sendMessage?.({ type: 'testNotification' });
+      playNotificationChime();
+      if (typeof chrome !== 'undefined' && chrome?.runtime?.sendMessage) {
+        chrome.runtime.sendMessage({ type: 'testNotification' });
+      } else if (typeof Notification !== 'undefined') {
+        if (Notification.permission === 'granted') {
+          new Notification('התראת בדיקה - מוסיף למשנת 🔔', { body: 'ההתראות פועלות כשורה! תקבלו תזכורות בזמן על פתיחת וסגירת מכירות.' });
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then(perm => {
+            if (perm === 'granted') {
+              new Notification('התראת בדיקה - מוסיף למשנת 🔔', { body: 'ההתראות פועלות כשורה!' });
+            }
+          });
+        }
+      }
+      showToast('התראת בדיקה נשלחה! 🔔', 'info');
     };
 
     const bgt = state.budget || { target: 0, enabled: false };
