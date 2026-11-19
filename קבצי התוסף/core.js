@@ -1880,15 +1880,20 @@ function showToast(msg, type = 'success') {
       console.warn('[myfam add item API error]', e);
     }
 
-    // 2. לחיצה ויזואלית על כרטיס המוצר בדף אם הוא מופיע ב-DOM
-    const card = findCardForKey(it.key || ('p' + itemID));
-    if (card) {
-      const btn = findCardAddButton(card);
-      if (btn) {
-        try {
-          triggerSimulatedClick(btn);
-          if (!success) success = true;
-        } catch (e) {}
+    // 2. גיבוי: לחיצה ויזואלית על כרטיס המוצר בדף רק אם קריאת ה-API נכשלה (לפי הכמות המבוקשת)
+    if (!success) {
+      const card = findCardForKey(it.key || ('p' + itemID));
+      if (card) {
+        const btn = findCardAddButton(card);
+        if (btn) {
+          for (let q = 0; q < qty; q++) {
+            try {
+              triggerSimulatedClick(btn);
+              success = true;
+              if (q + 1 < qty) await new Promise(r => setTimeout(r, 120));
+            } catch (e) { break; }
+          }
+        }
       }
     }
 
@@ -1900,6 +1905,31 @@ function showToast(msg, type = 'success') {
       return true;
     }
     return false;
+  }
+
+  function getRecommendedQtyForProduct(key, normName) {
+    try {
+      const fixedEntry = state.fixed?.[key];
+      if (fixedEntry && typeof fixedEntry === 'object' && fixedEntry.qty > 0) {
+        return Math.max(1, Math.round(Number(fixedEntry.qty)));
+      }
+      const curSaleId = (typeof sale !== 'undefined' && sale?.id) || extractSaleIdFromUrl();
+      const sorted = [...(state.history || [])].sort((a, b) => ((a.date || '') < (b.date || '') ? -1 : 1));
+      const recentQtys = [];
+      for (const o of sorted) {
+        if (curSaleId != null && String(o.saleId) === String(curSaleId)) continue;
+        const found = o.items?.find(x => x.key === key || (normName && norm(x.name) === normName));
+        if (found && found.qty > 0) {
+          recentQtys.push(Number(found.qty));
+        }
+      }
+      if (recentQtys.length > 0) {
+        const lastSlice = recentQtys.slice(-5);
+        const avg = lastSlice.reduce((a, b) => a + b, 0) / lastSlice.length;
+        return Math.max(1, Math.round(avg));
+      }
+    } catch (_) {}
+    return 1;
   }
 
   async function addAllFixedToCart() {
@@ -1934,7 +1964,7 @@ function showToast(msg, type = 'success') {
           pid: hit ? hit.pid : Number(key.replace(/^p/, '')),
           name: t,
           itemSalesId: hit ? hit.itemSalesId : null,
-          avgQty: 1
+          avgQty: getRecommendedQtyForProduct(key, norm(t))
         });
       });
     }
@@ -1944,7 +1974,13 @@ function showToast(msg, type = 'success') {
       return;
     }
 
-    if (!await showAppConfirm(`נמצאו ${candidates.length} מוצרים קבועים שעדיין אינם בסל.\nלהוסיף את כולם כעת לסל הקניות?`, 'הוספה מהירה לסל')) {
+    const totalUnits = candidates.reduce((sum, cItem) => sum + (Number(cItem.avgQty) || 1), 0);
+    const multiCount = candidates.filter(cItem => (Number(cItem.avgQty) || 1) > 1).length;
+    const confirmMsg = multiCount > 0
+      ? `נמצאו ${candidates.length} מוצרים קבועים שחסרים בסל (סה"כ ${totalUnits} יחידות, לפי הכמות הרגילה שלך).\nלהוסיף את כולם כעת לסל הקניות?`
+      : `נמצאו ${candidates.length} מוצרים קבועים שעדיין אינם בסל.\nלהוסיף את כולם כעת לסל הקניות?`;
+
+    if (!await showAppConfirm(confirmMsg, 'הוספה מהירה לסל')) {
       return;
     }
 
@@ -2259,18 +2295,7 @@ function showToast(msg, type = 'success') {
       const normName = norm(it.name || '');
       if (isFixed(key, c)) {
         if (!cartKeys.has(key) && !cartNames.has(normName)) {
-          let avgQty = 1;
-          try {
-            let sumQty = 0, ordCount = 0;
-            for (const o of state.history) {
-              const found = o.items?.find(x => x.key === key || norm(x.name) === normName);
-              if (found && found.qty > 0) {
-                sumQty += found.qty;
-                ordCount++;
-              }
-            }
-            if (ordCount > 0) avgQty = Math.round(sumQty / ordCount) || 1;
-          } catch (e) {}
+          const avgQty = getRecommendedQtyForProduct(key, normName);
 
           let img = it.image || productImages[key] || productImages[normName] || '';
           if (!img) {
