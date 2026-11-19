@@ -56,6 +56,27 @@
   function saveItemPrices() {
     try { jset('item_prices', itemPrices); } catch (e) {}
   }
+
+  let itemUnitTexts = jget('unit_texts', {});
+  function saveItemUnitTexts() {
+    try { jset('unit_texts', itemUnitTexts); } catch (e) {}
+  }
+
+  const UNIT_HINT_RE = /(\d+(?:\.\d+)?)\s*(?:ק["״׳']?ג|קילו(?:גרם)?|גרם|גר['"״׳]?|מ["״׳']?ל|ליטר|ל['"״׳]?)(?:[^\u0590-\u05fea-z0-9]|$)/i;
+  function extractCardUnitText(cd, leaf) {
+    if (!cd) return '';
+    try {
+      const els = cd.querySelectorAll('*');
+      for (const el of els) {
+        if (el === leaf || el.closest('.myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, button')) continue;
+        if (el.children.length > 0) continue;
+        const txt = (el.textContent || '').trim();
+        if (!txt || txt.length > 50 || /₪|ש["״׳']?ח/.test(txt)) continue;
+        if (UNIT_HINT_RE.test(txt)) return txt;
+      }
+    } catch (_) {}
+    return '';
+  }
   // איפוס אוטומטי של סימוני בדיקה ישנים (שחסמו מוצרים כמו בצל ועגבניה שהוזמנו 7 פעמים)
   if (!localStorage.getItem(LS + 'clean_fixed_v3')) {
     localStorage.setItem(LS + 'clean_fixed_v3', 'true');
@@ -539,11 +560,22 @@ function showToast(msg, type = 'success') {
         if (p > 0) {
           itemPrices['p' + pid] = p;
         }
+        const rawUnit = [
+          r.unit, r.unit_name, r.weight, r.package_weight, r.sub_title, r.subtitle, r.description,
+          r.product?.unit, r.product?.unit_name, r.product?.weight, r.product?.description
+        ].filter(v => typeof v === 'string' && v.trim()).join(' ');
+        const unitMatch = rawUnit.match(UNIT_HINT_RE);
+        const unitText = unitMatch ? unitMatch[0].trim() : '';
+        if (unitText) {
+          itemUnitTexts['p' + pid] = unitText;
+          itemUnitTexts[norm(n)] = unitText;
+        }
         const itemObj = {
           pid: Number(pid),
           name: n,
           image: img,
           price: p,
+          unitText,
           itemSalesId: salesId != null ? Number(salesId) : null,
           raw: r
         };
@@ -555,6 +587,7 @@ function showToast(msg, type = 'success') {
     });
     saveProductImages();
     saveItemPrices();
+    saveItemUnitTexts();
   }
 
   function populateHistoryRenderFromOrder(o) {
@@ -1102,8 +1135,18 @@ function showToast(msg, type = 'success') {
 
       // תגית השוואת מחיר מול רשתות השיווק - מינימליסטית, אלגנטית ולא מפריעה
       const pName = (leaf.textContent || '').trim();
+      let unitHint = itemUnitTexts[key] || itemUnitTexts[norm(pName)] || '';
+      if (!unitHint && !UNIT_HINT_RE.test(pName)) {
+        const domUnit = extractCardUnitText(cd, leaf);
+        if (domUnit) {
+          unitHint = domUnit;
+          itemUnitTexts[key] = domUnit;
+          itemUnitTexts[norm(pName)] = domUnit;
+          saveItemUnitTexts();
+        }
+      }
       const showCompareHere = !isHistItem || allowHistoryCompare;
-      const rawComp = showCompareHere ? findMarketComparison(pName, '') : null;
+      const rawComp = showCompareHere ? findMarketComparison(pName, unitHint) : null;
       const compItem = rawComp ? getEffectiveMarketComparison(rawComp) : null;
 
       // מציאת מחיר המוצר: מתוך המאגר המקומי או ישירות מהטקסט בכרטיס
@@ -1151,10 +1194,12 @@ function showToast(msg, type = 'success') {
           const selChainNames = (compItem.activeChainEntries && compItem.activeChainEntries.length)
             ? compItem.activeChainEntries.map(([c]) => ALL_CHAINS[c]?.name || c).join(', ')
             : (compItem.sourceLabel || 'רשתות שיווק');
-          const eqSuffix = compItem.isEquivalentBrand ? ' (מקביל)' : '';
-          const eqNote = compItem.isEquivalentBrand
+          const scaleSuffix = compItem._scaleLabel ? ` (${compItem._scaleLabel})` : '';
+          const eqSuffix = (compItem.isEquivalentBrand ? ' (מקביל)' : '') + scaleSuffix;
+          const eqNote = (compItem.isEquivalentBrand
             ? `\n* הערה: השוואה למותג מקביל שאינו זהה (${compItem.matchedName || 'מוצר מקביל דומה'}).`
-            : '';
+            : '')
+            + (compItem._scaleNote ? `\n* הערה: ${compItem._scaleNote}.` : '');
 
           if (diff >= 0.3) {
             compTag.className = 'myfam-price-comp-tag tag-saving';
@@ -5018,14 +5063,15 @@ function showToast(msg, type = 'success') {
     return false;
   }
 
-  function findMarketComparison(itemName, barcode = '') {
+  function findMarketComparison(itemName, unitHint = '') {
     if (!itemName) return null;
     const n = norm(itemName);
     const nWords = n.split(/\s+/);
     const catalog = dynamicMarketItems || MARKET_ANCHOR_ITEMS;
     if (!Array.isArray(catalog)) return null;
 
-    const targetUnits = parseProductUnits(itemName);
+    const fullSourceName = unitHint ? `${itemName} ${unitHint}` : itemName;
+    const targetUnits = parseProductUnits(fullSourceName);
     const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
     const PRODUCE_EXCLUDED_RE = /(?:מרק|אבקת|טבעות|קמח|מלח|חמוץ|חמוצים|סלט|מיץ|עוגת|עוגיות|חטיף|נשנושים|איירביס|בייגל[ה]?|קרקר|צ['׳]?יפס|תפוצ['׳]?יפס|דוריטוס|ביסלי|במבה|בורקס|שבבי|רסק|רוטב|קטשופ|מיונז|חרדל|ממרח|מטבל|שמנת|גבינ[הת]|מחיות|מחית|פאווץ|סיגרים|סיגר|מילוי|במילוי|כרובית|מוקפא|קפוא|שימורים|מיובש|תבלין|מטוגן|קלוי|בטעם|טעם|קרוטונים|גליד[הת]?|ארטיק|סורבה|מעדן|יוגורט|מילקשייק|קונפיטור|ריבת|ממתק|סוכרי|שוקולד|וופל|חליטה|ניחוח|בושם|תרסיס|סבון|שמפו|קרם|נוזל|ג['׳]?ל|כביסה|שניצל|קציצ|פשטיד|פסטה|אטריות|אורז|קוסקוס|מצה|לחם|לחמני|פיתות|חלה|בלינ[צץ])|(?:^|\s)תה(?:\s|$)/i;
     const isProduceExcluded = PRODUCE_EXCLUDED_RE.test(n);
@@ -5034,23 +5080,61 @@ function showToast(msg, type = 'success') {
       && (item.id.endsWith('_fresh') || item.id === 'onion_dry'
         || /^(?:אגס|אפרסק|אבוקדו|אבטיח|מלון|קלמנטינה|תפוז|תפוח|בננ|גזר|מלפפון|עגבני|פלפל|חציל|קישוא|דלורית|בטטה|סלק|קולרבי|שום|לימון|כרוב|כוסברה|שמיר|פטרוזיליה|בזיליקום|נענע|חסה|סלרי|בצל\s*ירוק|צנון|צנונית|פומלה|אשכולית|מנגו|רימון|שזיף|ענבים|תות|דובדבן|תמר|פטריות|נבטים)(?:\s|$)/i.test(norm(item.name)));
 
-    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (בחירת ההתאמה הספציפית/ארוכה ביותר בגבולות מילה שלמה)
+    const formatWeightLabel = grams => {
+      if (!grams || grams <= 0) return '';
+      if (grams >= 1000) {
+        const kg = Math.round((grams / 1000) * 100) / 100;
+        return `${kg} ק"ג`;
+      }
+      return `${Math.round(grams)} גרם`;
+    };
+
+    const resolveUnitScale = item => {
+      const itemUnits = parseProductUnits(item.name);
+      if (areUnitsCompatible(targetUnits, itemUnits)) {
+        return { compatible: true, exact: true, scale: 1 };
+      }
+      // בפירות וירקות טריים הנמכרים במשקל (למשל מלפפון 1.5 ק"ג מול 1 ק"ג), מתאימים את מחיר השוק ליחס המשקל
+      if (isFreshItem(item) && targetUnits.weightGrams > 0 && itemUnits.weightGrams > 0) {
+        const scale = targetUnits.weightGrams / itemUnits.weightGrams;
+        if (scale >= 0.2 && scale <= 10) {
+          return { compatible: true, exact: false, scale };
+        }
+      }
+      return { compatible: false, exact: false, scale: 1 };
+    };
+
+    const attachScaleMeta = (item, unitRes) => {
+      if (!item || !unitRes || unitRes.scale === 1) return item;
+      const wLabel = formatWeightLabel(targetUnits.weightGrams);
+      return {
+        ...item,
+        _unitScale: unitRes.scale,
+        _scaleLabel: wLabel ? `ל-${wLabel}` : '',
+        _scaleNote: wLabel ? `מחיר הרשתות הותאם יחסית למשקל האריזה במשנת יוסף (${wLabel})` : ''
+      };
+    };
+
+    // 1. התאמה ישירה לפי שם מנורמל או כינוי מדויק (עדיפות מוחלטת להתאמת יחידות 1:1)
     let bestStep1 = null;
-    let bestStep1Len = 0;
+    let bestStep1Score = 0;
+    let bestStep1Unit = null;
     for (const item of catalog) {
       if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
       if (isFreshItem(item) && isProduceExcluded) continue;
       if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
       if (item.id.includes('pasta') && isWholeWheat) continue;
-      const itemUnits = parseProductUnits(item.name);
-      if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
+      const unitRes = resolveUnitScale(item);
+      if (!unitRes.compatible) continue;
+      const exactBonus = unitRes.exact ? 1000 : 0;
 
       const iname = norm(item.name);
       if (iname.length >= 3 && (containsWholePhrase(n, iname) || (containsWholePhrase(iname, n) && n.length >= iname.length * 0.7))) {
-        const score = iname.length + 100;
-        if (score > bestStep1Len) {
-          bestStep1Len = score;
+        const score = exactBonus + iname.length + 100;
+        if (score > bestStep1Score) {
+          bestStep1Score = score;
           bestStep1 = item;
+          bestStep1Unit = unitRes;
         }
       }
 
@@ -5058,39 +5142,57 @@ function showToast(msg, type = 'success') {
         for (const alias of item.aliases) {
           const na = norm(alias);
           if (na.length >= 2 && containsWholePhrase(n, na)) {
-            if (na.length > bestStep1Len) {
-              bestStep1Len = na.length;
+            const score = exactBonus + na.length;
+            if (score > bestStep1Score) {
+              bestStep1Score = score;
               bestStep1 = item;
+              bestStep1Unit = unitRes;
             }
           }
         }
       }
     }
-    if (bestStep1) return bestStep1;
+    if (bestStep1) return attachScaleMeta(bestStep1, bestStep1Unit);
 
     // 2. התאמה חכמה לפי מילות מפתח (מילים מהותיות בסדר שונה, כגון "חלב 3% 1 ליטר תנובה" מול "חלב תנובה 3%")
+    let bestStep2 = null;
+    let bestStep2Unit = null;
+    let bestStep2Exact = false;
     for (const item of catalog) {
       if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
       if (isFreshItem(item) && isProduceExcluded) continue;
       if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
       if (item.id.includes('pasta') && isWholeWheat) continue;
-      const itemUnits = parseProductUnits(item.name);
-      if (!areUnitsCompatible(targetUnits, itemUnits)) continue;
+      const unitRes = resolveUnitScale(item);
+      if (!unitRes.compatible) continue;
 
+      let matched = false;
       if (item.aliases) {
         for (const alias of item.aliases) {
           const na = norm(alias);
           const tokens = na.split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
           if (tokens.length >= 2 && tokens.every(tok => tokenMatches(n, nWords, tok))) {
-            return item;
+            matched = true;
+            break;
           }
         }
       }
-      const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3 || /\d/.test(w));
-      if (itemTokens.length >= 3 && itemTokens.every(tok => tokenMatches(n, nWords, tok))) {
-        return item;
+      if (!matched) {
+        const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 3 || /\d/.test(w));
+        if (itemTokens.length >= 3 && itemTokens.every(tok => tokenMatches(n, nWords, tok))) {
+          matched = true;
+        }
+      }
+
+      if (matched) {
+        if (unitRes.exact) return attachScaleMeta(item, unitRes);
+        if (!bestStep2 && !bestStep2Exact) {
+          bestStep2 = item;
+          bestStep2Unit = unitRes;
+        }
       }
     }
+    if (bestStep2) return attachScaleMeta(bestStep2, bestStep2Unit);
 
     return null;
   }
@@ -5101,11 +5203,12 @@ function showToast(msg, type = 'success') {
       ? prefs.selectedChains
       : DEFAULT_SELECTED_CHAINS;
 
+    const scale = (typeof item._unitScale === 'number' && item._unitScale > 0) ? item._unitScale : 1;
     const chains = item.chains || {};
     const activeChainEntries = [];
     for (const c of selChains) {
       if (chains[c] != null && typeof chains[c] === 'number' && chains[c] > 0) {
-        activeChainEntries.push([c, Number(chains[c])]);
+        activeChainEntries.push([c, Math.round(Number(chains[c]) * scale * 100) / 100]);
       }
     }
 
@@ -5114,7 +5217,7 @@ function showToast(msg, type = 'success') {
       const sum = activeChainEntries.reduce((acc, [, price]) => acc + price, 0);
       effectivePrice = Math.round((sum / activeChainEntries.length) * 100) / 100;
     } else if (!item.chains || Object.keys(item.chains).length === 0) {
-      effectivePrice = item.supermarketPrice || 0;
+      effectivePrice = Math.round(((item.supermarketPrice || 0) * scale) * 100) / 100;
     }
 
     return {
@@ -5154,7 +5257,8 @@ function showToast(msg, type = 'success') {
       const myUnitPrice = l.price || itemPrices['p' + l.pid] || itemPrices[l.key] || 0;
       if (myUnitPrice <= 0) continue;
 
-      const rawMatch = findMarketComparison(l.name, '');
+      const unitHint = itemUnitTexts[l.key] || itemUnitTexts['p' + l.pid] || itemUnitTexts[norm(l.name)] || '';
+      const rawMatch = findMarketComparison(l.name, unitHint);
       if (!rawMatch) continue;
       const match = getEffectiveMarketComparison(rawMatch);
       if (!match || match.effectivePrice <= 0) continue;
@@ -5195,7 +5299,8 @@ function showToast(msg, type = 'success') {
         chains: activeChains,
         sourceLabel: match.sourceLabel || '',
         isEquivalentBrand: !!match.isEquivalentBrand,
-        matchedName: match.matchedName || ''
+        matchedName: match.matchedName || '',
+        scaleLabel: match._scaleLabel || ''
       });
     }
 
@@ -5338,9 +5443,12 @@ function showToast(msg, type = 'success') {
           const heName = ALL_CHAINS[cName]?.name || cName;
           return `<span class="myfam-chain-pill">${heName}: ₪${Number(cPrice).toFixed(2)}</span>`;
         }).join('') || (it.sourceLabel ? `<span class="myfam-chain-pill">${esc(it.sourceLabel)}</span>` : '');
-      const eqBadge = it.isEquivalentBrand
+      const eqBadge = (it.isEquivalentBrand
         ? `<div style="font-size:11px; color:#92400e; background:#fef3c7; border:1px solid #fde68a; border-radius:4px; padding:1px 6px; display:inline-block; margin-top:3px;">מותג מקביל שאינו זהה${it.matchedName ? `: ${esc(it.matchedName)}` : ''}</div>`
-        : '';
+        : '')
+        + (it.scaleLabel
+          ? `<div style="font-size:11px; color:#0369a1; background:#e0f2fe; border:1px solid #bae6fd; border-radius:4px; padding:1px 6px; display:inline-block; margin-top:3px; margin-right:4px;">המחיר הותאם ${esc(it.scaleLabel)}</div>`
+          : '');
 
       return `
         <tr>
