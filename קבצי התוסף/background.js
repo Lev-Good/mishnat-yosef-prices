@@ -136,11 +136,19 @@ async function checkSalesInBackground() {
     // 1. ננסה לפנות ל-API של משנת יוסף עם הסשן הקיים בדפדפן
     let sales = [];
     try {
-      const resp = await fetch('https://v2.mishnatyosef.org/api/profile/open_sales', {
-        credentials: 'include',
-        headers: { 'Accept': 'application/json' }
-      });
-      if (resp.ok) {
+      let resp = null;
+      try {
+        resp = await fetch('https://mishnatyosef.org/api/profile/open_sales', {
+          credentials: 'include',
+          headers: { 'Accept': 'application/json' }
+        });
+      } catch (_) {
+        resp = await fetch('https://v2.mishnatyosef.org/api/profile/open_sales', {
+          credentials: 'include',
+          headers: { 'Accept': 'application/json' }
+        });
+      }
+      if (resp && resp.ok) {
         const json = await resp.json();
         sales = Array.isArray(json?.data) ? json.data : [];
         if (sales.length) {

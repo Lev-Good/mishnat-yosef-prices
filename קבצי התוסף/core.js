@@ -1344,7 +1344,9 @@ function showToast(msg, type = 'success') {
   }
   const setStatus = t => { const s = $('#myfam-status'); if (s) s.textContent = t; };
 
-  const API_HOST = 'https://v2.mishnatyosef.org';
+  const API_HOST = (typeof location !== 'undefined' && location.origin && /mishnatyosef\.org/i.test(location.origin))
+    ? location.origin
+    : 'https://mishnatyosef.org';
 
   /* קריאה דרך עולם הדף (MAIN world) כגיבוי */
   function pageApiRequest(url, method = 'GET', body = null) {
@@ -1395,7 +1397,9 @@ function showToast(msg, type = 'success') {
         const res = await pageApiRequest(url, method, body);
         if (res !== undefined && res !== null) return res;
       } catch (pageErr) {
-        console.warn('[myfam page request fallback to bg]', pageErr);
+        if (localStorage.getItem(LS + 'debug_enabled')) {
+          console.log('[myfam page request fallback to bg]', pageErr);
+        }
       }
       if (T && typeof T.request === 'function') {
         const bgHeaders = { 'Accept': 'application/json' };
@@ -1649,6 +1653,7 @@ function showToast(msg, type = 'success') {
 
   /* בדיקה יומית חכמה האם נדרש סנכרון */
   async function checkDailyHistorySync() {
+    if (isExcludedPage() || location.pathname.includes('/login') || location.pathname.includes('/register')) return;
     const KEY_LAST_CHECK = 'last_hist_check_day';
     const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
     const lastCheck = localStorage.getItem(LS + KEY_LAST_CHECK);
@@ -1864,7 +1869,7 @@ function showToast(msg, type = 'success') {
 
   /* פונקציה מרכזית ואמינה להוספת פריט לסל */
   async function addItemToCart(it, amount = 1) {
-    const oid = (live && live.orderId) || extractOrderIdFromUrl();
+    const oid = extractOrderIdFromUrl() || (location.pathname.includes('/order/') && live && live.orderId);
     if (!oid) return false;
 
     // אם המכירה טרם נטענה במלואה, נוודא טעינה
@@ -1886,7 +1891,7 @@ function showToast(msg, type = 'success') {
     const qty = Number(amount || it.avgQty || 1);
 
     if (!itemID && !salesId) {
-      console.warn('[myfam] לא נמצא מזהה מוצר עבור', it);
+      if (localStorage.getItem(LS + 'debug_enabled')) console.log('[myfam] לא נמצא מזהה מוצר עבור', it);
       return false;
     }
 
@@ -1959,7 +1964,9 @@ function showToast(msg, type = 'success') {
         } catch (e) {}
       }
     } catch (e) {
-      console.warn('[myfam add item API error]', e);
+      if (localStorage.getItem(LS + 'debug_enabled')) {
+        console.log('[myfam add item API error]', e);
+      }
     }
 
     // 2. גיבוי: לחיצה ויזואלית על כרטיס המוצר בדף רק אם קריאת ה-API נכשלה (לפי הכמות המבוקשת)
