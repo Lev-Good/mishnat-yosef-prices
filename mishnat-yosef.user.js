@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         מוסיף למשנת - סל קניות משפחתי חכם
 // @namespace    https://digital.levtov.uk/
-// @version      0.6.5
+// @version      0.6.6
 // @description  סל קניות משפחתי חכם למשנת יוסף - מד תקציב שבועי, תזכורת קבועים שנשכחו, מחשבון חיסכון והשוואת מחירים לרשתות השיווק, סימון מוצרים שהוזמנו בעבר, סימון קבועים, היסטוריית קניות מפורטת, הדפסת רשימת איסוף, והוספה מהירה לסל
 // @author       לב טוב דיגיטל (https://digital.levtov.uk/)
 // @copyright    2026, Lev Tov Digital (https://digital.levtov.uk/). All Rights Reserved.
@@ -268,13 +268,15 @@ if (typeof window.__MY_T === 'undefined') {
   function extractCardUnitText(cd, leaf) {
     if (!cd) return '';
     try {
-      const els = cd.querySelectorAll('*');
-      for (const el of els) {
-        if (el === leaf || el.closest('.myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, button')) continue;
-        if (el.children.length > 0) continue;
+      const els = cd.querySelectorAll('span, div, p, small, b, strong, td');
+      for (let i = 0; i < els.length; i++) {
+        const el = els[i];
+        if (el === leaf || el.childElementCount > 0) continue;
         const txt = (el.textContent || '').trim();
         if (!txt || txt.length > 50 || /₪|ש["״׳']?ח/.test(txt)) continue;
-        if (UNIT_HINT_RE.test(txt)) return txt;
+        if (UNIT_HINT_RE.test(txt)) {
+          if (!el.closest('.myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, button')) return txt;
+        }
       }
     } catch (_) {}
     return '';
@@ -569,7 +571,7 @@ if (typeof window.__MY_T === 'undefined') {
   /* ---------- זיהוי מדויק של תמונת המוצר (סינון כשרות/אייקונים/לבבות) ---------- */
   function findProductImage(cd) {
     if (!cd) return '';
-    const imgs = [...cd.querySelectorAll('img')];
+    const imgs = [...cd.getElementsByTagName('img')];
     if (!imgs.length) return '';
 
     const isExcluded = img => {
@@ -585,12 +587,12 @@ if (typeof window.__MY_T === 'undefined') {
 
     if (!candidates.length) return '';
 
-    // בחירת התמונה עם השטח הגדול ביותר (תמונת המוצר הראשית של הכרטיס)
+    // בחירת התמונה עם השטח הגדול ביותר (תמונת המוצר הראשית של הכרטיס) ללא layout thrashing
     let best = candidates[0];
     let maxArea = -1;
     for (const img of candidates) {
-      const w = img.naturalWidth || img.width || img.offsetWidth || 0;
-      const h = img.naturalHeight || img.height || img.offsetHeight || 0;
+      const w = img.naturalWidth || img.width || 0;
+      const h = img.naturalHeight || img.height || 0;
       const area = w * h;
       if (area > maxArea) {
         maxArea = area;
@@ -851,7 +853,8 @@ function showToast(msg, type = 'success') {
 
   function handleApi(d) {
     const u = new URL(d.url), path = u.pathname, j = d.json; let m;
-    if (CONFIG.debugPaths.test(path)) {
+    const isDebug = !!localStorage.getItem(LS + 'debug_enabled');
+    if (isDebug && CONFIG.debugPaths.test(path)) {
       debugBuf.push({ url: path + u.search, method: d.method, status: d.status,
         body: (d.body || '').slice(0, 300), json: JSON.stringify(redact(j)).slice(0, 2500) });
       if (debugBuf.length > CONFIG.debugKeep) debugBuf.shift();
@@ -1182,49 +1185,66 @@ function showToast(msg, type = 'success') {
     // 1. אלמנטי טקסט ששמם זהה למוצר, ואייקוני לב (החרגה מלאה של סל הקניות ומודאלים)
     const onHistoryPage = isHistoryPage();
     const allowHistoryCompare = prefs.compareInHistory !== false;
-    const leaves = [], hearts = [];
-    // ניקוי סימוני leaf ישנים (האתר ממחזר אלמנטים בגלילה — טקסט מתחלף אך התכונה נשארת)
-    $$('[data-myleaf]').forEach(e => {
-      e.removeAttribute('data-myleaf');
-      e.removeAttribute('data-myprice');
-      e.removeAttribute('data-myhist');
-    });
-    document.body.querySelectorAll('*').forEach(el => {
-      if (heartLike(el)) hearts.push(el);
-      if (el.children.length || /^(SCRIPT|STYLE|BUTTON|NOSCRIPT)$/.test(el.tagName)) return;
+    const leaves = [];
+
+    // איתור ממוקד ומהיר של אייקוני וכפתורי לב ללא סריקה מיותרת של כל ה-DOM
+    const hearts = [...document.body.querySelectorAll('button, a, [role="button"], .material-symbols-rounded, .material-icons, svg, [class*="heart" i], [class*="fav" i], [aria-label*="מועדפ" i]')].filter(heartLike);
+
+    // איתור ממוקד של אלמנטי מלל בלבד (ללא ילדים)
+    const candidateTextEls = document.body.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div,b,strong,td,a');
+    for (let i = 0; i < candidateTextEls.length; i++) {
+      const el = candidateTextEls[i];
+      if (el.childElementCount > 0) continue;
       const t = el.textContent;
-      if (!t || t.length < 2 || t.length > 200) return;
-      // החרגה גורפת של סל הקניות של משנת יוסף כדי למנוע הופעת רקע ומסגרת זהב בסל!
-      if (el.closest('#myfam-panel, #myfam-body, #myfam-modal, #myfam-forgotten-modal, #myfam-savings-modal, .myfam-tag, #cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i], header, nav, dialog')) return;
+      if (!t || t.length < 2 || t.length > 100) continue;
       const nt = norm(t);
       const hitSale = sale.items.get(nt);
       const hitHist = (!hitSale && allowHistoryCompare && (onHistoryPage || sale.items.size === 0 || (viewedOrder && viewedOrder.lines && viewedOrder.lines.size > 0)))
         ? getHistoryLookupItem(nt)
         : null;
       const hit = hitSale || hitHist;
-      if (hit) {
-        el.setAttribute('data-myleaf', hit.pid ? ('p' + hit.pid) : nt);
-        if (hit.price > 0) el.setAttribute('data-myprice', String(hit.price));
-        if (!hitSale) el.setAttribute('data-myhist', '1');
-        leaves.push(el);
+      if (!hit) continue;
+
+      // בדיקת החרגה מתבצעת אך ורק עבור אלמנטים שהם אכן מוצר (חוסך עשרות אלפי בדיקות closest)
+      if (el.closest('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, .myfam-tag, #cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i], header, nav, dialog')) continue;
+
+      const leafKey = hit.pid ? ('p' + hit.pid) : nt;
+      if (el.getAttribute('data-myleaf') !== leafKey) el.setAttribute('data-myleaf', leafKey);
+      if (hit.price > 0 && el.getAttribute('data-myprice') !== String(hit.price)) el.setAttribute('data-myprice', String(hit.price));
+      if (!hitSale && !el.hasAttribute('data-myhist')) el.setAttribute('data-myhist', '1');
+      leaves.push(el);
+    }
+
+    // ניקוי סימוני leaf ישנים אך ורק עבור אלמנטים שכבר אינם עלי מוצר פעילים
+    const currentLeafSet = new Set(leaves);
+    $$('[data-myleaf]').forEach(e => {
+      if (!currentLeafSet.has(e)) {
+        e.removeAttribute('data-myleaf');
+        e.removeAttribute('data-myprice');
+        e.removeAttribute('data-myhist');
       }
     });
 
-    // 2. עולים לכרטיס המוצר המדויק
+    // 2. עולים לכרטיס המוצר המדויק ללא Layout Thrashing (ללא p.offsetHeight וללא סריקות יקרות)
     const cardMap = new Map();
+    const escapedKeys = new Map();
     leaves.forEach(leaf => {
       const key = leaf.getAttribute('data-myleaf');
       let card = leaf, hops = 0;
+      let escKey = escapedKeys.get(key);
+      if (!escKey) {
+        escKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(key) : key.replace(/["\\]/g, '\\$&');
+        escapedKeys.set(key, escKey);
+      }
       while (card.parentElement && card.parentElement !== document.body && hops < 8) {
         const p = card.parentElement;
-        if (p.offsetHeight > 800) break;
+        if (p.tagName === 'TR') { card = p; break; }
+        if (/^(BODY|HTML|MAIN|SECTION|NAV|HEADER|FOOTER|FORM)$/i.test(p.tagName)) break;
         if (p.closest('#cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i]')) break;
-        if ([...p.querySelectorAll('[data-myleaf]')].every(x => x.getAttribute('data-myleaf') === key)) {
-          card = p;
-          hops++;
-        } else {
-          break;
-        }
+        // עצירה מיידית אם להורה יש מוצר נוסף אחר
+        if (p.querySelector(`[data-myleaf]:not([data-myleaf="${escKey}"])`)) break;
+        card = p;
+        hops++;
       }
       if (!card.closest('#cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i]')) {
         cardMap.set(card, { key, leaf });
@@ -1254,6 +1274,9 @@ function showToast(msg, type = 'success') {
     $$('#cart .myfam-tag, #cart .myfam-starbtn, #cart .myfam-price-comp-tag, [id*="cart" i] .myfam-tag, [id*="cart" i] .myfam-starbtn, [id*="cart" i] .myfam-price-comp-tag').forEach(el => el.remove());
 
     let inList = 0; const stars = [];
+    let unitTextsChanged = false;
+    let productImagesChanged = false;
+
     cards.forEach(cd => {
       if (!region.contains(cd)) return;
       inList++;
@@ -1272,8 +1295,8 @@ function showToast(msg, type = 'success') {
       const leafPrice = parseFloat(leaf.getAttribute('data-myprice') || '0') || 0;
       const cardHost = isTableRow ? (leaf.closest('td,th') || leaf.parentElement || cd) : cd;
 
-      cd.classList.add('myfam-card');
-      if (!isTableRow && getComputedStyle(cd).position === 'static') cd.style.position = 'relative';
+      if (!cd.classList.contains('myfam-card')) cd.classList.add('myfam-card');
+      if (!isTableRow && !cd.style.position) cd.style.position = 'relative';
 
       // כפתור כוכב (מופיע רק במעבר עכבר / טאפ, או כשהוא כבר מסומן כקבוע)
       let star = cd.querySelector('.myfam-starbtn');
@@ -1295,48 +1318,55 @@ function showToast(msg, type = 'success') {
         };
         cardHost.appendChild(star);
       }
-      star.dataset.key = key;   // מתעדכן בכל רינדור — כרטיס ממוחזר מקבל את המוצר הנכון
-      // הסרת תגיות של מוצר קודם שהיה בכרטיס זה לפני מיחזור
+      if (star.dataset.key !== key) star.dataset.key = key;
       cd.querySelectorAll('.myfam-tag').forEach(t => { if (t.getAttribute('data-tag-key') !== key) t.remove(); });
-      star.className = 'myfam-starbtn' + (fx ? ' on' : '');
-      star.innerHTML = fx ? ICONS.starBtnFilled : ICONS.starBtnEmpty;
-      star.title = fx ? 'בטל סימון כמוצר קבוע' : 'סמן כמוצר קבוע';
+      const targetStarCls = 'myfam-starbtn' + (fx ? ' on' : '');
+      if (star.className !== targetStarCls) star.className = targetStarCls;
+      const targetStarHtml = fx ? ICONS.starBtnFilled : ICONS.starBtnEmpty;
+      if (star.innerHTML !== targetStarHtml) star.innerHTML = targetStarHtml;
+      const targetStarTitle = fx ? 'בטל סימון כמוצר קבוע' : 'סמן כמוצר קבוע';
+      if (star.title !== targetStarTitle) star.title = targetStarTitle;
       if (!isTableRow) stars.push({ cd, star });
 
-      // שמירת תמונת המוצר המדויקת (מסנן חותמות כשרות ולוגואים) לטובת הדפסה
-      const realImgSrc = findProductImage(cd);
-      if (realImgSrc) {
-        productImages[key] = realImgSrc;
-        const leafText = (leaf.textContent || '').trim();
-        if (leafText) productImages[norm(leafText)] = realImgSrc;
+      // שמירת תמונת המוצר רק אם אינה שמורה כבר (חוסך סריקות מיותרות)
+      const leafText = (leaf.textContent || '').trim();
+      const normLeaf = norm(leafText);
+      if (!productImages[key] && !productImages[normLeaf]) {
+        const realImgSrc = findProductImage(cd);
+        if (realImgSrc) {
+          productImages[key] = realImgSrc;
+          if (normLeaf) productImages[normLeaf] = realImgSrc;
+          productImagesChanged = true;
+        }
       }
 
-      // תגית המוצר: מוצמדת ישירות מעל בלוק המידע של המוצר בתוך הכרטיס (מבנה פלקס טבעי ללא בריחה)
+      // תגית המוצר: מוצמדת ישירות מעל בלוק המידע של המוצר בתוך הכרטיס
       if (n > 0 && !isTableRow && !suppressHistDecorations) {
         let tag = cd.querySelector(`:scope > .myfam-tag[data-tag-key="${key}"]`);
         if (!tag) {
           cd.querySelectorAll('.myfam-tag').forEach(t => t.remove());
           tag = document.createElement('div');
           tag.setAttribute('data-tag-key', key);
-          cardHost.appendChild(tag);   // ילד ישיר של הכרטיס (position:relative) — ממוקם אבסולוטית, לא משפיע על הפריסה
+          cardHost.appendChild(tag);
         }
-        {
-          const badgeInfo = c[key];
-          const badgeText = formatOrderBadge(n, badgeInfo);
-          tag.className = 'myfam-tag' + (fx ? ' fixed' : '');
-          tag.innerHTML = fx
-            ? `${ICONS.starFilled} <span>${badgeText}</span>`
-            : `<span>${badgeText}</span>`;
-          if (badgeInfo && badgeInfo.totalQty > 0) {
-            tag.title = `הוזמן ${times(n)} | בהזמנה האחרונה: ${badgeInfo.lastQty} יח' | סה"כ בכל ההזמנות: ${badgeInfo.totalQty} יח'`;
-          }
+        const badgeInfo = c[key];
+        const badgeText = formatOrderBadge(n, badgeInfo);
+        const targetTagCls = 'myfam-tag' + (fx ? ' fixed' : '');
+        if (tag.className !== targetTagCls) tag.className = targetTagCls;
+        const targetTagHtml = fx
+          ? `${ICONS.starFilled} <span>${badgeText}</span>`
+          : `<span>${badgeText}</span>`;
+        if (tag.innerHTML !== targetTagHtml) tag.innerHTML = targetTagHtml;
+        if (badgeInfo && badgeInfo.totalQty > 0) {
+          const targetTagTitle = `הוזמן ${times(n)} | בהזמנה האחרונה: ${badgeInfo.lastQty} יח' | סה"כ בכל ההזמנות: ${badgeInfo.totalQty} יח'`;
+          if (tag.title !== targetTagTitle) tag.title = targetTagTitle;
         }
       } else {
         cd.querySelector(`.myfam-tag[data-tag-key="${key}"]`)?.remove();
       }
 
       // תגית השוואת מחיר מול רשתות השיווק - מינימליסטית, אלגנטית ולא מפריעה
-      const pName = (leaf.textContent || '').trim();
+      const pName = leafText;
       let unitHint = itemUnitTexts[key] || itemUnitTexts[norm(pName)] || '';
       if (!unitHint && !UNIT_HINT_RE.test(pName)) {
         const domUnit = extractCardUnitText(cd, leaf);
@@ -1344,35 +1374,35 @@ function showToast(msg, type = 'success') {
           unitHint = domUnit;
           itemUnitTexts[key] = domUnit;
           itemUnitTexts[norm(pName)] = domUnit;
-          saveItemUnitTexts();
+          unitTextsChanged = true;
         }
       }
       const showCompareHere = !isHistItem || allowHistoryCompare;
       const rawComp = showCompareHere ? findMarketComparison(pName, unitHint) : null;
       const compItem = rawComp ? getEffectiveMarketComparison(rawComp) : null;
 
-      // מציאת מחיר המוצר: מתוך המאגר המקומי או ישירות מהטקסט בכרטיס
+      // מציאת מחיר המוצר: רק כאשר יש פריט להשוואה
       let myPrice = itemPrices[key] || leafPrice || 0;
       let priceEl = null;
-      const allEls = [...cd.querySelectorAll('*')];
-      for (const el of allEls) {
-        if (el === leaf || el.closest('.myfam-tag, .myfam-starbtn, .myfam-price-comp-tag')) continue;
-        const txt = (el.textContent || '').trim();
-        const m = txt.match(/(\d+(?:\.\d+)?)\s*(?:₪|ש["״׳]?ח|שח)|(?:₪|ש["״׳]?ח|שח)\s*(\d+(?:\.\d+)?)/i);
-        if (m) {
-          if (!myPrice) myPrice = parseFloat(m[1] || m[2]) || 0;
-          if (el.children.length === 0 || [...el.children].every(c => !/(?:₪|ש["״׳]?ח|שח|\d)/.test(c.textContent))) {
-            priceEl = el;
-            break;
-          }
-        }
-      }
-      if (!myPrice) {
-        const priceBox = cd.querySelector('[class*="price" i], [id*="price" i], .amount, .cost');
-        if (priceBox) {
-          const numMatch = (priceBox.textContent || '').match(/(\d+(?:\.\d{1,2})?)/);
+      if (compItem) {
+        priceEl = cd.querySelector('[class*="price" i], [id*="price" i], .amount, .cost');
+        if (priceEl && !myPrice) {
+          const numMatch = (priceEl.textContent || '').match(/(\d+(?:\.\d{1,2})?)/);
           if (numMatch) myPrice = parseFloat(numMatch[1]) || 0;
-          if (!priceEl) priceEl = priceBox;
+        }
+        if (!myPrice || !priceEl) {
+          const priceCandidates = cd.querySelectorAll('span, div, p, b, strong');
+          for (let pi = 0; pi < priceCandidates.length; pi++) {
+            const el = priceCandidates[pi];
+            if (el === leaf || el.childElementCount > 0) continue;
+            const txt = (el.textContent || '').trim();
+            const m = txt.match(/(\d+(?:\.\d+)?)\s*(?:₪|ש["״׳]?ח|שח)|(?:₪|ש["״׳]?ח|שח)\s*(\d+(?:\.\d+)?)/i);
+            if (m) {
+              if (!myPrice) myPrice = parseFloat(m[1] || m[2]) || 0;
+              if (!priceEl) priceEl = el;
+              break;
+            }
+          }
         }
       }
 
@@ -1403,20 +1433,23 @@ function showToast(msg, type = 'success') {
             : '')
             + (compItem._scaleNote ? `\n* הערה: ${compItem._scaleNote}.` : '');
 
+          let targetCompCls, targetCompHtml, targetCompTitle;
           if (diff >= 0.3) {
-            compTag.className = 'myfam-price-comp-tag tag-saving';
-            compTag.innerHTML = `⚡ חסכון ₪${diff.toFixed(1)}${eqSuffix}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+            targetCompCls = 'myfam-price-comp-tag tag-saving';
+            targetCompHtml = `⚡ חסכון ₪${diff.toFixed(1)}${eqSuffix}`;
+            targetCompTitle = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           } else if (diff <= -0.3) {
-            compTag.className = 'myfam-price-comp-tag tag-expensive';
-            compTag.innerHTML = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}${eqSuffix}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+            targetCompCls = 'myfam-price-comp-tag tag-expensive';
+            targetCompHtml = `⚠️ יקר ב-₪${Math.abs(diff).toFixed(1)}${eqSuffix}`;
+            targetCompTitle = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (יקר ב-₪${Math.abs(diff).toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           } else {
-            // מחיר זהה או הפרש זניח מול הרשתות (למשל מוצרים בפיקוח כמו חלב, סוכר, מלח)
-            compTag.className = 'myfam-price-comp-tag tag-equal';
-            compTag.innerHTML = `= ברשתות ₪${compItem.effectivePrice.toFixed(1)}${eqSuffix}`;
-            compTag.title = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (מחיר זהה)${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+            targetCompCls = 'myfam-price-comp-tag tag-equal';
+            targetCompHtml = `= ברשתות ₪${compItem.effectivePrice.toFixed(1)}${eqSuffix}`;
+            targetCompTitle = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (מחיר זהה)${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
           }
+          if (compTag.className !== targetCompCls) compTag.className = targetCompCls;
+          if (compTag.innerHTML !== targetCompHtml) compTag.innerHTML = targetCompHtml;
+          if (compTag.title !== targetCompTitle) compTag.title = targetCompTitle;
         } else {
           cd.querySelector('.myfam-price-comp-tag')?.remove();
         }
@@ -1425,12 +1458,15 @@ function showToast(msg, type = 'success') {
       }
     });
 
+    if (unitTextsChanged) saveItemUnitTexts();
+    if (productImagesChanged) saveProductImages();
+
     // ניקוי תגיות וכוכבים שאינם שייכים לכרטיסים פעילים
     $$('.myfam-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
     $$('.myfam-starbtn').forEach(s => { if (!region.contains(s) || !s.closest('.myfam-card')) s.remove(); });
     $$('.myfam-price-comp-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
 
-    // 5. מדידות ויישור מיקום הכוכב מתחת ללב של הכרטיס
+    // 5. מדידות ויישור מיקום הכוכב מתחת ללב של הכרטיס (קריאות מרוכזות ולאחר מכן כתיבות מרוכזות)
     const sizeOk = r => r.width > 0 && r.width <= 90 && r.height <= 90;
     const cardHeart = new Map(); let toolbarHeart = null;
     hearts.forEach(h => {
@@ -1443,9 +1479,11 @@ function showToast(msg, type = 'success') {
 
     const meas = stars.map(s => ({ star: s.star, cr: s.cd.getBoundingClientRect(), hr: cardHeart.get(s.cd) }));
     meas.forEach(({ star, cr, hr }) => {
-      if (!hr) return;   // אין לב בכרטיס — נשאר במיקום ברירת המחדל
-      star.style.top = Math.round(hr.bottom - cr.top + 4) + 'px';
-      star.style.right = Math.max(2, Math.round(cr.right - hr.right + (hr.width - 34) / 2)) + 'px';
+      if (!hr) return;
+      const topVal = Math.round(hr.bottom - cr.top + 4) + 'px';
+      const rightVal = Math.max(2, Math.round(cr.right - hr.right + (hr.width - 34) / 2)) + 'px';
+      if (star.style.top !== topVal) star.style.top = topVal;
+      if (star.style.right !== rightVal) star.style.right = rightVal;
     });
 
     // עדכון כפתורי וסרגל הסינון בתפריט
@@ -1497,7 +1535,6 @@ function showToast(msg, type = 'success') {
     placePanel(toolbarHeart);
     updateBudgetUI();
     updateForgottenUI();
-    updateSavingsUI();
     updateSavingsUI();
     obs.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
@@ -7378,6 +7415,7 @@ function showToast(msg, type = 'success') {
       .myfam-import-box{width:min(440px,94vw);background:#fff;border-radius:16px;padding:24px 26px;position:relative;box-shadow:0 12px 30px rgba(0,0,0,0.22)}
       @keyframes myfam-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
+      .myfam-card{position:relative}
       .myfam-starbtn{position:absolute;top:50px;right:14px;z-index:5;width:34px;height:34px;border:2px solid transparent;border-radius:50%;background:transparent;color:#888;font-size:20px;line-height:1;padding:0;cursor:pointer;opacity:0;transition:opacity .15s,background .15s,border-color .15s}
       .myfam-card:hover .myfam-starbtn, .myfam-starbtn.on{opacity:1}
       .myfam-starbtn:hover{background:#ffe08a;border-color:#e0a800;color:#8a6500;opacity:1}
@@ -8042,16 +8080,28 @@ function showToast(msg, type = 'success') {
 
   /* ---------- הפעלה ---------- */
   let timer;
+  let lastRenderTime = 0;
   const obs = new MutationObserver(mutations => {
     if (checkExcluded()) return;
-    const onlyMyfam = mutations.every(m => {
+    if (!isProductSelectionPage() && !isHistoryPage()) return;
+
+    const hasRelevantMutation = mutations.some(m => {
       const t = m.target;
-      return t && (t.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn'));
+      if (!t || t.nodeType !== 1) return true;
+      if (t.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, header, nav, footer, #cart, [id*="cart" i], [class*="cart-product" i]')) return false;
+      if (/^(SCRIPT|STYLE|LINK|HEAD|NOSCRIPT)$/i.test(t.tagName)) return false;
+      return true;
     });
-    if (onlyMyfam) return;
+    if (!hasRelevantMutation) return;
 
     clearTimeout(timer);
-    timer = setTimeout(render, 400);
+    const now = performance.now();
+    const elapsed = now - lastRenderTime;
+    const delay = elapsed > 800 ? 150 : Math.max(300, 600 - elapsed);
+    timer = setTimeout(() => {
+      lastRenderTime = performance.now();
+      render();
+    }, delay);
   });
 
   function init() {
