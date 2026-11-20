@@ -194,9 +194,19 @@
   }
 
   /* ---------- נתונים ---------- */
+  let cachedCounts = null;
+  let cachedCountsSaleId = null;
+  function invalidateCountsCache() {
+    cachedCounts = null;
+    cachedCountsSaleId = null;
+  }
+
   function counts() {
-    const m = {}, seen = new Set();
     const curSaleId = sale.id || extractSaleIdFromUrl();
+    if (cachedCounts && cachedCountsSaleId === curSaleId) {
+      return cachedCounts;
+    }
+    const m = {}, seen = new Set();
     const sorted = [...state.history].sort((a, b) => ((a.date || '') < (b.date || '') ? -1 : 1));
     for (const o of sorted) {
       if (curSaleId != null && String(o.saleId) === String(curSaleId)) continue;
@@ -210,6 +220,8 @@
         c.lastQty = qty;
       }
     }
+    cachedCounts = m;
+    cachedCountsSaleId = curSaleId;
     return m;
   }
 
@@ -864,6 +876,7 @@ function showToast(msg, type = 'success') {
 
   let panelDragging = false;
   let panelDragMoved = false;
+  let lastDragEndTime = 0;
 
   function initDraggablePanel() {
     const p = $('#myfam-panel');
@@ -871,39 +884,58 @@ function showToast(msg, type = 'success') {
     if (!p || !t || p._dragBound) return;
     p._dragBound = true;
 
-    let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+    // מניעת גרירת HTML5 מובנית של הדפדפן (ghost drag) שחוסמת mousemove
+    t.ondragstart = e => { e.preventDefault(); return false; };
+
+    let startX = 0, startY = 0, startLeft = 0, startTop = 0, currentPointerId = null;
 
     const onPointerDown = e => {
-      if (!p.classList.contains('floating')) return;
       if (e.button && e.button !== 0) return;
       panelDragging = true;
       panelDragMoved = false;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const clientX = e.clientX ?? (e.touches && e.touches[0]?.clientX) ?? 0;
+      const clientY = e.clientY ?? (e.touches && e.touches[0]?.clientY) ?? 0;
       startX = clientX;
       startY = clientY;
       const r = p.getBoundingClientRect();
       startLeft = r.left;
       startTop = r.top;
 
-      window.addEventListener('mousemove', onPointerMove, { passive: true });
-      window.addEventListener('mouseup', onPointerUp);
+      if (e.pointerId != null && typeof t.setPointerCapture === 'function') {
+        try {
+          t.setPointerCapture(e.pointerId);
+          currentPointerId = e.pointerId;
+        } catch (_) {}
+      }
+
+      window.addEventListener('pointermove', onPointerMove, { passive: false });
+      window.addEventListener('pointerup', onPointerUp, { passive: false });
+      window.addEventListener('pointercancel', onPointerUp, { passive: false });
+      window.addEventListener('mousemove', onPointerMove, { passive: false });
+      window.addEventListener('mouseup', onPointerUp, { passive: false });
       window.addEventListener('touchmove', onPointerMove, { passive: false });
-      window.addEventListener('touchend', onPointerUp);
+      window.addEventListener('touchend', onPointerUp, { passive: false });
     };
 
     const onPointerMove = e => {
       if (!panelDragging) return;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const clientX = e.clientX ?? (e.touches && e.touches[0]?.clientX) ?? 0;
+      const clientY = e.clientY ?? (e.touches && e.touches[0]?.clientY) ?? 0;
       const dx = clientX - startX;
       const dy = clientY - startY;
-      if (Math.hypot(dx, dy) > 5) {
+
+      if (!panelDragMoved && Math.hypot(dx, dy) >= 4) {
         panelDragMoved = true;
+        if (p.parentElement !== document.body) {
+          document.body.appendChild(p);
+        }
+        p.classList.add('floating');
         p.classList.add('dragging');
       }
+
       if (!panelDragMoved) return;
-      if (e.cancelable && e.touches) e.preventDefault();
+      if (e.cancelable) e.preventDefault();
+
       const maxL = Math.max(10, window.innerWidth - 55);
       const maxT = Math.max(10, window.innerHeight - 55);
       const newL = Math.min(Math.max(10, startLeft + dx), maxL);
@@ -913,16 +945,26 @@ function showToast(msg, type = 'success') {
       positionBody();
     };
 
-    const onPointerUp = () => {
+    const onPointerUp = e => {
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
       window.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('mouseup', onPointerUp);
       window.removeEventListener('touchmove', onPointerMove);
       window.removeEventListener('touchend', onPointerUp);
 
+      if (currentPointerId != null && typeof t.releasePointerCapture === 'function') {
+        try { t.releasePointerCapture(currentPointerId); } catch (_) {}
+        currentPointerId = null;
+      }
+
       if (!panelDragging) return;
       panelDragging = false;
       p.classList.remove('dragging');
+
       if (panelDragMoved) {
+        lastDragEndTime = Date.now();
         const r = p.getBoundingClientRect();
         try {
           localStorage.setItem('myfam_panel_pos', JSON.stringify({ top: Math.round(r.top), left: Math.round(r.left) }));
@@ -930,14 +972,35 @@ function showToast(msg, type = 'success') {
       }
     };
 
-    t.addEventListener('mousedown', onPointerDown);
-    t.addEventListener('touchstart', onPointerDown, { passive: true });
+    if (window.PointerEvent) {
+      t.addEventListener('pointerdown', onPointerDown);
+    } else {
+      t.addEventListener('mousedown', onPointerDown);
+      t.addEventListener('touchstart', onPointerDown, { passive: true });
+    }
   }
 
   function placePanel(h) {
     if (checkExcluded()) return;
     const p = $('#myfam-panel'); if (!p) return;
-    if (h) {
+
+    // שחזור מיקום מותאם אישית שנגרר בעבר - קודם לכל הצמדה אוטומטית!
+    let customPos = null;
+    try {
+      const saved = JSON.parse(localStorage.getItem('myfam_panel_pos') || 'null');
+      if (saved && typeof saved.top === 'number' && typeof saved.left === 'number') {
+        customPos = saved;
+      }
+    } catch (_) {}
+
+    if (customPos) {
+      if (p.parentElement !== document.body) document.body.appendChild(p);
+      p.classList.add('floating');
+      const maxL = Math.max(10, innerWidth - 60);
+      const maxT = Math.max(10, innerHeight - 60);
+      p.style.left = Math.min(Math.max(10, customPos.left), maxL) + 'px';
+      p.style.top = Math.min(Math.max(10, customPos.top), maxT) + 'px';
+    } else if (h) {
       const pos = innerWidth < 768 ? 'beforebegin' : 'afterend';
       const nb = pos === 'afterend' ? h.nextElementSibling : h.previousElementSibling;
       if (nb !== p) h.insertAdjacentElement(pos, p);
@@ -945,34 +1008,17 @@ function showToast(msg, type = 'success') {
     } else {
       if (p.parentElement !== document.body) document.body.appendChild(p);
       p.classList.add('floating');
-
-      // שחזור מיקום מותאם אישית שנגרר בעבר
-      let customPos = null;
-      try {
-        const saved = JSON.parse(localStorage.getItem('myfam_panel_pos') || 'null');
-        if (saved && typeof saved.top === 'number' && typeof saved.left === 'number') {
-          customPos = saved;
+      let left = null;
+      if (innerWidth >= 1024) {
+        const hd = [...document.querySelectorAll('h1,h2,h3,h4,div,span,p')]
+          .find(e => !e.children.length && e.textContent.trim() === 'סל הקניות המשפחתי');
+        for (let x = hd; x && x !== document.body; x = x.parentElement) {
+          const r = x.getBoundingClientRect();
+          if (r.height >= innerHeight * 0.8 && r.width < innerWidth * 0.6) { if (r.right > 150) left = r.right; break; }
         }
-      } catch (_) {}
-
-      if (customPos) {
-        const maxL = Math.max(10, innerWidth - 60);
-        const maxT = Math.max(10, innerHeight - 60);
-        p.style.left = Math.min(Math.max(10, customPos.left), maxL) + 'px';
-        p.style.top = Math.min(Math.max(10, customPos.top), maxT) + 'px';
-      } else {
-        let left = null;
-        if (innerWidth >= 1024) {
-          const hd = [...document.querySelectorAll('h1,h2,h3,h4,div,span,p')]
-            .find(e => !e.children.length && e.textContent.trim() === 'סל הקניות המשפחתי');
-          for (let x = hd; x && x !== document.body; x = x.parentElement) {
-            const r = x.getBoundingClientRect();
-            if (r.height >= innerHeight * 0.8 && r.width < innerWidth * 0.6) { if (r.right > 150) left = r.right; break; }
-          }
-        }
-        p.style.left = (left != null ? left + 56 : 16) + 'px';
-        p.style.top = left != null ? '76px' : '80px';
       }
+      p.style.left = (left != null ? left + 56 : 16) + 'px';
+      p.style.top = left != null ? '76px' : '80px';
     }
     initDraggablePanel();
     positionBody();
@@ -1346,6 +1392,7 @@ function showToast(msg, type = 'success') {
   function toggleFixed(key) {
     const c = counts();
     state.fixed[key] = { v: !isFixed(key, c), t: Date.now() };
+    invalidateCountsCache();
     save(); render();
   }
   const setStatus = t => { const s = $('#myfam-status'); if (s) s.textContent = t; };
@@ -2379,50 +2426,52 @@ function showToast(msg, type = 'success') {
     const cartKeys = new Set([...live.lines.values()].map(l => l.key));
     const cartNames = new Set([...live.lines.values()].map(l => norm(l.name)));
 
+    const candidateKeys = new Set();
+    for (const [k, f] of Object.entries(state.fixed || {})) {
+      if (f && f.v) candidateKeys.add(k);
+    }
+    for (const [k, v] of Object.entries(c)) {
+      if ((v?.count || 0) >= CONFIG.autoFixedAfter) {
+        if (state.fixed?.[k]?.v !== false) candidateKeys.add(k);
+      }
+    }
+
     const missing = [];
     const seenPids = new Set();
+    const saleMap = sale.items || new Map();
 
-    for (const [keyOrNorm, it] of (sale.items || new Map()).entries()) {
+    for (const candKey of candidateKeys) {
+      if (cartKeys.has(candKey)) continue;
+      const it = saleMap.get(candKey);
       if (!it || !it.pid || seenPids.has(it.pid)) continue;
       seenPids.add(it.pid);
 
       const key = 'p' + it.pid;
       const normName = norm(it.name || '');
-      if (isFixed(key, c)) {
-        if (!cartKeys.has(key) && !cartNames.has(normName)) {
-          const avgQty = getRecommendedQtyForProduct(key, normName);
+      if (cartKeys.has(key) || cartNames.has(normName)) continue;
 
-          let img = it.image || productImages[key] || productImages[normName] || '';
-          if (!img) {
-            img = getProductImage({ key, name: it.name, image: it.image });
-          }
-          if (!img) {
-            for (const o of state.history) {
-              const found = o.items?.find(x => x.key === key || norm(x.name) === normName);
-              if (found && found.image) {
-                img = formatMishnatImageUrl(found.image);
-                break;
-              }
-            }
-          }
-          img = formatMishnatImageUrl(img);
-          if (img) {
-            productImages[key] = img;
-            productImages[normName] = img;
-          }
+      const avgQty = getRecommendedQtyForProduct(key, normName);
 
-          missing.push({
-            key,
-            pid: it.pid,
-            name: it.name,
-            itemSalesId: it.itemSalesId,
-            image: img,
-            price: it.price || itemPrices[key] || 0,
-            avgQty,
-            raw: it.raw
-          });
-        }
+      let img = it.image || productImages[key] || productImages[normName] || '';
+      if (!img) {
+        img = getProductImage({ key, name: it.name, image: it.image });
       }
+      img = formatMishnatImageUrl(img);
+      if (img) {
+        productImages[key] = img;
+        if (normName) productImages[normName] = img;
+      }
+
+      missing.push({
+        key,
+        pid: it.pid,
+        name: it.name,
+        itemSalesId: it.itemSalesId,
+        image: img,
+        price: it.price || itemPrices[key] || 0,
+        avgQty,
+        raw: it.raw
+      });
     }
     return missing;
   }
@@ -4823,6 +4872,7 @@ function showToast(msg, type = 'success') {
         const parsed = JSON.parse(cached);
         if (Array.isArray(parsed) && parsed.length > 0) {
           dynamicMarketItems = parsed;
+          marketComparisonCache.clear();
           return;
         }
       }
@@ -4850,6 +4900,7 @@ function showToast(msg, type = 'success') {
 
       if (data) {
         dynamicMarketItems = data;
+        marketComparisonCache.clear();
         localStorage.setItem('myfam_market_prices', JSON.stringify(data));
         localStorage.setItem('myfam_market_prices_time', String(now));
         updateSavingsUI();
@@ -5113,7 +5164,20 @@ function showToast(msg, type = 'success') {
     return false;
   }
 
+  const marketComparisonCache = new Map();
+
   function findMarketComparison(itemName, unitHint = '') {
+    if (!itemName) return null;
+    const cacheKey = itemName + '||' + unitHint;
+    if (marketComparisonCache.has(cacheKey)) {
+      return marketComparisonCache.get(cacheKey);
+    }
+    const res = _rawFindMarketComparison(itemName, unitHint);
+    marketComparisonCache.set(cacheKey, res);
+    return res;
+  }
+
+  function _rawFindMarketComparison(itemName, unitHint = '') {
     if (!itemName) return null;
     const n = norm(itemName);
     const nWords = n.split(/\s+/);
@@ -7241,8 +7305,10 @@ function showToast(msg, type = 'success') {
       /* כפתור פאנל ראשי */
       #myfam-panel{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;margin:0 8px;direction:rtl;font:14px system-ui,-apple-system,sans-serif}
       #myfam-panel.floating{position:fixed;z-index:99999;margin:0}
-      #myfam-toggle{width:42px;height:42px;border:1.5px solid #10b981;border-radius:12px;background:#ffffff;color:#059669;font-size:20px;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(16,185,129,0.22);transition:all .2s ease}
+      #myfam-panel.dragging{transition:none !important;user-select:none !important}
+      #myfam-toggle{width:42px;height:42px;border:1.5px solid #10b981;border-radius:12px;background:#ffffff;color:#059669;font-size:20px;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(16,185,129,0.22);transition:all .2s ease;user-select:none;-webkit-user-drag:none;touch-action:none}
       #myfam-toggle:hover{background:#ecfdf5;transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,185,129,0.32)}
+      #myfam-panel.dragging #myfam-toggle:hover{transform:none !important}
 
       /* תפריט נפתח ראשי - עיצוב חדש, גלילה פנימית קבועה ומניעת חריגה */
       #myfam-body{position:fixed;z-index:100000;width:310px;max-height:calc(100vh - 40px);overflow-y:auto !important;overflow-x:hidden;display:flex;flex-direction:column;gap:12px;background:#ffffff;border:1px solid #cbd5e1;border-radius:18px;padding:14px;box-shadow:0 20px 45px -10px rgba(15,23,42,0.25), 0 0 0 1px rgba(15,23,42,0.08);direction:rtl;font-family:system-ui,-apple-system,sans-serif;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:#94a3b8 #f1f5f9}
@@ -7602,8 +7668,8 @@ function showToast(msg, type = 'success') {
       .myfam-price-comp-tag.tag-saving{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
       .myfam-price-comp-tag.tag-expensive{background:#fff1f2;color:#be123c;border-color:#fecdd3;font-weight:700}
       .myfam-price-comp-tag.tag-equal{background:#f8fafc;color:#475569;border-color:#cbd5e1;font-weight:600}
-      #myfam-panel.floating #myfam-toggle{cursor:grab}
-      #myfam-panel.floating.dragging #myfam-toggle{cursor:grabbing}
+      #myfam-panel #myfam-toggle{cursor:grab}
+      #myfam-panel.dragging #myfam-toggle{cursor:grabbing !important}
 
       /* מודאל השוואת מחירים וחיסכון */
       #myfam-savings-modal{position:fixed;inset:0;background:rgba(15,23,42,0.6);backdrop-filter:blur(3px);z-index:100007;display:flex;align-items:center;justify-content:center;direction:rtl;font-family:system-ui,-apple-system,sans-serif}
@@ -7797,9 +7863,10 @@ function showToast(msg, type = 'success') {
     }
 
     $('#myfam-toggle').onclick = e => {
-      if (panelDragMoved) {
+      if (panelDragMoved || (Date.now() - lastDragEndTime < 250)) {
         panelDragMoved = false;
         e.stopPropagation();
+        e.preventDefault();
         return;
       }
       e.stopPropagation();
@@ -7890,6 +7957,7 @@ function showToast(msg, type = 'success') {
   /* ---------- האזנה לניווט SPA (Vue Router) ---------- */
   function onRouteChanged() {
     if (checkExcluded()) return;
+    invalidateCountsCache();
     ensureUI();
     extractSaleIdFromUrl();
     fetchRemoteMarketPrices();
@@ -7924,9 +7992,15 @@ function showToast(msg, type = 'success') {
       for (let i = 0; i < m.addedNodes.length; i++) {
         const node = m.addedNodes[i];
         if (node.nodeType === 1) {
-          if (!node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, header, nav, footer, #cart, [id*="cart" i], [class*="cart-product" i]')) {
-            return true;
-          }
+          // התעלם מכל אלמנט פנימי של התוסף עצמו
+          if (node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag')) continue;
+          // התעלם מכל שינוי בתוך אזורי סל הקניות, עמודה צדדית, כותרות וניווט
+          if (node.closest?.('header, nav, footer, #cart, [id*="cart" i], [class*="cart" i], [class*="basket" i], [class*="drawer" i], aside, dialog')) continue;
+          // התעלם משינויים פנימיים בכרטיסי מוצר קיימים (למשל כפתור הוסף לסל או שליטת כמויות)
+          if (node.closest?.('.myfam-card')) continue;
+          // התעלם מטאגים בודדים שאינם כרטיסי מוצר או קונטיינרים של כרטיסים
+          if (['BUTTON', 'SPAN', 'I', 'SVG', 'PATH', 'P', 'INPUT', 'LABEL', 'IMG'].includes(node.tagName) && !node.querySelector?.('.myfam-card, [class*="product"], [class*="item"]')) continue;
+          return true;
         }
       }
       return false;
