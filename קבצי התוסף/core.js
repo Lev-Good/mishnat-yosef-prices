@@ -781,6 +781,12 @@ function showToast(msg, type = 'success') {
     }
   }
 
+  let saveDebounceTimer = null;
+  function scheduleSave(delay = 1200) {
+    if (saveDebounceTimer) clearTimeout(saveDebounceTimer);
+    saveDebounceTimer = setTimeout(save, delay);
+  }
+
   function commit() {
     if (!live) return;
     const items = [...live.lines.values()]
@@ -795,7 +801,7 @@ function showToast(msg, type = 'success') {
       id, saleId: live.saleId, week: mt.week || '', begin: mt.begin || '',
       date: new Date().toISOString(), items
     });
-    save(); scheduleRender();
+    scheduleSave();
   }
 
   /* ---------- תצוגה ---------- */
@@ -1334,7 +1340,7 @@ function showToast(msg, type = 'success') {
     updateBudgetUI();
     updateForgottenUI();
     updateSavingsUI();
-    obs.observe(document.body, { childList: true, subtree: true, characterData: true });
+    obs.observe(document.body, { childList: true, subtree: true });
   }
 
   function toggleFixed(key) {
@@ -5369,16 +5375,22 @@ function showToast(msg, type = 'success') {
   let lastAnimatedSavings = null;
   function triggerSavingsBannerEffect(container, valEl) {
     if (!container) return;
-    container.classList.remove('myfam-sav-celebrate');
-    void container.offsetWidth;
-    container.classList.add('myfam-sav-celebrate');
-    setTimeout(() => container.classList.remove('myfam-sav-celebrate'), 850);
+    requestAnimationFrame(() => {
+      container.classList.remove('myfam-sav-celebrate');
+      requestAnimationFrame(() => {
+        container.classList.add('myfam-sav-celebrate');
+        setTimeout(() => container.classList.remove('myfam-sav-celebrate'), 850);
+      });
+    });
 
     if (valEl) {
-      valEl.classList.remove('myfam-sav-num-pop');
-      void valEl.offsetWidth;
-      valEl.classList.add('myfam-sav-num-pop');
-      setTimeout(() => valEl.classList.remove('myfam-sav-num-pop'), 600);
+      requestAnimationFrame(() => {
+        valEl.classList.remove('myfam-sav-num-pop');
+        requestAnimationFrame(() => {
+          valEl.classList.add('myfam-sav-num-pop');
+          setTimeout(() => valEl.classList.remove('myfam-sav-num-pop'), 600);
+        });
+      });
     }
 
     const colors = ['#10b981', '#f59e0b', '#34d399', '#fbbf24', '#059669', '#a3e635'];
@@ -7905,14 +7917,21 @@ function showToast(msg, type = 'success') {
     if (checkExcluded()) return;
     if (!isProductSelectionPage() && !isHistoryPage()) return;
 
-    const hasRelevantMutation = mutations.some(m => {
-      const t = m.target;
-      if (!t || t.nodeType !== 1) return true;
-      if (t.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, header, nav, footer, #cart, [id*="cart" i], [class*="cart-product" i]')) return false;
-      if (/^(SCRIPT|STYLE|LINK|HEAD|NOSCRIPT)$/i.test(t.tagName)) return false;
-      return true;
+    // רינדור קטלוג נדרש אך ורק כאשר נוספו אלמנטים חדשים לעמוד (למשל גלילה אינסופית או החלפת קטגוריה)
+    // פעולות סל, שינויי כמויות ומספרים בכרטיסים קיימים לא מוסיפים כרטיסים חדשים ולכן לא דורשים רינדור!
+    const hasAddedElements = mutations.some(m => {
+      if (m.type !== 'childList' || !m.addedNodes || !m.addedNodes.length) return false;
+      for (let i = 0; i < m.addedNodes.length; i++) {
+        const node = m.addedNodes[i];
+        if (node.nodeType === 1) {
+          if (!node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag, header, nav, footer, #cart, [id*="cart" i], [class*="cart-product" i]')) {
+            return true;
+          }
+        }
+      }
+      return false;
     });
-    if (!hasRelevantMutation) return;
+    if (!hasAddedElements) return;
 
     clearTimeout(timer);
     const now = performance.now();

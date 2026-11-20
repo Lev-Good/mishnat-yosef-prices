@@ -4,7 +4,9 @@
   const abs = u => { try { return new URL(u, location.href).href; } catch { return String(u); } };
   const want = u => /\/api\//.test(abs(u)) && /mishnatyosef\.org/.test(abs(u));
   const emit = d => {
-    try { window.dispatchEvent(new CustomEvent('myfam-api', { detail: JSON.stringify(d) })); } catch (e) {}
+    setTimeout(() => {
+      try { window.dispatchEvent(new CustomEvent('myfam-api', { detail: JSON.stringify(d) })); } catch (e) {}
+    }, 0);
   };
 
   const origFetch = window.fetch;
@@ -58,17 +60,22 @@
     this.addEventListener('load', function () {
       try {
         if (!want(this.__u)) return;
-        let json;
-        try { json = this.responseType === 'json' ? this.response : JSON.parse(this.responseText); } catch (e) { return; }
-        emit({ 
-          url: abs(this.__u), 
-          method: String(this.__m).toUpperCase(), 
-          body: typeof b === 'string' ? b : null, 
-          auth: this.__auth || capturedHeaders['authorization'] || null, 
-          headers: { ...capturedHeaders, ...(this.__headers || {}) },
-          status: this.status, 
-          json 
-        });
+        const self = this;
+        setTimeout(() => {
+          try {
+            let json;
+            try { json = self.responseType === 'json' ? self.response : JSON.parse(self.responseText); } catch (e) { return; }
+            emit({ 
+              url: abs(self.__u), 
+              method: String(self.__m).toUpperCase(), 
+              body: typeof b === 'string' ? b : null, 
+              auth: self.__auth || capturedHeaders['authorization'] || null, 
+              headers: { ...capturedHeaders, ...(self.__headers || {}) },
+              status: self.status, 
+              json 
+            });
+          } catch (e) {}
+        }, 0);
       } catch (e) {}
     });
     return oSend.apply(this, arguments);
