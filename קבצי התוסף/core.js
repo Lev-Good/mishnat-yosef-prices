@@ -7,7 +7,7 @@
   const T = window.__MY_T;
 
   const APP_NAME = 'מוסיף למשנת';
-  const APP_VERSION = '0.6.5';
+  const APP_VERSION = '0.6.8';
   const ICONS = {
     info: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
     basket: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
@@ -841,7 +841,7 @@ function showToast(msg, type = 'success') {
         if (/^favorite(_border)?$/i.test(sub)) m = true;
       }
     }
-    return m && !el.closest('#myfam-panel,#myfam-body,#myfam-modal,.myfam-starbtn');
+    return m && !el.closest('#myfam-panel,#myfam-body,#myfam-modal,#myfam-whatsnew-modal,.myfam-starbtn');
   };
 
   function positionBody() {
@@ -1056,7 +1056,7 @@ function showToast(msg, type = 'success') {
       if (!hit) continue;
 
       // בדיקת החרגה מתבצעת אך ורק עבור אלמנטים שהם אכן מוצר (חוסך עשרות אלפי בדיקות closest)
-      if (el.closest('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, .myfam-tag, #cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i], header, nav, dialog')) continue;
+      if (el.closest('#myfam-panel, #myfam-body, #myfam-modal, #myfam-whatsnew-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, .myfam-tag, #cart, [id*="cart" i], [class*="cart-product" i], [class*="cart-products" i], header, nav, dialog')) continue;
 
       const leafKey = hit.pid ? ('p' + hit.pid) : nt;
       if (el.getAttribute('data-myleaf') !== leafKey) el.setAttribute('data-myleaf', leafKey);
@@ -2718,7 +2718,7 @@ function showToast(msg, type = 'success') {
     if (autoReminderTriggeredThisSession) return false;
 
     // בדיקה שלא פתוח מודאל כלשהו על המסך
-    if ($('#myfam-forgotten-modal, #myfam-modal, #myfam-budget-modal, #myfam-import-modal, #myfam-tips-modal')) {
+    if ($('#myfam-forgotten-modal, #myfam-modal, #myfam-whatsnew-modal, #myfam-budget-modal, #myfam-import-modal, #myfam-tips-modal')) {
       return false;
     }
 
@@ -7090,7 +7090,8 @@ function showToast(msg, type = 'success') {
         <small>© כל הזכויות שמורות · גרסה ${APP_VERSION}</small>
       </div>
 
-      <div style="margin-top:14px;display:flex;justify-content:flex-end;">
+      <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;">
+        <button id="myfam-about-whatsnew" style="background:#f1f5f9;color:#0f172a;border:1px solid #cbd5e1;border-radius:10px;padding:8px 14px;font-size:12.5px;font-weight:700;cursor:pointer;">✨ מה חדש בגרסה ${APP_VERSION}?</button>
         <button id="myfam-about-close" class="myfam-btn-primary">הבנתי, סגור</button>
       </div>
     </div>`;
@@ -7101,7 +7102,142 @@ function showToast(msg, type = 'success') {
     if (xBtn) xBtn.onclick = close;
     const btnClose = $('#myfam-about-close', m);
     if (btnClose) btnClose.onclick = close;
+    const btnWhatsNew = $('#myfam-about-whatsnew', m);
+    if (btnWhatsNew) btnWhatsNew.onclick = () => { m.remove(); showWhatsNewModal(); };
     m.onclick = e => { if (e.target === m || e.target.closest('.myfam-x')) close(); };
+  }
+
+  /* ---------- חלון קופץ: מה חדש בגרסה (What's New) ---------- */
+  function isUpgradeFrom065(prevVersion) {
+    if (!prevVersion || typeof prevVersion !== 'string') return false;
+    const parts = prevVersion.split('.').map(Number);
+    const major = parts[0] || 0;
+    const minor = parts[1] || 0;
+    const patch = parts[2] || 0;
+    if (major < 0) return true;
+    if (major === 0) {
+      if (minor < 6) return true;
+      if (minor === 6 && patch <= 5) return true;
+    }
+    return false;
+  }
+
+  function showWhatsNewModal(fromVersion = '0.6.5') {
+    $('#myfam-whatsnew-modal')?.remove();
+    const m = document.createElement('div');
+    m.id = 'myfam-whatsnew-modal';
+    m.innerHTML = `
+      <div class="myfam-box myfam-whatsnew-box">
+        <button class="myfam-x" title="סגור">${ICONS.close}</button>
+
+        <div class="myfam-whatsnew-header">
+          <div class="myfam-whatsnew-icon">🚀</div>
+          <div>
+            <h3 class="myfam-whatsnew-title">מה חדש בתוסף "מוסיף למשנת"? (גרסה ${APP_VERSION})</h3>
+            <div class="myfam-whatsnew-sub">שדרגנו את התוסף במיוחד עבורכם! הנה החידושים והשיפורים המרכזיים:</div>
+          </div>
+        </div>
+
+        <div class="myfam-whatsnew-list">
+          <div class="myfam-whatsnew-item">
+            <div class="myfam-whatsnew-item-icon" style="background:#ecfdf5;color:#059669;">⚡</div>
+            <div class="myfam-whatsnew-item-content">
+              <h4>מהירות שיא וביצועים חלקים</h4>
+              <p>פתרנו לחלוטין את בעיות האיטיות! הוספת והסרת מוצרים מהסל, עדכון כמויות וגלילה באתר מתבצעים כעת במהירות מיידית וללא שום השהיה.</p>
+            </div>
+          </div>
+
+          <div class="myfam-whatsnew-item">
+            <div class="myfam-whatsnew-item-icon" style="background:#eff6ff;color:#2563eb;">🧲</div>
+            <div class="myfam-whatsnew-item-content">
+              <h4>גרירה חופשית של כפתור הסל הצף</h4>
+              <p>רוצים לשנות את מיקום הכפתור הירוק של התוסף? מעכשיו תוכלו ללחוץ עליו ולגרור אותו בחופשיות לכל מקום שנוח לכם במסך! המיקום יישמר אוטומטית.</p>
+            </div>
+          </div>
+
+          <div class="myfam-whatsnew-item">
+            <div class="myfam-whatsnew-item-icon" style="background:#fef3c7;color:#d97706;">🛒</div>
+            <div class="myfam-whatsnew-item-content">
+              <h4>הוספת קבועים חכמה לפי הכמות הרגילה שלכם</h4>
+              <p>רגילים להזמין 2 יחידות (או יותר) מחלב או ממוצר קבוע אחר? בלחיצה על "הוסף קבועים לסל" התוסף יוסיף ישירות את הכמות שאתם רגילים להזמין ולא יחידה אחת בלבד.</p>
+            </div>
+          </div>
+
+          <div class="myfam-whatsnew-item">
+            <div class="myfam-whatsnew-item-icon" style="background:#f3e8ff;color:#7e22ce;">⚖️</div>
+            <div class="myfam-whatsnew-item-content">
+              <h4>השוואת מחירים מדויקת מול הרשתות</h4>
+              <p>שכללנו את אלגוריתם ההשוואה של מחירי רשתות השיווק: חישוב מדויק והוגן לפי יחידות משקל ומארזים (למשל השוואת מארז 1.5 ק"ג מול מחיר לק"ג ברשתות).</p>
+            </div>
+          </div>
+
+          <div class="myfam-whatsnew-item">
+            <div class="myfam-whatsnew-item-icon" style="background:#f1f5f9;color:#475569;">🛡️</div>
+            <div class="myfam-whatsnew-item-content">
+              <h4>יציבות, תיקוני רשת וסנכרון משופר</h4>
+              <p>ביטול שגיאות רשת ברקע, התאמה מלאה לשינויים באתר משנת יוסף וחוויית קנייה מהירה, נוחה ואמינה.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <button id="myfam-whatsnew-close-btn" class="myfam-whatsnew-btn">מעולה, בואו נתחיל לקנות! 🛒</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(m);
+
+    const dismiss = () => {
+      m.remove();
+      try {
+        localStorage.setItem(LS + 'whatsnew_dismissed_' + APP_VERSION, 'true');
+        if (typeof chrome !== 'undefined' && chrome?.storage?.local) {
+          chrome.storage.local.set({ myfam_show_whatsnew_modal: false, myfam_whatsnew_dismissed: true });
+        }
+      } catch (_) {}
+    };
+
+    const xBtn = $('.myfam-x', m);
+    if (xBtn) xBtn.onclick = dismiss;
+    const btn = $('#myfam-whatsnew-close-btn', m);
+    if (btn) btn.onclick = dismiss;
+    m.onclick = e => { if (e.target === m || e.target.closest('.myfam-x')) dismiss(); };
+  }
+
+  function checkWhatsNewUpdateModal() {
+    if (checkExcluded()) return;
+    const dismissedKey = LS + 'whatsnew_dismissed_' + APP_VERSION;
+    if (localStorage.getItem(dismissedKey) === 'true') return;
+
+    // בדיקה 1: דרך chrome.storage.local שנרשם ב-background.js בעת שדרוג התוסף
+    if (typeof chrome !== 'undefined' && chrome?.storage?.local) {
+      chrome.storage.local.get(['myfam_show_whatsnew_modal', 'myfam_whatsnew_dismissed', 'myfam_upgraded_from'], res => {
+        if (chrome.runtime.lastError) return;
+        if (res && res.myfam_show_whatsnew_modal === true && !res.myfam_whatsnew_dismissed) {
+          setTimeout(() => {
+            showWhatsNewModal(res.myfam_upgraded_from || '0.6.5');
+          }, 800);
+          return;
+        }
+      });
+    }
+
+    // בדיקה 2: דרך גרסה שנשמרה ב-localStorage (עבור גיבוי או משתמשי userscript)
+    const storedAppVer = localStorage.getItem(LS + 'app_version');
+    if (!storedAppVer) {
+      // התקנה חדשה לגמרי - רושמים את הגרסה וממשיכים כרגיל ללא מודאל
+      localStorage.setItem(LS + 'app_version', APP_VERSION);
+      return;
+    }
+
+    if (storedAppVer !== APP_VERSION) {
+      localStorage.setItem(LS + 'app_version', APP_VERSION);
+      if (isUpgradeFrom065(storedAppVer)) {
+        setTimeout(() => {
+          showWhatsNewModal(storedAppVer);
+        }, 800);
+      }
+    }
   }
 
   /* ---------- מדריך וטיפים לשימוש (סיור מודרך) ---------- */
@@ -7717,6 +7853,21 @@ function showToast(msg, type = 'success') {
       .myfam-app-dialog-btn-cancel{padding:9px 18px;background:#ffffff;color:#475569;border:1px solid #cbd5e1;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
       .myfam-app-dialog-btn-cancel:hover{background:#f1f5f9;color:#1e293b}
 
+      /* מודאל מה חדש בגרסה */
+      #myfam-whatsnew-modal{position:fixed;inset:0;background:rgba(15,23,42,0.65);backdrop-filter:blur(4px);z-index:100008;display:flex;align-items:center;justify-content:center;direction:rtl;font-family:system-ui,-apple-system,sans-serif}
+      .myfam-whatsnew-box{width:min(540px,94vw);max-height:88vh;display:flex;flex-direction:column;background:#ffffff;border-radius:20px;padding:24px 22px;position:relative;box-shadow:0 25px 50px -12px rgba(15,23,42,0.35);box-sizing:border-box}
+      .myfam-whatsnew-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #f1f5f9}
+      .myfam-whatsnew-icon{width:46px;height:46px;border-radius:14px;background:#ecfdf5;border:1px solid #a7f3d0;font-size:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .myfam-whatsnew-title{margin:0 0 3px;font-size:17px;font-weight:800;color:#0f172a}
+      .myfam-whatsnew-sub{font-size:12.5px;color:#64748b}
+      .myfam-whatsnew-list{display:flex;flex-direction:column;gap:10px;overflow-y:auto;padding-left:4px;padding-right:2px;max-height:calc(88vh - 170px);scrollbar-width:thin}
+      .myfam-whatsnew-item{display:flex;gap:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px 14px;align-items:flex-start}
+      .myfam-whatsnew-item-icon{width:32px;height:32px;border-radius:10px;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+      .myfam-whatsnew-item-content h4{margin:0 0 3px;font-size:14px;font-weight:700;color:#0f172a}
+      .myfam-whatsnew-item-content p{margin:0;font-size:12.5px;color:#475569;line-height:1.55}
+      .myfam-whatsnew-btn{width:100%;padding:11px 18px;background:#10b981;color:#ffffff;border:none;border-radius:12px;font-size:14.5px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(16,185,129,0.3);transition:all .15s ease}
+      .myfam-whatsnew-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 6px 18px rgba(16,185,129,0.38)}
+
     `;
     document.head.appendChild(css);
 
@@ -7901,7 +8052,7 @@ function showToast(msg, type = 'success') {
 
       document.addEventListener('click', e => {
         const bodyEl = $('#myfam-body');
-        if (bodyEl && !bodyEl.classList.contains('collapsed') && !e.target.closest('#myfam-panel,#myfam-body,#myfam-modal')) {
+        if (bodyEl && !bodyEl.classList.contains('collapsed') && !e.target.closest('#myfam-panel,#myfam-body,#myfam-modal,#myfam-whatsnew-modal')) {
           bodyEl.classList.add('collapsed');
         }
       });
@@ -7993,7 +8144,7 @@ function showToast(msg, type = 'success') {
         const node = m.addedNodes[i];
         if (node.nodeType === 1) {
           // התעלם מכל אלמנט פנימי של התוסף עצמו
-          if (node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag')) continue;
+          if (node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-whatsnew-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag')) continue;
           // התעלם מכל שינוי בתוך אזורי סל הקניות, עמודה צדדית, כותרות וניווט
           if (node.closest?.('header, nav, footer, #cart, [id*="cart" i], [class*="cart" i], [class*="basket" i], [class*="drawer" i], aside, dialog')) continue;
           // התעלם משינויים פנימיים בכרטיסי מוצר קיימים (למשל כפתור הוסף לסל או שליטת כמויות)
@@ -8032,6 +8183,7 @@ function showToast(msg, type = 'success') {
     checkFeedbackReminder();
     checkTipsReminder();
     checkDailyHistorySync();
+    checkWhatsNewUpdateModal();
     window.addEventListener('resize', scheduleRender);
   }
 

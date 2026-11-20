@@ -42,9 +42,38 @@ async function openSiteOrExtensionMenu() {
   }
 }
 
-chrome.runtime.onInstalled.addListener(() => {
+function isUpgradeFrom065(prevVersion) {
+  if (!prevVersion || typeof prevVersion !== 'string') return false;
+  const parts = prevVersion.split('.').map(Number);
+  const major = parts[0] || 0;
+  const minor = parts[1] || 0;
+  const patch = parts[2] || 0;
+  if (major < 0) return true;
+  if (major === 0) {
+    if (minor < 6) return true;
+    if (minor === 6 && patch <= 5) return true;
+  }
+  return false;
+}
+
+chrome.runtime.onInstalled.addListener(details => {
   chrome.alarms.create('check_sales_periodic', { periodInMinutes: 30 });
   syncActionContextMenu();
+
+  if (details && details.reason === 'update' && details.previousVersion) {
+    if (isUpgradeFrom065(details.previousVersion)) {
+      chrome.storage.local.set({
+        myfam_show_whatsnew_modal: true,
+        myfam_upgraded_from: details.previousVersion,
+        myfam_upgraded_to: chrome.runtime.getManifest().version
+      });
+    }
+  } else if (details && details.reason === 'install') {
+    chrome.storage.local.set({
+      myfam_show_whatsnew_modal: false,
+      myfam_whatsnew_dismissed: true
+    });
+  }
 });
 
 chrome.runtime.onStartup.addListener(() => {
