@@ -26,9 +26,31 @@
   window.__myfamHooked = true;
   const abs = u => { try { return new URL(u, location.href).href; } catch { return String(u); } };
   const want = u => /\/api\//.test(abs(u)) && /mishnatyosef\.org/.test(abs(u));
+  let coreReady = false;
+  const earlyQueue = [];
   const emit = d => {
-    try { window.dispatchEvent(new CustomEvent('myfam-api', { detail: JSON.stringify(d) })); } catch (e) {}
+    setTimeout(() => {
+      try {
+        const serialized = JSON.stringify(d);
+        if (!coreReady) {
+          earlyQueue.push(serialized);
+          if (earlyQueue.length > 40) earlyQueue.shift();
+          return;
+        }
+        window.dispatchEvent(new CustomEvent('myfam-api', { detail: serialized }));
+      } catch (e) {}
+    }, 0);
   };
+  window.addEventListener('myfam-core-ready', () => {
+    if (coreReady) return;
+    coreReady = true;
+    while (earlyQueue.length) {
+      const payload = earlyQueue.shift();
+      setTimeout(() => {
+        try { window.dispatchEvent(new CustomEvent('myfam-api', { detail: payload })); } catch (e) {}
+      }, 0);
+    }
+  });
 
   const origFetch = window.fetch;
   const capturedHeaders = {};
@@ -1531,8 +1553,7 @@ function showToast(msg, type = 'success') {
     let unitTextsChanged = false;
     let productImagesChanged = false;
 
-    cards.forEach(cd => {
-      if (!region.contains(cd)) return;
+    const processCard = cd => {
       inList++;
       const { key, leaf } = cardMap.get(cd);
       const isHistItem = leaf.getAttribute('data-myhist') === '1';
@@ -1710,15 +1731,27 @@ function showToast(msg, type = 'success') {
       } else {
         cd.querySelector('.myfam-price-comp-tag')?.remove();
       }
-    });
+    };
 
-    if (unitTextsChanged) saveItemUnitTexts();
-    if (productImagesChanged) saveProductImages();
+    const regionCards = cards.filter(cd => region.contains(cd));
+    const gen = ++renderGeneration;
+    const CHUNK_SIZE = 30;
+    const initialCount = regionCards.length <= 35 ? regionCards.length : CHUNK_SIZE;
+    for (let i = 0; i < initialCount; i++) {
+      processCard(regionCards[i]);
+    }
 
-    // ניקוי תגיות וכוכבים שאינם שייכים לכרטיסים פעילים
-    $$('.myfam-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
-    $$('.myfam-starbtn').forEach(s => { if (!region.contains(s) || !s.closest('.myfam-card')) s.remove(); });
-    $$('.myfam-price-comp-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
+    const alignStarsBatch = batchStars => {
+      if (!batchStars.length) return;
+      const meas = batchStars.map(s => ({ star: s.star, cr: s.cd.getBoundingClientRect(), hr: cardHeart.get(s.cd) }));
+      meas.forEach(({ star, cr, hr }) => {
+        if (!hr) return;
+        const topVal = Math.round(hr.bottom - cr.top + 4) + 'px';
+        const rightVal = Math.max(2, Math.round(cr.right - hr.right + (hr.width - 34) / 2)) + 'px';
+        if (star.style.top !== topVal) star.style.top = topVal;
+        if (star.style.right !== rightVal) star.style.right = rightVal;
+      });
+    };
 
     // 5. מדידות ויישור מיקום הכוכב מתחת ללב של הכרטיס (קריאות מרוכזות ולאחר מכן כתיבות מרוכזות)
     const sizeOk = r => r.width > 0 && r.width <= 90 && r.height <= 90;
@@ -1730,15 +1763,54 @@ function showToast(msg, type = 'success') {
       if (card) { if (!cardHeart.has(card)) cardHeart.set(card, r); }
       else if (!toolbarHeart) toolbarHeart = b;
     });
+    alignStarsBatch(stars);
 
-    const meas = stars.map(s => ({ star: s.star, cr: s.cd.getBoundingClientRect(), hr: cardHeart.get(s.cd) }));
-    meas.forEach(({ star, cr, hr }) => {
-      if (!hr) return;
-      const topVal = Math.round(hr.bottom - cr.top + 4) + 'px';
-      const rightVal = Math.max(2, Math.round(cr.right - hr.right + (hr.width - 34) / 2)) + 'px';
-      if (star.style.top !== topVal) star.style.top = topVal;
-      if (star.style.right !== rightVal) star.style.right = rightVal;
-    });
+    if (initialCount < regionCards.length) {
+      let nextIdx = initialCount;
+      const runNextChunk = () => {
+        if (gen !== renderGeneration) return;
+        obs.disconnect();
+        const batchStartStars = stars.length;
+        const endIdx = Math.min(nextIdx + CHUNK_SIZE, regionCards.length);
+        for (let i = nextIdx; i < endIdx; i++) {
+          processCard(regionCards[i]);
+        }
+        // מדידת לבבות חדשים בכרטיסים שעובדו במנה זו
+        const newStars = stars.slice(batchStartStars);
+        newStars.forEach(({ cd }) => {
+          if (cardHeart.has(cd)) return;
+          const h = cd.querySelector('button, a, [role="button"], .material-symbols-rounded, .material-icons, svg, [class*="heart" i], [class*="fav" i]');
+          if (h && heartLike(h)) {
+            const b = h.closest('button,a,[role="button"]') || h;
+            const r = b.getBoundingClientRect();
+            if (sizeOk(r)) cardHeart.set(cd, r);
+          }
+        });
+        alignStarsBatch(newStars);
+        nextIdx = endIdx;
+        if (nextIdx >= regionCards.length) {
+          if (unitTextsChanged) saveItemUnitTexts();
+          if (productImagesChanged) saveProductImages();
+          const infoEl = $('#myfam-info');
+          if (infoEl && sale.items.size) {
+            infoEl.textContent = `מוצרים בדף: ${inList} · במכירה: ${sale.items.size}`;
+          }
+          obs.observe(document.body, { childList: true, subtree: true });
+        } else {
+          obs.observe(document.body, { childList: true, subtree: true });
+          runWhenIdle(runNextChunk, 120);
+        }
+      };
+      runWhenIdle(runNextChunk, 80);
+    } else {
+      if (unitTextsChanged) saveItemUnitTexts();
+      if (productImagesChanged) saveProductImages();
+    }
+
+    // ניקוי תגיות וכוכבים שאינם שייכים לכרטיסים פעילים
+    $$('.myfam-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
+    $$('.myfam-starbtn').forEach(s => { if (!region.contains(s) || !s.closest('.myfam-card')) s.remove(); });
+    $$('.myfam-price-comp-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
 
     // עדכון כפתורי וסרגל הסינון בתפריט
     const bSeen = $('#myfam-b-seen');
@@ -8726,7 +8798,6 @@ function showToast(msg, type = 'success') {
     invalidateCountsCache();
     ensureUI();
     extractSaleIdFromUrl();
-    fetchRemoteMarketPrices();
     scheduleRender();
   }
 
@@ -8783,25 +8854,56 @@ function showToast(msg, type = 'success') {
     }, delay);
   });
 
+  let renderGeneration = 0;
+  function runWhenIdle(fn, timeout = 800) {
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(() => { try { fn(); } catch (_) {} }, { timeout });
+    } else {
+      setTimeout(() => { try { fn(); } catch (_) {} }, Math.min(timeout, 120));
+    }
+  }
+
   function init() {
     if (checkExcluded()) {
       return;
     }
+    // שלב 1 (מיידי וקליל לאחר document_idle): סגנון בסיסי, כפתור צף, וקבלת אירועי API מוקדמים מ-inject.js
     extractSaleIdFromUrl();
     applyPrefs();
     buildUI();
-    render();
-    fetchRemoteMarketPrices();
-    updateBudgetUI();
-    updateForgottenUI();
-    syncLoadGoogle();
-    checkFeedbackReminder();
-    checkTipsReminder();
-    checkDailyHistorySync();
-    checkWhatsNewUpdateModal();
     window.addEventListener('resize', scheduleRender);
+    try { W.dispatchEvent(new CustomEvent('myfam-core-ready')); } catch (_) {}
+
+    // שלב 2 (בזמן פנוי של הדפדפן, אחרי ש-Vue סיים לצייר את הדף): רינדור מדורג במנות ועדכון ווידג'טים
+    runWhenIdle(() => {
+      render();
+      updateBudgetUI();
+      updateForgottenUI();
+    }, 350);
+
+    // שלב 3 (רקע לאחר 2.5 שניות): רענון מחירי שוק וסנכרון ענן ללא תחרות עם טעינת האתר
+    setTimeout(() => {
+      runWhenIdle(() => {
+        fetchRemoteMarketPrices();
+        syncLoadGoogle();
+      }, 1500);
+    }, 2500);
+
+    // שלב 4 (רקע לאחר 4.5 שניות): סנכרון היסטוריה יומי ותזכורות לא-דחופות
+    setTimeout(() => {
+      runWhenIdle(() => {
+        checkDailyHistorySync();
+        checkWhatsNewUpdateModal();
+        checkFeedbackReminder();
+        checkTipsReminder();
+      }, 2000);
+    }, 4500);
   }
 
-  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => runWhenIdle(init, 500));
+  } else {
+    runWhenIdle(init, 300);
+  }
 })();
 })();

@@ -71,7 +71,6 @@ console.log('--- 2. Testing Catalog Integrity & Matching ---');
 const catalog = JSON.parse(fs.readFileSync('prices.json', 'utf8'));
 
 const negativeTests = [
-  "ג'ל כביסה מרוכז מקסימה - סנו 3 ליטר",
   "ערכה מוכנה להדלקה עם שמן זית נוזלי",
   'עוגיות חמאה', 'סלט ביצים', 'אבקת מרק בצל', 'בצל ירוק', 'טבעות בצל',
   "'נשנושים' שמנת בצל", 'מאגדת חטיף דמוי ביסלי {באגסי}', 'שקית פרחי כרובית מוקפאים עד"ח',
@@ -104,7 +103,8 @@ const userPositiveTests = [
   { input: "גבינה צהובה עמק - 600 גר' פרוסות גבינה צהובה בוואקום", expectedId: "cheese_emek_600g" },
   { input: "מאגדת קרלו בטעם שוקו (חום) 8 גביעים של 100 גרם", expectedId: "carlo_choco_8" },
   { input: "עוגיות חצי ירח - תירוש 175 גרם, ביסקוויט מצופה שוקולד צד אחד", expectedId: "cookies_tirosh_half_moon_175g" },
-  { input: "בצל יבש", expectedId: "onion_dry" }
+  { input: "בצל יבש", expectedId: "onion_dry" },
+  { input: "ג'ל כביסה מרוכז מקסימה - סנו 3 ליטר", expectedId: "my_10445" }
 ];
 
 for (const t of userPositiveTests) {

@@ -3,11 +3,31 @@
   window.__myfamHooked = true;
   const abs = u => { try { return new URL(u, location.href).href; } catch { return String(u); } };
   const want = u => /\/api\//.test(abs(u)) && /mishnatyosef\.org/.test(abs(u));
+  let coreReady = false;
+  const earlyQueue = [];
   const emit = d => {
     setTimeout(() => {
-      try { window.dispatchEvent(new CustomEvent('myfam-api', { detail: JSON.stringify(d) })); } catch (e) {}
+      try {
+        const serialized = JSON.stringify(d);
+        if (!coreReady) {
+          earlyQueue.push(serialized);
+          if (earlyQueue.length > 40) earlyQueue.shift();
+          return;
+        }
+        window.dispatchEvent(new CustomEvent('myfam-api', { detail: serialized }));
+      } catch (e) {}
     }, 0);
   };
+  window.addEventListener('myfam-core-ready', () => {
+    if (coreReady) return;
+    coreReady = true;
+    while (earlyQueue.length) {
+      const payload = earlyQueue.shift();
+      setTimeout(() => {
+        try { window.dispatchEvent(new CustomEvent('myfam-api', { detail: payload })); } catch (e) {}
+      }, 0);
+    }
+  });
 
   const origFetch = window.fetch;
   const capturedHeaders = {};
