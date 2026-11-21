@@ -349,7 +349,7 @@ if (typeof window.__MY_T === 'undefined') {
     try { jset('unit_texts', itemUnitTexts); } catch (e) {}
   }
 
-  const UNIT_HINT_RE = /(\d+(?:\.\d+)?)\s*(?:ק["״׳']?ג|קילו(?:גרם)?|גרם|גר['"״׳]?|מ["״׳']?ל|ליטר|ל['"״׳]?)(?:[^\u0590-\u05fea-z0-9]|$)/i;
+  const UNIT_HINT_RE = /(\d+(?:\.\d+)?)\s*(?:ק["״׳']?ג|קילו(?:גרם)?|גרם|גר['"״׳]?|מ["״׳']?ל|ליטר|ל['"״׳]?|יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים)(?:[^\u0590-\u05fea-z0-9]|$)/i;
   function extractCardUnitText(cd, leaf) {
     if (!cd) return '';
     try {

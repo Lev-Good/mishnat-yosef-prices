@@ -49,7 +49,9 @@
       "תבנית 30 ביצים",
       "תבנית ביצים l 30",
       "תבנית ביצים 30",
-      "ביצים 30"
+      "ביצים 30",
+      "ביצים גודל l",
+      "ביצים l"
     ],
     "supermarketPrice": 34.9,
     "chains": {
@@ -69,19 +71,21 @@
     "aliases": [
       "ביצים m 30",
       "ביצים גודל m 30",
-      "תבנית 30 ביצים m"
+      "תבנית 30 ביצים m",
+      "ביצים גודל m",
+      "ביצים m"
     ],
-    "supermarketPrice": 34.9,
+    "supermarketPrice": 33.03,
     "chains": {
-      "osherAd": null,
+      "osherAd": 33.4,
       "ramiLevy": null,
-      "yeshHesed": null,
+      "yeshHesed": 33.5,
       "netoChisachon": null,
-      "shaareiRevaha": 34.9,
+      "shaareiRevaha": 32.2,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-21",
-    "matchedName": "תבנית 30 ביצים L"
+    "lastVerified": "2026-11-22",
+    "matchedName": "ביצים M, 30 יחידות"
   },
   {
     "id": "eggs_l12",

@@ -104,11 +104,13 @@ const userPositiveTests = [
   { input: "מאגדת קרלו בטעם שוקו (חום) 8 גביעים של 100 גרם", expectedId: "carlo_choco_8" },
   { input: "עוגיות חצי ירח - תירוש 175 גרם, ביסקוויט מצופה שוקולד צד אחד", expectedId: "cookies_tirosh_half_moon_175g" },
   { input: "בצל יבש", expectedId: "onion_dry" },
-  { input: "ג'ל כביסה מרוכז מקסימה - סנו 3 ליטר", expectedId: "my_10445" }
+  { input: "ג'ל כביסה מרוכז מקסימה - סנו 3 ליטר", expectedId: "my_10445" },
+  { input: "ביצים גודל M", unitHint: "30 ביצים חתומות", expectedId: "eggs_m30" },
+  { input: "ביצים גודל L", unitHint: "30 ביצים", expectedId: "eggs_l30" }
 ];
 
 for (const t of userPositiveTests) {
-  const m = findMarketComparison(t.input, catalog);
+  const m = findMarketComparison(t.input, catalog, t.unitHint || '');
   if (!m || m.id !== t.expectedId) {
     console.error(`FAIL User Positive Test: "${t.input}" expected ${t.expectedId}, got ${m ? m.id : 'null'}`);
     allPassed = false;

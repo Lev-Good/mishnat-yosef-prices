@@ -149,7 +149,7 @@ function setGithubOutput(key, value) {
   }
 }
 
-const UNIT_HINT_RE = /\d+(?:\.\d+)?(?:\s*[-–*xX×]\s*\d+(?:\.\d+)?)?\s*(?:ק["'״׳]?ג|קג|קילו|גרם|גר['"״׳]?|ג['"״׳]?|מ["'״׳]?ל|מל|ליטר|ל['"״׳]?|יח['"״׳]?|יחידות|גלילים|שקיקים|kg|gr|g|ml|l\b)/i;
+const UNIT_HINT_RE = /\d+(?:\.\d+)?(?:\s*[-–*xX×]\s*\d+(?:\.\d+)?)?\s*(?:ק["'״׳]?ג|קג|קילו|גרם|גר['"״׳]?|ג['"״׳]?|מ["'״׳]?ל|מל|ליטר|ל['"״׳]?|יח['"״׳]?|יחידות|גלילים|שקיקים|ביצים|kg|gr|g|ml|l\b)/i;
 
 function computeCatalogHash(catalog) {
   const normalized = [...catalog]
