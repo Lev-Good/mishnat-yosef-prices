@@ -1,0 +1,11 @@
+name = "mishnat-yosef-comments"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# לאחר יצירת מסד הנתונים באמצעות:
+#   npx wrangler d1 create mishnat-yosef-comments-db
+# יש להדביק כאן את ה-database_id שתקבל:
+[[d1_databases]]
+binding = "DB"
+database_name = "mishnat-yosef-comments-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"

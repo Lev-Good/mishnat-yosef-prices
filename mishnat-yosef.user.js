@@ -1603,6 +1603,11 @@ function showToast(msg, type = 'success') {
       if (star.title !== targetStarTitle) star.title = targetStarTitle;
       if (!isTableRow) stars.push({ cd, star });
 
+      // כפתור הערות קהילה על כרטיס המוצר (פעיל רק כששרת ההערות מוגדר, אפס עומס)
+      if (!isTableRow && !suppressHistDecorations && getCommentsApiBase()) {
+        attachCommentButtonToCard(cd, cardHost, key, (leaf.textContent || '').trim());
+      }
+
       // שמירת תמונת המוצר רק אם אינה שמורה כבר (חוסך סריקות מיותרות)
       const leafText = (leaf.textContent || '').trim();
       const normLeaf = norm(leafText);
@@ -1810,6 +1815,7 @@ function showToast(msg, type = 'success') {
     // ניקוי תגיות וכוכבים שאינם שייכים לכרטיסים פעילים
     $$('.myfam-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
     $$('.myfam-starbtn').forEach(s => { if (!region.contains(s) || !s.closest('.myfam-card')) s.remove(); });
+    $$('.myfam-cmt-btn').forEach(b => { if (!region.contains(b) || !b.closest('.myfam-card')) b.remove(); });
     $$('.myfam-price-comp-tag').forEach(t => { if (!region.contains(t) || !t.closest('.myfam-card')) t.remove(); });
 
     // עדכון כפתורי וסרגל הסינון בתפריט
@@ -8140,6 +8146,41 @@ function showToast(msg, type = 'success') {
       .myfam-starbtn:hover{background:#ffe08a;border-color:#e0a800;color:#8a6500;opacity:1}
       .myfam-starbtn.on{color:#e0a800;opacity:1}
 
+      .myfam-cmt-btn{position:absolute;top:10px;left:10px;z-index:5;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid #cbd5e1;border-radius:999px;background:rgba(255,255,255,0.92);color:#475569;font-size:12px;font-weight:700;line-height:1;cursor:pointer;opacity:0;transition:opacity .15s,background .15s,border-color .15s,color .15s;box-shadow:0 1px 4px rgba(15,23,42,0.08)}
+      .myfam-card:hover .myfam-cmt-btn, .myfam-cmt-btn.has-comments{opacity:1}
+      .myfam-cmt-btn.has-comments{background:#eff6ff;border-color:#93c5fd;color:#1d4ed8}
+      .myfam-cmt-btn:hover{background:#dbeafe;border-color:#60a5fa;color:#1e40af;opacity:1}
+
+      #myfam-chat-popover{position:fixed;bottom:18px;left:18px;z-index:100004;width:min(380px,calc(100vw - 28px));max-height:min(540px,calc(100vh - 36px));background:#fff;border:1px solid #cbd5e1;border-radius:16px;box-shadow:0 16px 40px rgba(15,23,42,0.22);display:flex;flex-direction:column;overflow:hidden;direction:rtl;font-family:sans-serif}
+      .myfam-chat-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#f8fafc;border-bottom:1px solid #e2e8f0}
+      .myfam-chat-title{font-size:14px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .myfam-chat-sub{font-size:11.5px;color:#64748b;margin-top:2px}
+      .myfam-chat-close{background:transparent;border:none;color:#64748b;font-size:18px;cursor:pointer;padding:2px 6px;border-radius:6px;line-height:1}
+      .myfam-chat-close:hover{background:#e2e8f0;color:#0f172a}
+      .myfam-chat-list{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px;background:#f8fafc;min-height:160px;max-height:320px}
+      .myfam-chat-empty{text-align:center;color:#64748b;font-size:12.5px;padding:28px 12px;line-height:1.6}
+      .myfam-chat-msg{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;box-shadow:0 1px 2px rgba(15,23,42,0.04)}
+      .myfam-chat-msg-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:5px;font-size:11.5px;color:#64748b}
+      .myfam-chat-author{font-weight:700;color:#1e293b}
+      .myfam-chat-body{font-size:13px;color:#0f172a;line-height:1.5;white-space:pre-wrap;word-break:break-word;margin-bottom:8px}
+      .myfam-chat-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+      .myfam-chat-act-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border:1px solid #e2e8f0;border-radius:999px;background:#f8fafc;color:#475569;font-size:11.5px;font-weight:600;cursor:pointer;transition:all .15s}
+      .myfam-chat-act-btn:hover{background:#f1f5f9;border-color:#cbd5e1}
+      .myfam-chat-act-btn.liked{background:#ecfdf5;border-color:#6ee7b7;color:#047857}
+      .myfam-chat-act-btn.spam:hover{background:#fef2f2;border-color:#fca5a5;color:#b91c1c}
+      .myfam-chat-act-btn.del:hover{background:#fef2f2;border-color:#fca5a5;color:#b91c1c}
+      .myfam-chat-act-btn:disabled{opacity:.55;cursor:default}
+      .myfam-chat-form{padding:10px 12px;background:#fff;border-top:1px solid #e2e8f0;display:flex;flex-direction:column;gap:7px}
+      .myfam-chat-nick{width:100%;padding:6px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:12px;box-sizing:border-box;outline:none}
+      .myfam-chat-input-row{display:flex;gap:6px;align-items:flex-end}
+      .myfam-chat-input{flex:1;padding:7px 10px;border:1px solid #cbd5e1;border-radius:10px;font-size:13px;resize:none;font-family:inherit;box-sizing:border-box;outline:none;min-height:38px;max-height:92px}
+      .myfam-chat-input:focus, .myfam-chat-nick:focus{border-color:#2e9e5b}
+      .myfam-chat-send{padding:8px 14px;background:#2e9e5b;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0}
+      .myfam-chat-send:hover{background:#238249}
+      .myfam-chat-send:disabled{opacity:.6;cursor:wait}
+      .myfam-chat-err{font-size:11.5px;color:#dc2626;display:none}
+      .myfam-chat-meta{display:flex;justify-content:space-between;font-size:11px;color:#94a3b8}
+
       /* כפתור פאנל ראשי */
       #myfam-panel{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;margin:0 8px;direction:rtl;font:14px system-ui,-apple-system,sans-serif}
       #myfam-panel.floating{position:fixed;z-index:99999;margin:0}
@@ -8830,7 +8871,7 @@ function showToast(msg, type = 'success') {
         const node = m.addedNodes[i];
         if (node.nodeType === 1) {
           // התעלם מכל אלמנט פנימי של התוסף עצמו
-          if (node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-whatsnew-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-price-comp-tag')) continue;
+          if (node.closest?.('#myfam-panel, #myfam-body, #myfam-modal, #myfam-whatsnew-modal, #myfam-budget-modal, #myfam-forgotten-modal, #myfam-savings-modal, #myfam-chat-popover, #myfam-toast, .myfam-tag, .myfam-starbtn, .myfam-cmt-btn, .myfam-price-comp-tag')) continue;
           // התעלם מכל שינוי בתוך אזורי סל הקניות, עמודה צדדית, כותרות וניווט
           if (node.closest?.('header, nav, footer, #cart, [id*="cart" i], [class*="cart" i], [class*="basket" i], [class*="drawer" i], aside, dialog')) continue;
           // התעלם משינויים פנימיים בכרטיסי מוצר קיימים (למשל כפתור הוסף לסל או שליטת כמויות)
@@ -8853,6 +8894,370 @@ function showToast(msg, type = 'success') {
       render();
     }, delay);
   });
+
+  /* ---------- פורום הערות קהילה למוצרים (Cloudflare Workers + D1, אפס עומס על האתר) ---------- */
+  const COMMENTS_API_BASE = ''; // יתמלא אוטומטית בכתובת ה-Cloudflare Worker לאחר הפריסה
+  let commentCounts = {};
+
+  function getCommentsApiBase() {
+    const override = (localStorage.getItem(LS + 'comments_api_url') || '').trim();
+    const base = override || COMMENTS_API_BASE;
+    return base ? base.replace(/\/+$/, '') : '';
+  }
+
+  function getCommentsClientId() {
+    let cid = localStorage.getItem(LS + 'client_id');
+    if (!cid || cid.length < 12) {
+      cid = 'u_' + Math.random().toString(36).slice(2) + '_' + Date.now().toString(36);
+      try { localStorage.setItem(LS + 'client_id', cid); } catch (_) {}
+    }
+    return cid;
+  }
+
+  function formatCommentTime(ts) {
+    if (!ts) return '';
+    try {
+      const d = new Date(ts);
+      const now = new Date();
+      const sameDay = d.toDateString() === now.toDateString();
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mm = String(d.getMinutes()).padStart(2, '0');
+      if (sameDay) return `היום ${hh}:${mm}`;
+      return `${d.getDate()}/${d.getMonth() + 1} ${hh}:${mm}`;
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function updateCommentButtonBadge(btn, pid) {
+    if (!btn) return;
+    const cnt = Number(commentCounts[pid]) || 0;
+    btn.classList.toggle('has-comments', cnt > 0);
+    btn.textContent = cnt > 0 ? `💬 ${cnt}` : '💬';
+    btn.title = cnt > 0 ? `${cnt} הערות קהילה על המוצר — לחץ לצפייה והוספה` : 'הוסף הערה למוצר זה';
+  }
+
+  function refreshAllCommentBadges() {
+    document.querySelectorAll('.myfam-cmt-btn[data-cmt-pid]').forEach(btn => {
+      updateCommentButtonBadge(btn, btn.dataset.cmtPid);
+    });
+  }
+
+  async function fetchCommentCounts() {
+    const base = getCommentsApiBase();
+    if (!base) return;
+    try {
+      const resp = await fetch(`${base}/api/counts`, { headers: { 'Accept': 'application/json' } });
+      if (!resp.ok) return;
+      const data = await resp.json();
+      if (data && data.counts && typeof data.counts === 'object') {
+        commentCounts = data.counts;
+        refreshAllCommentBadges();
+      }
+    } catch (_) {}
+  }
+
+  function attachCommentButtonToCard(cd, cardHost, pid, productName) {
+    if (!cd || !cardHost || !pid) return;
+    let btn = cd.querySelector('.myfam-cmt-btn');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'myfam-cmt-btn';
+      btn.onclick = ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        openProductCommentsChat(btn.dataset.cmtPid, btn.dataset.cmtName || '');
+      };
+      cardHost.appendChild(btn);
+    }
+    if (btn.dataset.cmtPid !== pid) btn.dataset.cmtPid = pid;
+    if (btn.dataset.cmtName !== productName) btn.dataset.cmtName = productName;
+    updateCommentButtonBadge(btn, pid);
+  }
+
+  function openProductCommentsChat(pid, productName) {
+    const base = getCommentsApiBase();
+    if (!base) return;
+    $('#myfam-chat-popover')?.remove();
+
+    const pop = document.createElement('div');
+    pop.id = 'myfam-chat-popover';
+
+    // בניית כל ה-DOM בצורה נקייה עם textContent בלבד (אפס סכנת XSS)
+    const hdr = document.createElement('div');
+    hdr.className = 'myfam-chat-hdr';
+    const titleWrap = document.createElement('div');
+    titleWrap.style.minWidth = '0';
+    const titleEl = document.createElement('div');
+    titleEl.className = 'myfam-chat-title';
+    titleEl.textContent = `💬 ${productName || 'הערות קהילה'}`;
+    const subEl = document.createElement('div');
+    subEl.className = 'myfam-chat-sub';
+    subEl.textContent = 'הערות וחוות דעת של קונים במשנת יוסף';
+    titleWrap.appendChild(titleEl);
+    titleWrap.appendChild(subEl);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'myfam-chat-close';
+    closeBtn.title = 'סגור';
+    closeBtn.textContent = '✕';
+    const closeChat = () => {
+      document.removeEventListener('keydown', onEsc);
+      pop.remove();
+    };
+    const onEsc = e => { if (e.key === 'Escape') closeChat(); };
+    closeBtn.onclick = closeChat;
+    document.addEventListener('keydown', onEsc);
+
+    hdr.appendChild(titleWrap);
+    hdr.appendChild(closeBtn);
+
+    const listEl = document.createElement('div');
+    listEl.className = 'myfam-chat-list';
+    const loadingEl = document.createElement('div');
+    loadingEl.className = 'myfam-chat-empty';
+    loadingEl.textContent = 'טוען הערות…';
+    listEl.appendChild(loadingEl);
+
+    const formEl = document.createElement('form');
+    formEl.className = 'myfam-chat-form';
+
+    const nickInput = document.createElement('input');
+    nickInput.type = 'text';
+    nickInput.className = 'myfam-chat-nick';
+    nickInput.maxLength = 24;
+    nickInput.placeholder = 'כינוי להצגה (אופציונלי, ברירת מחדל: קונה אנונימי)';
+    nickInput.value = localStorage.getItem(LS + 'chat_nick') || '';
+
+    const inputRow = document.createElement('div');
+    inputRow.className = 'myfam-chat-input-row';
+    const bodyInput = document.createElement('textarea');
+    bodyInput.className = 'myfam-chat-input';
+    bodyInput.maxLength = 300;
+    bodyInput.rows = 2;
+    bodyInput.placeholder = 'כתוב הערה מועילה על המוצר…';
+
+    const sendBtn = document.createElement('button');
+    sendBtn.type = 'submit';
+    sendBtn.className = 'myfam-chat-send';
+    sendBtn.textContent = 'שלח';
+    inputRow.appendChild(bodyInput);
+    inputRow.appendChild(sendBtn);
+
+    const errEl = document.createElement('div');
+    errEl.className = 'myfam-chat-err';
+
+    const metaRow = document.createElement('div');
+    metaRow.className = 'myfam-chat-meta';
+    const ruleHint = document.createElement('span');
+    ruleHint.textContent = 'עד 5 הערות ב-10 דקות • ללא קישורים או קוד';
+    const charCount = document.createElement('span');
+    charCount.textContent = '0/300';
+    metaRow.appendChild(ruleHint);
+    metaRow.appendChild(charCount);
+
+    bodyInput.oninput = () => {
+      charCount.textContent = `${bodyInput.value.length}/300`;
+      errEl.style.display = 'none';
+    };
+
+    formEl.appendChild(nickInput);
+    formEl.appendChild(inputRow);
+    formEl.appendChild(errEl);
+    formEl.appendChild(metaRow);
+
+    pop.appendChild(hdr);
+    pop.appendChild(listEl);
+    pop.appendChild(formEl);
+    document.body.appendChild(pop);
+
+    const clientId = getCommentsClientId();
+    const adminKey = localStorage.getItem(LS + 'admin_key') || '';
+
+    const renderMessageNode = cm => {
+      const box = document.createElement('div');
+      box.className = 'myfam-chat-msg';
+
+      const top = document.createElement('div');
+      top.className = 'myfam-chat-msg-top';
+      const authorEl = document.createElement('span');
+      authorEl.className = 'myfam-chat-author';
+      authorEl.textContent = cm.author || 'קונה אנונימי';
+      const timeEl = document.createElement('span');
+      timeEl.textContent = (cm.saleWeek ? `${cm.saleWeek} · ` : '') + formatCommentTime(cm.createdAt);
+      top.appendChild(authorEl);
+      top.appendChild(timeEl);
+
+      const bodyEl = document.createElement('div');
+      bodyEl.className = 'myfam-chat-body';
+      bodyEl.textContent = cm.body || '';
+
+      const actions = document.createElement('div');
+      actions.className = 'myfam-chat-actions';
+
+      const likeBtn = document.createElement('button');
+      likeBtn.type = 'button';
+      likeBtn.className = 'myfam-chat-act-btn' + (cm.likedByMe ? ' liked' : '');
+      const syncLike = (liked, cnt) => {
+        likeBtn.classList.toggle('liked', !!liked);
+        likeBtn.textContent = cnt > 0 ? `👍 מועיל (${cnt})` : '👍 מועיל';
+      };
+      syncLike(cm.likedByMe, cm.likes || 0);
+      likeBtn.onclick = async () => {
+        likeBtn.disabled = true;
+        try {
+          const r = await fetch(`${base}/api/comments/${cm.id}/like`, {
+            method: 'POST',
+            headers: { 'X-Client-Id': clientId }
+          });
+          if (r.ok) {
+            const d = await r.json();
+            syncLike(d.liked, d.likes);
+          }
+        } catch (_) {}
+        likeBtn.disabled = false;
+      };
+      actions.appendChild(likeBtn);
+
+      const spamBtn = document.createElement('button');
+      spamBtn.type = 'button';
+      spamBtn.className = 'myfam-chat-act-btn spam';
+      spamBtn.textContent = cm.spammedByMe ? 'דווח כספאם ✓' : 'ספאם';
+      if (cm.spammedByMe) spamBtn.disabled = true;
+      spamBtn.onclick = async () => {
+        spamBtn.disabled = true;
+        try {
+          const r = await fetch(`${base}/api/comments/${cm.id}/spam`, {
+            method: 'POST',
+            headers: { 'X-Client-Id': clientId }
+          });
+          if (r.ok) {
+            const d = await r.json();
+            spamBtn.textContent = 'דווח כספאם ✓';
+            if (d.hidden) {
+              box.remove();
+              commentCounts[pid] = Math.max(0, (Number(commentCounts[pid]) || 1) - 1);
+              refreshAllCommentBadges();
+            }
+          }
+        } catch (_) {
+          spamBtn.disabled = false;
+        }
+      };
+      actions.appendChild(spamBtn);
+
+      if (cm.isMine || adminKey) {
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'myfam-chat-act-btn del';
+        delBtn.textContent = 'מחק';
+        delBtn.onclick = async () => {
+          delBtn.disabled = true;
+          try {
+            const headers = { 'X-Client-Id': clientId };
+            if (adminKey) headers['X-Admin-Key'] = adminKey;
+            const r = await fetch(`${base}/api/comments/${cm.id}`, { method: 'DELETE', headers });
+            if (r.ok) {
+              box.remove();
+              commentCounts[pid] = Math.max(0, (Number(commentCounts[pid]) || 1) - 1);
+              refreshAllCommentBadges();
+              if (!listEl.querySelector('.myfam-chat-msg')) {
+                const emp = document.createElement('div');
+                emp.className = 'myfam-chat-empty';
+                emp.textContent = 'עדיין אין הערות על מוצר זה. היה הראשון לשתף חוות דעת!';
+                listEl.appendChild(emp);
+              }
+            }
+          } catch (_) {
+            delBtn.disabled = false;
+          }
+        };
+        actions.appendChild(delBtn);
+      }
+
+      box.appendChild(top);
+      box.appendChild(bodyEl);
+      box.appendChild(actions);
+      return box;
+    };
+
+    const showErr = msg => {
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+    };
+
+    // טעינת ההערות מהשרת
+    (async () => {
+      try {
+        const resp = await fetch(`${base}/api/comments?pid=${encodeURIComponent(pid)}`, {
+          headers: { 'Accept': 'application/json', 'X-Client-Id': clientId }
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        const items = Array.isArray(data?.comments) ? data.comments : [];
+        listEl.textContent = '';
+        commentCounts[pid] = items.length;
+        refreshAllCommentBadges();
+        if (!items.length) {
+          const emp = document.createElement('div');
+          emp.className = 'myfam-chat-empty';
+          emp.textContent = 'עדיין אין הערות על מוצר זה. היה הראשון לשתף חוות דעת!';
+          listEl.appendChild(emp);
+        } else {
+          items.forEach(cm => listEl.appendChild(renderMessageNode(cm)));
+        }
+      } catch (_) {
+        listEl.textContent = '';
+        const emp = document.createElement('div');
+        emp.className = 'myfam-chat-empty';
+        emp.textContent = 'לא ניתן היה לטעון הערות כרגע. נסה שוב בעוד רגע.';
+        listEl.appendChild(emp);
+      }
+    })();
+
+    // שליחת הערה חדשה
+    formEl.onsubmit = async ev => {
+      ev.preventDefault();
+      errEl.style.display = 'none';
+      const body = bodyInput.value.trim();
+      const author = nickInput.value.trim() || 'קונה אנונימי';
+      if (body.length < 2) return showErr('נא לכתוב לפחות 2 תווים.');
+      if (/<[^>]+>|javascript:|https?:\/\/|www\./i.test(body + ' ' + author)) {
+        return showErr('לא ניתן לפרסם קוד, תגיות HTML או קישורים בהערה.');
+      }
+      if (nickInput.value.trim()) {
+        try { localStorage.setItem(LS + 'chat_nick', nickInput.value.trim()); } catch (_) {}
+      }
+
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'שולח…';
+      try {
+        const curSaleWeek = (sale.id && saleMeta[sale.id]?.week) || '';
+        const resp = await fetch(`${base}/api/comments`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Client-Id': clientId },
+          body: JSON.stringify({ pid, productName, author, body, saleWeek: curSaleWeek })
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) {
+          showErr(data.error || 'לא ניתן היה לשלוח את ההערה.');
+        } else {
+          listEl.querySelector('.myfam-chat-empty')?.remove();
+          listEl.prepend(renderMessageNode(data.comment));
+          bodyInput.value = '';
+          charCount.textContent = '0/300';
+          commentCounts[pid] = (Number(commentCounts[pid]) || 0) + 1;
+          refreshAllCommentBadges();
+        }
+      } catch (_) {
+        showErr('שגיאת תקשורת מול שרת ההערות.');
+      }
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'שלח';
+    };
+  }
 
   let renderGeneration = 0;
   function runWhenIdle(fn, timeout = 800) {
@@ -8881,10 +9286,11 @@ function showToast(msg, type = 'success') {
       updateForgottenUI();
     }, 350);
 
-    // שלב 3 (רקע לאחר 2.5 שניות): רענון מחירי שוק וסנכרון ענן ללא תחרות עם טעינת האתר
+    // שלב 3 (רקע לאחר 2.5 שניות): רענון מחירי שוק, ספירת הערות קהילה וסנכרון ענן ללא תחרות עם טעינת האתר
     setTimeout(() => {
       runWhenIdle(() => {
         fetchRemoteMarketPrices();
+        fetchCommentCounts();
         syncLoadGoogle();
       }, 1500);
     }, 2500);
