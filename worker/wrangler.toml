@@ -8,4 +8,4 @@ compatibility_date = "2026-11-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "mishnat-yosef-comments-db"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "43bbf44e-8a79-497b-ba80-0db09b62926b"

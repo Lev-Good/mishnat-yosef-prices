@@ -9,6 +9,7 @@
 // @match        https://mishnatyosef.org/*
 // @match        https://*.mishnatyosef.org/*
 // @connect      digital.levtov.uk
+// @connect      mishnat-yosef-comments.lev-tov-digital.workers.dev
 // @connect      raw.githubusercontent.com
 // @connect      cdn.jsdelivr.net
 // @grant        GM_xmlhttpRequest
@@ -8896,7 +8897,7 @@ function showToast(msg, type = 'success') {
   });
 
   /* ---------- פורום הערות קהילה למוצרים (Cloudflare Workers + D1, אפס עומס על האתר) ---------- */
-  const COMMENTS_API_BASE = ''; // יתמלא אוטומטית בכתובת ה-Cloudflare Worker לאחר הפריסה
+  const COMMENTS_API_BASE = 'https://mishnat-yosef-comments.lev-tov-digital.workers.dev';
   let commentCounts = {};
 
   function getCommentsApiBase() {

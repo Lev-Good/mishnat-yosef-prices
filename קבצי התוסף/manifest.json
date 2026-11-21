@@ -24,6 +24,7 @@
     "https://v2.mishnatyosef.org/*",
     "https://*.mishnatyosef.org/*",
     "https://digital.levtov.uk/*",
+    "https://mishnat-yosef-comments.lev-tov-digital.workers.dev/*",
     "https://raw.githubusercontent.com/*",
     "https://cdn.jsdelivr.net/*"
   ],
