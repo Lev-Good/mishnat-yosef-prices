@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         מוסיף למשנת - סל קניות משפחתי חכם
 // @namespace    https://digital.levtov.uk/
-// @version      0.6.8
+// @version      0.6.9
 // @description  סל קניות משפחתי חכם למשנת יוסף - מד תקציב שבועי, תזכורת קבועים שנשכחו, מחשבון חיסכון והשוואת מחירים לרשתות השיווק, סימון מוצרים שהוזמנו בעבר, סימון קבועים, היסטוריית קניות מפורטת, הדפסת רשימת איסוף, והוספה מהירה לסל
 // @author       לב טוב דיגיטל (https://digital.levtov.uk/)
 // @copyright    2026, Lev Tov Digital (https://digital.levtov.uk/). All Rights Reserved.
@@ -97,21 +97,88 @@
     return oSend.apply(this, arguments);
   };
 
+  /* פונקציית עזר לשליפת טוקן התחברות ממגוון מקורות אפשריים באתר */
+  function extractSiteToken() {
+    const directKeys = [
+      'token', 'access_token', 'accessToken', 'auth_token', 'authToken',
+      'jwt', 'mishnat_token', 'bearer_token', 'user_token'
+    ];
+    for (const st of [localStorage, sessionStorage]) {
+      if (!st) continue;
+      for (const k of directKeys) {
+        try {
+          const val = st.getItem(k);
+          if (val && typeof val === 'string' && val.length > 8 && val !== 'null' && val !== 'undefined') {
+            return val.replace(/^Bearer\s+/i, '').trim();
+          }
+        } catch (_) {}
+      }
+      try {
+        for (let i = 0; i < st.length; i++) {
+          const k = st.key(i);
+          if (!k) continue;
+          const raw = st.getItem(k);
+          if (!raw || typeof raw !== 'string') continue;
+          if (raw.charCodeAt(0) === 123 && (raw.includes('token') || raw.includes('Token') || raw.includes('jwt'))) {
+            try {
+              const obj = JSON.parse(raw);
+              const cand = obj.token || obj.accessToken || obj.access_token || obj.authToken || obj.auth_token || obj.jwt || obj?.user?.token || obj?.auth?.token || obj?.data?.token;
+              if (cand && typeof cand === 'string' && cand.length > 8) {
+                return cand.replace(/^Bearer\s+/i, '').trim();
+              }
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
+    }
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)(?:token|access_token|jwt|auth)=([^;]+)/i);
+      if (m && m[1]) {
+        return decodeURIComponent(m[1]).replace(/^Bearer\s+/i, '').trim();
+      }
+    } catch (_) {}
+    return '';
+  }
+
+  function getXsrfToken() {
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)XSRF-TOKEN=([^;]+)/i);
+      if (m && m[1]) return decodeURIComponent(m[1]);
+    } catch (_) {}
+    return '';
+  }
+
   /* גשר לקריאות ישירות מעולם הדף (עוקף לחלוטין בעיות CORS ובידוד) */
   window.addEventListener('myfam-call-api', async ev => {
     let req;
     try { req = JSON.parse(ev.detail); } catch (e) { return; }
     
-    // שליפת טוקן ההתחברות ישירות מ-localStorage של האתר
-    const token = localStorage.getItem('token') || (req.auth ? req.auth.replace(/^Bearer\s+/i, '') : '');
+    // שליפת טוקן ההתחברות ישירות מ-localStorage או ממאגרי הסשן של האתר
+    const token = (req.auth ? req.auth.replace(/^Bearer\s+/i, '').trim() : '') || extractSiteToken();
+    const xsrf = getXsrfToken();
 
-    // הגדרת כותרות נקיות לחלוטין - בדיוק כמו ה-Axios של משנת יוסף
-    const hdrs = { 'Accept': 'application/json' };
+    // הגדרת כותרות מדויקות כמו של ה-Axios של משנת יוסף
+    const hdrs = {
+      'Accept': 'application/json, text/plain, */*',
+      'X-Requested-With': 'XMLHttpRequest'
+    };
     if (req.body) {
       hdrs['Content-Type'] = 'application/json';
     }
     if (token) {
       hdrs['Authorization'] = 'Bearer ' + token;
+    }
+    if (xsrf) {
+      hdrs['X-XSRF-TOKEN'] = xsrf;
+    }
+    if (capturedHeaders['authorization'] && !hdrs['Authorization']) {
+      hdrs['Authorization'] = capturedHeaders['authorization'];
+    }
+    if (capturedHeaders['x-xsrf-token'] && !hdrs['X-XSRF-TOKEN']) {
+      hdrs['X-XSRF-TOKEN'] = capturedHeaders['x-xsrf-token'];
+    }
+    if (req.headers && typeof req.headers === 'object') {
+      Object.assign(hdrs, req.headers);
     }
 
     // ניסיון ראשון: fetch מתוך עולם הדף
@@ -141,13 +208,9 @@
       const xhr = new XMLHttpRequest();
       xhr.open(req.method || 'GET', req.url);
       xhr.withCredentials = true;
-      xhr.setRequestHeader('Accept', 'application/json');
-      if (req.body) {
-        xhr.setRequestHeader('Content-Type', 'application/json');
-      }
-      if (token) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-      }
+      Object.keys(hdrs).forEach(h => {
+        try { xhr.setRequestHeader(h, hdrs[h]); } catch (_) {}
+      });
       xhr.onload = function () {
         let json = null;
         try { json = JSON.parse(xhr.responseText); } catch (e) {}
@@ -209,7 +272,7 @@ if (typeof window.__MY_T === 'undefined') {
   const T = window.__MY_T;
 
   const APP_NAME = 'מוסיף למשנת';
-  const APP_VERSION = '0.6.8';
+  const APP_VERSION = '0.6.9';
   const ICONS = {
     info: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
     basket: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;display:inline-block"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
@@ -542,6 +605,8 @@ if (typeof window.__MY_T === 'undefined') {
   /* ---------- יירוט ה-API ---------- */
   let apiHeaders = jget('api_headers', {});
   let apiAuthToken = jget('api_auth', null);
+  let dynamicApiHost = jget('api_host', null);
+
   W.addEventListener('myfam-api', ev => {
     let d; try { d = JSON.parse(ev.detail); } catch { return; }
     if (d.headers && Object.keys(d.headers).length) {
@@ -551,6 +616,18 @@ if (typeof window.__MY_T === 'undefined') {
     if (d.auth && d.auth !== apiAuthToken) {
       apiAuthToken = d.auth;
       jset('api_auth', apiAuthToken);
+    }
+    if (d.url) {
+      try {
+        const parsed = new URL(d.url, location.href);
+        if (parsed.hostname.includes('mishnatyosef.org')) {
+          const detected = parsed.origin;
+          if (detected && detected !== dynamicApiHost) {
+            dynamicApiHost = detected;
+            jset('api_host', dynamicApiHost);
+          }
+        }
+      } catch (_) {}
     }
     try { handleApi(d); } catch (e) { console.warn('[myfam]', e); }
   });
@@ -1599,6 +1676,71 @@ function showToast(msg, type = 'success') {
   }
   const setStatus = t => { const s = $('#myfam-status'); if (s) s.textContent = t; };
 
+  /* פונקציות חכמות לחילוץ טוקן, כותרות וכתובת השרת */
+  function extractSiteToken() {
+    const directKeys = [
+      'token', 'access_token', 'accessToken', 'auth_token', 'authToken',
+      'jwt', 'mishnat_token', 'bearer_token', 'user_token'
+    ];
+    for (const st of [localStorage, sessionStorage]) {
+      if (!st) continue;
+      for (const k of directKeys) {
+        try {
+          const val = st.getItem(k);
+          if (val && typeof val === 'string' && val.length > 8 && val !== 'null' && val !== 'undefined') {
+            return val.replace(/^Bearer\s+/i, '').trim();
+          }
+        } catch (_) {}
+      }
+      try {
+        for (let i = 0; i < st.length; i++) {
+          const k = st.key(i);
+          if (!k) continue;
+          const raw = st.getItem(k);
+          if (!raw || typeof raw !== 'string') continue;
+          if (raw.charCodeAt(0) === 123 && (raw.includes('token') || raw.includes('Token') || raw.includes('jwt'))) {
+            try {
+              const obj = JSON.parse(raw);
+              const cand = obj.token || obj.accessToken || obj.access_token || obj.authToken || obj.auth_token || obj.jwt || obj?.user?.token || obj?.auth?.token || obj?.data?.token;
+              if (cand && typeof cand === 'string' && cand.length > 8) {
+                return cand.replace(/^Bearer\s+/i, '').trim();
+              }
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
+    }
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)(?:token|access_token|jwt|auth)=([^;]+)/i);
+      if (m && m[1]) {
+        return decodeURIComponent(m[1]).replace(/^Bearer\s+/i, '').trim();
+      }
+    } catch (_) {}
+    return '';
+  }
+
+  function getXsrfToken() {
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)XSRF-TOKEN=([^;]+)/i);
+      if (m && m[1]) return decodeURIComponent(m[1]);
+    } catch (_) {}
+    return '';
+  }
+
+  function getBestAuthToken() {
+    if (apiAuthToken && typeof apiAuthToken === 'string' && apiAuthToken.length > 8) {
+      return apiAuthToken;
+    }
+    const found = extractSiteToken();
+    if (found) {
+      apiAuthToken = found.startsWith('Bearer ') ? found : 'Bearer ' + found;
+      jset('api_auth', apiAuthToken);
+      return apiAuthToken;
+    }
+    return null;
+  }
+
+  const getApiHost = () => dynamicApiHost || ((typeof location !== 'undefined' && location.origin && /mishnatyosef\.org/i.test(location.origin)) ? location.origin : 'https://mishnatyosef.org');
   const API_HOST = (typeof location !== 'undefined' && location.origin && /mishnatyosef\.org/i.test(location.origin))
     ? location.origin
     : 'https://mishnatyosef.org';
@@ -1630,7 +1772,7 @@ function showToast(msg, type = 'success') {
       W.addEventListener('myfam-call-api-res', onRes);
 
       W.dispatchEvent(new CustomEvent('myfam-call-api', {
-        detail: JSON.stringify({ id, url, method, body, auth: apiAuthToken })
+        detail: JSON.stringify({ id, url, method, body, auth: getBestAuthToken(), headers: apiHeaders })
       }));
 
       setTimeout(() => {
@@ -1642,40 +1784,140 @@ function showToast(msg, type = 'success') {
     });
   }
 
-  /* קריאה חכמה ל-API של משנת יוסף:
-     1. לפעולות שינוי סל (POST): עדיפות ראשונה לעולם הדף (MAIN world) עם הסשן המקומי והטוקן ב-localStorage.
-     2. לקריאות משיכת נתונים (GET): עדיפות לעולם הדף ואז דרך Background Service Worker כגיבוי.
+  /* קריאה ישירה באותו Origin (Content Script Direct Fetch עם Credentials) */
+  async function directContentFetch(url, method = 'GET', body = null) {
+    try {
+      const token = getBestAuthToken();
+      const xsrf = getXsrfToken();
+      const headers = {
+        'Accept': 'application/json, text/plain, */*',
+        'X-Requested-With': 'XMLHttpRequest'
+      };
+      if (body) headers['Content-Type'] = 'application/json';
+      if (token) headers['Authorization'] = token.startsWith('Bearer ') ? token : 'Bearer ' + token;
+      if (xsrf) headers['X-XSRF-TOKEN'] = xsrf;
+      if (apiHeaders && typeof apiHeaders === 'object') {
+        if (apiHeaders['x-xsrf-token'] && !headers['X-XSRF-TOKEN']) headers['X-XSRF-TOKEN'] = apiHeaders['x-xsrf-token'];
+      }
+
+      const resp = await fetch(url, {
+        method,
+        headers,
+        credentials: 'include',
+        body: body || undefined
+      });
+
+      if (resp.status === 401) {
+        const err = new Error('unauthorized');
+        err.status = 401;
+        throw err;
+      }
+      if (!resp.ok) {
+        const err = new Error(`HTTP ${resp.status}`);
+        err.status = resp.status;
+        throw err;
+      }
+
+      const ct = resp.headers.get('content-type') || '';
+      if (ct.includes('json')) {
+        return await resp.json();
+      }
+      const txt = await resp.text();
+      try {
+        return JSON.parse(txt);
+      } catch (_) {
+        throw new Error('תשובה לא תקינה מהאתר (לא JSON)');
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  /* קריאה חכמה ורב-שכבתית ל-API של משנת יוסף:
+     1. עולם הדף (MAIN world) עם הסשן המקומי והטוקן ב-localStorage
+     2. פנייה ישירה מתוך הסקריפט (Content Script Same-Origin Fetch עם credentials מלאים)
+     3. שירות הרקע של התוסף (Background Service Worker דרך T.request)
+     4. גיבוי דומיין חלופי (mishnatyosef.org <-> v2.mishnatyosef.org)
   */
   async function siteApiRequest(url, method = 'GET', body = null) {
-    if (method === 'POST') {
-      try {
-        const res = await pageApiRequest(url, method, body);
-        if (res !== undefined && res !== null) return res;
-      } catch (pageErr) {
-        if (localStorage.getItem(LS + 'debug_enabled')) {
-          console.log('[myfam page request fallback to bg]', pageErr);
-        }
-      }
-      if (T && typeof T.request === 'function') {
-        const bgHeaders = { 'Accept': 'application/json' };
-        if (body) bgHeaders['Content-Type'] = 'application/json';
-        if (apiAuthToken) bgHeaders['Authorization'] = apiAuthToken;
-        return T.request({ url, method, body, headers: bgHeaders });
-      }
-      return null;
-    }
+    let lastError = null;
 
+    // שכבה 1: עולם הדף (MAIN world)
     try {
       const res = await pageApiRequest(url, method, body);
       if (res !== undefined && res !== null) return res;
     } catch (pageErr) {
-      if (T && typeof T.request === 'function') {
-        const bgHeaders = { 'Accept': 'application/json' };
-        if (apiAuthToken) bgHeaders['Authorization'] = apiAuthToken;
-        const res = await T.request({ url, method, body, headers: bgHeaders });
-        if (res !== undefined && res !== null) return res;
+      lastError = pageErr;
+      if (pageErr.message === 'unauthorized' || pageErr.status === 401) {
+        throw pageErr;
+      }
+      if (localStorage.getItem(LS + 'debug_enabled')) {
+        console.log('[myfam pageApiRequest fallback]', pageErr);
       }
     }
+
+    // שכבה 2: Same-Origin Fetch ישיר מתוך הסקריפט
+    try {
+      const res = await directContentFetch(url, method, body);
+      if (res !== undefined && res !== null) return res;
+    } catch (directErr) {
+      lastError = directErr;
+      if (directErr.message === 'unauthorized' || directErr.status === 401) {
+        throw directErr;
+      }
+      if (localStorage.getItem(LS + 'debug_enabled')) {
+        console.log('[myfam directContentFetch fallback]', directErr);
+      }
+    }
+
+    // שכבה 3: שירות הרקע של התוסף (T.request)
+    if (T && typeof T.request === 'function') {
+      try {
+        const bgHeaders = {
+          'Accept': 'application/json, text/plain, */*',
+          'X-Requested-With': 'XMLHttpRequest'
+        };
+        if (body) bgHeaders['Content-Type'] = 'application/json';
+        const token = getBestAuthToken();
+        if (token) bgHeaders['Authorization'] = token;
+        const xsrf = getXsrfToken();
+        if (xsrf) bgHeaders['X-XSRF-TOKEN'] = xsrf;
+
+        const res = await T.request({ url, method, body, headers: bgHeaders });
+        if (res !== undefined && res !== null) return res;
+      } catch (bgErr) {
+        if (localStorage.getItem(LS + 'debug_enabled')) {
+          console.log('[myfam bg request fallback failed]', bgErr);
+        }
+        if (bgErr.message === 'unauthorized' || bgErr.status === 401) {
+          throw bgErr;
+        }
+        if (lastError && lastError.message && !lastError.message.includes('Receiving end')) {
+          throw lastError;
+        }
+        throw bgErr;
+      }
+    }
+
+    // שכבה 4: אם נכשל ויש דומיין חלופי (mishnatyosef.org <-> v2.mishnatyosef.org), ננסה אותו
+    let altUrl = null;
+    if (typeof url === 'string') {
+      if (url.includes('https://mishnatyosef.org/api/')) {
+        altUrl = url.replace('https://mishnatyosef.org/api/', 'https://v2.mishnatyosef.org/api/');
+      } else if (url.includes('https://v2.mishnatyosef.org/api/')) {
+        altUrl = url.replace('https://v2.mishnatyosef.org/api/', 'https://mishnatyosef.org/api/');
+      }
+    }
+    if (altUrl && !url.__retriedAlt) {
+      try {
+        const altReqUrl = new String(altUrl);
+        altReqUrl.__retriedAlt = true;
+        const res = await directContentFetch(altReqUrl, method, body);
+        if (res !== undefined && res !== null) return res;
+      } catch (_) {}
+    }
+
+    if (lastError) throw lastError;
     return null;
   }
 
@@ -1950,7 +2192,7 @@ function showToast(msg, type = 'success') {
   /* סנכרון שקט ברקע בלי להטריח את המשתמש */
   async function importHistorySilent() {
     try {
-      const data = await siteApiRequest(`${API_HOST}/api/orders?page=1`, 'GET');
+      const data = await siteApiRequest(`${getApiHost()}/api/orders?page=1`, 'GET');
       const ordersList = Array.isArray(data?.data) ? data.data : (Array.isArray(data) ? data : []);
       if (!ordersList.length) return;
 
@@ -1958,7 +2200,7 @@ function showToast(msg, type = 'success') {
       for (const ord of ordersList.slice(0, 8)) {
         const oid = ord.id;
         if (!oid) continue;
-        const oData = await siteApiRequest(`${API_HOST}/api/orders/${oid}`, 'GET');
+        const oData = await siteApiRequest(`${getApiHost()}/api/orders/${oid}`, 'GET');
         const o = oData?.order || ord;
         if (!o) continue;
 
@@ -2006,9 +2248,9 @@ function showToast(msg, type = 'success') {
 
         let data;
         try {
-          data = await siteApiRequest(`${API_HOST}/api/orders?page=${page}`, 'GET');
+          data = await siteApiRequest(`${getApiHost()}/api/orders?page=${page}`, 'GET');
         } catch (e) {
-          if (e.message === 'unauthorized') {
+          if (e.message === 'unauthorized' || e.status === 401) {
             progress.showError('התחברות נדרשת: יש לוודא שאתה מחובר לחשבונך באתר משנת יוסף.');
             setStatus('נדרשת התחברות');
             return;
@@ -2031,7 +2273,7 @@ function showToast(msg, type = 'success') {
           );
 
           try {
-            const oData = await siteApiRequest(`${API_HOST}/api/orders/${oid}`, 'GET');
+            const oData = await siteApiRequest(`${getApiHost()}/api/orders/${oid}`, 'GET');
             const o = oData?.order || ord;
             if (!o) continue;
 
@@ -2075,8 +2317,17 @@ function showToast(msg, type = 'success') {
 
     } catch (err) {
       console.error('[myfam import error]', err);
-      progress.showError('שגיאה בייבוא ההיסטוריה מהאתר: ' + (err.message || err));
-      setStatus('שגיאה בייבוא');
+      const errMsg = String(err?.message || err);
+      if (errMsg.includes('Receiving end does not exist') || errMsg.includes('Extension context invalidated') || errMsg.includes('אינו זמין כעת')) {
+        progress.showError('התוסף עודכן או אותחל. יש לרענן את דף האתר (F5) כדי לחדש את החיבור ולסנכרן.');
+        setStatus('נדרש רענון דף');
+      } else if (errMsg === 'unauthorized' || err?.status === 401) {
+        progress.showError('התחברות נדרשת: יש לוודא שאתה מחובר לחשבונך באתר משנת יוסף.');
+        setStatus('נדרשת התחברות');
+      } else {
+        progress.showError('שגיאה בייבוא ההיסטוריה מהאתר: ' + errMsg);
+        setStatus('שגיאה בייבוא');
+      }
     }
   }
 

@@ -81,21 +81,88 @@
     return oSend.apply(this, arguments);
   };
 
+  /* פונקציית עזר לשליפת טוקן התחברות ממגוון מקורות אפשריים באתר */
+  function extractSiteToken() {
+    const directKeys = [
+      'token', 'access_token', 'accessToken', 'auth_token', 'authToken',
+      'jwt', 'mishnat_token', 'bearer_token', 'user_token'
+    ];
+    for (const st of [localStorage, sessionStorage]) {
+      if (!st) continue;
+      for (const k of directKeys) {
+        try {
+          const val = st.getItem(k);
+          if (val && typeof val === 'string' && val.length > 8 && val !== 'null' && val !== 'undefined') {
+            return val.replace(/^Bearer\s+/i, '').trim();
+          }
+        } catch (_) {}
+      }
+      try {
+        for (let i = 0; i < st.length; i++) {
+          const k = st.key(i);
+          if (!k) continue;
+          const raw = st.getItem(k);
+          if (!raw || typeof raw !== 'string') continue;
+          if (raw.charCodeAt(0) === 123 && (raw.includes('token') || raw.includes('Token') || raw.includes('jwt'))) {
+            try {
+              const obj = JSON.parse(raw);
+              const cand = obj.token || obj.accessToken || obj.access_token || obj.authToken || obj.auth_token || obj.jwt || obj?.user?.token || obj?.auth?.token || obj?.data?.token;
+              if (cand && typeof cand === 'string' && cand.length > 8) {
+                return cand.replace(/^Bearer\s+/i, '').trim();
+              }
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
+    }
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)(?:token|access_token|jwt|auth)=([^;]+)/i);
+      if (m && m[1]) {
+        return decodeURIComponent(m[1]).replace(/^Bearer\s+/i, '').trim();
+      }
+    } catch (_) {}
+    return '';
+  }
+
+  function getXsrfToken() {
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)XSRF-TOKEN=([^;]+)/i);
+      if (m && m[1]) return decodeURIComponent(m[1]);
+    } catch (_) {}
+    return '';
+  }
+
   /* גשר לקריאות ישירות מעולם הדף (עוקף לחלוטין בעיות CORS ובידוד) */
   window.addEventListener('myfam-call-api', async ev => {
     let req;
     try { req = JSON.parse(ev.detail); } catch (e) { return; }
     
-    // שליפת טוקן ההתחברות ישירות מ-localStorage של האתר
-    const token = localStorage.getItem('token') || (req.auth ? req.auth.replace(/^Bearer\s+/i, '') : '');
+    // שליפת טוקן ההתחברות ישירות מ-localStorage או ממאגרי הסשן של האתר
+    const token = (req.auth ? req.auth.replace(/^Bearer\s+/i, '').trim() : '') || extractSiteToken();
+    const xsrf = getXsrfToken();
 
-    // הגדרת כותרות נקיות לחלוטין - בדיוק כמו ה-Axios של משנת יוסף
-    const hdrs = { 'Accept': 'application/json' };
+    // הגדרת כותרות מדויקות כמו של ה-Axios של משנת יוסף
+    const hdrs = {
+      'Accept': 'application/json, text/plain, */*',
+      'X-Requested-With': 'XMLHttpRequest'
+    };
     if (req.body) {
       hdrs['Content-Type'] = 'application/json';
     }
     if (token) {
       hdrs['Authorization'] = 'Bearer ' + token;
+    }
+    if (xsrf) {
+      hdrs['X-XSRF-TOKEN'] = xsrf;
+    }
+    if (capturedHeaders['authorization'] && !hdrs['Authorization']) {
+      hdrs['Authorization'] = capturedHeaders['authorization'];
+    }
+    if (capturedHeaders['x-xsrf-token'] && !hdrs['X-XSRF-TOKEN']) {
+      hdrs['X-XSRF-TOKEN'] = capturedHeaders['x-xsrf-token'];
+    }
+    if (req.headers && typeof req.headers === 'object') {
+      Object.assign(hdrs, req.headers);
     }
 
     // ניסיון ראשון: fetch מתוך עולם הדף
@@ -125,13 +192,9 @@
       const xhr = new XMLHttpRequest();
       xhr.open(req.method || 'GET', req.url);
       xhr.withCredentials = true;
-      xhr.setRequestHeader('Accept', 'application/json');
-      if (req.body) {
-        xhr.setRequestHeader('Content-Type', 'application/json');
-      }
-      if (token) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-      }
+      Object.keys(hdrs).forEach(h => {
+        try { xhr.setRequestHeader(h, hdrs[h]); } catch (_) {}
+      });
       xhr.onload = function () {
         let json = null;
         try { json = JSON.parse(xhr.responseText); } catch (e) {}

@@ -272,12 +272,17 @@ chrome.runtime.onMessage.addListener((m, s, send) => {
 
   if (m.type === 'req') {
     const o = m.o || {};
-    const headers = { 'Accept': 'application/json' };
-    if (o.body) {
+    const headers = Object.assign({
+      'Accept': 'application/json, text/plain, */*',
+      'X-Requested-With': 'XMLHttpRequest'
+    }, o.headers || {});
+    if (o.body && !headers['Content-Type'] && !headers['content-type']) {
       headers['Content-Type'] = 'application/json';
     }
     const auth = o.headers?.['Authorization'] || o.headers?.['authorization'] || o.auth;
-    if (auth) headers['Authorization'] = auth;
+    if (auth && !headers['Authorization'] && !headers['authorization']) {
+      headers['Authorization'] = auth;
+    }
     try {
       fetch(o.url, {
         method: o.method || 'GET',

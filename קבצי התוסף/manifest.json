@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "מוסיף למשנת",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "סל קניות חכם למשנת יוסף: מד תקציב, השוואת מחירים לרשתות, הוספת קבועים בקליק, היסטוריית הזמנות, רשימת איסוף להדפסה ותזכורות.",
   "icons": {
     "128": "icon128.png"
@@ -20,6 +20,7 @@
     "contextMenus"
   ],
   "host_permissions": [
+    "https://mishnatyosef.org/*",
     "https://v2.mishnatyosef.org/*",
     "https://*.mishnatyosef.org/*",
     "https://digital.levtov.uk/*",
