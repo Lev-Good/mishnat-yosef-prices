@@ -1461,13 +1461,24 @@ function showToast(msg, type = 'success') {
 
     const alignStarsBatch = batchStars => {
       if (!batchStars.length) return;
-      const meas = batchStars.map(s => ({ star: s.star, cr: s.cd.getBoundingClientRect(), hr: cardHeart.get(s.cd) }));
-      meas.forEach(({ star, cr, hr }) => {
+      const meas = batchStars.map(s => ({
+        star: s.star,
+        cmt: s.cd.querySelector('.myfam-cmt-btn'),
+        cr: s.cd.getBoundingClientRect(),
+        hr: cardHeart.get(s.cd)
+      }));
+      meas.forEach(({ star, cmt, cr, hr }) => {
         if (!hr) return;
-        const topVal = Math.round(hr.bottom - cr.top + 4) + 'px';
+        const topNum = Math.round(hr.bottom - cr.top + 4);
+        const topVal = topNum + 'px';
         const rightVal = Math.max(2, Math.round(cr.right - hr.right + (hr.width - 34) / 2)) + 'px';
         if (star.style.top !== topVal) star.style.top = topVal;
         if (star.style.right !== rightVal) star.style.right = rightVal;
+        if (cmt) {
+          const cmtTop = (topNum + 38) + 'px';
+          if (cmt.style.top !== cmtTop) cmt.style.top = cmtTop;
+          if (cmt.style.right !== rightVal) cmt.style.right = rightVal;
+        }
       });
     };
 
@@ -7859,7 +7870,7 @@ function showToast(msg, type = 'success') {
       .myfam-starbtn:hover{background:#ffe08a;border-color:#e0a800;color:#8a6500;opacity:1}
       .myfam-starbtn.on{color:#e0a800;opacity:1}
 
-      .myfam-cmt-btn{position:absolute;top:10px;left:10px;z-index:5;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid #cbd5e1;border-radius:999px;background:rgba(255,255,255,0.92);color:#475569;font-size:12px;font-weight:700;line-height:1;cursor:pointer;opacity:0;transition:opacity .15s,background .15s,border-color .15s,color .15s;box-shadow:0 1px 4px rgba(15,23,42,0.08)}
+      .myfam-cmt-btn{position:absolute;top:88px;right:14px;z-index:5;display:inline-flex;align-items:center;justify-content:center;gap:3px;min-width:34px;height:28px;padding:0 6px;border:1px solid #cbd5e1;border-radius:999px;background:rgba(255,255,255,0.95);color:#475569;font-size:12px;font-weight:700;line-height:1;cursor:pointer;opacity:0;transition:opacity .15s,background .15s,border-color .15s,color .15s;box-shadow:0 1px 4px rgba(15,23,42,0.1)}
       .myfam-card:hover .myfam-cmt-btn, .myfam-cmt-btn.has-comments{opacity:1}
       .myfam-cmt-btn.has-comments{background:#eff6ff;border-color:#93c5fd;color:#1d4ed8}
       .myfam-cmt-btn:hover{background:#dbeafe;border-color:#60a5fa;color:#1e40af;opacity:1}
@@ -8875,6 +8886,41 @@ function showToast(msg, type = 'success') {
         }
       };
       actions.appendChild(spamBtn);
+
+      if (!cm.isMine) {
+        const repUserBtn = document.createElement('button');
+        repUserBtn.type = 'button';
+        repUserBtn.className = 'myfam-chat-act-btn spam';
+        repUserBtn.title = 'ב-10 דיווחי משתמשים המשתמש נחסם אוטומטית מכתיבת הערות';
+        repUserBtn.textContent = cm.userReportedByMe ? 'דווח על משתמש ✓' : '🚫 דווח על משתמש';
+        if (cm.userReportedByMe) repUserBtn.disabled = true;
+        repUserBtn.onclick = async () => {
+          if (!confirm('לדווח על משתמש זה לחסימה מהצ\'אטים? (ב-10 דיווחים המשתמש נחסם אוטומטית)')) return;
+          repUserBtn.disabled = true;
+          try {
+            const r = await fetch(`${base}/api/comments/${cm.id}/report-user`, {
+              method: 'POST',
+              headers: { 'X-Client-Id': clientId }
+            });
+            if (r.ok) {
+              const d = await r.json();
+              repUserBtn.textContent = 'דווח על משתמש ✓';
+              if (d.banned) {
+                box.remove();
+                showToast('המשתמש הגיע ל-10 דיווחים ונחסם אוטומטית מכתיבת הערות ✓', 'info');
+                fetchCommentCounts();
+              } else {
+                showToast('הדיווח על המשתמש נקלט ✓', 'info');
+              }
+            } else {
+              repUserBtn.disabled = false;
+            }
+          } catch (_) {
+            repUserBtn.disabled = false;
+          }
+        };
+        actions.appendChild(repUserBtn);
+      }
 
       if (cm.isMine || adminKey) {
         const delBtn = document.createElement('button');

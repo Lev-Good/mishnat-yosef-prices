@@ -4,6 +4,7 @@
  * - מגבלת קצב: עד 5 הערות ב-10 דקות למשתמש/IP
  * - כפתור "👍 מועיל" (לייק אחד למשתמש להערה)
  * - כפתור "ספאם" (הסתרה אוטומטית ב-3 דיווחים ייחודיים)
+ * - מערכת דיווחים על משתמשים: חסימה אוטומטית מכתיבת הערות ב-10 דיווחים ייחודיים
  * - סינון קוד/XSS/קישורים ומילים לא נקיות
  * - Cache בקצה (Edge) ל-GET /api/counts לאפס עומס על האתר ועל מסד הנתונים
  */
@@ -13,6 +14,7 @@ import { sanitizeText, validateCommentPayload } from './moderation.js';
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 דקות
 const SPAM_HIDE_THRESHOLD = 3;
+const USER_BAN_THRESHOLD = 10;
 
 function getCorsHeaders(request) {
   const origin = request.headers.get('Origin') || '';
@@ -49,6 +51,12 @@ async function getActorHash(request, env) {
   const salt = env.HASH_SALT || 'myfam-comments-salt-v1';
   const actorKey = clientId ? `${clientId}|${ip}` : ip;
   return sha256Hex(`${salt}:${actorKey}`);
+}
+
+async function getIpOnlyHash(request, env) {
+  const ip = request.headers.get('CF-Connecting-IP') || '0.0.0.0';
+  const salt = env.HASH_SALT || 'myfam-comments-salt-v1';
+  return sha256Hex(`${salt}:ip:${ip}`);
 }
 
 async function getClientOnlyHash(request, env) {
@@ -94,12 +102,13 @@ export default {
           `SELECT c.id, c.pid, c.author, c.body, c.sale_week, c.likes, c.created_at,
                   (c.author_hash = ?) AS is_mine,
                   EXISTS(SELECT 1 FROM votes v WHERE v.comment_id = c.id AND v.voter_hash = ? AND v.vote_type = 'like') AS liked_by_me,
-                  EXISTS(SELECT 1 FROM votes v WHERE v.comment_id = c.id AND v.voter_hash = ? AND v.vote_type = 'spam') AS spammed_by_me
+                  EXISTS(SELECT 1 FROM votes v WHERE v.comment_id = c.id AND v.voter_hash = ? AND v.vote_type = 'spam') AS spammed_by_me,
+                  EXISTS(SELECT 1 FROM user_reports ur WHERE ur.target_hash = c.author_hash AND ur.reporter_hash = ?) AS user_reported_by_me
            FROM comments c
            WHERE c.pid = ? AND c.hidden = 0
            ORDER BY c.likes DESC, c.created_at DESC
            LIMIT 50`
-        ).bind(voterHash, voterHash, voterHash, pid).all();
+        ).bind(voterHash, voterHash, voterHash, voterHash, pid).all();
 
         const comments = (results || []).map(r => ({
           id: r.id,
@@ -111,7 +120,8 @@ export default {
           createdAt: Number(r.created_at) || 0,
           isMine: Boolean(r.is_mine),
           likedByMe: Boolean(r.liked_by_me),
-          spammedByMe: Boolean(r.spammed_by_me)
+          spammedByMe: Boolean(r.spammed_by_me),
+          userReportedByMe: Boolean(r.user_reported_by_me)
         }));
 
         return jsonResponse(request, { pid, comments }, 200, {
@@ -119,13 +129,26 @@ export default {
         });
       }
 
-      // 3. POST /api/comments — הוספת הערה חדשה (עד 5 הערות ב-10 דקות + סינון מלא)
+      // 3. POST /api/comments — הוספת הערה חדשה (בדיקת חסימת משתמש + עד 5 הערות ב-10 דקות + סינון מלא)
       if (request.method === 'POST' && path === '/api/comments') {
         let payload;
         try {
           payload = await request.json();
         } catch {
           return jsonResponse(request, { error: 'בקשה לא תקינה' }, 400);
+        }
+
+        const authorHash = await getClientOnlyHash(request, env);
+        const ipHash = await getIpOnlyHash(request, env);
+
+        // בדיקה האם המשתמש נחסם אוטומטית (עקב 10 דיווחי משתמשים)
+        const banRow = await env.DB.prepare(
+          'SELECT user_hash FROM banned_users WHERE user_hash = ? OR user_hash = ? LIMIT 1'
+        ).bind(authorHash, ipHash).first();
+        if (banRow) {
+          return jsonResponse(request, {
+            error: 'נחסמת מכתיבת הערות בצ\'אטים עקב דיווחי משתמשים.'
+          }, 403);
         }
 
         const check = validateCommentPayload(payload || {});
@@ -136,7 +159,6 @@ export default {
         const now = Date.now();
         const windowStart = now - RATE_LIMIT_WINDOW_MS;
         const actorHash = await getActorHash(request, env);
-        const authorHash = await getClientOnlyHash(request, env);
 
         // ניקוי רשומות ישנות + בדיקת מגבלת 5 הערות ב-10 דקות
         await env.DB.prepare('DELETE FROM rate_limits WHERE created_at < ?').bind(windowStart).run();
@@ -154,9 +176,9 @@ export default {
         const saleWeek = sanitizeText(payload?.saleWeek || '', 40);
 
         const insertRes = await env.DB.prepare(
-          `INSERT INTO comments (pid, product_name, author, author_hash, body, sale_week, likes, spam_count, hidden, created_at)
-           VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0, ?)`
-        ).bind(check.pid, productName, check.author, authorHash, check.body, saleWeek, now).run();
+          `INSERT INTO comments (pid, product_name, author, author_hash, ip_hash, body, sale_week, likes, spam_count, hidden, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0, 0, ?)`
+        ).bind(check.pid, productName, check.author, authorHash, ipHash, check.body, saleWeek, now).run();
 
         await env.DB.prepare(
           'INSERT INTO rate_limits (actor_hash, created_at) VALUES (?, ?)'
@@ -175,7 +197,8 @@ export default {
             createdAt: now,
             isMine: true,
             likedByMe: false,
-            spammedByMe: false
+            spammedByMe: false,
+            userReportedByMe: false
           }
         }, 201);
       }
@@ -236,7 +259,54 @@ export default {
         return jsonResponse(request, { ok: true, hidden: Boolean(updated?.hidden) });
       }
 
-      // 6. DELETE /api/comments/:id — מחיקה ע"י כותב ההערה או מנהל (ADMIN_KEY)
+      // 6. POST /api/comments/:id/report-user — דיווח על משתמש (חסימה אוטומטית ב-10 דיווחים ייחודיים)
+      const reportUserMatch = path.match(/^\/api\/comments\/(\d+)\/report-user$/);
+      if (request.method === 'POST' && reportUserMatch) {
+        const commentId = parseInt(reportUserMatch[1], 10);
+        const reporterHash = await getClientOnlyHash(request, env);
+
+        const targetRow = await env.DB.prepare(
+          'SELECT author_hash, ip_hash FROM comments WHERE id = ?'
+        ).bind(commentId).first();
+
+        if (!targetRow || !targetRow.author_hash) {
+          return jsonResponse(request, { error: 'ההערה לא נמצאה' }, 404);
+        }
+        if (targetRow.author_hash === reporterHash) {
+          return jsonResponse(request, { error: 'לא ניתן לדווח על עצמך' }, 400);
+        }
+
+        const now = Date.now();
+        await env.DB.prepare(
+          'INSERT OR IGNORE INTO user_reports (target_hash, reporter_hash, created_at) VALUES (?, ?, ?)'
+        ).bind(targetRow.author_hash, reporterHash, now).run();
+
+        const cntRow = await env.DB.prepare(
+          'SELECT COUNT(*) AS cnt FROM user_reports WHERE target_hash = ?'
+        ).bind(targetRow.author_hash).first();
+        const reportCount = Number(cntRow?.cnt) || 0;
+
+        let banned = false;
+        if (reportCount >= USER_BAN_THRESHOLD) {
+          banned = true;
+          await env.DB.prepare(
+            'INSERT OR REPLACE INTO banned_users (user_hash, report_count, banned_at) VALUES (?, ?, ?)'
+          ).bind(targetRow.author_hash, reportCount, now).run();
+          if (targetRow.ip_hash) {
+            await env.DB.prepare(
+              'INSERT OR REPLACE INTO banned_users (user_hash, report_count, banned_at) VALUES (?, ?, ?)'
+            ).bind(targetRow.ip_hash, reportCount, now).run();
+          }
+          // הסתרה אוטומטית של כל ההערות של המשתמש שנחסם
+          await env.DB.prepare(
+            'UPDATE comments SET hidden = 1 WHERE author_hash = ?'
+          ).bind(targetRow.author_hash).run();
+        }
+
+        return jsonResponse(request, { ok: true, banned, reportCount });
+      }
+
+      // 7. DELETE /api/comments/:id — מחיקה ע"י כותב ההערה או מנהל (ADMIN_KEY)
       const delMatch = path.match(/^\/api\/comments\/(\d+)$/);
       if (request.method === 'DELETE' && delMatch) {
         const commentId = parseInt(delMatch[1], 10);

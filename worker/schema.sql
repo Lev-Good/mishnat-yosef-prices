@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS comments (
   product_name TEXT DEFAULT '',
   author TEXT NOT NULL,
   author_hash TEXT NOT NULL,
+  ip_hash TEXT DEFAULT '',
   body TEXT NOT NULL,
   sale_week TEXT DEFAULT '',
   likes INTEGER NOT NULL DEFAULT 0,
@@ -33,3 +34,16 @@ CREATE TABLE IF NOT EXISTS rate_limits (
 
 CREATE INDEX IF NOT EXISTS idx_rate_limits_actor
   ON rate_limits(actor_hash, created_at);
+
+CREATE TABLE IF NOT EXISTS user_reports (
+  target_hash TEXT NOT NULL,
+  reporter_hash TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  PRIMARY KEY (target_hash, reporter_hash)
+);
+
+CREATE TABLE IF NOT EXISTS banned_users (
+  user_hash TEXT PRIMARY KEY,
+  report_count INTEGER NOT NULL DEFAULT 10,
+  banned_at INTEGER NOT NULL
+);
