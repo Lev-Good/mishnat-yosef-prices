@@ -1705,28 +1705,41 @@ function showToast(msg, type = 'success') {
     $('#myfam-import-modal')?.remove();
     const m = document.createElement('div');
     m.id = 'myfam-import-modal';
+    let hiddenByUser = false;
     m.innerHTML = `
       <div class="myfam-box myfam-import-box">
-        <div style="text-align:center; padding: 6px 0;">
-          <div style="margin-bottom:14px;">${ICONS.spinner}</div>
-          <h3 style="margin:0 0 8px; font-size:18px; color:#1e293b;">מייבא היסטוריית הזמנות…</h3>
-          <p id="myfam-import-status" style="margin:0 0 14px; font-size:14px; color:#64748b;">מתחבר לאתר משנת יוסף…</p>
-          <div style="background:#f1f5f9; border-radius:8px; height:8px; overflow:hidden; width:100%; margin-bottom:12px;">
-            <div id="myfam-import-bar" style="background:#2e9e5b; height:100%; width:5%; transition:width .25s ease;"></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
+          <div style="display:flex; align-items:center; gap:8px; min-width:0;">
+            <span style="display:inline-flex; width:18px; height:18px; border:2.5px solid #e2e8f0; border-top-color:#2e9e5b; border-radius:50%; animation:myfam-spin .8s linear infinite; flex-shrink:0;"></span>
+            <h3 style="margin:0; font-size:14px; font-weight:700; color:#1e293b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">מייבא היסטוריה ברקע…</h3>
           </div>
-          <div id="myfam-import-detail" style="font-size:12px; color:#94a3b8;">הסנכרון מתבצע ישירות מול חשבונך</div>
+          <button id="myfam-import-hide-btn" title="הסתר (הייבוא ימשיך ברקע)" style="background:transparent; border:none; color:#94a3b8; cursor:pointer; padding:2px 4px; font-size:16px; line-height:1;">✕</button>
         </div>
+        <p id="myfam-import-status" style="margin:0 0 8px; font-size:12.5px; color:#475569;">מתחבר לאתר משנת יוסף…</p>
+        <div style="background:#f1f5f9; border-radius:8px; height:6px; overflow:hidden; width:100%; margin-bottom:7px;">
+          <div id="myfam-import-bar" style="background:#2e9e5b; height:100%; width:5%; transition:width .25s ease;"></div>
+        </div>
+        <div id="myfam-import-detail" style="font-size:11.5px; color:#64748b;">ניתן להמשיך להשתמש באתר כרגיל</div>
       </div>
     `;
     document.body.appendChild(m);
+    const hideBtn = $('#myfam-import-hide-btn', m);
+    if (hideBtn) {
+      hideBtn.onclick = () => {
+        hiddenByUser = true;
+        m.remove();
+        showToast('הייבוא ממשיך ברקע — נעדכן בסיום ✓', 'info');
+      };
+    }
     return {
       update(percent, statusText, detailText) {
+        if (hiddenByUser) return;
         const bar = $('#myfam-import-bar', m);
         const st = $('#myfam-import-status', m);
         const dt = $('#myfam-import-detail', m);
         if (bar) bar.style.width = Math.max(5, Math.min(100, Math.round(percent))) + '%';
         if (st && statusText) st.textContent = statusText;
-        if (dt && detailText) dt.textContent = detailText;
+        if (dt && detailText) dt.textContent = `${detailText} • ניתן להמשיך לגלוש`;
       },
       showSuccess(importedCount, fixedCount, seenCount) {
         // שמירת אישור ייבוא בעוגיות הדפדפן (כדי שאם המשתמש ימחק עוגיות, התוסף יידע שההיסטוריה אופסה)
@@ -1735,48 +1748,45 @@ function showToast(msg, type = 'success') {
         const autoImportPref = localStorage.getItem(LS + 'auto_import_history');
         const showAskAuto = autoImportPref == null; // עדיין לא שאלנו את המשתמש
 
+        if (hiddenByUser && !showAskAuto) {
+          showToast(`ייבוא ההיסטוריה הושלם ✓ סונכרנו ${importedCount} הזמנות (${fixedCount} קבועים)`, 'success');
+          return;
+        }
+        if (!document.body.contains(m)) {
+          document.body.appendChild(m);
+        }
+
         m.innerHTML = `
-          <div class="myfam-box myfam-import-box" style="text-align:center;">
-            <button class="myfam-x" title="סגור">${ICONS.close}</button>
-            <div style="margin-bottom:12px;">${ICONS.checkCircle}</div>
-            <h3 style="margin:0 0 6px; font-size:20px; color:#1e293b;">ייבוא ההיסטוריה הושלם בהצלחה!</h3>
-            <p style="margin:0 0 16px; font-size:14px; color:#64748b;">
-              סונכרנו <b>${importedCount}</b> הזמנות קודמות מחשבונך באתר.
-            </p>
-            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:12px 14px; text-align:right; margin-bottom:18px; font-size:13px; line-height:1.7; color:#334155;">
-              <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
-                ${ICONS.starFilled} <span><b>מוצרים קבועים (${fixedCount}):</b> סומנו במסגרת זהב ובתגית "קבוע" (הוזמנו 3 פעמים ומעלה).</span>
+          <div class="myfam-box myfam-import-box">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:#dcfce7; color:#15803d; font-weight:700; font-size:13px; flex-shrink:0;">✓</span>
+                <h3 style="margin:0; font-size:14.5px; font-weight:700; color:#1e293b;">ייבוא ההיסטוריה הושלם!</h3>
               </div>
-              <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
-                <span style="display:inline-block; width:14px; height:14px; border:2px dashed #ff9800; border-radius:3px; flex-shrink:0;"></span>
-                <span><b>הוזמנו בעבר (${seenCount}):</b> סומנו במסגרת כתומה (הוזמנו 1-2 פעמים).</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:8px; color:#1e6b3e; font-weight:500;">
-                ${ICONS.cartPlus} <span><b>טיפ:</b> לחץ על "הוסף את כל הקבועים לסל" כדי להכניס אותם לסל בלחיצה אחת!</span>
-              </div>
+              <button class="myfam-x" title="סגור" style="position:static; background:transparent; border:none; color:#94a3b8; cursor:pointer; padding:2px 4px;">${ICONS.close}</button>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin-bottom:10px; font-size:12px; line-height:1.6; color:#334155;">
+              <div>סונכרנו <b>${importedCount}</b> הזמנות • <b>${fixedCount}</b> קבועים ⭐ • <b>${seenCount}</b> הוזמנו בעבר</div>
             </div>
 
             ${showAskAuto ? `
-              <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:12px; padding:12px 14px; text-align:right; margin-bottom:16px;">
-                <div style="font-size:13.5px; font-weight:700; color:#065f46; margin-bottom:4px;">
-                  🔄 האם לסנכרן הזמנות חדשות באופן אוטומטי להבא?
+              <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:10px; padding:9px 10px; margin-bottom:10px;">
+                <div style="font-size:12px; font-weight:700; color:#065f46; margin-bottom:6px;">
+                  🔄 לסנכרן הזמנות חדשות אוטומטית ברקע להבא?
                 </div>
-                <div style="font-size:12px; color:#047857; line-height:1.4; margin-bottom:10px;">
-                  אישור יאפשר לתוסף לעדכן את היסטוריית הקניות שלכם פעם ביום ברקע בלי להטריח אתכם, כך שהמוצרים הקבועים והקניות תמיד יהיו מעודכנים!
-                </div>
-                <div style="display:flex; gap:8px;">
-                  <button id="myfam-btn-auto-yes" style="flex:1; padding:8px 12px; background:#10b981; color:#fff; border:none; border-radius:8px; font-size:12.5px; font-weight:bold; cursor:pointer;">
-                    ✓ כן, עדכן אוטומטית תמיד
+                <div style="display:flex; gap:6px;">
+                  <button id="myfam-btn-auto-yes" style="flex:1; padding:6px 8px; background:#10b981; color:#fff; border:none; border-radius:7px; font-size:12px; font-weight:700; cursor:pointer;">
+                    ✓ כן, תמיד
                   </button>
-                  <button id="myfam-btn-auto-no" style="padding:8px 12px; background:#fff; color:#475569; border:1px solid #cbd5e1; border-radius:8px; font-size:12.5px; cursor:pointer;">
+                  <button id="myfam-btn-auto-no" style="padding:6px 10px; background:#fff; color:#475569; border:1px solid #cbd5e1; border-radius:7px; font-size:12px; cursor:pointer;">
                     לא כרגע
                   </button>
                 </div>
               </div>
             ` : ''}
 
-            <button id="myfam-import-done-btn" style="width:100%; padding:11px; background:#2e9e5b; color:#fff; border:none; border-radius:8px; font-weight:bold; font-size:14px; cursor:pointer;">
-              מעולה, הצג את המוצרים
+            <button id="myfam-import-done-btn" style="width:100%; padding:8px; background:#2e9e5b; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:12.5px; cursor:pointer;">
+              מעולה, סגור
             </button>
           </div>
         `;
@@ -1784,7 +1794,6 @@ function showToast(msg, type = 'success') {
         $('#myfam-import-done-btn', m).onclick = close;
         const xBtn = $('.myfam-x', m);
         if (xBtn) xBtn.onclick = close;
-        m.onclick = e => { if (e.target === m || e.target.closest('.myfam-x')) close(); };
 
         const btnAutoYes = $('#myfam-btn-auto-yes', m);
         if (btnAutoYes) {
@@ -1805,15 +1814,20 @@ function showToast(msg, type = 'success') {
         }
       },
       showError(msg) {
+        if (!document.body.contains(m)) {
+          document.body.appendChild(m);
+        }
         m.innerHTML = `
-          <div class="myfam-box myfam-import-box" style="text-align:center;">
-            <button class="myfam-x" title="סגור">${ICONS.close}</button>
-            <div style="margin-bottom:12px; color:#dc2626;">
-              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div class="myfam-box myfam-import-box">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;">
+              <div style="display:flex; align-items:center; gap:7px; color:#dc2626;">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <h3 style="margin:0; font-size:14px; font-weight:700; color:#1e293b;">שגיאה בייבוא ההיסטוריה</h3>
+              </div>
+              <button class="myfam-x" title="סגור" style="position:static; background:transparent; border:none; color:#94a3b8; cursor:pointer; padding:2px 4px;">${ICONS.close}</button>
             </div>
-            <h3 style="margin:0 0 6px; font-size:18px; color:#1e293b;">שגיאה בייבוא ההיסטוריה</h3>
-            <p style="margin:0 0 16px; font-size:13px; color:#64748b;">${esc(msg)}</p>
-            <button id="myfam-import-err-btn" style="width:100%; padding:10px; background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; border-radius:8px; font-weight:bold; cursor:pointer;">
+            <p style="margin:0 0 10px; font-size:12px; color:#64748b; line-height:1.5;">${esc(msg)}</p>
+            <button id="myfam-import-err-btn" style="width:100%; padding:7px; background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;">
               סגור
             </button>
           </div>
@@ -1822,7 +1836,6 @@ function showToast(msg, type = 'success') {
         $('#myfam-import-err-btn', m).onclick = close;
         const xBtn = $('.myfam-x', m);
         if (xBtn) xBtn.onclick = close;
-        m.onclick = e => { if (e.target === m || e.target.closest('.myfam-x')) close(); };
       },
       close() { m.remove(); }
     };
@@ -1967,8 +1980,14 @@ function showToast(msg, type = 'success') {
     } catch (e) {}
   }
 
+  let isImportingHistory = false;
   async function importHistoryFromSite() {
-    setStatus('מייבא היסטוריה…');
+    if (isImportingHistory) {
+      showToast('ייבוא ההיסטוריה כבר רץ ברקע…', 'info');
+      return;
+    }
+    isImportingHistory = true;
+    setStatus('מייבא היסטוריה ברקע…');
     const progress = showImportProgressModal();
     try {
       let importedCount = 0;
@@ -2063,6 +2082,8 @@ function showToast(msg, type = 'success') {
         progress.showError('שגיאה בייבוא ההיסטוריה מהאתר: ' + errMsg);
         setStatus('שגיאה בייבוא');
       }
+    } finally {
+      isImportingHistory = false;
     }
   }
 
@@ -5189,8 +5210,9 @@ function showToast(msg, type = 'success') {
       }
     }
 
-    // 6. מארזים וכמויות:
-    if (/(?:^|\s)זוג(?:\s|$)/.test(s)) {
+    // 6. מארזים וכמויות (למעט פריטים שמטבעם נמכרים בזוג כגון כפפות/גרביים/נעליים):
+    const isNaturallyPaired = /(?:כפפות|גרביים|גרבי|נעלי|נעליים|מגפיים|כפכפים|סנדלים|רפידות|משקפיים|אוזניות)/i.test(s);
+    if (/(?:^|\s)זוג(?:\s|$)/.test(s) && !isNaturallyPaired) {
       packCount = 2; packMin = 2; packMax = 2;
     } else if (/שלישיי?ה|שלישיית/.test(s)) {
       packCount = 3; packMin = 3; packMax = 3;
@@ -5375,6 +5397,7 @@ function showToast(msg, type = 'success') {
     const fullSourceName = unitHint ? `${itemName} ${unitHint}` : itemName;
     const targetUnits = parseProductUnits(fullSourceName);
     const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
+    const isNonFoodOil = /(?:קרם|סבון|שמפו|מרכך|טיפוח|הדלקה|נרות|נר|חנוכי|פתיל|ערכה|גוף|רגליים|ידיים|שיער|עיסוי)/i.test(n);
     const PRODUCE_EXCLUDED_RE = /(?:מרק|אבקת|טבעות|קמח|מלח|חמוץ|חמוצים|סלט|מיץ|עוגת|עוגיות|חטיף|נשנושים|איירביס|בייגל[ה]?|קרקר|צ['׳]?יפס|תפוצ['׳]?יפס|דוריטוס|ביסלי|במבה|בורקס|שבבי|רסק|רוטב|קטשופ|מיונז|חרדל|ממרח|מטבל|שמנת|גבינ[הת]|מחיות|מחית|פאווץ|סיגרים|סיגר|מילוי|במילוי|כרובית|מוקפא|קפוא|שימורים|מיובש|תבלין|מטוגן|קלוי|בטעם|טעם|קרוטונים|גליד[הת]?|ארטיק|סורבה|מעדן|יוגורט|מילקשייק|קונפיטור|ריבת|ממתק|סוכרי|שוקולד|וופל|חליטה|ניחוח|בושם|תרסיס|סבון|שמפו|קרם|נוזל|ג['׳]?ל|כביסה|שניצל|קציצ|פשטיד|פסטה|אטריות|אורז|קוסקוס|מצה|לחם|לחמני|פיתות|חלה|בלינ[צץ])|(?:^|\s)תה(?:\s|$)/i;
     const isProduceExcluded = PRODUCE_EXCLUDED_RE.test(n);
     const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
@@ -5423,6 +5446,7 @@ function showToast(msg, type = 'success') {
     let bestStep1Unit = null;
     for (const item of catalog) {
       if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+      if (item.id === 'oil_olive' && isNonFoodOil) continue;
       if (isFreshItem(item) && isProduceExcluded) continue;
       if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
       if (item.id.includes('pasta') && isWholeWheat) continue;
@@ -5462,6 +5486,7 @@ function showToast(msg, type = 'success') {
     let bestStep2Exact = false;
     for (const item of catalog) {
       if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+      if (item.id === 'oil_olive' && isNonFoodOil) continue;
       if (isFreshItem(item) && isProduceExcluded) continue;
       if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
       if (item.id.includes('pasta') && isWholeWheat) continue;
@@ -7616,8 +7641,8 @@ function showToast(msg, type = 'success') {
       .myfam-tag.fixed{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
       .myfam-tag svg{flex-shrink:0}
 
-      #myfam-import-modal{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(2px);z-index:100002;display:flex;align-items:center;justify-content:center;direction:rtl;font-family:sans-serif}
-      .myfam-import-box{width:min(440px,94vw);background:#fff;border-radius:16px;padding:24px 26px;position:relative;box-shadow:0 12px 30px rgba(0,0,0,0.22)}
+      #myfam-import-modal{position:fixed;bottom:18px;left:18px;z-index:100002;direction:rtl;font-family:sans-serif;pointer-events:none;width:min(350px,calc(100vw - 36px))}
+      .myfam-import-box{width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;position:relative;box-shadow:0 10px 28px rgba(15,23,42,0.18);pointer-events:auto;box-sizing:border-box}
       @keyframes myfam-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
       .myfam-card{position:relative}

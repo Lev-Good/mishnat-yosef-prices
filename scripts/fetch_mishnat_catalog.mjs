@@ -149,10 +149,12 @@ function setGithubOutput(key, value) {
   }
 }
 
+const UNIT_HINT_RE = /\d+(?:\.\d+)?(?:\s*[-–*xX×]\s*\d+(?:\.\d+)?)?\s*(?:ק["'״׳]?ג|קג|קילו|גרם|גר['"״׳]?|ג['"״׳]?|מ["'״׳]?ל|מל|ליטר|ל['"״׳]?|יח['"״׳]?|יחידות|גלילים|שקיקים|kg|gr|g|ml|l\b)/i;
+
 function computeCatalogHash(catalog) {
   const normalized = [...catalog]
     .sort((a, b) => Number(a.id) - Number(b.id))
-    .map(it => `${it.id}|${it.name}|${it.price}`)
+    .map(it => `${it.id}|${it.name}|${it.price}|${it.unitText || ''}`)
     .join('\n');
   return crypto.createHash('sha256').update(normalized, 'utf8').digest('hex');
 }
@@ -229,9 +231,18 @@ async function main() {
     const name = r.name || (r.product && r.product.name);
     const pid = r.itemID != null ? r.itemID : (r.product && r.product.id);
     const price = parseFloat(r.price ?? (r.item_sale && r.item_sale.price) ?? r.cost ?? 0) || 0;
+    const rawUnit = [
+      r.unit, r.unit_name, r.weight, r.package_weight, r.sub_title, r.subtitle, r.description,
+      r.product?.unit, r.product?.unit_name, r.product?.weight, r.product?.description
+    ].filter(v => typeof v === 'string' && v.trim()).join(' ');
+    const unitMatch = rawUnit.match(UNIT_HINT_RE);
+    const unitText = unitMatch ? unitMatch[0].trim() : '';
+    const desc = (r.description || r.sub_title || r.subtitle || r.product?.description || '').toString().replace(/\s+/g, ' ').trim().slice(0, 140);
     return {
       id: pid,
       name,
+      unitText,
+      description: desc,
       price,
       category: r.category_name || r.category || (r.product && r.product.category_name) || '',
       subCategory: r.sub_category_name || (r.product && r.product.sub_category_name) || '',

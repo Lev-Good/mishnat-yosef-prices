@@ -93,8 +93,9 @@ export function parseProductUnits(rawStr) {
   }
 
   // 6. מארזים וכמויות:
-  // א. מילים מפורשות לכמות במארז
-  if (/(?:^|\s)זוג(?:\s|$)/.test(s)) {
+  // א. מילים מפורשות לכמות במארז (למעט פריטים שמטבעם נמכרים בזוג כגון כפפות/גרביים/נעליים)
+  const isNaturallyPaired = /(?:כפפות|גרביים|גרבי|נעלי|נעליים|מגפיים|כפכפים|סנדלים|רפידות|משקפיים|אוזניות)/i.test(s);
+  if (/(?:^|\s)זוג(?:\s|$)/.test(s) && !isNaturallyPaired) {
     packCount = 2; packMin = 2; packMax = 2;
   } else if (/שלישיי?ה|שלישיית/.test(s)) {
     packCount = 3; packMin = 3; packMax = 3;
@@ -266,12 +267,13 @@ function tokenMatches(targetNorm, targetTokens, token) {
   return false;
 }
 
-export function findMarketComparison(itemName, catalog = []) {
+export function findMarketComparison(itemName, catalog = [], unitHint = '') {
   if (!itemName) return null;
   const n = norm(itemName);
   const nWords = n.split(/\s+/);
-  const targetUnits = parseProductUnits(itemName);
+  const targetUnits = parseProductUnits(unitHint ? `${itemName} ${unitHint}` : itemName);
   const isPlantOrChocMilk = /(?:שקדים|סויה|שיבולת\s*שועל|קוקוס|אורז|שוקולד|מרוכז)/i.test(n);
+  const isNonFoodOil = /(?:קרם|סבון|שמפו|מרכך|טיפוח|הדלקה|נרות|נר|חנוכי|פתיל|ערכה|גוף|רגליים|ידיים|שיער|עיסוי)/i.test(n);
   const PRODUCE_EXCLUDED_RE = /(?:מרק|אבקת|טבעות|קמח|מלח|חמוץ|חמוצים|סלט|מיץ|עוגת|עוגיות|חטיף|נשנושים|איירביס|בייגל[ה]?|קרקר|צ['׳]?יפס|תפוצ['׳]?יפס|דוריטוס|ביסלי|במבה|בורקס|שבבי|רסק|רוטב|קטשופ|מיונז|חרדל|ממרח|מטבל|שמנת|גבינ[הת]|מחיות|מחית|פאווץ|סיגרים|סיגר|מילוי|במילוי|כרובית|מוקפא|קפוא|שימורים|מיובש|תבלין|מטוגן|קלוי|בטעם|טעם|קרוטונים|גליד[הת]?|ארטיק|סורבה|מעדן|יוגורט|מילקשייק|קונפיטור|ריבת|ממתק|סוכרי|שוקולד|וופל|חליטה|ניחוח|בושם|תרסיס|סבון|שמפו|קרם|נוזל|ג['׳]?ל|כביסה|שניצל|קציצ|פשטיד|פסטה|אטריות|אורז|קוסקוס|מצה|לחם|לחמני|פיתות|חלה|בלינ[צץ])|(?:^|\s)תה(?:\s|$)/i;
   const isProduceExcluded = PRODUCE_EXCLUDED_RE.test(n);
   const isWholeWheat = /(?:מלאה|כוסמין)/i.test(n);
@@ -283,6 +285,7 @@ export function findMarketComparison(itemName, catalog = []) {
   let bestStep1Len = 0;
   for (const item of catalog) {
     if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+    if (item.id === 'oil_olive' && isNonFoodOil) continue;
     if (isFreshItem(item) && isProduceExcluded) continue;
     if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
     if (item.id.includes('pasta') && isWholeWheat) continue;
@@ -311,6 +314,7 @@ export function findMarketComparison(itemName, catalog = []) {
 
   for (const item of catalog) {
     if ((item.id === 'milk_3' || item.id === 'milk_1') && isPlantOrChocMilk) continue;
+    if (item.id === 'oil_olive' && isNonFoodOil) continue;
     if (isFreshItem(item) && isProduceExcluded) continue;
     if (item.id === 'onion_dry' && containsWholePhrase(n, 'ירוק')) continue;
     if (item.id.includes('pasta') && isWholeWheat) continue;

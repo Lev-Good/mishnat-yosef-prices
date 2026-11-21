@@ -269,8 +269,11 @@ function cleanMishnatName(rawName, stripPrivateBrands = false) {
     .replace(stripPhraseRe("גר['\"״׳]?"), 'גרם')
     .replace(stripPhraseRe('קילו'), 'ק"ג')
     .replace(stripPhraseRe("יח['\"״׳]?"), 'יחידות')
+    .replace(stripPhraseRe('שלישיית'), 'שלישיה')
     .replace(stripPhraseRe('רביעיית'), 'רביעיה')
+    .replace(stripPhraseRe('חמישיית'), 'חמישיה')
     .replace(stripPhraseRe('שישיית'), 'שישיה')
+    .replace(stripPhraseRe('שמיניית'), 'שמיניה')
     .replace(stripPhraseRe('עשיריית'), 'עשיריה');
 
   if (stripPrivateBrands) {
@@ -316,8 +319,23 @@ function buildSearchQueries(item, isProduce) {
   if (genericClean !== fullClean) addQ(genericClean);
 
   const words = genericClean.replace(/[()]/g, ' ').split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
-  const leadStopWords = new Set(['רביעיה', 'שישיה', 'עשיריה', 'ראש', 'מארז', 'קופסא', 'שקית', 'סלסלה', 'חמישיית', 'זוג', 'עלי']);
+  const leadStopWords = new Set(['שלישיה', 'שלישיית', 'רביעיה', 'חמישיה', 'חמישיית', 'שישיה', 'שמיניה', 'שמיניית', 'עשיריה', 'ראש', 'מארז', 'קופסא', 'שקית', 'סלסלה', 'זוג', 'עלי']);
   const coreWords = leadStopWords.has(words[0]) ? words.slice(1) : words;
+
+  // אם השם בנוי בתבנית "<תיאור מוצר> - <מותג>" (נפוץ מאוד במשנת יוסף), נוסיף שאילתה ממוקדת עם סוף התיאור + המותג
+  // לדוגמה: "נוזל לניקוי והברקת כלי כסף - גודרדס" -> "כלי כסף גודרדס"
+  const rawWithoutBraces = (item.name || '').replace(/\{[^}]*\}/g, ' ').replace(/\[[^\]]*\]/g, ' ').trim();
+  const hyphenIdx = rawWithoutBraces.lastIndexOf('-');
+  if (hyphenIdx > 2 && hyphenIdx < rawWithoutBraces.length - 2) {
+    const leftPart = cleanMishnatName(rawWithoutBraces.slice(0, hyphenIdx), true);
+    const brandPart = cleanMishnatName(rawWithoutBraces.slice(hyphenIdx + 1), false);
+    const leftWords = leftPart.replace(/[()]/g, ' ').split(/\s+/).filter(w => w.length >= 2 || /\d/.test(w));
+    const leftCore = leadStopWords.has(leftWords[0]) ? leftWords.slice(1) : leftWords;
+    if (brandPart && leftCore.length >= 2) {
+      addQ(`${leftCore.slice(-2).join(' ')} ${brandPart}`);
+      addQ(`${leftCore.slice(0, 2).join(' ')} ${brandPart}`);
+    }
+  }
 
   if (coreWords.length >= 2) {
     addQ(coreWords.slice(0, 3).join(' '));
@@ -333,7 +351,7 @@ function buildSearchQueries(item, isProduce) {
     addQ(cleanMishnatName(alias, false));
   }
 
-  return queries.slice(0, 4);
+  return queries.slice(0, 6);
 }
 
 function extractBarcode(acItem) {
@@ -369,7 +387,8 @@ function isCandidateUnitCompatible(targetName, targetUnits, candLabel) {
 async function fetchChpCandidates(item, mappingEntry) {
   const isProduce = isProduceItem(item.name, mappingEntry);
   const queries = buildSearchQueries(item, isProduce);
-  const targetUnits = parseProductUnits(item.name);
+  const fullTargetName = item._unitHint ? `${item.name} ${item._unitHint}` : item.name;
+  const targetUnits = parseProductUnits(fullTargetName);
   const targetTokens = cleanMishnatName(item.name, true)
     .toLowerCase()
     .split(/\s+/)
@@ -575,7 +594,7 @@ function isPriceSane(item, sourceName, val, livePrice) {
 async function selectMatchesWithAI(batchPrepared) {
   const payload = batchPrepared.map(entry => ({
     id: entry.item.id,
-    name: entry.item.name,
+    name: entry.item._unitHint ? `${entry.item.name} (${entry.item._unitHint})` : entry.item.name,
     isProduce: entry.isProduce,
     candidates: entry.candidates.map((c, idx) => ({
       idx,
@@ -617,7 +636,32 @@ ${JSON.stringify(payload, null, 2)}
     return parsed?.results || [];
   } catch (err) {
     console.error('❌ שגיאה בקריאה ל-Gemini עבור האצווה:', err.message);
-    return [];
+    // גיבוי דטרמיניסטי מאובטח במקרה ש-Gemini אינו זמין: בוחר רק מועמדי CHP עם חפיפת מילים גבוהה והתאמת יחידות מלאה
+    const fallbackResults = [];
+    for (const entry of batchPrepared) {
+      const targetTokens = cleanMishnatName(entry.item.name, true)
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(w => w.length >= 3);
+      if (targetTokens.length < 2) continue;
+      const matchedIndices = [];
+      for (let ci = 0; ci < entry.candidates.length; ci++) {
+        const c = entry.candidates[ci];
+        const hay = `${c.label} ${c.mfg || ''}`.toLowerCase();
+        const hits = targetTokens.filter(t => hay.includes(t)).length;
+        if (hits >= Math.ceil(targetTokens.length * 0.75)) {
+          matchedIndices.push(ci);
+          if (matchedIndices.length >= 2) break;
+        }
+      }
+      if (matchedIndices.length > 0) {
+        fallbackResults.push({ id: entry.item.id, selectedIndices: matchedIndices, isEquivalentBrand: false });
+      }
+    }
+    if (fallbackResults.length > 0) {
+      console.log(`🛡️ גיבוי דטרמיניסטי חילץ ${fallbackResults.length} התאמות CHP מאומתות למרות שגיאת AI.`);
+    }
+    return fallbackResults;
   }
 }
 
@@ -790,10 +834,15 @@ async function main() {
           livePriceByName.set(`my_${item.id}`, item.price);
         }
 
-        const matchedExisting = findMarketComparison(item.name, prices);
+        const unitHint = item.unitText || '';
+        const matchedExisting = findMarketComparison(item.name, prices, unitHint);
         if (matchedExisting) {
-          const baseWordCount = norm(matchedExisting.name).split(/\s+/).filter(Boolean).length;
-          if (baseWordCount >= 2 && (matchedExisting.aliases || []).length < 8) {
+          // הוספת alias אוטומטית רק בהתאמה הדוקה במיוחד (חפיפת מילים >= 50%) למניעת זיהום כינויים שגוי
+          const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 2);
+          const baseTokens = norm(matchedExisting.name).split(/\s+/).filter(w => w.length >= 2);
+          const overlap = itemTokens.filter(t => baseTokens.includes(t)).length;
+          const overlapRatio = itemTokens.length ? overlap / Math.min(itemTokens.length, Math.max(baseTokens.length, 1)) : 0;
+          if (baseTokens.length >= 2 && overlapRatio >= 0.5 && (matchedExisting.aliases || []).length < 8) {
             if (!matchedExisting.aliases) matchedExisting.aliases = [];
             if (!matchedExisting.aliases.includes(item.name)) {
               matchedExisting.aliases.push(item.name);
@@ -810,10 +859,14 @@ async function main() {
           (p.aliases && p.aliases.includes(item.name))
         ) || candidates.some(c => c.id === `my_${item.id}` || norm(c.name) === normName);
         if (!exists) {
+          const displayName = (unitHint && !item.name.includes(unitHint))
+            ? `${item.name} ${unitHint}`
+            : item.name;
           candidates.push({
             id: `my_${item.id}`,
-            name: item.name,
+            name: displayName,
             aliases: [item.name],
+            _unitHint: unitHint,
             supermarketPrice: 0,
             chains: createEmptyChainsObj(null),
             lastVerified: todayStr
@@ -1141,7 +1194,8 @@ async function main() {
       const key = norm(p.name);
       if (!key || seenNormNames.has(key)) continue;
       seenNormNames.add(key);
-      cleanPrices.push(p);
+      const { _unitHint, ...cleanItem } = p;
+      cleanPrices.push(cleanItem);
     }
     fs.writeFileSync(PRICES_FILE, JSON.stringify(cleanPrices, null, 2) + '\n', 'utf8');
     fs.writeFileSync(MAPPING_FILE, JSON.stringify(mappingCache, null, 2) + '\n', 'utf8');

@@ -18,7 +18,9 @@ const testCases = [
   { raw: 'שישיית 1.5 ליטר', expectedVol: 1500, expectedPack: 6 },
   { raw: '6*1.5 ליטר', expectedVol: 1500, expectedPack: 6, expectedWeight: null },
   { raw: '4*100 גרם', expectedWeight: 400, expectedPack: 4 },
-  { raw: 'נייר טואלט 30 גלילים', expectedPack: 30 }
+  { raw: 'נייר טואלט 30 גלילים', expectedPack: 30 },
+  { raw: 'זוג כפפות אלוורה רב שימושיות M - סנו', expectedPack: null },
+  { raw: 'זוג בקבוקי קוקה קולה 1.5 ליטר', expectedVol: 1500, expectedPack: 2 }
 ];
 
 let allPassed = true;
@@ -69,6 +71,8 @@ console.log('--- 2. Testing Catalog Integrity & Matching ---');
 const catalog = JSON.parse(fs.readFileSync('prices.json', 'utf8'));
 
 const negativeTests = [
+  "ג'ל כביסה מרוכז מקסימה - סנו 3 ליטר",
+  "ערכה מוכנה להדלקה עם שמן זית נוזלי",
   'עוגיות חמאה', 'סלט ביצים', 'אבקת מרק בצל', 'בצל ירוק', 'טבעות בצל',
   "'נשנושים' שמנת בצל", 'מאגדת חטיף דמוי ביסלי {באגסי}', 'שקית פרחי כרובית מוקפאים עד"ח',
   'רסק/רוטב עגבניות 22 (4 קופסאות) - פרי מבורך', 'סיגרים קפואים במילוי תפוח אדמה - בלינו (לנדא)',
