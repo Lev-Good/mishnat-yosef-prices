@@ -358,10 +358,14 @@ if (typeof window.__MY_T === 'undefined') {
     fixedColor: '#e0a800', 
     fixedFill: true,
     selectedChains: ['yeshHesed', 'netoChisachon', 'osherAd', 'ramiLevy', 'shaareiRevaha'],
-    compareInHistory: true
+    compareInHistory: true,
+    historyWindow: 6
   };
   let prefs = { ...PREF_DEFAULT, ...jget('prefs', {}) };
   if (prefs.compareInHistory === undefined) prefs.compareInHistory = true;
+  if (typeof prefs.historyWindow !== 'number' || !Number.isFinite(prefs.historyWindow) || prefs.historyWindow < 0) {
+    prefs.historyWindow = PREF_DEFAULT.historyWindow;
+  }
   if (!Array.isArray(prefs.selectedChains) || !prefs.selectedChains.length) {
     prefs.selectedChains = [...PREF_DEFAULT.selectedChains];
   }
@@ -466,27 +470,141 @@ if (typeof window.__MY_T === 'undefined') {
     cachedCountsSaleId = null;
   }
 
-  function counts() {
-    const curSaleId = sale.id || extractSaleIdFromUrl();
-    if (cachedCounts && cachedCountsSaleId === curSaleId) {
-      return cachedCounts;
-    }
-    const m = {}, seen = new Set();
-    const sorted = [...state.history].sort((a, b) => ((a.date || '') < (b.date || '') ? -1 : 1));
-    for (const o of sorted) {
-      if (curSaleId != null && String(o.saleId) === String(curSaleId)) continue;
-      for (const it of o.items) {
-        const sk = o.saleId + '|' + it.key;
-        if (seen.has(sk)) continue; seen.add(sk);
-        const qty = Math.max(1, Number(it.qty) || 1);
-        const c = m[it.key] || (m[it.key] = { name: it.name, count: 0, totalQty: 0, lastQty: 0 });
-        c.count++;
-        c.totalQty += qty;
-        c.lastQty = qty;
+  /* מעקב אחר קטלוגי מכירות שהוצעו בפועל (כדי להבחין בין דילוג מכוון למוצר שלא הוצע במכירה, כגון מוצרי חגים) */
+  let saleCatalogs = jget('sale_catalogs', {});
+  let saleCatalogSaveTimer = null;
+  function recordSaleCatalogKeys(saleId, keys) {
+    if (saleId == null || !Array.isArray(keys) || !keys.length) return;
+    const sid = String(saleId);
+    const existing = saleCatalogs[sid];
+    const set = new Set(existing?.keys || []);
+    let changed = !existing;
+    for (const k of keys) {
+      if (k && !set.has(k)) {
+        set.add(k);
+        changed = true;
       }
     }
+    if (!changed) return;
+    saleCatalogs[sid] = {
+      d: existing?.d || new Date().toISOString().slice(0, 10),
+      t: Date.now(),
+      keys: [...set]
+    };
+    const sids = Object.keys(saleCatalogs);
+    if (sids.length > 20) {
+      sids.sort((a, b) => (saleCatalogs[b]?.t || 0) - (saleCatalogs[a]?.t || 0));
+      for (const oldSid of sids.slice(20)) {
+        delete saleCatalogs[oldSid];
+      }
+    }
+    clearTimeout(saleCatalogSaveTimer);
+    saleCatalogSaveTimer = setTimeout(() => {
+      try { jset('sale_catalogs', saleCatalogs); } catch (_) {}
+      invalidateCountsCache();
+    }, 600);
+  }
+
+  function counts() {
+    const curSaleId = sale.id || extractSaleIdFromUrl();
+    const winSize = typeof prefs.historyWindow === 'number' ? prefs.historyWindow : 6;
+    const cacheKey = `${curSaleId}|w=${winSize}`;
+    if (cachedCounts && cachedCountsSaleId === cacheKey) {
+      return cachedCounts;
+    }
+
+    // איחוד הזמנות עבר לפי saleId (מהחדש לישן) ללא המכירה הפעילה הנוכחית
+    const sortedAsc = [...state.history].sort((a, b) => ((a.date || '') < (b.date || '') ? -1 : 1));
+    const salesById = new Map();
+    for (const o of sortedAsc) {
+      if (!o || !Array.isArray(o.items) || !o.items.length) continue;
+      if (curSaleId != null && String(o.saleId) === String(curSaleId)) continue;
+      const sid = String(o.saleId);
+      let rec = salesById.get(sid);
+      if (!rec) {
+        rec = { saleId: sid, date: o.date || '', items: new Map() };
+        salesById.set(sid, rec);
+      } else if ((o.date || '') > rec.date) {
+        rec.date = o.date || '';
+      }
+      for (const it of o.items) {
+        if (!it || !it.key) continue;
+        const qty = Math.max(1, Number(it.qty) || 1);
+        rec.items.set(it.key, { name: it.name, qty });
+      }
+    }
+
+    // מהמכירה האחרונה אחורה בזמן
+    const pastSalesDesc = [...salesById.values()].reverse();
+    const m = {};
+
+    if (winSize <= 0) {
+      // כל ההיסטוריה ללא הגבלת חלון
+      for (const s of [...pastSalesDesc].reverse()) {
+        for (const [key, info] of s.items.entries()) {
+          const c = m[key] || (m[key] = { name: info.name, count: 0, totalQty: 0, lastQty: 0 });
+          c.count++;
+          c.totalQty += info.qty;
+          c.lastQty = info.qty;
+        }
+      }
+      cachedCounts = m;
+      cachedCountsSaleId = cacheKey;
+      return m;
+    }
+
+    // בניית סטים של קטלוגים שמורים לבדיקה מהירה האם מוצר הוצע במכירה נתונה
+    const catalogSets = new Map();
+    for (const [sid, cat] of Object.entries(saleCatalogs || {})) {
+      if (cat && Array.isArray(cat.keys) && cat.keys.length) {
+        catalogSets.set(sid, new Set(cat.keys));
+      }
+    }
+
+    // איסוף כלל המוצרים שאי פעם הוזמנו
+    const allKeys = new Map();
+    for (const s of pastSalesDesc) {
+      for (const [key, info] of s.items.entries()) {
+        if (!allKeys.has(key)) allKeys.set(key, info.name);
+      }
+    }
+
+    // לכל מוצר: בודקים את winSize ההזדמנויות האחרונות שבהן המוצר הוצע למכירה
+    for (const [key, fallbackName] of allKeys.entries()) {
+      let opportunities = 0;
+      let count = 0;
+      let totalQty = 0;
+      let lastQty = 0;
+      let latestName = fallbackName;
+
+      for (const s of pastSalesDesc) {
+        const hit = s.items.get(key);
+        if (hit) {
+          opportunities++;
+          count++;
+          totalQty += hit.qty;
+          if (lastQty === 0) {
+            lastQty = hit.qty;
+            latestName = hit.name || latestName;
+          }
+        } else {
+          const catSet = catalogSets.get(s.saleId);
+          // אם ידוע לנו קטלוג המכירה והמוצר כלל לא הוצע בה (למשל מוצר חג/עונתי) — לא נספר כדילוג!
+          if (catSet && !catSet.has(key)) {
+            continue;
+          }
+          opportunities++;
+        }
+        if (opportunities >= winSize) break;
+      }
+
+      if (count > 0) {
+        m[key] = { name: latestName, count, totalQty, lastQty, opportunities };
+      }
+    }
+
     cachedCounts = m;
-    cachedCountsSaleId = curSaleId;
+    cachedCountsSaleId = cacheKey;
     return m;
   }
 
@@ -837,11 +955,15 @@ function showToast(msg, type = 'success') {
   // אכלוס מוצרי המכירה מכל הקטגוריות למפה מרכזית מהירה ועמידה
   function populateSaleItems(rows) {
     if (!Array.isArray(rows) || !rows.length) return;
+    const offeredKeys = [];
+    let rowSaleId = sale.id;
     rows.forEach(r => {
       const n = r.name || (r.product && r.product.name);
       const pid = r.itemID != null ? r.itemID : (r.product && r.product.id);
       const salesId = r.id != null ? r.id : r.item_salesID;
       if (n && pid != null) {
+        offeredKeys.push('p' + pid);
+        if (rowSaleId == null && r.saleID != null) rowSaleId = r.saleID;
         const rawImg = r.thumb_featured_image || r.featured_image || r.image || r.picture || r.image_url
           || (r.product && (r.product.thumb_featured_image || r.product.featured_image || r.product.image || r.product.image_url));
         const img = formatMishnatImageUrl(rawImg);
@@ -878,6 +1000,9 @@ function showToast(msg, type = 'success') {
         if (r.product && r.product.name) sale.items.set(norm(r.product.name), itemObj);
       }
     });
+    if (rowSaleId != null && offeredKeys.length) {
+      recordSaleCatalogKeys(rowSaleId, offeredKeys);
+    }
     saveProductImages();
     saveItemPrices();
     saveItemUnitTexts();
@@ -7215,6 +7340,18 @@ function showToast(msg, type = 'success') {
           <input type="color" id="mf-fixedColor" class="myfam-color-pick">
           <select id="mf-fixedFill" class="myfam-select-box"><option value="0">מסגרת בלבד</option><option value="1">צביעת כל הכרטיס</option></select>
         </div>
+        <div class="myfam-row" style="margin-top:10px;">
+          <span>טווח סימון היסטוריה וקבועים:</span>
+          <select id="mf-historyWindow" class="myfam-select-box" style="flex:1;">
+            <option value="4">4 מכירות אחרונות שהמוצר הוצע</option>
+            <option value="6">6 מכירות אחרונות שהמוצר הוצע (מומלץ)</option>
+            <option value="8">8 מכירות אחרונות שהמוצר הוצע</option>
+            <option value="0">כל ההיסטוריה (ללא הגבלה)</option>
+          </select>
+        </div>
+        <div style="font-size:11.5px;color:#64748b;margin-top:3px;line-height:1.4;">
+          מוצרים שלא הוצעו במכירה (כמו מוצרי חגים) אינם נספרים כדילוג. הארכיון ב"היסטוריית הזמנות" נשמר תמיד במלואו.
+        </div>
         <div style="display:flex;gap:8px;margin-top:10px;">
           <button id="mf-reset" class="myfam-sec-btn">שחזר צבעי ברירת מחדל</button>
           <button id="mf-reset-fixed" class="myfam-sec-btn" style="flex:1;">איפוס שינויים ידניים בכוכב</button>
@@ -7343,6 +7480,8 @@ function showToast(msg, type = 'success') {
     const fill = () => {
       g('mf-seenColor').value = prefs.seenColor; g('mf-fixedColor').value = prefs.fixedColor;
       g('mf-seenFill').value = prefs.seenFill ? '1' : '0'; g('mf-fixedFill').value = prefs.fixedFill ? '1' : '0';
+      const hwSel = g('mf-historyWindow');
+      if (hwSel) hwSel.value = String(typeof prefs.historyWindow === 'number' ? prefs.historyWindow : 6);
       const selChains = (Array.isArray(prefs.selectedChains) && prefs.selectedChains.length)
         ? prefs.selectedChains
         : DEFAULT_SELECTED_CHAINS;
@@ -7353,6 +7492,19 @@ function showToast(msg, type = 'success') {
       if (cmpHistCb) cmpHistCb.checked = prefs.compareInHistory !== false;
     };
     fill();
+
+    const hwSel = g('mf-historyWindow');
+    if (hwSel) {
+      hwSel.onchange = () => {
+        const val = parseInt(hwSel.value, 10);
+        prefs = { ...prefs, historyWindow: Number.isFinite(val) && val >= 0 ? val : 6 };
+        jset('prefs', prefs);
+        syncSaveGoogle({ myfam_prefs: prefs });
+        invalidateCountsCache();
+        render();
+        updateForgottenUI();
+      };
+    }
 
     const cmpHistCb = g('mf-compare-history');
     if (cmpHistCb) {
