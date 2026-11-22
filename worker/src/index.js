@@ -374,10 +374,12 @@ export default {
         ).bind(actorHash, now).run();
 
         // שליחה אסינכרונית למייל דרך Google Apps Script Webhook (אם הוגדר כ-Secret)
-        if (env.CONTACT_MAIL_WEBHOOK) {
-          const mailPromise = fetch(env.CONTACT_MAIL_WEBHOOK, {
+        const mailWebhook = (env.CONTACT_MAIL_WEBHOOK || '').trim();
+        if (mailWebhook) {
+          const mailPromise = fetch(mailWebhook, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+            redirect: 'follow',
             body: JSON.stringify({ category, senderName, replyTo, message, appVersion })
           }).catch(() => {});
           if (ctx && typeof ctx.waitUntil === 'function') {
