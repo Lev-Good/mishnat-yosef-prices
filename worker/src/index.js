@@ -9,10 +9,12 @@
  * - Cache בקצה (Edge) ל-GET /api/counts לאפס עומס על האתר ועל מסד הנתונים
  */
 
-import { sanitizeText, validateCommentPayload } from './moderation.js';
+import { sanitizeText, detectCodeOrLink, validateCommentPayload } from './moderation.js';
 
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 דקות
+const CONTACT_RATE_MAX = 3;
+const CONTACT_RATE_WINDOW_MS = 60 * 60 * 1000; // שעה
 const SPAM_HIDE_THRESHOLD = 3;
 const USER_BAN_THRESHOLD = 10;
 
@@ -67,7 +69,7 @@ async function getClientOnlyHash(request, env) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: getCorsHeaders(request) });
     }
@@ -327,6 +329,63 @@ export default {
           return jsonResponse(request, { error: 'אין הרשאה למחוק הערה זו' }, 403);
         }
         return jsonResponse(request, { ok: true, deletedBy: 'author' });
+      }
+
+      // 8. POST /api/contact — פנייה למפתח התוסף (נשמרת ב-D1 + נשלחת למייל דרך Webhook אם מוגדר)
+      if (request.method === 'POST' && path === '/api/contact') {
+        let payload;
+        try {
+          payload = await request.json();
+        } catch {
+          return jsonResponse(request, { error: 'בקשה לא תקינה' }, 400);
+        }
+
+        const category = sanitizeText(payload?.category || 'אחר', 40) || 'אחר';
+        const senderName = sanitizeText(payload?.senderName || 'משתמש אנונימי', 40) || 'משתמש אנונימי';
+        const replyTo = sanitizeText(payload?.replyTo || '', 80);
+        const message = sanitizeText(payload?.message || '', 1000);
+        const appVersion = sanitizeText(payload?.appVersion || '', 20);
+
+        if (message.length < 5) {
+          return jsonResponse(request, { error: 'נא לכתוב הודעה מפורטת יותר (לפחות 5 תווים).' }, 400);
+        }
+        const codeErr = detectCodeOrLink(senderName) || (/<[^>]+>|javascript:/i.test(message) ? 'לא ניתן לשלוח קוד HTML בפנייה.' : null);
+        if (codeErr) {
+          return jsonResponse(request, { error: codeErr }, 400);
+        }
+
+        const now = Date.now();
+        const actorHash = 'contact:' + await getActorHash(request, env);
+        const winStart = now - CONTACT_RATE_WINDOW_MS;
+        const rlRow = await env.DB.prepare(
+          'SELECT COUNT(*) AS cnt FROM rate_limits WHERE actor_hash = ? AND created_at >= ?'
+        ).bind(actorHash, winStart).first();
+        if ((Number(rlRow?.cnt) || 0) >= CONTACT_RATE_MAX) {
+          return jsonResponse(request, { error: 'נשלחו יותר מדי פניות בשעה האחרונה. נא לנסות שוב מאוחר יותר.' }, 429);
+        }
+
+        await env.DB.prepare(
+          `INSERT INTO contact_messages (category, sender_name, reply_to, message, app_version, sender_hash, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`
+        ).bind(category, senderName, replyTo, message, appVersion, actorHash, now).run();
+
+        await env.DB.prepare(
+          'INSERT INTO rate_limits (actor_hash, created_at) VALUES (?, ?)'
+        ).bind(actorHash, now).run();
+
+        // שליחה אסינכרונית למייל דרך Google Apps Script Webhook (אם הוגדר כ-Secret)
+        if (env.CONTACT_MAIL_WEBHOOK) {
+          const mailPromise = fetch(env.CONTACT_MAIL_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ category, senderName, replyTo, message, appVersion })
+          }).catch(() => {});
+          if (ctx && typeof ctx.waitUntil === 'function') {
+            ctx.waitUntil(mailPromise);
+          }
+        }
+
+        return jsonResponse(request, { ok: true }, 201);
       }
 
       return jsonResponse(request, { error: 'Not Found' }, 404);

@@ -8446,6 +8446,10 @@ function showToast(msg, type = 'success') {
             ${ICONS.info}
             <span>אודות ותנאי שימוש</span>
           </button>
+          <button id="myfam-b-contact" class="myfam-tool-btn tool-about">
+            <span style="font-size:15px;">✉️</span>
+            <span>פנייה למפתח התוסף</span>
+          </button>
           <a href="https://digital.levtov.uk/" target="_blank" rel="noopener" class="myfam-tool-btn tool-author">
             ${ICONS.starFilled}
             <span>פותח ע"י לב טוב דיגיטל</span>
@@ -8557,6 +8561,7 @@ function showToast(msg, type = 'success') {
     $('#myfam-b-hist').onclick = () => { b.classList.add('collapsed'); showHistory(); };
     $('#myfam-b-set').onclick  = () => { b.classList.add('collapsed'); showSettings(); };
     $('#myfam-b-about').onclick = () => { b.classList.add('collapsed'); showAboutModal(); };
+    $('#myfam-b-contact').onclick = () => { b.classList.add('collapsed'); showContactDeveloperModal(); };
   }
 
   function ensureUI() {
@@ -9030,6 +9035,101 @@ function showToast(msg, type = 'success') {
       }
       sendBtn.disabled = false;
       sendBtn.textContent = 'שלח';
+    };
+  }
+
+  function showContactDeveloperModal() {
+    const base = getCommentsApiBase();
+    if (!base) {
+      openFeedbackPage();
+      return;
+    }
+    $('#myfam-modal')?.remove();
+    const m = document.createElement('div');
+    m.id = 'myfam-modal';
+    m.innerHTML = `<div class="myfam-box" style="max-width:440px;">
+      <button class="myfam-x" title="סגור">${ICONS.close}</button>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e2e8f0;">
+        <div style="background:#eef7f1;color:#2e9e5b;padding:8px 10px;border-radius:10px;font-size:18px;line-height:1;">✉️</div>
+        <div>
+          <h3 style="margin:0;font-size:17px;color:#1e293b;">פנייה למפתח התוסף</h3>
+          <div style="font-size:12px;color:#64748b;">נשמח לשמוע על תקלה, הצעה לשיפור או מוצר חסר</div>
+        </div>
+      </div>
+      <form id="myfam-contact-form" style="display:flex;flex-direction:column;gap:10px;">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:4px;">נושא הפנייה</label>
+          <select id="myfam-ct-cat" style="width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;background:#fff;">
+            <option value="הצעה לשיפור">💡 הצעה לשיפור / פיצ'ר חדש</option>
+            <option value="דיווח על תקלה">🐛 דיווח על תקלה / באג</option>
+            <option value="השוואת מחירים">📊 הערה על השוואת מחירים / מוצר חסר</option>
+            <option value="פנייה כללית">✉️ פנייה כללית</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:4px;">שם (אופציונלי)</label>
+            <input id="myfam-ct-name" type="text" maxlength="40" placeholder="שמך" style="width:100%;padding:7px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:4px;">מייל לחזרה (אופציונלי)</label>
+            <input id="myfam-ct-reply" type="text" maxlength="80" placeholder="name@gmail.com" style="width:100%;padding:7px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;box-sizing:border-box;direction:ltr;text-align:right;">
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:4px;">תוכן הפנייה</label>
+          <textarea id="myfam-ct-msg" rows="4" maxlength="1000" required placeholder="כתוב כאן את ההודעה שלך…" style="width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>
+        </div>
+        <div id="myfam-ct-err" style="display:none;font-size:12px;color:#dc2626;"></div>
+        <button id="myfam-ct-submit" type="submit" style="width:100%;padding:10px;background:#2e9e5b;color:#fff;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;">
+          שלח פנייה למפתח
+        </button>
+      </form>
+    </div>`;
+    document.body.appendChild(m);
+    const close = () => m.remove();
+    $('.myfam-x', m).onclick = close;
+    m.onclick = e => { if (e.target === m) close(); };
+
+    const form = $('#myfam-contact-form', m);
+    const errEl = $('#myfam-ct-err', m);
+    const submitBtn = $('#myfam-ct-submit', m);
+    form.onsubmit = async ev => {
+      ev.preventDefault();
+      errEl.style.display = 'none';
+      const category = $('#myfam-ct-cat', m).value;
+      const senderName = $('#myfam-ct-name', m).value.trim();
+      const replyTo = $('#myfam-ct-reply', m).value.trim();
+      const message = $('#myfam-ct-msg', m).value.trim();
+      if (message.length < 5) {
+        errEl.textContent = 'נא לכתוב הודעה של לפחות 5 תווים.';
+        errEl.style.display = 'block';
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'שולח…';
+      try {
+        const resp = await fetch(`${base}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Client-Id': getCommentsClientId() },
+          body: JSON.stringify({ category, senderName, replyTo, message, appVersion: APP_VERSION })
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) {
+          errEl.textContent = data.error || 'שגיאה בשליחת הפנייה. נסה שוב.';
+          errEl.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'שלח פנייה למפתח';
+          return;
+        }
+        close();
+        showToast('הפנייה נשלחה למפתח בהצלחה! תודה רבה 🙏', 'success');
+      } catch (_) {
+        errEl.textContent = 'שגיאת תקשורת. נסה שוב בעוד רגע.';
+        errEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'שלח פנייה למפתח';
+      }
     };
   }
 
