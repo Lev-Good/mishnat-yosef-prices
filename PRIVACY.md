@@ -1,7 +1,7 @@
 # מדיניות פרטיות — מוסיף למשנת (Privacy Policy — Mosif LaMishnat)
 
 **תאריך עדכון אחרון / Last Updated:** 22/11/2026  
-**מפתח התוסף / Developer:** לב טוב דיגיטל (Lev Tov Digital) — `a5400300801@gmail.com`
+**מפתח התוסף / Developer:** לב טוב דיגיטל (Lev Tov Digital) — `mytovmail@gmail.com`
 
 ---
 
@@ -27,7 +27,7 @@
 * המידע אינו משמש לפרסום ממוקד, פרופיילינג או כל מטרה שאינה קשורה ישירות לפעולת התוסף.
 
 ### 4. יצירת קשר ומחיקת מידע
-ניתן למחוק הערות שפרסמת ישירות מתוך חלון הצ'אט, או לבקש מחיקה מלאה של כל פנייה/מידע בפנייה למייל: `a5400300801@gmail.com`.
+ניתן למחוק הערות שפרסמת ישירות מתוך חלון הצ'אט, או לבקש מחיקה מלאה של כל פנייה/מידע בפנייה למייל: `mytovmail@gmail.com`.
 
 ---
 
@@ -50,4 +50,4 @@ Data is transmitted to our Cloudflare Workers + D1 backend (`mishnat-yosef-comme
 * The use of information received adheres strictly to the Chrome Web Store User Data Policy, including the Limited Use requirements.
 
 ### 4. Contact & Data Deletion
-Users can delete their own comments directly in the product chat widget, or request deletion of any submitted support message by emailing `a5400300801@gmail.com`.
+Users can delete their own comments directly in the product chat widget, or request deletion of any submitted support message by emailing `mytovmail@gmail.com`.
