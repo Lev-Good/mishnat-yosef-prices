@@ -53,6 +53,12 @@ const SEARCH_GROUNDING_MODELS = [
 ];
 let activeModel = CANDIDATE_MODELS[0];
 let activeSearchModel = SEARCH_GROUNDING_MODELS[0];
+let aiHardDisabledReason = null;
+
+function isFatalAiBillingOrAuthError(err) {
+  const msg = String(err?.message || err);
+  return /spending\s*cap|spend\s*cap|billing|API_KEY_INVALID|API key not valid|PERMISSION_DENIED/i.test(msg);
+}
 
 const TARGET_CITIES = ['ירושלים', 'בני ברק'];
 const ALLOWED_CHAINS = ['osherAd', 'ramiLevy', 'yeshHesed', 'netoChisachon', 'shaareiRevaha', 'mechiraLaKehila'];
@@ -506,6 +512,9 @@ function isRetryableModelError(err) {
 }
 
 async function runWithModelFallback(candidateModels, currentActive, onModelSuccess, invokeFn) {
+  if (aiHardDisabledReason) {
+    throw new Error(`AI מושבת לריצה זו (${aiHardDisabledReason})`);
+  }
   let lastErr = null;
   const modelsToTry = [currentActive, ...candidateModels.filter(m => m !== currentActive)];
 
@@ -518,6 +527,11 @@ async function runWithModelFallback(candidateModels, currentActive, onModelSucce
     } catch (err) {
       lastErr = err;
       const msg = String(err?.message || err);
+      if (isFatalAiBillingOrAuthError(err)) {
+        aiHardDisabledReason = msg.slice(0, 140);
+        console.error(`🛑 שגיאת מכסה/חיוב/מפתח ברמת הפרויקט ב-Gemini (${aiHardDisabledReason}) — מפסיק ניסיונות AI נוספים לריצה זו ועובר לגיבוי דטרמיניסטי.`);
+        throw err;
+      }
       if (isRetryableModelError(err)) {
         console.warn(`⚠️ מודל ${modelName} לא זמין לבקשה זו (${msg.slice(0, 120)}) - מנסה מודל חלופי...`);
         if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED')) {
@@ -757,7 +771,7 @@ ${JSON.stringify(payload, null, 2)}
       }
     }
 
-    if (!parsed) {
+    if (!parsed && !aiHardDisabledReason) {
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: prompt,
@@ -953,6 +967,10 @@ async function main() {
 
   console.log(`סה"כ מוצרים לסריקה ועדכון: ${targetList.length}`);
 
+  let updatedCount = 0;
+  const updatedIds = new Set();
+
+  if (targetList.length > 0) {
   await ensureChpSession();
 
   console.log('🔎 שלב 1: מאתר מועמדים תואמים ב-chp.co.il (autocompletion)...');
@@ -965,9 +983,6 @@ async function main() {
   const withCandidates = preparedAll.filter(p => p.candidates.length > 0);
   const withoutCandidates = preparedAll.filter(p => p.candidates.length === 0);
   console.log(`📊 נמצאו מועמדים ב-chp.co.il עבור ${withCandidates.length} מתוך ${targetList.length} מוצרים (${withoutCandidates.length} ללא התאמה במאגר chp).`);
-
-  let updatedCount = 0;
-  const updatedIds = new Set();
 
   for (let i = 0; i < withCandidates.length; i += BATCH_SIZE) {
     const batch = withCandidates.slice(i, i + BATCH_SIZE);
@@ -995,7 +1010,7 @@ async function main() {
         if (typeof idx !== 'number' || seenIdx.has(idx) || !entry.candidates[idx]) continue;
         seenIdx.add(idx);
         const cand = entry.candidates[idx];
-        if (!isCandidateUnitCompatible(entry.item.name, targetUnits, cand.label)) {
+        if (!isCandidateUnitCompatible(entry.item.name, targetUnits, cand.label, entry.isProduce)) {
           console.warn(`⚠️ אי-התאמת יחידות עבור "${entry.item.name}": נדחה המוצר "${cand.label}".`);
           continue;
         }
@@ -1083,7 +1098,7 @@ async function main() {
   }
 
   // שלב 3: גיבוי היברידי via Google Search Grounding עבור מוצרים פעילים שלא עודכנו ב-CHP
-  if (!disableSearchFallback) {
+  if (!disableSearchFallback && !aiHardDisabledReason) {
     const searchFallbackTargets = targetList.filter(item => {
       if (updatedIds.has(item.id)) return false;
       if (targetId || !hasLiveCatalog) return true;
@@ -1095,6 +1110,10 @@ async function main() {
       let searchUpdatedCount = 0;
 
       for (let i = 0; i < searchFallbackTargets.length; i += SEARCH_BATCH_SIZE) {
+        if (aiHardDisabledReason) {
+          console.warn(`🛑 עוצר שלב 3 (Google Search) עקב השבתת AI לריצה זו.`);
+          break;
+        }
         const searchBatch = searchFallbackTargets.slice(i, i + SEARCH_BATCH_SIZE);
         console.log(`\n🌐 אצוות Search ${Math.floor(i / SEARCH_BATCH_SIZE) + 1} מתוך ${Math.ceil(searchFallbackTargets.length / SEARCH_BATCH_SIZE)} (${searchBatch.map(it => it.name).join(', ')})...`);
 
@@ -1104,7 +1123,8 @@ async function main() {
           if (!res) continue;
 
           const matchedName = String(res.matchedName || '').trim();
-          if (matchedName && !isCandidateUnitCompatible(item.name, parseProductUnits(item.name), matchedName)) {
+          const itemIsProduce = isProduceItem(item.name, mappingCache[item.id]);
+          if (matchedName && !isCandidateUnitCompatible(item.name, parseProductUnits(item.name), matchedName, itemIsProduce)) {
             console.warn(`⚠️ [Google Search] אי-התאמת יחידות עבור "${item.name}": נדחה "${matchedName}".`);
             continue;
           }
@@ -1162,6 +1182,9 @@ async function main() {
 
       console.log(`📊 סיכום שלב 3 (Google Search): עודכנו ${searchUpdatedCount} מוצרים נוספים.`);
     }
+  } else if (aiHardDisabledReason) {
+    console.warn(`⏭️ שלב 3 (Google Search) דולג אוטומטית כי Gemini הושבת לריצה זו עקב שגיאת מכסה/חיוב.`);
+  }
   }
 
   // שלב 4: שילוב מחירי "המכירה לקהילה" (sales.org.il) אם נשלפו בהצלחה
