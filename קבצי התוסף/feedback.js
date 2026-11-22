@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const rateBtn = document.getElementById('rateBtn');
+  if (rateBtn) {
+    rateBtn.addEventListener('click', () => {
+      try {
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+          chrome.storage.local.set({
+            myfam_feedback_rated: true,
+            myfam_feedback_rated_at: Date.now()
+          });
+        }
+      } catch (_) {}
+    });
+  }
+
   const shareBtn = document.getElementById('shareBtn');
   if (shareBtn) {
     shareBtn.onclick = () => {

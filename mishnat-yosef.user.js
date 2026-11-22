@@ -8151,18 +8151,78 @@ function showToast(msg, type = 'success') {
   }
 
   function checkFeedbackReminder() {
-    const KEY_INSTALL = 'installed_at';
-    const KEY_PROMPTED = 'feedback_prompted';
-    let installed = localStorage.getItem(LS + KEY_INSTALL);
-    if (!installed) {
-      localStorage.setItem(LS + KEY_INSTALL, Date.now());
-      return;
-    }
+    const KEY_INSTALL = LS + 'installed_at';
+    const KEY_PROMPTED = LS + 'feedback_prompted';
+    const KEY_PROMPTED_AT = LS + 'feedback_prompted_at';
+    const KEY_RATED = LS + 'feedback_rated';
     const twoWeeks = 14 * 24 * 60 * 60 * 1000;
-    if (Date.now() - Number(installed) >= twoWeeks && !localStorage.getItem(LS + KEY_PROMPTED)) {
-      localStorage.setItem(LS + KEY_PROMPTED, 'true');
-      openFeedbackPage();
-    }
+    const fourMonths = 120 * 24 * 60 * 60 * 1000;
+
+    const saveStorage = (obj) => {
+      try {
+        for (const [k, v] of Object.entries(obj)) {
+          localStorage.setItem(k, String(v));
+        }
+      } catch (_) {}
+      try {
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+          chrome.storage.local.set(obj);
+        }
+      } catch (_) {}
+    };
+
+    const evaluate = (storeData = {}) => {
+      const now = Date.now();
+      const rated = storeData[KEY_RATED] === true || storeData[KEY_RATED] === 'true' || localStorage.getItem(KEY_RATED) === 'true';
+      if (rated) {
+        try { localStorage.setItem(KEY_RATED, 'true'); } catch (_) {}
+        return;
+      }
+
+      const installedRaw = storeData[KEY_INSTALL] || localStorage.getItem(KEY_INSTALL);
+      const installed = Number(installedRaw);
+      if (!installed || !Number.isFinite(installed)) {
+        saveStorage({ [KEY_INSTALL]: now });
+        return;
+      }
+      if (!storeData[KEY_INSTALL]) {
+        saveStorage({ [KEY_INSTALL]: installed });
+      }
+
+      const promptedAtRaw = storeData[KEY_PROMPTED_AT] || localStorage.getItem(KEY_PROMPTED_AT);
+      const promptedAt = Number(promptedAtRaw);
+      const legacyPrompted = localStorage.getItem(KEY_PROMPTED) === 'true' || storeData[KEY_PROMPTED] === true || storeData[KEY_PROMPTED] === 'true';
+
+      // משתמש ותיק שכבר ראה את הבקשה לפני עדכון זה: מאתחלים חותמת זמן בלי להקפיץ מיד
+      if (legacyPrompted && (!promptedAt || !Number.isFinite(promptedAt))) {
+        saveStorage({ [KEY_PROMPTED]: true, [KEY_PROMPTED_AT]: now });
+        return;
+      }
+
+      if (!promptedAt || !Number.isFinite(promptedAt)) {
+        // הצגה ראשונה אחרי שבועיים מההתקנה
+        if (now - installed >= twoWeeks) {
+          saveStorage({ [KEY_PROMPTED]: true, [KEY_PROMPTED_AT]: now });
+          openFeedbackPage();
+        }
+      } else {
+        // תזכורת חוזרת עדינה אחרי 4 חודשים — רק למי שעדיין לא לחץ על קישור הדירוג
+        if (now - promptedAt >= fourMonths) {
+          saveStorage({ [KEY_PROMPTED]: true, [KEY_PROMPTED_AT]: now });
+          openFeedbackPage();
+        }
+      }
+    };
+
+    try {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.get([KEY_INSTALL, KEY_PROMPTED, KEY_PROMPTED_AT, KEY_RATED], res => {
+          evaluate(res || {});
+        });
+        return;
+      }
+    } catch (_) {}
+    evaluate({});
   }
 
   function buildUI() {
