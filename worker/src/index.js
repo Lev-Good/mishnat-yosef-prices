@@ -356,6 +356,15 @@ export default {
 
         const now = Date.now();
         const actorHash = 'contact:' + await getActorHash(request, env);
+
+        // מניעת כפילויות: אם אותה הודעה מאותו שולח כבר נקלטה ב-10 הדקות האחרונות, מחזירים ok בלי לשלוח מייל נוסף
+        const dupRow = await env.DB.prepare(
+          'SELECT id FROM contact_messages WHERE sender_hash = ? AND message = ? AND created_at >= ? LIMIT 1'
+        ).bind(actorHash, message, now - 10 * 60 * 1000).first();
+        if (dupRow) {
+          return jsonResponse(request, { ok: true, deduplicated: true }, 200);
+        }
+
         const winStart = now - CONTACT_RATE_WINDOW_MS;
         const rlRow = await env.DB.prepare(
           'SELECT COUNT(*) AS cnt FROM rate_limits WHERE actor_hash = ? AND created_at >= ?'

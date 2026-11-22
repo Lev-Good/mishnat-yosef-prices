@@ -9463,8 +9463,10 @@ function showToast(msg, type = 'success') {
     const form = $('#myfam-contact-form', m);
     const errEl = $('#myfam-ct-err', m);
     const submitBtn = $('#myfam-ct-submit', m);
+    let inFlight = false;
     form.onsubmit = async ev => {
       ev.preventDefault();
+      if (inFlight) return;
       errEl.style.display = 'none';
       const category = $('#myfam-ct-cat', m).value;
       const senderName = $('#myfam-ct-name', m).value.trim();
@@ -9475,6 +9477,7 @@ function showToast(msg, type = 'success') {
         errEl.style.display = 'block';
         return;
       }
+      inFlight = true;
       submitBtn.disabled = true;
       submitBtn.textContent = 'שולח…';
       try {
@@ -9487,6 +9490,7 @@ function showToast(msg, type = 'success') {
         if (!resp.ok || !data.ok) {
           errEl.textContent = data.error || 'שגיאה בשליחת הפנייה. נסה שוב.';
           errEl.style.display = 'block';
+          inFlight = false;
           submitBtn.disabled = false;
           submitBtn.textContent = 'שלח פנייה למפתח';
           return;
@@ -9496,6 +9500,7 @@ function showToast(msg, type = 'success') {
       } catch (_) {
         errEl.textContent = 'שגיאת תקשורת. נסה שוב בעוד רגע.';
         errEl.style.display = 'block';
+        inFlight = false;
         submitBtn.disabled = false;
         submitBtn.textContent = 'שלח פנייה למפתח';
       }
