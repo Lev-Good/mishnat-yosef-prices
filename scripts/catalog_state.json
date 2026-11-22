@@ -1,11 +1,20 @@
 {
   "lastTargetId": 26398522,
   "lastSaleName": "",
-  "lastHash": "3ff3d4d9ba95e314bfb9da31a9d60acc03a934e0bbf4f11dc26a0ca959d7e21f",
-  "lastUpdatedAt": "2026-11-21T18:59:57.510Z",
-  "lastUpdatedIsraelTime": "21.11.2026, 20:59:57",
+  "lastHash": "02204633af6daa2cfb75557f7123ff7281dda5c4c523cffa43d5f33a9089d388",
+  "lastUpdatedAt": "2026-11-22T04:52:20.081Z",
+  "lastUpdatedIsraelTime": "22.11.2026, 06:52:20",
   "itemCount": 316,
   "history": [
+    {
+      "targetId": 26398522,
+      "targetType": "order",
+      "saleName": "",
+      "detectedAt": "2026-11-22T04:52:20.081Z",
+      "israelTime": "22.11.2026, 06:52:20",
+      "itemCount": 316,
+      "hash": "02204633af6d"
+    },
     {
       "targetId": 26398522,
       "targetType": "order",

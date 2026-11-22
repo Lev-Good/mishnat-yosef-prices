@@ -17,7 +17,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "milk_1": {
     "id": "milk_1",
@@ -38,7 +38,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "eggs_l30": {
     "id": "eggs_l30",
@@ -56,7 +56,7 @@
     "verifiedChains": [
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "eggs_m30": {
     "id": "eggs_m30",
@@ -110,7 +110,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "cottage_5": {
     "id": "cottage_5",
@@ -130,7 +130,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "yellow_emek": {
     "id": "yellow_emek",
@@ -147,7 +147,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "yellow_gilboa": {
     "id": "yellow_gilboa",
@@ -163,7 +163,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "butter_100": {
     "id": "butter_100",
@@ -177,11 +177,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "osherAd"
+    ],
+    "lastVerified": "2026-11-22"
   },
   "sour_cream": {
     "id": "sour_cream",
@@ -200,7 +198,7 @@
       "yeshHesed",
       "netoChisachon"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "sweet_cream": {
     "id": "sweet_cream",
@@ -236,9 +234,10 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
+      "netoChisachon",
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-16"
+    "lastVerified": "2026-11-22"
   },
   "shoko_1l": {
     "id": "shoko_1l",
@@ -254,7 +253,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "oil_canola": {
     "id": "oil_canola",
@@ -273,7 +272,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "oil_soy": {
     "id": "oil_soy",
@@ -309,7 +308,7 @@
       "ramiLevy",
       "netoChisachon"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "sugar_white": {
     "id": "sugar_white",
@@ -330,7 +329,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "flour_white": {
     "id": "flour_white",
@@ -365,7 +364,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "salt_fine": {
     "id": "salt_fine",
@@ -380,10 +379,11 @@
     "harediOnlyProduce": false,
     "verifiedChains": [
       "osherAd",
-      "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
-    ]
+      "netoChisachon",
+      "shaareiRevaha"
+    ],
+    "lastVerified": "2026-11-22"
   },
   "rice_persian": {
     "id": "rice_persian",
@@ -403,7 +403,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "rice_basmati": {
     "id": "rice_basmati",
@@ -440,9 +440,10 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
+      "netoChisachon",
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-16"
+    "lastVerified": "2026-11-22"
   },
   "pasta_osem_spaghetti": {
     "id": "pasta_osem_spaghetti",
@@ -461,7 +462,7 @@
       "yeshHesed",
       "netoChisachon"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "pasta_osem_penne": {
     "id": "pasta_osem_penne",
@@ -479,8 +480,9 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
-    ]
+      "shaareiRevaha"
+    ],
+    "lastVerified": "2026-11-22"
   },
   "pasta_osem_fusilli": {
     "id": "pasta_osem_fusilli",
@@ -519,9 +521,10 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
+      "netoChisachon",
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-15"
+    "lastVerified": "2026-11-22"
   },
   "tuna_fillet_4": {
     "id": "tuna_fillet_4",
@@ -614,7 +617,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "tomato_paste_100": {
     "id": "tomato_paste_100",
@@ -689,9 +692,9 @@
     "harediOnlyProduce": false,
     "verifiedChains": [
       "osherAd",
-      "ramiLevy"
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "challah": {
     "id": "challah",
@@ -747,10 +750,11 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
+      "yeshHesed",
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "cornflakes_telma": {
     "id": "cornflakes_telma",
@@ -826,7 +830,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "bisli_osem": {
     "id": "bisli_osem",
@@ -961,9 +965,10 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
+      "netoChisachon",
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-15"
+    "lastVerified": "2026-11-22"
   },
   "coffee_elite": {
     "id": "coffee_elite",
@@ -983,7 +988,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "tasters_choice": {
     "id": "tasters_choice",
@@ -1001,7 +1006,7 @@
       "ramiLevy",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "tea_wissotzky": {
     "id": "tea_wissotzky",
@@ -1018,9 +1023,10 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
+      "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "fairy_dish": {
     "id": "fairy_dish",
@@ -1038,7 +1044,7 @@
       "ramiLevy",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "persil_gel": {
     "id": "persil_gel",
@@ -1060,7 +1066,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "badin_softener": {
     "id": "badin_softener",
@@ -1080,7 +1086,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "sano_bleach": {
     "id": "sano_bleach",
@@ -1100,7 +1106,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "toilet_paper_30": {
     "id": "toilet_paper_30",
@@ -1118,7 +1124,7 @@
       "ramiLevy",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "garbage_bags": {
     "id": "garbage_bags",
@@ -1151,7 +1157,7 @@
       "ramiLevy",
       "yeshHesed"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "hand_soap_1l": {
     "id": "hand_soap_1l",
@@ -1190,7 +1196,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "peas_frozen_sunfrost": {
     "id": "peas_frozen_sunfrost",
@@ -1222,11 +1228,9 @@
     "isProduce": false,
     "harediOnlyProduce": false,
     "verifiedChains": [
-      "osherAd",
-      "ramiLevy",
-      "yeshHesed",
-      "netoChisachon"
-    ]
+      "ramiLevy"
+    ],
+    "lastVerified": "2026-11-22"
   },
   "fries_frozen": {
     "id": "fries_frozen",
@@ -1243,7 +1247,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "bourekas_potato": {
     "id": "bourekas_potato",
@@ -1257,11 +1261,13 @@
     "isProduce": true,
     "harediOnlyProduce": true,
     "verifiedChains": [
+      "osherAd",
       "ramiLevy",
       "yeshHesed",
-      "netoChisachon"
+      "netoChisachon",
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "malawach": {
     "id": "malawach",
@@ -1278,7 +1284,7 @@
       "ramiLevy",
       "yeshHesed"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "schnitzel_corn": {
     "id": "schnitzel_corn",
@@ -1294,9 +1300,10 @@
     "verifiedChains": [
       "osherAd",
       "ramiLevy",
-      "netoChisachon"
+      "yeshHesed",
+      "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-16"
+    "lastVerified": "2026-11-22"
   },
   "chicken_breast_fresh": {
     "id": "chicken_breast_fresh",
@@ -1330,11 +1337,10 @@
     "harediOnlyProduce": false,
     "verifiedChains": [
       "osherAd",
-      "ramiLevy",
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "salmon_fillet_frozen": {
     "id": "salmon_fillet_frozen",
@@ -1369,7 +1375,7 @@
     "verifiedChains": [
       "osherAd"
     ],
-    "lastVerified": "2026-11-15"
+    "lastVerified": "2026-11-22"
   },
   "sano_maxima_softener": {
     "id": "sano_maxima_softener",
@@ -1390,7 +1396,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "persil_gel_3_8l": {
     "id": "persil_gel_3_8l",
@@ -1407,7 +1413,7 @@
     "verifiedChains": [
       "osherAd"
     ],
-    "lastVerified": "2026-11-16"
+    "lastVerified": "2026-11-22"
   },
   "delipekan_telma": {
     "id": "delipekan_telma",
@@ -1463,7 +1469,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "soup_almonds_osem": {
     "id": "soup_almonds_osem",
@@ -1501,7 +1507,7 @@
       "ramiLevy",
       "netoChisachon"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "silan_pure_squeeze": {
     "id": "silan_pure_squeeze",
@@ -1554,9 +1560,10 @@
       "osherAd",
       "ramiLevy",
       "yeshHesed",
+      "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "sano_ratzpaz": {
     "id": "sano_ratzpaz",
@@ -1609,7 +1616,7 @@
       "osherAd",
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "sano_javel_spray": {
     "id": "sano_javel_spray",
@@ -1680,7 +1687,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-15"
+    "lastVerified": "2026-11-22"
   },
   "bread_crumbs_golden": {
     "id": "bread_crumbs_golden",
@@ -1699,7 +1706,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "axe_deodorant_spray": {
     "id": "axe_deodorant_spray",
@@ -1737,7 +1744,7 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "frozen_mango_chunks": {
     "id": "frozen_mango_chunks",
@@ -1754,7 +1761,7 @@
       "osherAd",
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "frozen_strawberries": {
     "id": "frozen_strawberries",
@@ -1789,7 +1796,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "chocolate_spread_mehadrin": {
     "id": "chocolate_spread_mehadrin",
@@ -1825,7 +1832,7 @@
       "yeshHesed",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "cucumber_fresh": {
     "id": "cucumber_fresh",
@@ -1892,9 +1899,11 @@
     "isProduce": true,
     "harediOnlyProduce": true,
     "verifiedChains": [
+      "osherAd",
+      "ramiLevy",
       "yeshHesed"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "carrot_fresh": {
     "id": "carrot_fresh",
@@ -1940,7 +1949,7 @@
     "verifiedChains": [
       "ramiLevy"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   },
   "zucchini_fresh": {
     "id": "zucchini_fresh",
@@ -2022,6 +2031,6 @@
       "netoChisachon",
       "shaareiRevaha"
     ],
-    "lastVerified": "2026-11-21"
+    "lastVerified": "2026-11-22"
   }
 }
