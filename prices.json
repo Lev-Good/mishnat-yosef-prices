@@ -2022,17 +2022,17 @@
       "בטטה",
       "בטטות"
     ],
-    "supermarketPrice": 27.9,
+    "supermarketPrice": 6.4,
     "chains": {
-      "osherAd": null,
-      "ramiLevy": 27.9,
-      "yeshHesed": null,
+      "osherAd": 7.15,
+      "ramiLevy": null,
+      "yeshHesed": 6.15,
       "netoChisachon": null,
-      "shaareiRevaha": null,
+      "shaareiRevaha": 5.9,
       "mechiraLaKehila": null
     },
     "lastVerified": "2026-11-22",
-    "matchedName": "גולד ציפס בטטה קריספי, 1 ק\"ג"
+    "matchedName": "בטטה, מחיר לפי משקל"
   },
   {
     "id": "zucchini_fresh",

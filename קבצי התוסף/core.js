@@ -1427,7 +1427,11 @@ function showToast(msg, type = 'success') {
             + (compItem._scaleNote ? `\n* הערה: ${compItem._scaleNote}.` : '');
 
           let targetCompCls, targetCompHtml, targetCompTitle;
-          if (diff >= 0.3) {
+          if (compItem._perKgInfoOnly) {
+            targetCompCls = 'myfam-price-comp-tag tag-equal';
+            targetCompHtml = `📊 ברשתות ₪${compItem.effectivePrice.toFixed(1)} לק"ג`;
+            targetCompTitle = `ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} לק"ג.\nבמשנת יוסף לא צוין משקל מדויק ליחידה (₪${myPrice.toFixed(2)}), ולכן מוצג מחיר הקילו לשם מידע בלבד.\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
+          } else if (diff >= 0.3) {
             targetCompCls = 'myfam-price-comp-tag tag-saving';
             targetCompHtml = `⚡ חסכון ₪${diff.toFixed(1)}${eqSuffix}`;
             targetCompTitle = `מחיר במשנת יוסף: ₪${myPrice.toFixed(2)} | ממוצע ברשתות שנבחרו (${selChainNames}): כ-₪${compItem.effectivePrice.toFixed(2)} (חיסכון של ₪${diff.toFixed(2)})${eqNote}\n* הנתונים להערכה והמלצה בלבד וללא אחריות (ט.ל.ח).`;
@@ -5606,23 +5610,55 @@ function showToast(msg, type = 'success') {
       return `${Math.round(grams)} גרם`;
     };
 
+    const PER_KG_MATCH_RE = /(?:מחיר\s*לפי\s*משקל|לפי\s*משקל|לק["״׳']?ג|לקילו)/i;
     const resolveUnitScale = item => {
       const itemUnits = parseProductUnits(item.name);
-      if (areUnitsCompatible(targetUnits, itemUnits)) {
-        return { compatible: true, exact: true, scale: 1 };
+      const matchedUnits = item.matchedName ? parseProductUnits(item.matchedName) : null;
+      const isPerKgMarket = PER_KG_MATCH_RE.test(item.matchedName || '');
+
+      // השלמת משקל/נפח מ-matchedName כאשר לא צוין ב-item.name
+      const effItemUnits = { ...itemUnits };
+      if (!effItemUnits.weightGrams && matchedUnits?.weightGrams) {
+        effItemUnits.weightGrams = matchedUnits.weightGrams;
+        effItemUnits.weightMin = matchedUnits.weightMin;
+        effItemUnits.weightMax = matchedUnits.weightMax;
+      } else if (!effItemUnits.weightGrams && isPerKgMarket) {
+        effItemUnits.weightGrams = 1000;
+        effItemUnits.weightMin = 1000;
+        effItemUnits.weightMax = 1000;
       }
-      // בפירות וירקות טריים הנמכרים במשקל (למשל מלפפון 1.5 ק"ג מול 1 ק"ג), מתאימים את מחיר השוק ליחס המשקל
-      if (isFreshItem(item) && targetUnits.weightGrams > 0 && itemUnits.weightGrams > 0) {
-        const scale = targetUnits.weightGrams / itemUnits.weightGrams;
+      if (!effItemUnits.volumeMl && matchedUnits?.volumeMl) {
+        effItemUnits.volumeMl = matchedUnits.volumeMl;
+        effItemUnits.volumeMin = matchedUnits.volumeMin;
+        effItemUnits.volumeMax = matchedUnits.volumeMax;
+      }
+
+      if (areUnitsCompatible(targetUnits, effItemUnits)) {
+        if ((isPerKgMarket || (isFreshItem(item) && effItemUnits.weightGrams === 1000)) && !targetUnits.weightGrams) {
+          return { compatible: true, exact: true, scale: 1, perKgInfoOnly: true };
+        }
+        return { compatible: true, exact: true, scale: 1, perKgInfoOnly: false };
+      }
+      // בפירות וירקות טריים הנמכרים במשקל (למשל מלפפון/קלמנטינה 1.5 ק"ג מול 1 ק"ג), מתאימים את מחיר השוק ליחס המשקל
+      if ((isFreshItem(item) || isPerKgMarket) && targetUnits.weightGrams > 0 && effItemUnits.weightGrams > 0) {
+        const scale = targetUnits.weightGrams / effItemUnits.weightGrams;
         if (scale >= 0.2 && scale <= 10) {
-          return { compatible: true, exact: false, scale };
+          return { compatible: true, exact: false, scale, perKgInfoOnly: false };
         }
       }
-      return { compatible: false, exact: false, scale: 1 };
+      return { compatible: false, exact: false, scale: 1, perKgInfoOnly: false };
     };
 
     const attachScaleMeta = (item, unitRes) => {
-      if (!item || !unitRes || unitRes.scale === 1) return item;
+      if (!item || !unitRes) return item;
+      if (unitRes.perKgInfoOnly) {
+        return {
+          ...item,
+          _perKgInfoOnly: true,
+          _scaleNote: 'מחיר הרשתות הוא לק"ג (במשנת יוסף לא צוין משקל מדויק ליחידה)'
+        };
+      }
+      if (unitRes.scale === 1) return item;
       const wLabel = formatWeightLabel(targetUnits.weightGrams);
       return {
         ...item,
@@ -5780,7 +5816,7 @@ function showToast(msg, type = 'success') {
       const rawMatch = findMarketComparison(l.name, unitHint);
       if (!rawMatch) continue;
       const match = getEffectiveMarketComparison(rawMatch);
-      if (!match || match.effectivePrice <= 0) continue;
+      if (!match || match.effectivePrice <= 0 || match._perKgInfoOnly) continue;
 
       const marketUnitPrice = match.effectivePrice;
       const ratio = myUnitPrice / marketUnitPrice;

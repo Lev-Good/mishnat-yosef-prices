@@ -366,7 +366,10 @@ function extractBarcode(acItem) {
   return null;
 }
 
-function isCandidateUnitCompatible(targetName, targetUnits, candLabel) {
+const PRODUCE_PROCESSED_BLOCK_RE = /(?:צ['׳]?יפס|קריספי|קפוא|מוקפא|שימורים|מיובש|רסק|רוטב|מרק|מטוגן|קלוי|עוגי|חטיף|סלט|ממרח|ריב[הת]|קונפיטור|גליד|ארטיק|סבון|קרם|שמפו|דאודורנט|ניחוח)/i;
+
+function isCandidateUnitCompatible(targetName, targetUnits, candLabel, isProduce = false) {
+  if (isProduce && PRODUCE_PROCESSED_BLOCK_RE.test(candLabel || '')) return false;
   const candUnits = parseProductUnits(candLabel);
   if (!areUnitsCompatible(targetUnits, candUnits)) return false;
 
@@ -413,7 +416,7 @@ async function fetchChpCandidates(item, mappingEntry) {
       if (!entry || typeof entry.value !== 'string') continue;
       const label = entry.value.trim();
       if (!label || /^אין תוצאות/.test(label)) continue;
-      if (!isCandidateUnitCompatible(item.name, targetUnits, label)) continue;
+      if (!isCandidateUnitCompatible(item.name, targetUnits, label, isProduce)) continue;
 
       const barcode = extractBarcode(entry);
       const key = barcode || label;
