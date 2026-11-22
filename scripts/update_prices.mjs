@@ -27,6 +27,9 @@ const MAX_CANDIDATES = candidateLimitIndex !== -1 ? parseInt(args[candidateLimit
 const targetIdIndex = args.indexOf('--id');
 const targetId = targetIdIndex !== -1 ? args[targetIdIndex + 1] : null;
 const disableSearchFallback = args.includes('--no-search-fallback');
+const isForceRefresh = args.includes('--force');
+const staleDaysIndex = args.indexOf('--stale-days');
+const STALE_DAYS = staleDaysIndex !== -1 ? Math.max(0, parseFloat(args[staleDaysIndex + 1]) || 0) : 5;
 const searchBatchSizeIndex = args.indexOf('--search-batch-size');
 const SEARCH_BATCH_SIZE = searchBatchSizeIndex !== -1 ? parseInt(args[searchBatchSizeIndex + 1], 10) : 6;
 
@@ -822,6 +825,7 @@ async function main() {
   // שילוב מוצרים חדשים מקטלוג משנת יוסף החי (ללא סינון קטגוריות) + שמירת מחיר משנת יוסף כעוגן שפיות
   const candidates = [];
   const livePriceByName = new Map();
+  const activeExistingIds = new Set();
   const LIVE_CATALOG_FILE = path.resolve('scripts', 'mishnat_live_catalog.json');
   const hasLiveCatalog = fs.existsSync(LIVE_CATALOG_FILE);
   if (hasLiveCatalog) {
@@ -840,6 +844,7 @@ async function main() {
         const unitHint = item.unitText || '';
         const matchedExisting = findMarketComparison(item.name, prices, unitHint);
         if (matchedExisting) {
+          activeExistingIds.add(matchedExisting.id);
           // הוספת alias אוטומטית רק בהתאמה הדוקה במיוחד (חפיפת מילים >= 50%) למניעת זיהום כינויים שגוי
           const itemTokens = norm(item.name).split(/\s+/).filter(w => w.length >= 2);
           const baseTokens = norm(matchedExisting.name).split(/\s+/).filter(w => w.length >= 2);
@@ -855,12 +860,16 @@ async function main() {
         }
 
         const normName = norm(item.name);
-        const exists = prices.some(p =>
+        const existingMatch = prices.find(p =>
           p.id === `my_${item.id}` ||
           p.name === item.name ||
           norm(p.name) === normName ||
           (p.aliases && p.aliases.includes(item.name))
-        ) || candidates.some(c => c.id === `my_${item.id}` || norm(c.name) === normName);
+        );
+        if (existingMatch) {
+          activeExistingIds.add(existingMatch.id);
+        }
+        const exists = Boolean(existingMatch) || candidates.some(c => c.id === `my_${item.id}` || norm(c.name) === normName);
         if (!exists) {
           const displayName = (unitHint && !item.name.includes(unitHint))
             ? `${item.name} ${unitHint}`
@@ -897,13 +906,45 @@ async function main() {
     return null;
   };
 
-  let targetList = [...candidates, ...prices];
+  const nowMs = Date.now();
+  const isItemFresh = item => {
+    if (isForceRefresh || STALE_DAYS <= 0) return false;
+    if (!(typeof item.supermarketPrice === 'number' && item.supermarketPrice > 0)) return false;
+    if (!item.lastVerified || typeof item.lastVerified !== 'string') return false;
+    const verifiedMs = Date.parse(`${item.lastVerified}T00:00:00Z`);
+    if (!Number.isFinite(verifiedMs)) return false;
+    const ageDays = (nowMs - verifiedMs) / (24 * 3600 * 1000);
+    return ageDays >= -1 && ageDays < STALE_DAYS;
+  };
+
+  let targetList;
   if (targetId) {
     targetList = prices.filter(p => p.id === targetId);
     if (targetList.length === 0) {
       console.error(`❌ לא נמצא פריט עם מזהה: ${targetId}`);
       process.exit(1);
     }
+  } else if (isForceRefresh) {
+    targetList = [...candidates, ...prices];
+    console.log(`⚡ מצב --force פעיל: מרענן את כל ${targetList.length} המוצרים ללא דילוג.`);
+  } else {
+    let skippedInactive = 0;
+    let skippedFresh = 0;
+    const staleActivePrices = [];
+    for (const p of prices) {
+      if (hasLiveCatalog && activeExistingIds.size > 0 && !activeExistingIds.has(p.id) && getLivePriceForItem(p) == null) {
+        skippedInactive++;
+        continue;
+      }
+      if (isItemFresh(p)) {
+        skippedFresh++;
+        continue;
+      }
+      staleActivePrices.push(p);
+    }
+    targetList = [...candidates, ...staleActivePrices];
+    console.log(`🛡️ חיסכון חכם בקריאות AI: דולגו ${skippedInactive} מוצרים שאינם במכירה הנוכחית + ${skippedFresh} מוצרים שכבר נבדקו ב-${STALE_DAYS} הימים האחרונים.`);
+    console.log(`🎯 נשארו לסריקה: ${candidates.length} מוצרים חדשים + ${staleActivePrices.length} מוצרים פעילים לריענון.`);
   }
 
   if (limit !== Infinity) {
