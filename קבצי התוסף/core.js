@@ -39,7 +39,7 @@
   const CONFIG = {
     autoFixedAfter: 3,
     debugKeep: 30,
-    debugPaths: /get_items_for_sale|\/orders\/|add_item|update_item|remove_item|get_favourites|open_sales/
+    debugPaths: /get_items_for_sale|sale-items|sale_items_url|\/orders\/|add_item|update_item|remove_item|get_favourites|open_sales/
   };
 
   const LS = 'myfam_';
@@ -809,11 +809,11 @@ function showToast(msg, type = 'success') {
       if (debugBuf.length > CONFIG.debugKeep) debugBuf.shift();
     }
 
-    if (d.method === 'GET' && /get_items_for_sale\//.test(path)) {
-      const rows = Array.isArray(j && j.data) ? j.data : [];
+    if (d.method === 'GET' && /(?:get_items_for_sale|\/public\/sale-items)\//.test(path)) {
+      const rows = Array.isArray(j && j.data) ? j.data : (Array.isArray(j && j.items) ? j.items : (Array.isArray(j) ? j : []));
       if (!rows.length) return;
-      const sid = rows[0].saleID;
-      if (sale.id !== sid) sale = { id: sid, items: new Map(), loadedAll: false };
+      const sid = rows[0].saleID || rows[0].sale_id || extractSaleIdFromUrl() || sale.id;
+      if (sid && sale.id !== sid) sale = { id: sid, items: new Map(), loadedAll: false };
       populateSaleItems(rows);
       scheduleRender();
       updateBudgetUI();
