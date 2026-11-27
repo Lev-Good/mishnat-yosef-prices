@@ -20,6 +20,16 @@
     "itemSalesId": 231
   },
   {
+    "id": 7500,
+    "name": "צנצנת שום קלוף 1 קילו בד\"ץ עד\"ח",
+    "unitText": "",
+    "description": "",
+    "price": 15.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 7500
+  },
+  {
     "id": 8814,
     "name": "רביעיית שום יבש XL",
     "unitText": "",
@@ -90,6 +100,16 @@
     "itemSalesId": 6
   },
   {
+    "id": 1180,
+    "name": "עגבניות שרי אדומות",
+    "unitText": "",
+    "description": "",
+    "price": 12.8,
+    "category": "ירקות",
+    "subCategory": "",
+    "itemSalesId": 1180
+  },
+  {
     "id": 211,
     "name": "קולרבי",
     "unitText": "",
@@ -134,7 +154,7 @@
     "name": "סלק",
     "unitText": "",
     "description": "",
-    "price": 6.8,
+    "price": 4.8,
     "category": "ירקות",
     "subCategory": "",
     "itemSalesId": 14
@@ -170,6 +190,16 @@
     "itemSalesId": 1336
   },
   {
+    "id": 48,
+    "name": "שורש פטרוזיליה (ארוך)",
+    "unitText": "",
+    "description": "",
+    "price": 3.3,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 48
+  },
+  {
     "id": 29,
     "name": "רימון סלסלה",
     "unitText": "",
@@ -200,14 +230,14 @@
     "itemSalesId": 27
   },
   {
-    "id": 8698,
-    "name": "ענבים ירוקים (וינטר קינג) - ענבי טלי {מ.מ.}",
-    "unitText": "",
-    "description": "",
-    "price": 22.8,
+    "id": 32,
+    "name": "ענבים ירוקים בסלסלה - חו\"ל {מ.מ}",
+    "unitText": "500 גרם",
+    "description": "כ 500 גרם",
+    "price": 7.9,
     "category": "פירות",
     "subCategory": "",
-    "itemSalesId": 8698
+    "itemSalesId": 32
   },
   {
     "id": 31,
@@ -218,16 +248,6 @@
     "category": "פירות",
     "subCategory": "",
     "itemSalesId": 31
-  },
-  {
-    "id": 7410,
-    "name": "ראש אננס - חו\"ל",
-    "unitText": "1.1 קילו",
-    "description": "כ 1.1 קילו לראש",
-    "price": 12.5,
-    "category": "פירות",
-    "subCategory": "",
-    "itemSalesId": 7410
   },
   {
     "id": 55,
@@ -340,6 +360,26 @@
     "itemSalesId": 204
   },
   {
+    "id": 405,
+    "name": "חסה אייסברג קצוצה (350 גרם)",
+    "unitText": "",
+    "description": "באריזת וואקום",
+    "price": 7.5,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 405
+  },
+  {
+    "id": 404,
+    "name": "כרוב לבן קצוץ 400 גרם",
+    "unitText": "400 גרם",
+    "description": "400 גרם",
+    "price": 6.9,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 404
+  },
+  {
     "id": 1010,
     "name": "ראש כרוב אדום גדול {לנדא} {שקית}",
     "unitText": "",
@@ -368,6 +408,16 @@
     "category": "עלים וקצוצים",
     "subCategory": "",
     "itemSalesId": 386
+  },
+  {
+    "id": 1578,
+    "name": "סלסלה חסה קריספית (לאליק) {לנדא}",
+    "unitText": "",
+    "description": "זוג, בחזקת נקי מחרקים בכשרות לנדא ובד\"ץ בית חלקיה,",
+    "price": 6.8,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 1578
   },
   {
     "id": 391,
@@ -400,6 +450,16 @@
     "itemSalesId": 392
   },
   {
+    "id": 388,
+    "name": "כוסברה {לנדא}",
+    "unitText": "",
+    "description": "מאושר לפי תנאי השטיפה, בכשרות לנדא ובד\"ץ בית חלקיה",
+    "price": 3.5,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 388
+  },
+  {
     "id": 393,
     "name": "שמיר {לנדא}",
     "unitText": "",
@@ -410,11 +470,21 @@
     "itemSalesId": 393
   },
   {
+    "id": 53,
+    "name": "עלי סלק {לנדא}",
+    "unitText": "",
+    "description": "בחזקת נקי מחרקים, בכשרות הרב לנדא",
+    "price": 4.4,
+    "category": "עלים וקצוצים",
+    "subCategory": "",
+    "itemSalesId": 53
+  },
+  {
     "id": 14121,
     "name": "שומר",
     "unitText": "",
     "description": "",
-    "price": 8.8,
+    "price": 9.5,
     "category": "ירקות",
     "subCategory": "",
     "itemSalesId": 14121
@@ -480,6 +550,16 @@
     "itemSalesId": 1067
   },
   {
+    "id": 238,
+    "name": "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%",
+    "unitText": "8 ל",
+    "description": "נאפה לאחר הפסח יתכן והקמח או חלק מרכיבי החמץ מלפני הפסח, 8 לחמניות במארז",
+    "price": 13.9,
+    "category": "מאפים",
+    "subCategory": "",
+    "itemSalesId": 238
+  },
+  {
     "id": 11854,
     "name": "עשיריית לחמניות - דגנית עין בר",
     "unitText": "750 גרם",
@@ -488,16 +568,6 @@
     "category": "מאפים",
     "subCategory": "",
     "itemSalesId": 11854
-  },
-  {
-    "id": 238,
-    "name": "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%  {נ. לאחר הפסח}",
-    "unitText": "8 ל",
-    "description": "נאפה לאחר הפסח יתכן והקמח או חלק מרכיבי החמץ מלפני הפסח, 8 לחמניות במארז",
-    "price": 13.9,
-    "category": "מאפים",
-    "subCategory": "",
-    "itemSalesId": 238
   },
   {
     "id": 10519,
@@ -540,94 +610,114 @@
     "itemSalesId": 9364
   },
   {
-    "id": 9664,
-    "name": "שוקולד פרה ממולדה לבנה במילוי קרם בטעם תות - עלית {מ.מ.}",
+    "id": 8712,
+    "name": "מאגדת מיקס חטיפי שוקולד עלית - אריזה משפחתית {מ.מ}",
+    "unitText": "390 גרם",
+    "description": "כ 20 חטיפי פסק זמן, כיף כף ומקופלת, סה\"כ 390 גרם",
+    "price": 24.9,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 8712
+  },
+  {
+    "id": 5742,
+    "name": "חטיף שוקולד קראנץ במילוי קרם אגוזים - עלית {מ.מ}",
     "unitText": "100 גרם",
-    "description": "100 גרם, חלבי, שוקולד חלב ושוקולד לבן",
-    "price": 6.4,
+    "description": "100 גרם, שוקולד חלב עם ביסקוויט וקרם אגוזים",
+    "price": 5.9,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 9664
+    "itemSalesId": 5742
   },
   {
-    "id": 1125,
-    "name": "שלישיית שוקולד חלבי - טעמן",
-    "unitText": "3*100 גרם",
-    "description": "3*100 גרם",
-    "price": 14.5,
+    "id": 12237,
+    "name": "טבלת שוקולד חלב קורנפלקס ופצפוצים - קליק",
+    "unitText": "85 גרם",
+    "description": "85 גרם, שוקולד חלב עם פתיתי תירס ופצפוצי דגנים",
+    "price": 5.7,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 1125
+    "itemSalesId": 12237
   },
   {
-    "id": 395,
-    "name": "זוג שוקולד לבן כרמית",
+    "id": 14154,
+    "name": "שקית קליק כריות (כחול)",
+    "unitText": "65 גרם",
+    "description": "65 גרם, דגנים פריכים במילוי קרם נוגט מצופים שוקולד חלב",
+    "price": 5.7,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 14154
+  },
+  {
+    "id": 527,
+    "name": "רביעיית שוקולד מריר כרמית",
     "unitText": "100 גרם",
-    "description": "100 גרם * 2 חפיסות",
-    "price": 11.8,
+    "description": "100 גרם * 4 חפיסות",
+    "price": 21.5,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 395
+    "itemSalesId": 527
   },
   {
-    "id": 8188,
-    "name": "חטיף בר פריך ממולא נוגט בציפוי שוקולד חלב - קליק {מ.מ.}",
-    "unitText": "35 גר",
-    "description": "35 גר",
-    "price": 3.9,
+    "id": 7934,
+    "name": "מטבעות שוקולד ברשת כרמית {מ.מ}",
+    "unitText": "36 גר'",
+    "description": "חלבי, משקל 36 גר'",
+    "price": 2.9,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 8188
+    "itemSalesId": 7934
   },
   {
-    "id": 65,
-    "name": "שקית ואוו קוביות נוגט בציפוי שוקולד חלב {מ.מ.}",
-    "unitText": "50 גר",
-    "description": "50 גר בשקית, טעים במיוחד (דמוי קליק)",
-    "price": 3.5,
+    "id": 711,
+    "name": "ריצ' בסיס להכנת קצפת צמחית {מ.מ}",
+    "unitText": "212 מ\"ל",
+    "description": "212 מ\"ל",
+    "price": 5.9,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 65
+    "itemSalesId": 711
   },
   {
-    "id": 14122,
-    "name": "קרטונית מטבעות בטעם שוקולד-  24 רשתות",
-    "unitText": "480 גרם",
-    "description": "סה\"כ 480 גרם, פרווה",
-    "price": 29.8,
-    "category": "מוצרי חלב",
-    "subCategory": "",
-    "itemSalesId": 14122
-  },
-  {
-    "id": 7828,
-    "name": "מרגרינה בטעם חמאה",
+    "id": 1424,
+    "name": "סלט חזרת ביתי - סלטי היום",
     "unitText": "200 גרם",
     "description": "200 גרם",
-    "price": 3.7,
+    "price": 7.5,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 7828
+    "itemSalesId": 1424
   },
   {
-    "id": 14123,
-    "name": "משקה שיבולת שועל - שדות",
+    "id": 1547,
+    "name": "סלט חומוס 850 גרם צבר",
     "unitText": "",
-    "description": "ללא תוספת סוכר, פרווה",
-    "price": 8.5,
+    "description": "",
+    "price": 12.5,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 14123
+    "itemSalesId": 1547
   },
   {
-    "id": 8418,
-    "name": "משקה סויה - תנובה אלטרנטיב {תכלת}",
-    "unitText": "1 ליטר",
-    "description": "1 ליטר",
-    "price": 9.8,
+    "id": 9169,
+    "name": "משקה בטעם בננה בבקבוק 1 ליטר - טרה {מ.מ}",
+    "unitText": "",
+    "description": "",
+    "price": 8.7,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 8418
+    "itemSalesId": 9169
+  },
+  {
+    "id": 718,
+    "name": "שוקו בבקבוק 1 ליטר טרה {מ.מ}",
+    "unitText": "",
+    "description": "",
+    "price": 8.7,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 718
   },
   {
     "id": 7790,
@@ -640,24 +730,44 @@
     "itemSalesId": 7790
   },
   {
-    "id": 10030,
-    "name": "גבינה בולגרית מעודנת 5% - משק צוריאל",
-    "unitText": "250 גרם",
-    "description": "250 גרם",
-    "price": 19.7,
+    "id": 11174,
+    "name": "רביעיית גבינה מותכת 18% - משק צוריאל",
+    "unitText": "25*4 גרם",
+    "description": "25*4 גרם, סה\"כ 100 גרם",
+    "price": 6.8,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 10030
+    "itemSalesId": 11174
   },
   {
-    "id": 1822,
-    "name": "גבינת שמנת שום שמיר 25% - הכפרייה",
+    "id": 8383,
+    "name": "גבינה מלוחה פיראוס 16% חרמון - תנובה",
+    "unitText": "250 גרם",
+    "description": "250 גרם",
+    "price": 18.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 8383
+  },
+  {
+    "id": 8789,
+    "name": "גבינת חלומי 28% - משק צוריאל",
+    "unitText": "200 גרם",
+    "description": "200 גרם",
+    "price": 18.8,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 8789
+  },
+  {
+    "id": 699,
+    "name": "גבינת שמנת 25% - הכפרייה",
     "unitText": "500 גרם",
-    "description": "500 גרם, במרקם עדין",
+    "description": "500 גרם, במרקם עדין וטבעי",
     "price": 20,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 1822
+    "itemSalesId": 699
   },
   {
     "id": 5189,
@@ -680,16 +790,6 @@
     "itemSalesId": 896
   },
   {
-    "id": 900,
-    "name": "חמאה טרה",
-    "unitText": "200 גרם",
-    "description": "200 גרם",
-    "price": 9.1,
-    "category": "מוצרי חלב",
-    "subCategory": "",
-    "itemSalesId": 900
-  },
-  {
     "id": 5180,
     "name": "רביעיית לבן - טרה",
     "unitText": "125*4  גרם",
@@ -698,6 +798,16 @@
     "category": "מוצרי חלב",
     "subCategory": "",
     "itemSalesId": 5180
+  },
+  {
+    "id": 898,
+    "name": "שמנת מתוקה להקצפה 32% טרה {מ.מ}",
+    "unitText": "250 מ\"ל",
+    "description": "250 מ\"ל",
+    "price": 5.9,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 898
   },
   {
     "id": 899,
@@ -710,21 +820,21 @@
     "itemSalesId": 899
   },
   {
-    "id": 8976,
-    "name": "מגורדת לפיצה ואפיה - משו משו",
+    "id": 2426,
+    "name": "פיצרלה מגורדת - יבנה",
     "unitText": "500 גרם",
-    "description": "500 גרם, דמוי גבינה צהובה, טעים ואיכותי, פרווה. מתאים גם לצריכה בשבתות החורף הקצרות",
-    "price": 18.5,
+    "description": "500 גרם, בד\"ץ העד\"ח, מתאים לבישול אפייה והקרמה",
+    "price": 21.8,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 8976
+    "itemSalesId": 2426
   },
   {
     "id": 6383,
     "name": "גבינה צהובה עמק - 600 גר'",
     "unitText": "",
     "description": "פרוסות גבינה צהובה בוואקום",
-    "price": 31.8,
+    "price": 29.8,
     "category": "מוצרי חלב",
     "subCategory": "",
     "itemSalesId": 6383
@@ -750,14 +860,14 @@
     "itemSalesId": 895
   },
   {
-    "id": 8258,
-    "name": "רביעיית יוגורט עם תות - יופלה",
-    "unitText": "4*100 גרם",
-    "description": "4*100 גרם, 3% שומן",
-    "price": 9.9,
+    "id": 897,
+    "name": "גביע יוגורט Bio קרמי - מולר {עם תוספת מעל}",
+    "unitText": "",
+    "description": "בתוספת גליליות במילוי קרם",
+    "price": 4.7,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 8258
+    "itemSalesId": 897
   },
   {
     "id": 8285,
@@ -780,1124 +890,1094 @@
     "itemSalesId": 7596
   },
   {
-    "id": 5584,
-    "name": "קרטון עוף מחולק קפוא בד\"צ העד\"ח",
-    "unitText": "",
-    "description": "8 מגשים בקרטון, מחושב לפי 31.5 ש\"ח לקילו. בכל מגש עוף מחולק ל 4. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למ",
-    "price": 346.5,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 5584
-  },
-  {
-    "id": 11261,
-    "name": "רביעיית מעדני סימפלי פרוט {אפרסק} 3% שומן מולר",
-    "unitText": "150 מ\"ל",
-    "description": "בטעם אפרסק 150 מ\"ל בגביע",
-    "price": 14.2,
+    "id": 7989,
+    "name": "רביעיית יוגורט בטעם תות 1.5% - טרה",
+    "unitText": "125 גרם",
+    "description": "125 גרם * 4 יחידות",
+    "price": 8.8,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 11261
+    "itemSalesId": 7989
   },
   {
-    "id": 1021,
-    "name": "כבד עוף צלוי קפוא - בד\"צ עד\"ח",
-    "unitText": "250 גרם",
-    "description": "250 גרם",
-    "price": 42.5,
+    "id": 12906,
+    "name": "מאגדת מעדני סימפלי פרוט 3% שומן - מולר {פירות יער וקיווי}",
+    "unitText": "8*150 מ\"ל",
+    "description": "בטעמי פירות יער וקיווי, 8*150 מ\"ל",
+    "price": 28.3,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 12906
+  },
+  {
+    "id": 6550,
+    "name": "בורקס קפוא במילוי גבינה",
+    "unitText": "800 גרם",
+    "description": "800 גרם,",
+    "price": 12.5,
     "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 1021
+    "itemSalesId": 6550
   },
   {
-    "id": 787,
-    "name": "שישיית פפסי ZERO {1.5 ליטר} (מ.מ.)",
-    "unitText": "9 ליטר",
-    "description": "סה\"כ 9 ליטר",
-    "price": 27.8,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 787
-  },
-  {
-    "id": 973,
-    "name": "יין קליל - יקבי ציון",
+    "id": 5734,
+    "name": "יין מוסקטו לבן {מ.מ}",
     "unitText": "750 מ\"ל",
-    "description": "750 מ\"ל, יין אדום לקידוש בעל תכולת כוהל נמוכה, מכיל 4% כוהל",
-    "price": 13.9,
+    "description": "750 מ\"ל, יין לבן מוגז",
+    "price": 29.5,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 973
+    "itemSalesId": 5734
   },
   {
-    "id": 594,
-    "name": "קרטון מיץ ענבים אדום - יקבי ארזה",
-    "unitText": "1 ליטר",
-    "description": "12 בקבוקים של 1 ליטר, 100% ענבים, ללא תוספת סוכר",
-    "price": 120,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 594
-  },
-  {
-    "id": 12279,
-    "name": "קרטון קמח חלה (10 קילו)  {קרטון כחול}",
-    "unitText": "",
-    "description": "10 אריזות של קילו, בחזקת נקי מחרקים ללא צורך בניפוי,",
-    "price": 68,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 12279
-  },
-  {
-    "id": 450,
-    "name": "קמח כוסמין לבן {ישבר} - (קרטון לבן 10 קילו) {מ.מ.}",
+    "id": 546,
+    "name": "קרטון קמח כוסמין 80% (10 יח בקרטון חום) {ישבר}",
     "unitText": "",
     "description": "בחזקת נקי מחרקים ללא צורך בבדיקה",
     "price": 69,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 450
+    "itemSalesId": 546
   },
   {
-    "id": 6107,
-    "name": "קרטון קמח מולינו ללא גלוטן - (ללחם וחלות המוציא)",
-    "unitText": "500 גרם",
-    "description": "7 חבילות 500 גרם כל אחת, תערובת איטלקית לאפייה על בסיס עמילן חיטה ללא גלוטן, מתאים להכנת לחם וחלות שברכתם המוציא לחם מן הארץ",
-    "price": 98,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 6107
-  },
-  {
-    "id": 601,
-    "name": "סוכר עשירייה",
+    "id": 547,
+    "name": "קרטון בצבע כחול קמח לבן מנופה (10 יח')",
     "unitText": "",
-    "description": "",
-    "price": 31.8,
+    "description": "בחזקת נקי מחרקים ללא צורך בניפוי,",
+    "price": 45,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 601
+    "itemSalesId": 547
   },
   {
-    "id": 205,
-    "name": "קוסקוס - קייטי",
-    "unitText": "700 גרם",
-    "description": "700 גרם",
-    "price": 7.5,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 205
-  },
-  {
-    "id": 415,
-    "name": "אטריות דקיקות למרק קייטי",
+    "id": 401,
+    "name": "ספגטי (מקלות) {מ.מ.}",
     "unitText": "500 גר'",
     "description": "500 גר'",
-    "price": 3.4,
+    "price": 2.2,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 415
+    "itemSalesId": 401
   },
   {
-    "id": 9231,
-    "name": "טורטייה (מזונות) - קייטי",
+    "id": 741,
+    "name": "פתיתים אפויים",
+    "unitText": "",
+    "description": "",
+    "price": 3.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 741
+  },
+  {
+    "id": 740,
+    "name": "אטריות",
+    "unitText": "400 גר'",
+    "description": "400 גר', מתאים להכנת קוגעל",
+    "price": 3.9,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 740
+  },
+  {
+    "id": 7573,
+    "name": "טורטייה מקמח חיטה (המוציא) - קייטי",
     "unitText": "8 יח",
-    "description": "8 יח, קוטר 20 ס\"מ, סה\"כ 320 גרם, ב. מזונות",
-    "price": 9.7,
+    "description": "8 יח, קוטר 20 ס\"מ, סה\"כ 320 גרם",
+    "price": 9.8,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 9231
+    "itemSalesId": 7573
   },
   {
-    "id": 586,
-    "name": "אורז פרסי איכותי בוואקום {מ.מ.}",
-    "unitText": "1 קילו",
-    "description": "1 קילו",
-    "price": 7.9,
-    "category": "קטניות ושימורים",
-    "subCategory": "",
-    "itemSalesId": 586
-  },
-  {
-    "id": 1026,
-    "name": "שעועית בוואקום 1 קילו {מ.מ.}",
+    "id": 757,
+    "name": "גריסי פנינה בוואקום ",
     "unitText": "",
     "description": "",
-    "price": 11.8,
-    "category": "קטניות ושימורים",
-    "subCategory": "",
-    "itemSalesId": 1026
-  },
-  {
-    "id": 182,
-    "name": "עדשים אדומים בוואקום 1 קילו",
-    "unitText": "",
-    "description": "",
-    "price": 10.7,
-    "category": "קטניות ושימורים",
-    "subCategory": "",
-    "itemSalesId": 182
-  },
-  {
-    "id": 9817,
-    "name": "בורגול בוואקום 1 קילו - מיה",
-    "unitText": "",
-    "description": "בחזקת נקי מחרקים, המהדר יבדוק קלות",
-    "price": 11.5,
-    "category": "קטניות ושימורים",
-    "subCategory": "",
-    "itemSalesId": 9817
-  },
-  {
-    "id": 1093,
-    "name": "קינואה בוואקום 500 גרם",
-    "unitText": "",
-    "description": "יתכן ויגיע מיה או זה ברור",
     "price": 9.8,
     "category": "קטניות ושימורים",
     "subCategory": "",
-    "itemSalesId": 1093
+    "itemSalesId": 757
   },
   {
-    "id": 104,
-    "name": "אפונה בוואקום 1 קילו",
-    "unitText": "",
-    "description": "",
-    "price": 9.9,
+    "id": 490,
+    "name": "שומשום בוואקום אריזה מוגדלת",
+    "unitText": "400 גרם",
+    "description": "400 גרם",
+    "price": 10.8,
     "category": "קטניות ושימורים",
     "subCategory": "",
-    "itemSalesId": 104
+    "itemSalesId": 490
   },
   {
-    "id": 6636,
-    "name": "שומשום בואקום 300 גר'",
+    "id": 1036,
+    "name": "חומוס בוואקום 900 גרם",
     "unitText": "",
     "description": "",
+    "price": 13.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 1036
+  },
+  {
+    "id": 1171,
+    "name": "מלפפון חמוץ במלח 18-25 בני דרום",
+    "unitText": "560 גר'",
+    "description": "מלפפונים קטנים, 560 גר'",
     "price": 7.8,
     "category": "קטניות ושימורים",
     "subCategory": "",
-    "itemSalesId": 6636
+    "itemSalesId": 1171
   },
   {
-    "id": 421,
-    "name": "קווקר הכנה מהירה בוואקום {נ.מאינו יהודי}",
+    "id": 524,
+    "name": "זיתים",
     "unitText": "",
-    "description": "נרכש מאינו יהודי לאחר הפסח",
-    "price": 7.5,
+    "description": "ללא גרעינים",
+    "price": 7.8,
     "category": "קטניות ושימורים",
     "subCategory": "",
-    "itemSalesId": 421
+    "itemSalesId": 524
   },
   {
-    "id": 989,
-    "name": "טונה בשמן רביעייה",
-    "unitText": "",
-    "description": "140*4, משקל מסונן 98*4.",
-    "price": 12.7,
-    "category": "קטניות ושימורים",
-    "subCategory": "",
-    "itemSalesId": 989
-  },
-  {
-    "id": 72,
-    "name": "חצאי אפרסק גדול {שימורים}",
-    "unitText": "820 גרם",
-    "description": "820 גרם, לאחר סינון 460 גרם",
+    "id": 9921,
+    "name": "פטריות שמפניון שלמות בשימורים - קייטי {מ.מ.}",
+    "unitText": "240 גרם",
+    "description": "240 גרם לאחר סינון",
     "price": 5.5,
     "category": "קטניות ושימורים",
     "subCategory": "",
-    "itemSalesId": 72
+    "itemSalesId": 9921
   },
   {
-    "id": 92,
-    "name": "פירורי לחם מוזהבים",
+    "id": 11857,
+    "name": "אפונה וגזר שימורים - פריניר",
+    "unitText": "330 גרם",
+    "description": "330 גרם לאחר סינון",
+    "price": 4.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 11857
+  },
+  {
+    "id": 877,
+    "name": "טונה במים רביעיה - קייטי",
     "unitText": "",
     "description": "",
-    "price": 5.2,
-    "category": "מוצרי יסוד",
+    "price": 12.8,
+    "category": "קטניות ושימורים",
     "subCategory": "",
-    "itemSalesId": 92
+    "itemSalesId": 877
   },
   {
-    "id": 2150,
-    "name": "טחינה משומשום מלא - אחווה",
+    "id": 1502,
+    "name": "ממרח טונה - רביעייה (צהוב)",
+    "unitText": "158 גר'",
+    "description": "158 גר' ליחידה",
+    "price": 17.8,
+    "category": "קטניות ושימורים",
+    "subCategory": "",
+    "itemSalesId": 1502
+  },
+  {
+    "id": 10283,
+    "name": "מחיות תפוח בננה לפעוטות בפאווצ' פריפוש - קייטי",
+    "unitText": "4*100 גרם",
+    "description": "4*100 גרם מקור הסוכרים בפרי עצמו",
+    "price": 8.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 10283
+  },
+  {
+    "id": 96,
+    "name": "שמן זית למאור {מ.מ}",
+    "unitText": "1 ליטר",
+    "description": "1 ליטר, תוצרת ספרד,",
+    "price": 10,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 96
+  },
+  {
+    "id": 98,
+    "name": "שמן זית כתית מעולה - טעמן {מ.מ.}",
+    "unitText": "750 מ\"ל",
+    "description": "750 מ\"ל, בכבישה קרה, בקבוק זכוכית, תוצרת ספרד",
+    "price": 19.7,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 98
+  },
+  {
+    "id": 99,
+    "name": "שמן קנולה",
+    "unitText": "1 ליטר",
+    "description": "1 ליטר",
+    "price": 6.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 99
+  },
+  {
+    "id": 73,
+    "name": "טחינה 0.5 קילו - אחווה",
     "unitText": "",
-    "description": "סידן בכמות פי 5!",
-    "price": 8.8,
+    "description": "מיוצר ע\"י אחווה, יתכן ויגיע ממותג אחווה או טורקיז",
+    "price": 8.3,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 2150
+    "itemSalesId": 73
   },
   {
-    "id": 7734,
-    "name": "שקית רוטב פטריות אסם  {מ. לאחר הפסח}",
-    "unitText": "30 גרם",
-    "description": "מיוצר לאחר הפסח, 30 גרם",
-    "price": 3.4,
+    "id": 343,
+    "name": "קטשופ אסם",
+    "unitText": "750 מ\"ל",
+    "description": "750 מ\"ל",
+    "price": 10.5,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 7734
+    "itemSalesId": 343
   },
   {
-    "id": 8008,
-    "name": "קרוטונים מתובלים למרק ולסלט - אסם {מ. לאחר הפסח}",
-    "unitText": "400 גרם",
-    "description": "מיוצר לאחר הפסח, 400 גרם",
-    "price": 16.8,
+    "id": 821,
+    "name": "שקדי מרק",
+    "unitText": "400 גר'",
+    "description": "מיוצר ע\"י מנה, 400 גר'",
+    "price": 6.6,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 8008
+    "itemSalesId": 821
   },
   {
-    "id": 10699,
-    "name": "ממרח (קרם) נוגט - הטיב",
-    "unitText": "350 גרם",
-    "description": "ממרח אגוזי לוז, מכיל 48% אגוזי לוז, 350 גרם",
-    "price": 19.8,
+    "id": 93,
+    "name": "אבקת פלאפל {מ.מ}",
+    "unitText": "",
+    "description": "",
+    "price": 6.8,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 10699
+    "itemSalesId": 93
   },
   {
-    "id": 440,
-    "name": "ריבת חלב (מחלב אמיתי) צנצנת זכוכית {מ.מ.}",
-    "unitText": "340 גר'",
-    "description": "340 גר'",
+    "id": 10648,
+    "name": "דבש בבקבוק לחיץ - אריזת ענק",
+    "unitText": "1.25 ק\"ג",
+    "description": "1.25 ק\"ג",
+    "price": 39.7,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 10648
+  },
+  {
+    "id": 294,
+    "name": "פודינג וניל 800 גרם - מיה {מ.מ]",
+    "unitText": "",
+    "description": "",
     "price": 9.9,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 440
+    "itemSalesId": 294
   },
   {
-    "id": 241,
-    "name": "תה נמס אנגלי",
-    "unitText": "20 גרם",
-    "description": "בצנצנת זכוכית 20 גרם, מתאים להכנת כ 350 כוסות תה",
-    "price": 14.7,
+    "id": 556,
+    "name": "אבקה להכנת ג'לי תות - מיה",
+    "unitText": "80 גר",
+    "description": "80 גר",
+    "price": 2.9,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 241
+    "itemSalesId": 556
   },
   {
-    "id": 9345,
-    "name": "תה ירוק עם נענע - עדנים",
-    "unitText": "",
-    "description": "25 מעטפות שקיקי תה ירוק עם נענע ותמצית טעם וריח טבעית",
-    "price": 9.7,
+    "id": 102,
+    "name": "שמרים יבשי-ם - פאקא",
+    "unitText": "500 גרם",
+    "description": "500 גרם",
+    "price": 11,
     "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 9345
+    "itemSalesId": 102
   },
   {
-    "id": 1341,
-    "name": "גרעיני חמניות- הטיב",
-    "unitText": "200 גרם",
-    "description": "ממולחים וקלויים, 200 גרם",
-    "price": 4.7,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 1341
-  },
-  {
-    "id": 9917,
-    "name": "סוכריות לקישוט בצנצנת",
-    "unitText": "190 גרם",
-    "description": "190 גרם",
-    "price": 5.5,
-    "category": "מוצרי יסוד",
-    "subCategory": "",
-    "itemSalesId": 9917
-  },
-  {
-    "id": 10391,
-    "name": "גליליות וופל קצרות למילוי בבליסטר {15 יח} - גלילית",
-    "unitText": "150 גרם",
-    "description": "150 גרם",
-    "price": 9.8,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 10391
-  },
-  {
-    "id": 11848,
-    "name": "מארז חטיף דגנים שוגי (בטעם שוקולד) - תלמה",
-    "unitText": "6 יח'",
-    "description": "חלבי, חטיף פתיתי תירס קלויים בטעם שוקולד, 6 יח' * 26 גר'",
-    "price": 10.8,
-    "category": "מוצרי חלב",
-    "subCategory": "",
-    "itemSalesId": 11848
-  },
-  {
-    "id": 11859,
-    "name": "דליפקאן - תלמה {מ. לאחר הפסח}",
-    "unitText": "400 גרם",
-    "description": "מיוצר לאחר הפסח, 400 גרם",
-    "price": 16.8,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 11859
-  },
-  {
-    "id": 715,
-    "name": "קורנפלקס 750 גרם  - קייטי",
+    "id": 656,
+    "name": "אבקת סוכר {מ.מ.}",
     "unitText": "",
     "description": "",
-    "price": 11.5,
-    "category": "דגנים וממתקים ",
+    "price": 3.9,
+    "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 715
+    "itemSalesId": 656
   },
   {
-    "id": 11856,
-    "name": "דגני בוקר קראנצי' נוגט בקופסא",
-    "unitText": "600 גרם",
-    "description": "600 גרם (דמוי כריות)",
-    "price": 14.8,
-    "category": "דגנים וממתקים ",
+    "id": 86,
+    "name": "סוכר חום דמררה",
+    "unitText": "1 קילו",
+    "description": "1 קילו",
+    "price": 5.8,
+    "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 11856
+    "itemSalesId": 86
   },
   {
-    "id": 476,
-    "name": "דגן תפוח - חטיף תירס מתוק (תכלת)",
-    "unitText": "150 גרם",
-    "description": "150 גרם",
+    "id": 1316,
+    "name": "ערמונים קלופים וקלוים",
+    "unitText": "100 גרם",
+    "description": "100 גרם",
+    "price": 2.7,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 1316
+  },
+  {
+    "id": 89,
+    "name": "גרעיני חמניות קלוף",
+    "unitText": "",
+    "description": "",
     "price": 6.8,
-    "category": "דגנים וממתקים ",
+    "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 476
+    "itemSalesId": 89
   },
   {
-    "id": 603,
-    "name": "מארז פרכיות אורז מיני (8 יח' במארז)",
-    "unitText": "40 גרם",
-    "description": "8 חבילות פרכיות אורז מיני כ\"א 40 גרם",
-    "price": 16.5,
-    "category": "דגנים וממתקים ",
+    "id": 70,
+    "name": "חלווה - בלוק",
+    "unitText": "",
+    "description": "",
+    "price": 9.4,
+    "category": "מוצרי יסוד",
     "subCategory": "",
-    "itemSalesId": 603
+    "itemSalesId": 70
   },
   {
-    "id": 6733,
-    "name": "עוגיות סנדוויץ קקאו  בקרטון - olala",
-    "unitText": "900 גרם",
-    "description": "6 אריזות, 900 גרם, דמוי אוראו",
-    "price": 16.8,
-    "category": "דגנים וממתקים ",
+    "id": 83,
+    "name": "שוקולד-ציפס מיקס",
+    "unitText": "",
+    "description": "שחור לבן",
+    "price": 6.8,
+    "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 6733
+    "itemSalesId": 83
   },
   {
-    "id": 662,
-    "name": "עוגיות לקפה - ברמן {מ.מ.}",
+    "id": 10377,
+    "name": "קרמבו מוקה יאמבו - מארז 8 יח'",
     "unitText": "200 גרם",
     "description": "200 גרם",
-    "price": 3.9,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 662
-  },
-  {
-    "id": 1533,
-    "name": "עוגיות ש. ציפס - גלילית",
-    "unitText": "180 גרם",
-    "description": "180 גרם בשקית",
-    "price": 4,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 1533
-  },
-  {
-    "id": 838,
-    "name": "נשנושים בטעם שמנת בצל - בייגל בייגל {מ. לאחר הפסח}",
-    "unitText": "260 גרם",
-    "description": "מיוצר לאחר הפסח, 260 גרם",
-    "price": 9.8,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 838
-  },
-  {
-    "id": 7764,
-    "name": "לחמית חיטה מלאה ושיפון - אסם",
-    "unitText": "230 גרם",
-    "description": "230 גרם",
-    "price": 6.8,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 7764
-  },
-  {
-    "id": 9648,
-    "name": "בייגלה אצבעות עם שומשום - מאיר בייגל",
-    "unitText": "300 גרם",
-    "description": "300 גרם",
-    "price": 6.5,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 9648
-  },
-  {
-    "id": 2125,
-    "name": "וופל קראנצ' בטעם שוקולד",
-    "unitText": "200 גרם",
-    "description": "200 גרם,",
-    "price": 2.6,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 2125
-  },
-  {
-    "id": 8391,
-    "name": "קוביס - קוביות אפיפית מצופות שוקולד - כרמית",
-    "unitText": "200 גר'",
-    "description": "קוביות אפיפית במילוי קרם בטעם שוקולד מצופה שוקולד חלב, 200 גר', חלבי, ב. שהכל, מתאים גם ל ללא גלוטן",
-    "price": 9.5,
+    "price": 8.9,
     "category": "מוצרי חלב",
     "subCategory": "",
-    "itemSalesId": 8391
+    "itemSalesId": 10377
   },
   {
-    "id": 10716,
-    "name": "שישיית חטיפי צ'יפס קלאסי טבעי - קייטי {מ.מ.}",
-    "unitText": "210 גרם",
-    "description": "35*6, סה\"כ 210 גרם",
-    "price": 9.9,
+    "id": 10649,
+    "name": "צ'יפס בטטה - מיה",
+    "unitText": "120 גרם",
+    "description": "120 גרם, חטיף בטטה במליחות מעודנת",
+    "price": 11.5,
+    "category": "מוצרי יסוד",
+    "subCategory": "",
+    "itemSalesId": 10649
+  },
+  {
+    "id": 8395,
+    "name": "כריות נוגט - תלמה {מ.מ}",
+    "unitText": "686 גרם",
+    "description": "686 גרם",
+    "price": 22.8,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 10716
+    "itemSalesId": 8395
   },
   {
-    "id": 7582,
-    "name": "במבה נוגט אריזה גדולה -אסם {מ.מ.}",
-    "unitText": "150 גר",
-    "description": "150 גר",
-    "price": 6.9,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 7582
-  },
-  {
-    "id": 12167,
-    "name": "חטיף דובונים לבבות {טבעי} - אסם",
-    "unitText": "40 גרם",
-    "description": "40 גרם, חטיף תפו\"א בטעם טבעי",
-    "price": 3.5,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 12167
-  },
-  {
-    "id": 7820,
-    "name": "חטיף פופקו - אסם",
-    "unitText": "80 גר",
-    "description": "80 גר, פופקורן בטעם חמאה ודבש",
-    "price": 3.5,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 7820
-  },
-  {
-    "id": 12278,
-    "name": "חטיף תירס קריספו - קייטי",
-    "unitText": "50 גר'",
-    "description": "50 גר', בטעם טבעי",
-    "price": 2.4,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 12278
-  },
-  {
-    "id": 1650,
-    "name": "חטיף מקלוני תירס (20 יחידות) ",
-    "unitText": "17 גר",
-    "description": "20 חבילות של 17 גר",
-    "price": 8.8,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 1650
-  },
-  {
-    "id": 511,
-    "name": "מאגדת במבה תות -  תותי (12*10)",
+    "id": 422,
+    "name": "קורנפלקס תלמה 850 גר' {מ. לאחר הפסח}",
     "unitText": "",
-    "description": "",
-    "price": 6.8,
+    "description": "מיוצר לאחר הפסח",
+    "price": 18.5,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 511
+    "itemSalesId": 422
   },
   {
-    "id": 289,
-    "name": "מאגדת בוטנים אמריקאים",
-    "unitText": "50 גרם",
-    "description": "קבוקים, 8 שקיות של 50 גרם",
-    "price": 12.8,
+    "id": 11258,
+    "name": "קורנפלקס דבש - קייטי",
+    "unitText": "500 גרם",
+    "description": "500 גרם, {לאלרגנים - מכיל גם קמח בוטנים, לשאר האלרגנים יש לעיין למטה במידע מוצר}",
+    "price": 10.8,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 289
+    "itemSalesId": 11258
   },
   {
-    "id": 14124,
-    "name": "קרטונית מרשמלו טוויסט (30 יח)",
-    "unitText": "30 יח",
-    "description": "כ 30 יחידות מרשמלו טוויסט ארוך, כ 11 גרם ליח, ארוז אחד אחד, בטעמי פירות, -",
+    "id": 449,
+    "name": "דגני בוקר פירות xl אריזה מוגדלת",
+    "unitText": "600 גרם",
+    "description": "600 גרם",
+    "price": 13.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 449
+  },
+  {
+    "id": 10905,
+    "name": "גרנולה עם אגוזים וחמוציות - בצנצנת",
+    "unitText": "450 גרם",
+    "description": "450 גרם, במתיקות מעודנת, ללא תוספת סוכר",
+    "price": 16.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 10905
+  },
+  {
+    "id": 474,
+    "name": "פרכיות אורז - אריזת ג'מבו",
+    "unitText": "800 גרם",
+    "description": "800 גרם",
+    "price": 25.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 474
+  },
+  {
+    "id": 7598,
+    "name": "קרטון עוגיות סנדוויץ - הדר {ט. לאחר הפסח} {מ.מ.}",
+    "unitText": "900 גר'",
+    "description": "שוקו שוקו או שוקו וניל, 6 אריזות פנימיות, סה\"כ 900 גר'",
     "price": 15.8,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 14124
+    "itemSalesId": 7598
   },
   {
-    "id": 1323,
-    "name": "קרטונית סוכריות טופי בצורת סביבון - פשקעס {מ.מ.}",
-    "unitText": "16 גר'",
-    "description": "24 אריזות 16 גר' ליחידה, טעמי פירות",
-    "price": 14.8,
+    "id": 549,
+    "name": "עוגיות ממולאות תות ברמן {מ.מ}",
+    "unitText": "200 גרם",
+    "description": "200 גרם",
+    "price": 3.9,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 1323
+    "itemSalesId": 549
   },
   {
-    "id": 6896,
-    "name": "קרטונית [מרובעת בצבע כחול] סוכריות על מקל סביבון - פשקעס {מ.מ.}",
-    "unitText": "24 יח",
-    "description": "24 יח, 13 גר', ארוזות אחת אחת, סוכריה על מקל בצורת סביבון, מסתובב באמת",
-    "price": 14.8,
+    "id": 6544,
+    "name": "גריסיני - מאיר בייגל",
+    "unitText": "200 גרם",
+    "description": "200 גרם,",
+    "price": 6.5,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 6896
+    "itemSalesId": 6544
   },
   {
-    "id": 5201,
-    "name": "מארז סוכריות סודה פאזל סביבון - פשקעס  {מ.מ.}",
-    "unitText": "110 גרם",
-    "description": "10 אריזות סוכריות סודה פאזל סביבון סה\"כ 110 גרם",
-    "price": 7.2,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 5201
-  },
-  {
-    "id": 10775,
-    "name": "מארז 10 שטיחי קראנצ'י גומי - להיט",
-    "unitText": "10 יח",
-    "description": "10 יח ארוזות אחת אחת, ליבת גומי מצופה סוכריות בטעמי פירות, סה\"כ 100 גר",
-    "price": 7.5,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 10775
-  },
-  {
-    "id": 12215,
-    "name": "מאגדת סוכריות גומי חמוצות - ZIZI",
-    "unitText": "100 גרם",
-    "description": "10 שקיות, סה\"כ 100 גרם, טעמי פירות",
-    "price": 5.8,
-    "category": "דגנים וממתקים ",
-    "subCategory": "",
-    "itemSalesId": 12215
-  },
-  {
-    "id": 7909,
-    "name": "מאגדת כפתורים בטעם שוקולד - מיה",
-    "unitText": "25 גרם",
-    "description": "8 אריזות * 25 גרם",
-    "price": 7.8,
-    "category": "מוצרי חלב",
-    "subCategory": "",
-    "itemSalesId": 7909
-  },
-  {
-    "id": 8798,
-    "name": "סוכריות ג'לי בטעמי פירות - קייטי",
-    "unitText": "",
-    "description": "ארוז אחד אחד, שני צבעים בכל סוכרייה",
+    "id": 1159,
+    "name": "חטיף אפוי מלוח דג דג - בייגל בייגל {נ. לאחר הפסח}",
+    "unitText": "250 גרם",
+    "description": "נאפה לאחר הפסח יתכן והקמח או חלק מרכיבי החמץ מלפני הפסח, 250 גרם",
     "price": 9.8,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 8798
+    "itemSalesId": 1159
   },
   {
-    "id": 221,
-    "name": "מארז דרג'ה (עדשים צבעוניות)",
-    "unitText": "450 גרם",
-    "description": "450 גרם",
-    "price": 12.8,
-    "category": "מוצרי חלב",
-    "subCategory": "",
-    "itemSalesId": 221
-  },
-  {
-    "id": 9090,
-    "name": "טופי מרובע חלבי {אריזה מוגדלת} - קייטי {מ.מ.}",
+    "id": 12169,
+    "name": "בייגלה רשת עם מלח - מאנצ'י",
     "unitText": "300 גרם",
     "description": "300 גרם",
-    "price": 7.9,
+    "price": 3.9,
     "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 9090
+    "itemSalesId": 12169
   },
   {
-    "id": 7822,
-    "name": "חיתולים מידה 5 - בייביסיטר",
-    "unitText": "34 יח'",
-    "description": "34 יח' (לתשומת לבכם ישנם אריזות של המותג הזה עם כמות נמוכה יותר של חיתולים)",
-    "price": 24.8,
-    "category": "טיפוח ונקיון",
+    "id": 1766,
+    "name": "בייגלה שטוחלה - מאיר בייגל",
+    "unitText": "330 גרם",
+    "description": "נטחן ונאפה לאחר הפסח, 330 גרם,",
+    "price": 6.6,
+    "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 7822
+    "itemSalesId": 1766
   },
   {
-    "id": 532,
-    "name": "טיטולים פרימיום מידה 4+  חוגלה {מ.מ.}",
-    "unitText": "34 יח'",
-    "description": "34 יח'",
-    "price": 24.8,
-    "category": "טיפוח ונקיון",
-    "subCategory": "",
-    "itemSalesId": 532
-  },
-  {
-    "id": 9771,
-    "name": "מרכך לשיער - כיף {מ.מ.}",
-    "unitText": "700 מ\"ל",
-    "description": "700 מ\"ל",
-    "price": 7.8,
-    "category": "טיפוח ונקיון",
-    "subCategory": "",
-    "itemSalesId": 9771
-  },
-  {
-    "id": 10445,
-    "name": "ג'ל כביסה מרוכז מקסימה - סנו",
-    "unitText": "3 ליטר",
-    "description": "3 ליטר, טכנולוגיית מיקס אנד ווש, המונעת מעבר צבעים, לכבס בלי להפריד כביסה צבעונית",
-    "price": 25.7,
-    "category": "טיפוח ונקיון",
-    "subCategory": "",
-    "itemSalesId": 10445
-  },
-  {
-    "id": 7740,
-    "name": "מרכך כביסה אקסטרא - בדין",
-    "unitText": "960 מ\"ל",
-    "description": "960 מ\"ל, יתכן ויגיע בריחות שונים",
-    "price": 12.9,
-    "category": "טיפוח ונקיון",
-    "subCategory": "",
-    "itemSalesId": 7740
-  },
-  {
-    "id": 12127,
-    "name": "דאודורנט רול און - דאב",
-    "unitText": "50 מ\"ל",
-    "description": "50 מ\"ל, בניחוח מלפפון ופרש טי",
-    "price": 8,
-    "category": "טיפוח ונקיון",
-    "subCategory": "",
-    "itemSalesId": 12127
-  },
-  {
-    "id": 9472,
-    "name": "אינסטלטור - פותח סתימות בצנרת ניקוז ובכיורים סנו",
+    "id": 528,
+    "name": "[שימו לב זה בשקית]קרקר - בשקית",
     "unitText": "200 גרם",
     "description": "200 גרם",
-    "price": 10.8,
-    "category": "טיפוח ונקיון",
+    "price": 3.9,
+    "category": "דגנים וממתקים ",
     "subCategory": "",
-    "itemSalesId": 9472
+    "itemSalesId": 528
   },
   {
-    "id": 6404,
-    "name": "נוזל לניקוי והברקת כלי כסף - גודרדס",
-    "unitText": "125 מ\"ל",
-    "description": "125 מ\"ל",
+    "id": 1345,
+    "name": "וופלים",
+    "unitText": "200 גר'",
+    "description": "200 גר', מנעמים/עלמה,",
+    "price": 2.6,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1345
+  },
+  {
+    "id": 1416,
+    "name": "וופלים מצופים 40 יח",
+    "unitText": "",
+    "description": "מנעמים,",
+    "price": 15,
+    "category": "מוצרי חלב",
+    "subCategory": "",
+    "itemSalesId": 1416
+  },
+  {
+    "id": 1035,
+    "name": "גליליות ממולאות קרם אגוזים - עלמה",
+    "unitText": "100 גרם",
+    "description": "100 גרם",
+    "price": 2.6,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1035
+  },
+  {
+    "id": 10776,
+    "name": "שישיית חטיפי צ'יפס קראנץ' - קייטי {מ.מ.}",
+    "unitText": "210 גרם",
+    "description": "35*6 סה\"כ 210 גרם",
+    "price": 12,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 10776
+  },
+  {
+    "id": 427,
+    "name": "במבה אסם מאגדת (ד)",
+    "unitText": "60 גרם",
+    "description": "60 גרם *4",
+    "price": 11.6,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 427
+  },
+  {
+    "id": 8568,
+    "name": "ביסלי פארטי מיקס אריזה גדולה - אסם",
+    "unitText": "150 גרם",
+    "description": "150 גרם, ביסלי, אפרופו ופיצוחים מתובלים",
+    "price": 6.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 8568
+  },
+  {
+    "id": 1638,
+    "name": "חטיף תן צ'אפ מיה",
+    "unitText": "",
+    "description": "יתכן ויגיע בצורות או בטעמים שונים",
+    "price": 2.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1638
+  },
+  {
+    "id": 7824,
+    "name": "חטיף קראנצ'וס (דמוי ביסלי)",
+    "unitText": "55 גרם",
+    "description": "55 גרם, יתכן ויגיע בטעמים שונים, מיוצר ע\"י חברת מנה",
+    "price": 1.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 7824
+  },
+  {
+    "id": 559,
+    "name": "מאגדת חטיף דמוי ביסלי {באגסי}",
+    "unitText": "",
+    "description": "20 שקיות, יתכן ויגיע טעמים שונים",
+    "price": 8.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 559
+  },
+  {
+    "id": 7897,
+    "name": "מארז סוכריות ג'לי בצורות חנוכה - מיה",
+    "unitText": "25 גרם",
+    "description": "סוכריות ג'לי 8 חבילות של 25 גרם, סביבון מנגן מתנה במארז",
+    "price": 6.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 7897
+  },
+  {
+    "id": 10148,
+    "name": "מארז לקקנים בצורת דונאטס",
+    "unitText": "10 ל",
+    "description": "10 לקקנים בצורת סופגניית דונאטס, ארוזים אחד אחד, בטעמי פירות, סה\"כ 100 גרם",
+    "price": 5.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 10148
+  },
+  {
+    "id": 8150,
+    "name": "מארז {פלסטיק שקוף עגול} לקקן צבעוני בצורת סביבון - פשקעס {מ.מ}",
+    "unitText": "24 ל",
+    "description": "24 לקקנים צבעוניים גדולים בצורת סביבון, 17 גרם ליח",
+    "price": 15.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 8150
+  },
+  {
+    "id": 8980,
+    "name": "מארז [בצבע כחול צהוב] צמידי סוכריות סודה שעון סביבון - פשקעס {מ.מ}",
+    "unitText": "",
+    "description": "12 צמידי שעון סביבון ארוזים אחד אחד",
+    "price": 6.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 8980
+  },
+  {
+    "id": 1032,
+    "name": "מארז סוכריות דחוסות בטעמי פירות - פשקעס {מ.מ}",
+    "unitText": "12 גר",
+    "description": "18 אריזות של 12 גר",
+    "price": 7.8,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 1032
+  },
+  {
+    "id": 9091,
+    "name": "טופי צבעוני {אריזה מוגדלת} - קייטי",
+    "unitText": "400 גרם",
+    "description": "400 גרם",
+    "price": 9.5,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 9091
+  },
+  {
+    "id": 669,
+    "name": "טרופיות עם פקק 20 יח'",
+    "unitText": "20 יח",
+    "description": "20 יחידות",
+    "price": 14.9,
+    "category": "דגנים וממתקים ",
+    "subCategory": "",
+    "itemSalesId": 669
+  },
+  {
+    "id": 7802,
+    "name": "חיתולים מידה 4+  בייביסיטר {מ.מ.}",
+    "unitText": "40 יח'",
+    "description": "40 יח', (לתשומת לבכם ישנם אריזות של המותג הזה עם כמות נמוכה יותר של חיתולים)",
+    "price": 24.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 7802
+  },
+  {
+    "id": 531,
+    "name": "טיטולים פרימיום מידה 5 - חוגלה {מ.מ.}",
+    "unitText": "30 יח'",
+    "description": "30 יח'",
+    "price": 24.8,
+    "category": "טיפוח ונקיון",
+    "subCategory": "",
+    "itemSalesId": 531
+  },
+  {
+    "id": 8225,
+    "name": "מרכך כביסה מרוכז סנו מקסימה (מ.מ.)",
+    "unitText": "1 ליטר",
+    "description": "1 ליטר, עד 40 כביסות",
     "price": 12.9,
     "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 6404
+    "itemSalesId": 8225
   },
   {
-    "id": 9464,
-    "name": "זוג כפפות אלוורה רב שימושיות M - סנו",
-    "unitText": "",
-    "description": "בתוספת אלוורה טבעית, רב שימושיות ומרופדות",
-    "price": 6.2,
+    "id": 10537,
+    "name": "קרם לחות הקסם לעיצוב תלתלים מושלמים - נטורל",
+    "unitText": "350 מ\"ל",
+    "description": "350 מ\"ל, ללא שטיפה, לטיפוח שיער מקורזל ויבש, 92% רכיבים טבעיים",
+    "price": 15.2,
     "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 9464
+    "itemSalesId": 10537
   },
   {
-    "id": 1481,
-    "name": "קערות עגולות שקופות",
-    "unitText": "10 יח",
-    "description": "10 יח, להגשה, בגודל בינוני (בקוטר 8 אינ')",
-    "price": 4.7,
-    "category": "לחד פעמי אלגנט",
+    "id": 452,
+    "name": "תחליב רחצה - פינוק {מ.מ.}",
+    "unitText": "700 מ\"ל",
+    "description": "700 מ\"ל, יתכן ויגיע לבנדר או קלאסי",
+    "price": 8.5,
+    "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 1481
+    "itemSalesId": 452
   },
   {
-    "id": 1049,
-    "name": "מפיות אלגנט 20 יח דוגמאות שונות",
-    "unitText": "",
-    "description": "",
-    "price": 2.7,
-    "category": "לחד פעמי אלגנט",
+    "id": 952,
+    "name": "שמפו פינוק - כחול {מ.מ}",
+    "unitText": "700 מ\"ל",
+    "description": "700 מ\"ל",
+    "price": 8.5,
+    "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 1049
+    "itemSalesId": 952
   },
   {
-    "id": 14125,
-    "name": "סט 16 צלחות ח\"פ קשיחות - שקוף",
-    "unitText": "",
-    "description": "8 צלחות ענקיות ו8 צלחות קטנות, לשולחן השבת",
-    "price": 7.2,
-    "category": "לחד פעמי אלגנט",
+    "id": 10845,
+    "name": "ספריי לניקוי והברקת נירוסטה - סנו",
+    "unitText": "500 מ\"ל",
+    "description": "500 מ\"ל",
+    "price": 16.8,
+    "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 14125
+    "itemSalesId": 10845
   },
   {
-    "id": 317,
-    "name": "מזלג שקוף 50 יח'",
-    "unitText": "",
-    "description": "",
-    "price": 2.5,
-    "category": "לחד פעמי אלגנט",
+    "id": 2482,
+    "name": "כפפות נטריל L {קרטונית שחור/כחול}",
+    "unitText": "100 יח",
+    "description": "100 יח, ללא אבקה",
+    "price": 12.5,
+    "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 317
+    "itemSalesId": 2482
   },
   {
-    "id": 319,
-    "name": "סכין שקופה 50 יח'",
-    "unitText": "",
-    "description": "",
-    "price": 2.5,
-    "category": "לחד פעמי אלגנט",
-    "subCategory": "",
-    "itemSalesId": 319
-  },
-  {
-    "id": 320,
-    "name": "כף שקופה 50 יח'",
-    "unitText": "",
-    "description": "",
-    "price": 2.5,
-    "category": "לחד פעמי אלגנט",
-    "subCategory": "",
-    "itemSalesId": 320
-  },
-  {
-    "id": 318,
-    "name": "כפית שקופה 50 יח'",
-    "unitText": "",
-    "description": "",
-    "price": 1.8,
-    "category": "לחד פעמי אלגנט",
-    "subCategory": "",
-    "itemSalesId": 318
-  },
-  {
-    "id": 8246,
-    "name": "כוסות לשתייה קרה 100 יח",
-    "unitText": "1.6 גרם",
-    "description": "כ 1.6 גרם לכוס",
-    "price": 2.8,
-    "category": "לחד פעמי אלגנט",
-    "subCategory": "",
-    "itemSalesId": 8246
-  },
-  {
-    "id": 5752,
-    "name": "כוסות (10 OZ) לשתיה חמה גדולות ",
-    "unitText": "300 מ\"ל",
-    "description": "300 מ\"ל, 50 יח'",
+    "id": 8315,
+    "name": "מכסה אלומיניום לתבניות (510-520) - בראבו",
+    "unitText": "8 יח",
+    "description": "8 יח, מתאים לתבניות הבייסיק של בראבו",
     "price": 5.8,
     "category": "לחד פעמי אלגנט",
     "subCategory": "",
-    "itemSalesId": 5752
+    "itemSalesId": 8315
   },
   {
-    "id": 313,
-    "name": "מיכל מלבני 2 קילו- שביעייה (מיכלי אחסון)",
+    "id": 875,
+    "name": "שקיות הקפאה 250 יח - קרטונית",
     "unitText": "",
-    "description": "מיכל פלסטיק לאיחסון סלטים ואוכל",
-    "price": 9.5,
+    "description": "שקיות בגודל 25X35 ס\"מ,",
+    "price": 6.5,
+    "category": "ניילון",
+    "subCategory": "",
+    "itemSalesId": 875
+  },
+  {
+    "id": 10288,
+    "name": "שקיות אוכל 300 יח - קרטונית",
+    "unitText": "",
+    "description": "",
+    "price": 4,
+    "category": "ניילון",
+    "subCategory": "",
+    "itemSalesId": 10288
+  },
+  {
+    "id": 10038,
+    "name": "מנג'טים מודפסים בקופסא - גודל 4",
+    "unitText": "200 יח'",
+    "description": "200 יח'",
+    "price": 4.9,
     "category": "לחד פעמי אלגנט",
     "subCategory": "",
-    "itemSalesId": 313
+    "itemSalesId": 10038
   },
   {
-    "id": 6385,
-    "name": "שישיית נייר סופג גלילים כפולים - סנו סושי",
-    "unitText": "12 ג",
-    "description": "על מנת לחסוך במקום, בכל גליל כמות כפולה, סך הכל שווה ל 12 גלילי נייר סופג רגילים של סנו",
-    "price": 19.4,
+    "id": 117,
+    "name": "כוס קינוחים מרובעת - בראבו",
+    "unitText": "24 יח",
+    "description": "58 סמ\"ק 24 יח",
+    "price": 4.5,
+    "category": "לחד פעמי אלגנט",
+    "subCategory": "",
+    "itemSalesId": 117
+  },
+  {
+    "id": 190,
+    "name": "כוסות יהלום שקופות 50 יח",
+    "unitText": "",
+    "description": "",
+    "price": 4.8,
+    "category": "לחד פעמי אלגנט",
+    "subCategory": "",
+    "itemSalesId": 190
+  },
+  {
+    "id": 227,
+    "name": "כוסות (8B) נייר איכותיות 50 יח'",
+    "unitText": "",
+    "description": "",
+    "price": 2.9,
+    "category": "לחד פעמי אלגנט",
+    "subCategory": "",
+    "itemSalesId": 227
+  },
+  {
+    "id": 308,
+    "name": "מפות 45 מטר עבה מאוד",
+    "unitText": "",
+    "description": "",
+    "price": 22.8,
+    "category": "ניילון",
+    "subCategory": "",
+    "itemSalesId": 308
+  },
+  {
+    "id": 248,
+    "name": "מפות ניילון לשולחן {גודל שמינייה} אריזת מוגדלת 14 גלילים - קייטי",
+    "unitText": "",
+    "description": "עבות",
+    "price": 7.8,
+    "category": "ניילון",
+    "subCategory": "",
+    "itemSalesId": 248
+  },
+  {
+    "id": 125,
+    "name": "שקיות אשפה 75/90 (אפור/שחור)",
+    "unitText": "25 יח'",
+    "description": "25 יח'",
+    "price": 8.8,
+    "category": "ניילון",
+    "subCategory": "",
+    "itemSalesId": 125
+  },
+  {
+    "id": 309,
+    "name": "מארז 12 גביעי אחסון חצי ליטר באריזת חיסכון",
+    "unitText": "",
+    "description": "עבים והרמטים במיוחד",
+    "price": 7.8,
+    "category": "לחד פעמי אלגנט",
+    "subCategory": "",
+    "itemSalesId": 309
+  },
+  {
+    "id": 131,
+    "name": "מגבונים 72 יח - קייטי",
+    "unitText": "",
+    "description": "רכים, עבים וללא בושם",
+    "price": 2.9,
     "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 6385
+    "itemSalesId": 131
   },
   {
-    "id": 10817,
-    "name": "בידורית איכותית ועוצמתי 60W - GP",
+    "id": 569,
+    "name": "חמישיית טישו",
     "unitText": "",
-    "description": "בגודל 30*30 ס\"מ, גובה 38 ס\"מ , תאורת לד צבעונית, חיבורים לבלוטוס USB ואוקס, אפשרות לצימוד רמקול נוסף TWS, מצורף מיקרופון אלחוטי איכותי, אחרי",
-    "price": 228,
-    "category": "חנוכה חשמל וחורף",
+    "description": "נייר דו שכבתי רכות משי",
+    "price": 5.9,
+    "category": "טיפוח ונקיון",
     "subCategory": "",
-    "itemSalesId": 10817
+    "itemSalesId": 569
   },
   {
-    "id": 6616,
-    "name": "מקרן ביתי קומפקטי כשרות \"כהלכה\" {איסוף כמוצר בודד}",
+    "id": 1690,
+    "name": "אנחנו וצאצאינו - קובץ שמע {לקבלה במייל} - \"אנשי המהפיכה\" חנוכה תשפ\"ז (לא לאיסוף)",
     "unitText": "",
-    "description": "מיוחד! ניתן להפעלה גם ללא מחשב ע\"י usb, חיבור כניסה ל HD, הוראות הפעלה בעברית, רמקולים מובנים 4W, רזולוציה 720*1280, תמיכה ב1080P, בהירות 17",
-    "price": 188,
-    "category": "חנוכה חשמל וחורף",
+    "description": "הקובץ מכיל עשרות רצועות שמע, הכוללות: הצגות שמע מרתקות לנוער וסיפורים מותאמים לגיל הרך, תוכניות מרתקות עם קטעי הקלטה וסיפורים נדירים על גדול",
+    "price": 10,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 6616
+    "itemSalesId": 1690
   },
   {
-    "id": 2085,
-    "name": "נגן דיינומיט דור 2 {איסוף כמוצר בודד}",
+    "id": 10251,
+    "name": "טיולון בוגבו דגם בטרפליי - צבע חול מדבר",
+    "unitText": "",
+    "description": "שילדה בצבע שחור, גגון ובדים בצבע חול מדבר, שנה אחריות על ידי היבואן על פגמי ייצור לא כולל בדים ורצועות.",
+    "price": 1466,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 10251
+  },
+  {
+    "id": 14092,
+    "name": "סט 2 שולחנות סלון עגולים מעוצבים - Montana Wood",
+    "unitText": "",
+    "description": "פלטת שולחן עשויה עץ MDF בציפוי מלמין, בגוון טבעי, עם רגלי מתכת שחורות ויציבות, השולחנות בגדלים שונים ומשתלבים זה בזה לחיסכון במקום וליצירת מ",
+    "price": 249,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14092
+  },
+  {
+    "id": 10744,
+    "name": "רמקול בלוטוס JBL - דגם FLIP 7",
+    "unitText": "",
+    "description": "באורך 18 ס\"מ, 10-25W, בלוטוס בגרסה 5.4, עמידות למים ואבק בתקן IP68, טעינת טייפ סי, סוללה עד 14 שעות זמן נגינה, יתכן ויגיע בצבעים כחול/ שחור,",
+    "price": 296,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 10744
+  },
+  {
+    "id": 14086,
+    "name": "נגן סייקו פרו 2.0 - כשרות לכתחילה",
     "unitText": "16 ג'",
-    "description": "מבית סאמוויקס, צבעים: שחור/כסוף, גודל 3.5*9.5 ס\"מ, עם אוזניות, ללא רדיו, 16 ג'יגה זיכרון, עם חריץ הרחבה לעוד 64 גיגה, אפשרות להעתקת קבצים, כ",
+    "description": "גוף מתכתי בצבעי שחור / כסף, כפתורי מגע בגודל 1.8, ללא רדיו, 16 ג'יגה זיכרון וחריץ הרחבה לעוד 256 גיגה, רמקול מובנה, בלוטוס 5.3, העתקת והעברת",
+    "price": 144,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14086
+  },
+  {
+    "id": 5369,
+    "name": "שעון יד דיגיטאלי לילדים - שחור",
+    "unitText": "",
+    "description": "צבע שחור, עם לחצן אור",
+    "price": 23,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 5369
+  },
+  {
+    "id": 10870,
+    "name": "אזניות בלוטוס בקופסת טעינה ANKER -דגם R50i NC",
+    "unitText": "",
+    "description": "צבע שחור, חוויית סאונד מיוחדת ואקסטרה בס, עם טכנולוגיית ביטול רעשים אקטיבית, חיבור Bluetooth 5.3, עמידות במים IPX5, עד 30 שעות ניגון כולל קו",
+    "price": 89,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 10870
+  },
+  {
+    "id": 9203,
+    "name": "כונן קשיח חיצוני Elements Portable  2TB מבית WD",
+    "unitText": "3.2 G",
+    "description": "חיבור ה-USB-C, תמיכה בתקן USB 3.2 Gen 1",
+    "price": 459,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 9203
+  },
+  {
+    "id": 9748,
+    "name": "קרטונית 40 סוללות אלקליין - GP",
+    "unitText": "",
+    "description": "גודל רגיל AA",
+    "price": 39.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 9748
+  },
+  {
+    "id": 6924,
+    "name": "בית חנוכיה - ענק",
+    "unitText": "",
+    "description": "עם זכוכיות מחוזקות, מידות : גובה כ60 אורך 50 עומק 25 ס\"מ, הבית ניתן לפירוק והרכבה בקלות יחסית, לחיסכון ונוחות האחסון.",
+    "price": 98,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 6924
+  },
+  {
+    "id": 9184,
+    "name": "חנוכייה מוכספת גדולה",
+    "unitText": "",
+    "description": "גובה כולל השמש כ46 ס\"מ, רוחב כ 36 ס\"מ",
     "price": 119,
-    "category": "חנוכה חשמל וחורף",
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 2085
+    "itemSalesId": 9184
   },
   {
-    "id": 7398,
-    "name": "מדפסת מדבקות פרינטק - פלוס 4 סרטים",
+    "id": 5134,
+    "name": "תשיעיית כוסיות רחבות לחנוכיה+צינוריות+פתילות",
     "unitText": "",
-    "description": "תפריט ומקלדת בעברית ובאנגלית, ניתן להגדיר גופנים סמלים וגדלים, בערכה מצורף 3 סרטי מדבקה מותאם ברוחב 12 מ\"מ בצבע לבן, ועוד סרט בצבע צהוב, מתא",
-    "price": 198,
-    "category": "חנוכה חשמל וחורף",
+    "description": "מס 5, קוטר מרבי כ 4 ס\"מ,",
+    "price": 14.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 7398
+    "itemSalesId": 5134
   },
   {
-    "id": 6548,
-    "name": "מצלמה דיגיטלית - gripo xm 630 {איסוף כמוצר בודד}",
+    "id": 7931,
+    "name": "צינוריות גדולות + פתילות כותנה ארוכות",
     "unitText": "",
-    "description": "בגווני שחור או כסוף, עד 44mp, מסך גדול 2.8 אינצ', גוף מתכתי ואיכותי, הטענה ישירה עם כבל המתחבר למצלמה, תפריט מלא בעברית, עם אישור לכתחילה, ש",
-    "price": 188,
-    "category": "חנוכה חשמל וחורף",
+    "description": "גובה הצינוריות כ 6 ס\"מ מתאים לכוסיות מידה 14/15, מתאים גם לשימוש בשבתות השנה",
+    "price": 9.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 6548
+    "itemSalesId": 7931
   },
   {
-    "id": 9196,
-    "name": "מצלמת ילדים מדפיסה - {מ.מ.}",
-    "unitText": "3 ג",
-    "description": "מדפיסה בשחור לבן, כולל 3 גלילי נייר להדפסה תמונות, ואפשרות להוספת רקעים, אפשרות לצילום וידאו ומשחקי טטריס, יתכן ויגיע בצבע כחול או סגול, בכד",
-    "price": 48,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 9196
-  },
-  {
-    "id": 7405,
-    "name": "כרטיס זכרון מיקרו 64GB מקסוול {איסוף כמוצר בודד}",
-    "unitText": "",
-    "description": "כולל מתאם למצלמה",
-    "price": 49,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 7405
-  },
-  {
-    "id": 10359,
-    "name": "זוג מכשירי ווקי טוקי נטענים - וידיאו {מ.מ.}",
-    "unitText": "",
-    "description": "מדברים ורואים אחד את השני (מסך צבעוני בגודל 2.0 אינצ'), בטווח של עד כ 300 מטר (תלוי בתנאי השטח), צבע תכלת, 3 חודשי אחריות לא כולל שברים ונזק",
-    "price": 66,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 10359
-  },
-  {
-    "id": 10493,
-    "name": "שעון מעורר אנלוגי - מודה אני",
-    "unitText": "",
-    "description": "עם צילצול המעורר במנגינה ושיר מודה אני, תמונת רקע מותאמת לילדים, תאורה, ונודניק, דורש 2 סוללות AA גדולות לא כלול, מבית אלפא ביתא",
-    "price": 44,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 10493
-  },
-  {
-    "id": 11993,
-    "name": "שואב שוטף דרימי H60 GT",
-    "unitText": "880 מ\"ל",
-    "description": "מנקה משני צידי המברשת לפינות ופאנלים, מתאים ללכלוך רטוב ויבש, אבק, פסולת, שיער, נוזלים ועוד, ניקוי אוטומטי של המברשת, מתקפל לזווית של 180 מע",
-    "price": 739,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 11993
-  },
-  {
-    "id": 2357,
-    "name": "מכונת פופקורן שולחנית ביתית - miomio",
-    "unitText": "27*32 ג",
-    "description": "בעיצוב מכונה מקצועית, גודל 27*32 גובה 42 ס\"מ, כוללת תא שקוף מרובע סיר נירוסטה עם מנגנון ערבול וידית היפוך, תאורה פנימית ומגש פנימי נשלף לפופ",
-    "price": 156,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 2357
-  },
-  {
-    "id": 12862,
-    "name": "מפל שוקולד חשמלי 3 קומות - miomio",
-    "unitText": "900 גרם",
-    "description": "מפל שוקולד חשמלי לחימום ולהזרמה רציפה של שוקולד מומס, מתאים לטבילת פירות, מרשמלו ועוד, קוטר 15.5 ס\"מ, גובה 26 ס\"מ. מיועד לשימוש בכמות שוקולד",
-    "price": 55,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 12862
-  },
-  {
-    "id": 8030,
-    "name": "מכשיר אינהלציה קומפקטי - medic spa",
-    "unitText": "0.2 מ\"ל",
-    "description": "הספק גבוה לקיצור זמן הטיפול, כ 0.2 מ\"ל לדקה, קומפקטי ונוח, הפעלה בכפתור אחד",
-    "price": 98.5,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 8030
-  },
-  {
-    "id": 5132,
-    "name": "בית חנוכיה גדול עם ארובה",
-    "unitText": "",
-    "description": "עם זכוכיות מחוזקות, גודל הבית (לא כולל הארובה): גובה כ 24 ס\"מ, רוחב 38 ס\"מ, עומק 10 ס\"מ.",
-    "price": 36,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 5132
-  },
-  {
-    "id": 7929,
-    "name": "חנוכיית פס מוגבהת מוכספת ומעוטרת לכוסיות שמן",
-    "unitText": "",
-    "description": "אורך כ 28 ס\"מ גובה כולל השמש כ 10 ס\"מ",
-    "price": 38.5,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 7929
-  },
-  {
-    "id": 1520,
-    "name": "חנוכיית פס עם כוסיות פלסטיק + צינוריות + פתילות",
-    "unitText": "",
-    "description": "",
-    "price": 9.6,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 1520
-  },
-  {
-    "id": 5448,
-    "name": "חנוכייה גבוהה ממתכת לילדים",
-    "unitText": "",
-    "description": "גובה כ 19 ס\"מ, מתאים לנרות שעווה, יתכן ויגיע בדגמים שונים בצבעים כסף/זהב",
-    "price": 7.8,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 5448
-  },
-  {
-    "id": 1781,
-    "name": "חנוכיית פח מודפסת לילדים",
-    "unitText": "",
-    "description": "יתכן ויגיע דוגמאות שונות",
-    "price": 1.6,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 1781
-  },
-  {
-    "id": 1094,
-    "name": "ערכה מוכנה להדלקה עם שמן זית נוזלי",
+    "id": 14087,
+    "name": "ערכה מוכנה להדלקה עם שמן זית נוזלי - ראוי למאכל",
     "unitText": "",
     "description": "44 כוסיות פלסטיק מוכנות להדלקה, עם שמן זית נוזלי",
-    "price": 29.6,
-    "category": "חנוכה חשמל וחורף",
+    "price": 39,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1094
+    "itemSalesId": 14087
   },
   {
-    "id": 1519,
-    "name": "תשיעיית כוסיות לחנוכיה+צינוריות+פתילות",
+    "id": 14101,
+    "name": "נרות חנוכה גדולים - בצבעים זוהרים",
     "unitText": "",
-    "description": "9 כוסיות פלסטיק במארז, בגובה כ 4.5 ס\"מ",
-    "price": 5.9,
-    "category": "חנוכה חשמל וחורף",
+    "description": "אורך הנר כ 22 ס\"מ, לא מטפטף.",
+    "price": 10.9,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1519
+    "itemSalesId": 14101
   },
   {
-    "id": 7932,
-    "name": "מארז 6 כוסיות לנרות ללא רגל",
+    "id": 6381,
+    "name": "פתיל צף מוכן בקופסא - אריזה מוגדלת",
+    "unitText": "88 יח",
+    "description": "כ 88 יח, עגול, קוטר כ 2 ס\"מ",
+    "price": 5.4,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 6381
+  },
+  {
+    "id": 14105,
+    "name": "מגש אליפסה מוכסף ממתכת - לפתילות וגפרורים",
     "unitText": "",
-    "description": "מתאים להדלקת נרות חנוכה שבת וחג",
-    "price": 5.9,
-    "category": "חנוכה חשמל וחורף",
+    "description": "אורך המגש כ 13 ס\"מ",
+    "price": 12.4,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 7932
+    "itemSalesId": 14105
   },
   {
-    "id": 1518,
-    "name": "צינוריות  + פתילות",
+    "id": 14098,
+    "name": "מארז שלישיית סביבונית זוהרים",
     "unitText": "",
-    "description": "",
-    "price": 3.6,
-    "category": "חנוכה חשמל וחורף",
+    "description": "ערכת סביבונים צבעונית ומהנה עם מקלות זוהרים בחושך, מפעילים את המקלות, משלבים בסביבונים ונהנים ממופע אורות מרהיב בזמן הסיבוב. המקלות זוהרים ל",
+    "price": 16.9,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1518
+    "itemSalesId": 14098
   },
   {
-    "id": 1780,
-    "name": "נרות חנוכה דלוקס",
+    "id": 557,
+    "name": "שלישיית מכונית סביבון ג'יירו",
     "unitText": "",
-    "description": "לא מטפטף.",
-    "price": 2.9,
-    "category": "חנוכה חשמל וחורף",
+    "description": "יתכן ויגיע בצבעים שונים",
+    "price": 9.6,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1780
+    "itemSalesId": 557
   },
   {
-    "id": 1778,
-    "name": "מארז שמשים להדלקה 8 יח",
+    "id": 14094,
+    "name": "חנוכייה אלקטרונית לבנייה עצמית",
     "unitText": "",
-    "description": "24 ס\"מ",
-    "price": 6.8,
-    "category": "חנוכה חשמל וחורף",
+    "description": "הערכה כוללת חנוכייה מבריסטול לקיפול, 10 נורות לד, גליל סרט מוליך חשמל ובית סוללות, הילד מכניס את נורות הלד בחורים, ומדביק את סרט החשמל במקום",
+    "price": 19.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1778
-  },
-  {
-    "id": 1321,
-    "name": "גפרור ענק - רביעייה",
-    "unitText": "40 יח",
-    "description": "כ 40 יחידות בקופסא",
-    "price": 10.4,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 1321
-  },
-  {
-    "id": 8811,
-    "name": "מצית גז - גמיש",
-    "unitText": "",
-    "description": "קנה מוארך גמיש",
-    "price": 3.9,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 8811
+    "itemSalesId": 14094
   },
   {
     "id": 12901,
@@ -1905,789 +1985,1709 @@
     "unitText": "",
     "description": "בגוון קרם בעיצוב אלגנט חנוכה, במארז מפת ניילון מודפסת באורך 180 ס\"מ, 8 מפיות, 8 צלחות קרטון מרובעות גדולות, ו8 צלחות קרטון מרובעות קטנות",
     "price": 9.8,
-    "category": "חנוכה חשמל וחורף",
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
     "itemSalesId": 12901
   },
   {
-    "id": 14072,
-    "name": "ערכת יצירה 300 חלקים דגם סביבון  - אלפא ביתא",
+    "id": 14080,
+    "name": "מפת ניילון לצביעה - מודפסת ציורי חנוכה",
     "unitText": "",
-    "description": "ערכת בנייה מאתגרת במיוחד להרכבת דגם סביבון מ-300 חלקים קטנים וצבעוניים. חוויית בנייה מהנה המשלבת חשיבה, ריכוז, סבלנות ויצירתיות, שבסיומה מתק",
-    "price": 12.8,
-    "category": "חנוכה חשמל וחורף",
+    "description": "עשוי ניילון עבה, בגודל 100*120 ס\"מ, מיועד לצביעה בטושים אקריליים",
+    "price": 20,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 14072
+    "itemSalesId": 14080
   },
   {
-    "id": 14070,
-    "name": "משחק מלחמת סביבונים",
+    "id": 10662,
+    "name": "סט 12 טושים אקריליים דו-צדדיים Deli",
+    "unitText": "12 ג",
+    "description": "ב 12 גוונים שונים, בכל טוש שני ראשים עגול ודק / ומכחול שטוח, באריזת פלסטיק",
+    "price": 14.8,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 10662
+  },
+  {
+    "id": 14063,
+    "name": "מזגן עילי אינוורטר 2 ק\"ס - פמילי (לא לאיסוף)",
     "unitText": "",
-    "description": "בערכה: לוח פלסטיק בגודל30*30ס\"מ, 4 משגרים ו 4 סביבונים, משחק תחרותי בו משגרים את הסביבון ממתקן לזירה, המנצח הוא מי שסביבונו נופל אחרון",
+    "description": "דגם 25FALCON, תפוקת קירור 17,947 BTU, דירוג אנרגטי A++, באישור משמרת השבת, חמש שנות אחריות ע\"י החברה ועפ\"י תנאיה, (ההובלה כלולה במחיר, המזגן",
+    "price": 1490,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14063
+  },
+  {
+    "id": 9561,
+    "name": "מעבד מזון עוצמתי - magimix דגם CS3180XL",
+    "unitText": "2.6 ליטר",
+    "description": "6 ב - 1, פורס, מגרד, קוצץ, מקציף, מערבל ולש, קערה גדולה בנפח 2.6 ליטר לשימוש רב-תכליתי, 2 דסקיות דו צדדיות 2 ו 4 מ\"מ, עם פתח עליון רחב לקציצ",
+    "price": 868,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 9561
+  },
+  {
+    "id": 10715,
+    "name": "מיני קוצץ חשמלי למזון - נטען",
+    "unitText": "3 ל",
+    "description": "3 להבים, מיכל בנפח כ-240 מ\"ל הספק 36W, בגובה כולל 14.5 ס\"מ",
+    "price": 48,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 10715
+  },
+  {
+    "id": 7210,
+    "name": "מכשיר להכנת פנקייק/חביתיות - טפאל",
+    "unitText": "6 ג",
+    "description": "6 גומות בקוטר 12 ס\"מ, 1000W, שנה אחריות ע\"י החברה מותנה בהצגת דף ההזמנה",
+    "price": 219,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 7210
+  },
+  {
+    "id": 14096,
+    "name": "מכשיר טוסטר אנכי להכנת וופל בלגי - HYUNDAI",
+    "unitText": "",
+    "description": "800W, גודל המשטח כ 18*18 ס\"מ מחולק ל4, עם 5 מצבים להכנת וופל בלגי בדרגות עשיה שונות, בהגעת הוופל לדרגת ההשחמה הרצויה המכשיר מצפצף, כולל פתח ",
+    "price": 146,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14096
+  },
+  {
+    "id": 14082,
+    "name": "מכונת סוכר צמר גפן מתוק - בעיצוב עגלת ימבמבם",
+    "unitText": "",
+    "description": "לשימוש ביתי, נוחה וקומפקטית, גוף חימום 450W, קערה נשלפת לניקוי קל ונוח",
+    "price": 98,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14082
+  },
+  {
+    "id": 6741,
+    "name": "סט צלחות פורצלן ניו בון ציינה 18 חלקים",
+    "unitText": "",
+    "description": "עם דוגמת כסף עדינה",
+    "price": 79,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 6741
+  },
+  {
+    "id": 6342,
+    "name": "סט סירי יציקה בגוון קרם - סולתם",
+    "unitText": "2.25 ליטר",
+    "description": "סדרת NUDE, מתאים לאינדוקציה, סיר 2.25 ליטר בקוטר 20 ס\"מ, סיר 4.2 ליטר בקוטר 24 ס\"מ, וסיר 1.6 ליטר בקוטר 18 ס\"מ, יתכן ויגיע בגווני קרם שונים",
+    "price": 149,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 6342
+  },
+  {
+    "id": 5727,
+    "name": "מחבת נמוך לבלינצ'ס",
+    "unitText": "",
+    "description": "קוטר 25 ס\"מ, ציפוי נון סטיק, מתאים לאינדוקציה",
     "price": 29.5,
-    "category": "חנוכה חשמל וחורף",
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 14070
+    "itemSalesId": 5727
   },
   {
-    "id": 1971,
-    "name": "קורקינט חזק ואיכותי",
+    "id": 14095,
+    "name": "סט סכום עם ידיות פלסטיק - סולתם דגם SOL",
     "unitText": "",
-    "description": "מתקפל, צבע שחור",
+    "description": "24 חלקים במעמד תליה מתכת, צבע אחיד, יתכן ויגיע ידיות בצבעי לבן, פנינה, או תכלת",
     "price": 59,
-    "category": "חנוכה חשמל וחורף",
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1971
+    "itemSalesId": 14095
   },
   {
-    "id": 1509,
-    "name": "משחק ערכת מגנטים  - לבניית כביש",
+    "id": 14099,
+    "name": "משחק קלפים  המרוץ למתכון",
     "unitText": "",
-    "description": "סה\"כ 50 חלקים, 31 חלקי מגנט, ועוד חלקי תמרורים להשלמת חווית המשחק",
-    "price": 38,
-    "category": "חנוכה חשמל וחורף",
+    "description": "משחק קלפים משפחתי המשלב אסטרטגיה, תכנון ופעולה, במהלך המשחק אוספים רכיבים, משלימים מתכונים וצוברים נקודות, קלפי פעולה מאפשרים לשנות את מהלך ",
+    "price": 48,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1509
+    "itemSalesId": 14099
   },
   {
-    "id": 12000,
-    "name": "מסוק אמבולנס - Power Planet",
+    "id": 5129,
+    "name": "משחק קלפים ליגרטו",
     "unitText": "",
-    "description": "כולל שלוש דמויות משחק, ואביזרים משלמים",
-    "price": 42.5,
-    "category": "חנוכה חשמל וחורף",
+    "description": "160 קלפים, בין 2-4 משתתפים, להיפטר מכמה שיותר קלפים בעזרת מהירות מיומנות והתמקדות בפרטים, יתכן ויגיע בצבעים שונים",
+    "price": 32.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 12000
+    "itemSalesId": 5129
   },
   {
-    "id": 1782,
-    "name": "פאזל ריצפה  1,000 חלקים - תמונות נוף",
+    "id": 14093,
+    "name": "משחק קופסא סושי פלוס - הקוביה",
     "unitText": "",
-    "description": "גודל 70*50 ס\"מ, כולל דבק ייחודי למריחה על הפאזל בסיום ההרכבה, יתכן ויגיע דוגמאות נוף שונות",
-    "price": 31,
-    "category": "חנוכה חשמל וחורף",
+    "description": "משחק המשלב חשבון, אסטרטגיה, מיומנות וקצב מהיר. כל שחקן בתורו מטיל 3 קוביות ומרכיב מהן תרגיל שתוצאתו תואמת לאחד המספרים שעל הלוח - וכך הוא זו",
+    "price": 69,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1782
+    "itemSalesId": 14093
   },
   {
-    "id": 14076,
-    "name": "משחק קופסא קוביאות - ישראטויס",
+    "id": 14102,
+    "name": "משחק סוכן כפול",
     "unitText": "",
-    "description": "משחק מילים, זיכרון וזריזות, משחק משפחתי קצבי ומהנה שבו המשתתפים מתחרים בהרכבת מילים בעזרת קוביות אותיות וכרטיסי תמונה. הראשון שמצליח להרכיב ",
-    "price": 33,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 14076
-  },
-  {
-    "id": 14067,
-    "name": "זיגזוג - משחק מילים מאתגר לכל המשפחה",
-    "unitText": "",
-    "description": "משחק מילים קצבי, מהנה ותחרותי הכולל כ-4,000 כרטיסי מילים ומושגים במגוון נושאים, מתחלקים לזוגות, שולפים קלף ומנסים להגדיר את המילה מבלי להשתמ",
-    "price": 66,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 14067
-  },
-  {
-    "id": 12881,
-    "name": "ספינר כדור/סביבון מסתובב - עם אורות",
-    "unitText": "",
-    "description": "יתכן ויגיע בצבעים שונים, (חשוב לדעת: הגומייה שבמרכז הכדור מיועדת לשמירה על המנגנון הפנימי)",
-    "price": 5.6,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 12881
-  },
-  {
-    "id": 9185,
-    "name": "לוח פסנתר אלקטרוני יהודי - לחיים",
-    "unitText": "",
-    "description": "13 קלידים אלקטרוניים המסומנים ע\"י מספר וצבע, חוברת תווים יחודיים המסומנים במספר וצבע לנגינה פשוטה וקלה לכל ילד, עם 9 שירים חסידיים מוכרים, פ",
-    "price": 54,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 9185
-  },
-  {
-    "id": 14071,
-    "name": "ספר מיקס משחקים חנוכה (דפים קשיחים)- אלפא ביתא",
-    "unitText": "",
-    "description": "גודל 31*25 ס\"מ, בכל דף לוח משחק שונה ומיוחד עם ציורים ייחודיים באווירת חנוכה, סה\"כ 8 משחקים, בדרגות קושי שונות, כולל כלי משחק, נוח לשימוש שמ",
-    "price": 35,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 14071
-  },
-  {
-    "id": 14068,
-    "name": "ספר גדול מנויילן שעת סיפור",
-    "unitText": "",
-    "description": "עם סיפורים חוויתיים ומהנים הכתובים בלשון קליטה וברורה, ונוגע בשלל נושאים מעולמו של הילד, 96 עמ' מנויילנים, עם איורים מותאמים לגיל הרך של הצי",
-    "price": 160,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 14068
-  },
-  {
-    "id": 9198,
-    "name": "ספר אוצר החידות - אלפא ביתא",
-    "unitText": "",
-    "description": "230 עמודים המכילים 2200 חידות ותשובות, במגוון נושאים, יהדות, טבע גיאוגרפיה ועוד, מתאים לילדים ולמבוגרים",
-    "price": 29.5,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 9198
-  },
-  {
-    "id": 14074,
-    "name": "ספר קומיקס גלובוס ואני - 4",
-    "unitText": "",
-    "description": "קומיקס בשילוב חיפוש פריטים מוסתרים, כ 64 עמ' בפורמט גדול",
-    "price": 29.5,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 14074
-  },
-  {
-    "id": 5468,
-    "name": "מארז 15 ספרוני דדי גמדי לפעוטות",
-    "unitText": "",
-    "description": "במזודת פח מהודרת, מאת מנוחה פוקס.",
+    "description": "משחק חברה, בילוש ואסטרטגיה משפחתי, שבו המשתתפים יושבים סביב שולחן ומנסים לחשוף מיהו המרגל המוסתר ביניהם - או להטעות את כולם אם הם בעצמם הסוכ",
     "price": 78,
-    "category": "חנוכה חשמל וחורף",
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 5468
+    "itemSalesId": 14102
   },
   {
-    "id": 14069,
-    "name": "ספר מאפילה לאורה - אלפא ביתא",
+    "id": 14103,
+    "name": "משחק תחרות דיסקיות סטגדם - ישראטויס",
     "unitText": "",
-    "description": "כולל פנס אולטרא סגול, סיפורי חנוכה עם תמונות מרהיבות בהן מוסתרים ציורים שנראים ע\"י אור הפנס",
-    "price": 52,
-    "category": "חנוכה חשמל וחורף",
+    "description": "לוח עץ מתקפל בגודל 45*19 ס\"מ, המחולק לשני צידי מגרש ו10 דיסקיות אותם צריך לשגר ליריב בצד השני ע\"י מתיחת הגומיה",
+    "price": 39.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 14069
+    "itemSalesId": 14103
   },
   {
-    "id": 14075,
-    "name": "סט 3 ספרי קומיקס - סדרת הגאוצ'ו היהודי",
+    "id": 10453,
+    "name": "משחק מחשבה תחרותי פירמידה",
     "unitText": "",
-    "description": "גודל A4, סיפור היסטורי על חייהם של יהודים מאירופה שהגיעו לדרום אמריקה, מבוסס על סיפור אמיתי, מאת: בת שבע הבלין",
-    "price": 94,
-    "category": "חנוכה חשמל וחורף",
+    "description": "מתאים ל2 שחקנים, כולל לוח משחק בגודל 20*10 ס\"מ מחולק ל 2, ו40 כרטיסים דו צידיים ל80 משחקים בדרגות קושי שונות",
+    "price": 18.9,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 14075
+    "itemSalesId": 10453
   },
   {
-    "id": 9800,
-    "name": "חוברת 100 דפי ציור לצביעה - הלורדים ערכה 1",
+    "id": 8181,
+    "name": "משחק שחמט דיגיטאלי",
     "unitText": "",
-    "description": "גודל כ 22*22 ס\"מ, 100 דפי ציורים לצביעה לגילאים שונים, לבנים לבנות, וברמות קושי שונות",
-    "price": 14.8,
-    "category": "חנוכה חשמל וחורף",
+    "description": "לוח מסך מגע 4 אינצ', עט מגע, ניתן לשחק 2 שחקנים או יחיד מול המחשב, כ 20 דרגות קושי, שמירה אוטומטית ומשחקים נוספים, הפעלה ע\"י 2 סוללות AAA (ל",
+    "price": 59,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 9800
+    "itemSalesId": 8181
   },
   {
-    "id": 1643,
-    "name": "סט 6 שבלונות לציור - חנוכה",
+    "id": 10488,
+    "name": "משחק כדור מבוך המקורי - ביטס",
     "unitText": "",
-    "description": "בגודל 14*14 ס\"מ, בשישה דוגמאות שונות, כד, סביבונים, חנוכיה, ונרות",
-    "price": 4.9,
-    "category": "חנוכה חשמל וחורף",
+    "description": "כ100 שלבים",
+    "price": 79,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1643
+    "itemSalesId": 10488
   },
   {
-    "id": 6923,
-    "name": "72 דפי איחולים בקופסא",
+    "id": 14091,
+    "name": "קוביה הונגרית המקורית - רוביקס",
+    "unitText": "3*3 ג",
+    "description": "גודל 3*3",
+    "price": 19,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14091
+  },
+  {
+    "id": 8991,
+    "name": "פליימוביל מרדף משטרתי {דגם 71570}",
     "unitText": "",
-    "description": "בגודל 15*10 ס\"מ, ב 36 עצובים שונים",
-    "price": 14.8,
-    "category": "חנוכה חשמל וחורף",
+    "description": "הערכה כוללת רכב שטח, סירת מנוע, אופנוע ים ואביזרים שונים. סה\"כ 110 חל'",
+    "price": 88,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 6923
+    "itemSalesId": 8991
   },
   {
-    "id": 6025,
-    "name": "שמיכת יחיד חורפית (כרבולית)",
-    "unitText": "800 גרם",
-    "description": "בגודל 180*200 במשקל של כ 800 גרם יתכן ויגיע בצבעים שונים",
-    "price": 18.8,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 6025
-  },
-  {
-    "id": 1128,
-    "name": "מטריה לנשים מתקפלת",
+    "id": 1150,
+    "name": "פליימוביל בית בובות {דגם 70985}",
     "unitText": "",
-    "description": "מוטות חצי סיליקון נפתחת לקוטר של כמטר, יתכן ויגיע בדוגמאות או בצבעים שונים",
-    "price": 24,
-    "category": "חנוכה חשמל וחורף",
+    "description": "מזוודת בית בובות דו קומתי עם ריהוט ואביזרי בית שונים. לתשומת לב יתכן וישנם חלקים שאינם תואמים לצביון חיינו מומלץ להוציאם לפני השימוש.",
+    "price": 98,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 1128
+    "itemSalesId": 1150
   },
   {
-    "id": 9268,
-    "name": "שמפו קיק {מ.מ.}",
-    "unitText": "450 מ\"ל",
-    "description": "המכיל שמן קיק המסייע בחיזוק השורש והשערה ומעודד צמיחה, 450 מ\"ל",
-    "price": 19.8,
-    "category": "חנוכה חשמל וחורף",
+    "id": 14084,
+    "name": "פליימוביל לול תרנגולות {דגם 71510}",
+    "unitText": "",
+    "description": "2 דמויות, לול תרנגולות עם דלתות נפתחות, ועוד חלקי משחק משלימים, סה\"כ 77 חלקים",
+    "price": 69,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 9268
+    "itemSalesId": 14084
   },
   {
-    "id": 14073,
-    "name": "רביעיית מברשות שיניים סיבי פחם - Oral-B",
+    "id": 14085,
+    "name": "מזוודת פליימוביל מרפאה {דגם 5653}",
+    "unitText": "",
+    "description": "כולל דמות וטרינרית ו-3 בעלי חיים ועוד.., סה\"כ 39 חלקים",
+    "price": 38,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14085
+  },
+  {
+    "id": 10358,
+    "name": "מארז בובות יהודיות - חבריה",
+    "unitText": "",
+    "description": "משפחה של 6 בובות יהודיות בדמויות שונות, בגדלים שונים, לשעות של משחק ודמיון, עשוי מחומר קשיח וגמיש בלתי שביר.",
+    "price": 159,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 10358
+  },
+  {
+    "id": 14089,
+    "name": "בובת ניו בורן איכותית מסיליקון - בובה דול",
+    "unitText": "",
+    "description": "אורך הבובה 40 ס\"מ, הראש הידיים והרגלים של הבובה עשויים מסיליקון איכותי הניתן לכיפוף, הגוף מבד עם מילוי, מצורף בגד נוסף להחלפה",
+    "price": 106,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14089
+  },
+  {
+    "id": 14088,
+    "name": "עגלת בובה יוקרתית + תיק תואם",
+    "unitText": "",
+    "description": "צבע בורדו בשילוב אפור",
+    "price": 148,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14088
+  },
+  {
+    "id": 14079,
+    "name": "תלת אופן  3 גלגלים לילדים איכותי - בעיצוב רטרו",
+    "unitText": "30 ל",
+    "description": "צבע שחור בשילוב קאמל, שלדת מתכת חזקה ואיכותית, הרכבה קלה, גובה הכסא מהרצפה ניתן לכוונון בין 30 ל 38 ס\"מ, מתאים מגיל שנתיים ומעלה ובהתאם לגוב",
+    "price": 118,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14079
+  },
+  {
+    "id": 11300,
+    "name": "משחק מנוף עגורן ענק על שלט - טימסטרז",
+    "unitText": "",
+    "description": "גובה 100 ס\"מ על 90 ס\"מ, מסתובב 180 מעלות, וזרוע הרמה עולה ויורדת, (השלט מופעל ע\"י 3 סוללות AA רגילות לא כלול)",
+    "price": 84,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 11300
+  },
+  {
+    "id": 14083,
+    "name": "אופנוע מרוצים על שלט - סוללה נטענת",
+    "unitText": "",
+    "description": "באורך של כ 24 ס\"מ, יתכן ויגיע בצבעי ירוק או אדום, ( השלט פועל ע\"י 2 סוללות AA כלולות באריזה)",
+    "price": 98,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14083
+  },
+  {
+    "id": 7951,
+    "name": "משחק רכבת חשמלית איכותית",
+    "unitText": "",
+    "description": "קטר חשמלי ו 3 קרונות מטען, הרכבת באורך כולל של 70 ס\"מ, מסילות פלסטיק להרכבה סה\"כ 4.5 מטר מסלול נסיעה, עם אורות צלילים ומיכל מים המייצר אפקט ",
+    "price": 63,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 7951
+  },
+  {
+    "id": 2135,
+    "name": "משחק מוסך מכבי אש 3 קומות",
+    "unitText": "",
+    "description": "במוסך: מנחת מסוקים, מעלית ומגלשה המחברת בין המתחמים, בערכה, מסוק שתי משאיות ואופנוע",
+    "price": 56,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 2135
+  },
+  {
+    "id": 12860,
+    "name": "משאית גרר פלוס רכב - Power Planet",
+    "unitText": "",
+    "description": "כולל שתי דמויות, ואביזרים משלמים, עם אורות וצלילים",
+    "price": 69,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 12860
+  },
+  {
+    "id": 5210,
+    "name": "משחק הרכבה קליקס המקורי 750 חלקים",
+    "unitText": "",
+    "description": "כולל גלגלים להרכבה",
+    "price": 269,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 5210
+  },
+  {
+    "id": 2373,
+    "name": "משחק הרכבה מכאנו טכנו - 3 ב 1",
+    "unitText": "",
+    "description": "הרכבה עם ברגים, לבניית 3 כלי תעופה, כ 148 חלקים פלסטיק ומתכת",
+    "price": 12.3,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 2373
+  },
+  {
+    "id": 9001,
+    "name": "משחק מגנטים אותיות א' ב'",
+    "unitText": "",
+    "description": "100 חל', מתוכם 64 חלקים מגנטים + רכב וריבועי פלסטיק אותיות המתחברים למגנט ללימוד האותיות",
+    "price": 69,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 9001
+  },
+  {
+    "id": 1566,
+    "name": "משחק מגנטים - לונה פארק",
+    "unitText": "",
+    "description": "כ110 חלקים",
+    "price": 74,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 1566
+  },
+  {
+    "id": 2368,
+    "name": "משחק יויו ",
     "unitText": "",
     "description": "",
-    "price": 8.8,
-    "category": "חנוכה חשמל וחורף",
+    "price": 3.8,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 14073
+    "itemSalesId": 2368
   },
   {
-    "id": 12867,
-    "name": "מארז 3 כדורי פצצות אמבטיה צבעונים",
-    "unitText": "70 גרם",
-    "description": "כ 70 גרם כל כדור, מעניק חוויית אמבטיה צבעונית ומפנקת עם ניחוח מרענן, (מוסיפים כדור אחד לאמבטיה מלאה במים חמים ולהמתין להתמוססות מלאה לחווית ",
-    "price": 9.6,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 12867
-  },
-  {
-    "id": 7928,
-    "name": "ג'ל ברנג'לה לטיפול והרגעת העור",
-    "unitText": "150 מ\"ל",
-    "description": "לאחר כוויה, מכיל 150 מ\"ל",
-    "price": 29,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 7928
-  },
-  {
-    "id": 648,
-    "name": "סכין ויקטורינוקס משונן - סיומת עגולה",
+    "id": 14081,
+    "name": "זוג מכשירי קשר נטענים איכותיים - 5 ק\"מ",
     "unitText": "",
-    "description": "יתכן ויגיע בצבעים שונים",
-    "price": 13.7,
-    "category": "חנוכה חשמל וחורף",
+    "description": "טווח של עד כ 5 ק\"מ (תלוי בתנאי השטח), רמקול, נטען באמצעות בסיסי טעינה שולחני או כבל",
+    "price": 78,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 648
+    "itemSalesId": 14081
   },
   {
-    "id": 8451,
-    "name": "שקיות גופיה שחורות מרשרשות",
+    "id": 11929,
+    "name": "ערכת חוברת צביעה מנדלות + עפרונות לצביעה",
     "unitText": "",
-    "description": "איכותיות כ 100 שקיות בגודל 60*50 ס\"מ",
-    "price": 10.5,
-    "category": "חנוכה חשמל וחורף",
+    "description": "36 דפי מנדלות מגוונים לצביעה, בגודל 20*20 ס\"מ, ומארז 12 עפרונות צבעונים לצביעה",
+    "price": 12.8,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
     "subCategory": "",
-    "itemSalesId": 8451
+    "itemSalesId": 11929
   },
   {
-    "id": 11143,
-    "name": "מיכל מטפית קצף לכיבוי אש",
-    "unitText": "600 גרם",
-    "description": "600 גרם, כולל מתקן תליה לשליפה נוחה, מתאים לכיבוי שריפות קטנות בבית כולל שריפות חשמל עד 1000V, אחריות שנה ע\"י החברה",
-    "price": 29.5,
-    "category": "חנוכה חשמל וחורף",
-    "subCategory": "",
-    "itemSalesId": 11143
-  },
-  {
-    "id": 1830,
-    "name": "דובוני ג'לי ויטמין C - אריזת חיסכון {5} {איסוף כמוצר בודד}",
+    "id": 5474,
+    "name": "ספר קומיקס אלו וכאלו - חנוכה",
     "unitText": "",
-    "description": "300 דובוני ג'לי ויטמין C לילדים - בוטיק, המכילות 60 מ\"ג ויטמין C ומיצוי פקעות ורדים.",
+    "description": "המחשה יחודית של גזירות היוונים ומלחמת החשמונאים, בתיאור חי ועכשווי הממחיש כיצד היו יכולים להיראות אילו התרחשו בימינו אנו.",
+    "price": 32.5,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 5474
+  },
+  {
+    "id": 14100,
+    "name": "ספר למה כובע - נגמר בעין (2 חל' בכרך 1)",
+    "unitText": "",
+    "description": "שני חלקים בכרך אחד, להטוטי מילים בדיחות ושעשועים בספר כ 80 עמודים, מאת נ. פרבשטיין",
+    "price": 32,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14100
+  },
+  {
+    "id": 14097,
+    "name": "ספר קריאה סברס - מאת עדינה בר לב",
+    "unitText": "",
+    "description": "סיפור על אנשים שהולכים בדרכים הפוכות, ועל הלב שפועם מתחת לקוצים, ספר שמזמין לקלף, להבין ולראות את האחר, 573 עמודים של דרמה אנושית עוצמתית שא",
+    "price": 54,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 14097
+  },
+  {
+    "id": 11972,
+    "name": "מכשיר שאיבה ושטיפה לניקוי ספות ריפודים ושטיחים - דרימי",
+    "unitText": "",
+    "description": "דגם N20 Steam, טכנולוגיית קיטור ושטיפה במים חמים עד 100 מעלות לחדירה עמוקה לסיבי הבד לניקוי ופירוק כתמי שומן וכתמים עיקשים, 1800W, עוצמת שאי",
+    "price": 846,
+    "category": "חנוכה במשנעס' - מתנות אביזרים ומיוחדים",
+    "subCategory": "",
+    "itemSalesId": 11972
+  },
+  {
+    "id": 5120,
+    "name": "ספאטון בטעם תפוח בד\"ץ העד\"ח מ.מ. {145} - {איסוף כמוצר בודד}",
+    "unitText": "20 מ\"ל",
+    "description": "28 שקיות של 20 מ\"ל, תוסף ברזל 100% טבעי, עם יכולת ספיגה גבוהה במיוחד המספקת מענה להעלאת רמת ברזל בדם וללא תופעות לוואי במערכת העיכול.",
+    "price": 49.8,
+    "category": "תוספי תזונה",
+    "subCategory": "",
+    "itemSalesId": 5120
+  },
+  {
+    "id": 2471,
+    "name": "דובוני ג'לי מולטי ויטמין - אריזת חיסכון {1} - {איסוף כמוצר בודד}",
+    "unitText": "",
+    "description": "300 דובוני ג'לי - בוטיק, מכיל 8 ויטמינים ומינרלים ויטמין C, ויטמין B3, B5, B6, B12 ביוטין, חומצה פולית ואבץ.",
     "price": 50,
     "category": "תוספי תזונה",
     "subCategory": "",
-    "itemSalesId": 1830
+    "itemSalesId": 2471
   },
   {
-    "id": 5977,
-    "name": "שישיית ירכוני נשים 70 דנייר אטום שחור - colanta",
+    "id": 14131,
+    "name": "שרשרת כסף אותיות משובצות",
     "unitText": "",
-    "description": "(אטום במיוחד), לתשומת לבכם! הירכון שודרג וכעת מיוצר מבד הפלמינגו ובגיזרה צרה תוצרת איטליה",
-    "price": 90,
-    "category": "גרביונים",
+    "description": "",
+    "price": 88,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 5977
+    "itemSalesId": 4600
   },
   {
-    "id": 375,
-    "name": "קרטון עוף שלם קפוא בד\"צ עד\"ח",
+    "id": 8338,
+    "name": "שרשרת כסף סוליטר - {997}",
     "unitText": "",
-    "description": "10 עופות בקרטון, מחושב לפי 29.7 ש\"ח לקילו. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 07731680",
-    "price": 415.8,
-    "category": "קפואים",
+    "description": "גודל הזירקון כ 6.5 מ\"מ, נוצצת במיוחד, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 109,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 375
+    "itemSalesId": 8338
   },
   {
-    "id": 140,
-    "name": "קרטון כרעיים עוף קפוא בד\"צ עד\"ח",
+    "id": 10997,
+    "name": "עגילי כסף זירקון - {1080}",
     "unitText": "",
-    "description": "8 מגשים בקרטון, מחושב לפי 43.5 ש\"ח לקילו. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 077316808",
-    "price": 478.5,
-    "category": "קפואים",
+    "description": "גודל הזירקון 6.5 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 88,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 140
+    "itemSalesId": 10997
   },
   {
-    "id": 8832,
-    "name": "קרטון כנפיים עוף קפוא בד\"צ עד\"ח",
+    "id": 8320,
+    "name": "עגילי כסף טניס - {906}",
     "unitText": "",
-    "description": "8 מגשים בקרטון, מחושב לפי 10.8 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 077316808",
-    "price": 108,
-    "category": "קפואים",
+    "description": "אורך העגיל כ 2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 183,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8832
+    "itemSalesId": 8320
   },
   {
-    "id": 373,
-    "name": "קרטון חזה עוף קפוא בד\"צ עד\"ח",
+    "id": 12427,
+    "name": "שרשרת כסף טריו סוליטר {804}",
     "unitText": "",
-    "description": "12 מגשים בקרטון, מחושב לפי 49.5 ש\"ח לקילו. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 07731680",
-    "price": 544.5,
-    "category": "קפואים",
+    "description": "רוחב התליון 1.4 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 149,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 373
+    "itemSalesId": 12427
   },
   {
-    "id": 12288,
-    "name": "קרטון שניצל קפוא בד\"צ עד\"ח",
+    "id": 11005,
+    "name": "שרשרת כסף זירקונים קלאסית - {912}",
     "unitText": "",
-    "description": "12 מגשים בקרטון, מחושב לפי 55 ש\"ח לקילו. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080",
-    "price": 495,
-    "category": "קפואים",
+    "description": "רוחב 2.1 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 188,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 12288
+    "itemSalesId": 11005
   },
   {
-    "id": 1559,
-    "name": "קרטון ירכיים עוף קפוא בד\"צ עד\"ח",
+    "id": 8319,
+    "name": "שרשרת כסף תליון וי משובץ - {922}",
     "unitText": "",
-    "description": "12 מגשים בקרטון, מחושב לפי 41.5 ש\"ח לקילו. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 07731680",
-    "price": 415,
-    "category": "קפואים",
+    "description": "רוחב התליון כ 3 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 125,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 1559
+    "itemSalesId": 8319
   },
   {
-    "id": 14057,
-    "name": "קרטון שוקיים עוף קפוא בד\"צ עד\"ח",
+    "id": 8325,
+    "name": "שרשרת כסף טניס קלאסית - {908}",
     "unitText": "",
-    "description": "12 מגשים בקרטון, מחושב לפי 52.5 ש\"ח לקילו. ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 07731680",
-    "price": 472.5,
-    "category": "קפואים",
+    "description": "רוחב כ 3 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 184,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 14057
+    "itemSalesId": 8325
   },
   {
-    "id": 8532,
-    "name": "קרטון חזה בריסקט בקר קפוא (מס 3) בד\"צ עד\"ח",
+    "id": 12438,
+    "name": "שרשרת כסף וי רויאל {1072}",
     "unitText": "",
-    "description": "מחושב לפי 89 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ה",
-    "price": 534,
-    "category": "קפואים",
+    "description": "רוחב התליון 2.3 ס\"מ גובה 2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 178,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8532
+    "itemSalesId": 12438
   },
   {
-    "id": 8533,
-    "name": "קרטון כתף בקר קפוא (מס 4) בד\"צ עד\"ח",
+    "id": 12400,
+    "name": "עגילי כסף פלורנס פרחים {806}",
     "unitText": "",
-    "description": "מחושב לפי 99 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ה",
-    "price": 594,
-    "category": "קפואים",
+    "description": "אורך העגיל 2.4 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 165,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8533
+    "itemSalesId": 12400
   },
   {
-    "id": 8534,
-    "name": "קרטון צלי כתף קפוא (מס 5) בד\"צ עד\"ח",
+    "id": 11014,
+    "name": "עגילי כסף סירקל זירקונים - {1118}",
     "unitText": "",
-    "description": "מחושב לפי 135 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 810,
-    "category": "קפואים",
+    "description": "אורך העגיל 2.8 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 169,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8534
+    "itemSalesId": 11014
   },
   {
-    "id": 8535,
-    "name": "קרטון פילה מדומה קפוא (מס 6) בד\"צ עד\"ח",
+    "id": 12428,
+    "name": "עגילי כסף סירקל תלוי {808}",
     "unitText": "",
-    "description": "מחושב לפי 115 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 690,
-    "category": "קפואים",
+    "description": "אורך העגיל 2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 196,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8535
+    "itemSalesId": 12428
   },
   {
-    "id": 8536,
-    "name": "קרטון שריר בקר קפוא (מס 8) בד\"צ עד\"ח",
+    "id": 12429,
+    "name": "עגילי כסף סירקל {802}",
     "unitText": "",
-    "description": "מחושב לפי 118 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 708,
-    "category": "קפואים",
+    "description": "גודל העגיל 1 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 145,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8536
+    "itemSalesId": 12429
   },
   {
-    "id": 8531,
-    "name": "קרטון צוואר בקר קפוא (מס 10) בד\"צ עד\"ח",
+    "id": 8329,
+    "name": "עגילי כסף סירקל משובץ - {948}",
     "unitText": "",
-    "description": "מחושב לפי 91 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ה",
-    "price": 546,
-    "category": "קפואים",
+    "description": "קוטר העגיל כ 8.5 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 99,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8531
+    "itemSalesId": 8329
   },
   {
-    "id": 8828,
-    "name": "קרטון סטייק אנטריקוט פרוס בד\"צ עד\"ח",
+    "id": 12430,
+    "name": "שרשרת כסף פלורנס פרחים {810}",
     "unitText": "",
-    "description": "ארוז זוגות בוואקום, מחושב לפי 135 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 077316",
-    "price": 607.5,
-    "category": "קפואים",
+    "description": "רוחב התליון 3.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 186,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8828
+    "itemSalesId": 12430
   },
   {
-    "id": 8826,
-    "name": "קרטון צלעות (אונטריב) בשר בקר קפוא בד\"צ עד\"ח",
+    "id": 12431,
+    "name": "עגילי כסף דאבל סירקל {812}",
     "unitText": "",
-    "description": "מחושב לפי 93 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ה",
-    "price": 558,
-    "category": "קפואים",
+    "description": "גודל העגיל 1.8 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 155,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8826
+    "itemSalesId": 12431
   },
   {
-    "id": 8539,
-    "name": "קרטון קשתית (קוביות לחמין) עם עצם בקר קפוא בד\"צ עד\"ח",
+    "id": 12432,
+    "name": "שרשרת כסף אורביט {814}",
     "unitText": "",
-    "description": "מחושב לפי 89 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ה",
-    "price": 534,
-    "category": "קפואים",
+    "description": "רוחב התליון 3.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 225,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8539
+    "itemSalesId": 12432
   },
   {
-    "id": 8540,
-    "name": "קרטון קשתית פרוסות אסאדו עגל (עם עצם) קפוא בד\"צ עד\"ח",
+    "id": 9493,
+    "name": "שרשרת כסף סירקל משובץ {950}",
     "unitText": "",
-    "description": "מחושב לפי 109 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 654,
-    "category": "קפואים",
+    "description": "גודל התליון 1 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8540
+    "itemSalesId": 9493
   },
   {
-    "id": 8544,
-    "name": "קרטון בשר ראש קפוא בד\"צ עד\"ח",
+    "id": 12433,
+    "name": "עגילי כסף טריו רויאל {816}",
     "unitText": "",
-    "description": "מחושב לפי 150 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 900,
-    "category": "קפואים",
+    "description": "היקף העגיל 1.6 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 174,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8544
+    "itemSalesId": 12433
   },
   {
-    "id": 12219,
-    "name": "קרטון שניצל הודו מעובד קפוא בד\"צ עד\"ח",
+    "id": 10992,
+    "name": "עגילי כסף פרח משובץ צמוד - {1070}",
     "unitText": "",
-    "description": "4 אריזות בקרטון כ 10 שניצלים באריזה, מחושב לפי 52.5 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למער",
-    "price": 315,
-    "category": "קפואים",
+    "description": "גודל העגיל 1.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 182,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 12219
+    "itemSalesId": 10992
   },
   {
-    "id": 8825,
-    "name": "קרטון אצבעות אנטריקוט (ללא עצם) קפוא בד\"צ עד\"ח",
+    "id": 10991,
+    "name": "עגילי כסף טיפה יוקרתי - {1068}",
     "unitText": "",
-    "description": "מחושב לפי 126 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 756,
-    "category": "קפואים",
+    "description": "אורך 2.8 ס\"מ, רוחב הטיפה כ 1.1 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 229,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 8825
+    "itemSalesId": 10991
   },
   {
-    "id": 155,
-    "name": "קרטון לשונות עגל קפואות בד\"צ עד\"ח",
+    "id": 12434,
+    "name": "עגילי כסף דואט רויאל {818}",
     "unitText": "",
-    "description": "מחושב לפי 150 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ",
-    "price": 900,
-    "category": "קפואים",
+    "description": "אורך העגיל 2.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 153,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 155
+    "itemSalesId": 12434
   },
   {
-    "id": 8702,
-    "name": "קרטון בשר טחון בד\"צ עד\"ח מותג פליישיג תוויית אדומה",
-    "unitText": "2 קילו",
-    "description": "ב 8 אריזות פנימיות של 1/2 קילו, מחושב לפי 89 ש\"ח לקילו, הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויו",
-    "price": 356,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 8702
-  },
-  {
-    "id": 145,
-    "name": "נקנקיות עוף עד\"ח - גלאט עוף",
-    "unitText": "400 גרם",
-    "description": "400 גרם",
-    "price": 12.7,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 145
-  },
-  {
-    "id": 995,
-    "name": "קרטון מנות פילה סלמון נורווגי עם עור",
+    "id": 8323,
+    "name": "עגילי כסף טיפה משובצת עם שרשרת - {924}",
     "unitText": "",
-    "description": "בד\"ץ 100% דג, ארוז אחד אחד בוואקום. הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש ל",
-    "price": 395,
-    "category": "קפואים",
+    "description": "אורך העגיל 3.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 128,
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 995
+    "itemSalesId": 8323
   },
   {
-    "id": 11085,
-    "name": "קרטון מושט (פילה אמנון) עם פס עור עד\"ח",
-    "unitText": "5-7 ג",
-    "description": "גודל 5-7",
+    "id": 12435,
+    "name": "עגילי כסף דאבל שרשראות {820}",
+    "unitText": "",
+    "description": "אורך העגיל 2.8 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 163,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12435
+  },
+  {
+    "id": 10996,
+    "name": "שרשרת כסף זרקונים עשירה - {1078}",
+    "unitText": "",
+    "description": "אורך 2.5 ס\"מ, רוחב 1.8 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 220,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10996
+  },
+  {
+    "id": 10995,
+    "name": "שרשרת כסף טיפה יוקרתית - {1076}",
+    "unitText": "",
+    "description": "אורך התליון כ 3 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 205,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10995
+  },
+  {
+    "id": 12436,
+    "name": "עגילי כסף אוליב משובץ {824}",
+    "unitText": "",
+    "description": "אורך העגיל 2.8 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 174,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12436
+  },
+  {
+    "id": 11016,
+    "name": "עגילי כסף טיפה תלוי - {1122}",
+    "unitText": "",
+    "description": "אורך העגיל 2.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 155,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11016
+  },
+  {
+    "id": 10083,
+    "name": "עגילי כסף שתי שרשראות עם שיבוץ {1036}",
+    "unitText": "",
+    "description": "אורך העגיל 3 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 148,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10083
+  },
+  {
+    "id": 11012,
+    "name": "עגילי חישוק כסף דאבל שיין - {1114}",
+    "unitText": "",
+    "description": "אורך 2.1 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 195,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11012
+  },
+  {
+    "id": 9633,
+    "name": "טבעת כסף וי משובץ זירקונים מידות 6/7/8/9",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 97,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4198
+  },
+  {
+    "id": 11008,
+    "name": "טבעת כסף זירקון עם שיבוץ מידות 6/7/8/9",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 123,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 3405
+  },
+  {
+    "id": 9506,
+    "name": "טבעת כסף טניס משובצת - דגם חדש - מידות 6/7/8/9",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 125,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4197
+  },
+  {
+    "id": 10999,
+    "name": "עגילי כסף טניס חישוק מרשים - {1084}",
+    "unitText": "",
+    "description": "היקף החישוק 2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 246,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10999
+  },
+  {
+    "id": 8336,
+    "name": "עגילי כסף עיגול קלאסי משובץ זירקונים (2 ס\"מ) - {942}",
+    "unitText": "",
+    "description": "היקף החישוק כ 2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 128,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 8336
+  },
+  {
+    "id": 11007,
+    "name": "צמיד כסף הרמוני - {1098}",
+    "unitText": "",
+    "description": "אורך הצמיד 17+4 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 298,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11007
+  },
+  {
+    "id": 11006,
+    "name": "צמיד כסף זירקונים יוקרתי - {1096}",
+    "unitText": "",
+    "description": "אורך הצמיד 16.5+4 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 348,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11006
+  },
+  {
+    "id": 12437,
+    "name": "עגילי כסף  ואלורה {826}",
+    "unitText": "",
+    "description": "גודל העגיל 2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 197,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12437
+  },
+  {
+    "id": 11018,
+    "name": "עגילי חישוק כסף שיין משובץ - {1126}",
+    "unitText": "",
+    "description": "גודל העגיל 1.2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 165,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11018
+  },
+  {
+    "id": 10983,
+    "name": "עגילי כסף ריבר-סטון יוקרתי - {1050}",
+    "unitText": "",
+    "description": "גודל העגיל 2.8 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 225,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10983
+  },
+  {
+    "id": 10987,
+    "name": "שרשרת כסף בציפוי זהב ריבר-סטון יוקרתי - {1058}",
+    "unitText": "",
+    "description": "רוחב התליון 2.3 ס\"מ, כסף 925 מצופה בשכבת זהב למראה מבריק, ROYAL SILVER",
+    "price": 225,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10987
+  },
+  {
+    "id": 10988,
+    "name": "שרשרת כסף ריבר-סטון יוקרתי - {1060}",
+    "unitText": "",
+    "description": "רוחב התליון 2.3 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 225,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10988
+  },
+  {
+    "id": 8332,
+    "name": "צמיד כסף חוליות - {966}",
+    "unitText": "",
+    "description": "חוליה מרכזית משובצת, אורך הצמיד כ 16 ס\"מ, בתוספת הארכה 4 ס\"מ להתאמה מירבית, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 218,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 8332
+  },
+  {
+    "id": 10071,
+    "name": "שרשרת כסף בציפוי זהב תליון אובאל קלאסי {1018}",
+    "unitText": "",
+    "description": "אורך התליון 3.1 ס\"מ, כסף 925 מצופה בשכבת זהב למראה מבריק, ROYAL SILVER",
+    "price": 188,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10071
+  },
+  {
+    "id": 10984,
+    "name": "שרשרת כסף בציפוי זהב הילה שזורה - {1052}",
+    "unitText": "",
+    "description": "גודל התליון 2.7 ס\"מ, כסף 925 מצופה בשכבת זהב למראה מבריק, ROYAL SILVER",
     "price": 198,
-    "category": "קפואים",
+    "category": "תכשיטים מעוצבים",
     "subCategory": "",
-    "itemSalesId": 11085
+    "itemSalesId": 10984
   },
   {
-    "id": 11741,
-    "name": "נגיסי דג אמנון (מושט) בציפוי טמפורה - רוזנערס",
-    "unitText": "600 גרם",
-    "description": "600 גרם, לאפייה או לטיגון",
+    "id": 10985,
+    "name": "שרשרת כסף הילה שזורה {1054}",
+    "unitText": "",
+    "description": "גודל התליון 2.7 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL SILVER",
+    "price": 198,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10985
+  },
+  {
+    "id": 10986,
+    "name": "שרשרת כסף בציפוי זהב אורבית - {1056}",
+    "unitText": "",
+    "description": "גודל בתליון 2.8 ס\"מ, כסף 925 מצופה בשכבת זהב למראה מבריק, ROYAL SILVER",
+    "price": 198,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10986
+  },
+  {
+    "id": 10989,
+    "name": "שרשרת כסף בציפוי זהב דאבל רינג - {1062}",
+    "unitText": "",
+    "description": "אורך התליון 3.2 ס\"מ, כסף 925 מצופה בשכבת זהב למראה מבריק, ROYAL SILVER",
+    "price": 198,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10989
+  },
+  {
+    "id": 10990,
+    "name": "שרשרת כסף בציפוי זהב אינפיניטי משולבת - {1064}",
+    "unitText": "",
+    "description": "רוחב התליון כ 4 ס\"מ, כסף 925 מצופה בשכבת זהב למראה מבריק, ROYAL SILVER",
+    "price": 215,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10990
+  },
+  {
+    "id": 12439,
+    "name": "עגילים בציפוי רודיום לב זירקון {180}",
+    "unitText": "",
+    "description": "גודל 6 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 78,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12439
+  },
+  {
+    "id": 12440,
+    "name": "עגילים בציפוי זהב לב זירקון {182}",
+    "unitText": "",
+    "description": "גודל 6 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 78,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12440
+  },
+  {
+    "id": 9019,
+    "name": "עגילים בציפוי רודיום לב משובץ (גודל 5 מ\"מ) {01}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 59,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9019
+  },
+  {
+    "id": 9018,
+    "name": "עגילים בציפוי זהב לב משובץ (גודל 5 מ\"מ) {02}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 59,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9018
+  },
+  {
+    "id": 12441,
+    "name": "עגילים בציפוי רודיום לב ולנטינה (גודל 6 מ\"מ) {179}",
+    "unitText": "",
+    "description": "גודל הלב 6 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12441
+  },
+  {
+    "id": 12442,
+    "name": "עגילים בציפוי זהב לב ולנטינה (גודל 6 מ\"מ) {181}",
+    "unitText": "",
+    "description": "גודל הלב 6 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12442
+  },
+  {
+    "id": 10127,
+    "name": "עגילים בציפוי רודיום לב ולנטינה (גודל 8 מ\"מ) {160}",
+    "unitText": "",
+    "description": "גודל הלב 8 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 74,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10127
+  },
+  {
+    "id": 10126,
+    "name": "עגילים בציפוי זהב לב ולנטינה (גודל 8 מ\"מ) {162}",
+    "unitText": "",
+    "description": "גודל הלב 8 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 74,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10126
+  },
+  {
+    "id": 12443,
+    "name": "עגילים בצפוי רודיום זירקון (גודל 4 מ\"מ) {183}",
+    "unitText": "",
+    "description": "גודל 4 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12443
+  },
+  {
+    "id": 12444,
+    "name": "עגילים בציפוי זהב זירקון (גודל 4 מ\"מ) {184}",
+    "unitText": "",
+    "description": "גודל 4 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12444
+  },
+  {
+    "id": 9071,
+    "name": "עגילים בציפוי רודיום עם זירקון {53}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9071
+  },
+  {
+    "id": 12445,
+    "name": "עגילים בציפוי זהב עם זירקון {207}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12445
+  },
+  {
+    "id": 12446,
+    "name": "עגילים בציפוי רודיום פלורנס טיפה {185}",
+    "unitText": "",
+    "description": "גודל העגיל 1.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12446
+  },
+  {
+    "id": 12447,
+    "name": "עגילים בציפוי זהב פלורנס טיפה {186}",
+    "unitText": "",
+    "description": "גודל העגיל 1.5 ס\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12447
+  },
+  {
+    "id": 10902,
+    "name": "עגילי חישוק אותיות כסף בציפוי רודיום",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 109,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4305
+  },
+  {
+    "id": 9030,
+    "name": "עגילי חישוק בציפוי רודיום זירקון לב תלוי {13}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 128,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9030
+  },
+  {
+    "id": 9031,
+    "name": "עגילי חישוק בציפוי זהב זירקון לב תלוי {14}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 128,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9031
+  },
+  {
+    "id": 12466,
+    "name": "צמיד בציפוי זהב/רודיום לב ולנטינה באורכים שונים",
+    "unitText": "3 ל",
+    "description": "3 לבבות משובצים, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 125,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4451
+  },
+  {
+    "id": 9054,
+    "name": "עגילי דונאטס בציפוי זהב {36}",
+    "unitText": "",
+    "description": "גודל 7 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 69,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9054
+  },
+  {
+    "id": 9053,
+    "name": "עגילי דונאטס בציפוי רודיום{37}",
+    "unitText": "",
+    "description": "גודל 7 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 69,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9053
+  },
+  {
+    "id": 9060,
+    "name": "עגילי לב בציפוי זהב בצבע ורוד שמנת {40}",
+    "unitText": "",
+    "description": "גודל 8 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 75,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9060
+  },
+  {
+    "id": 9057,
+    "name": "עגילי לב בציפוי רודיום בצבע ורוד שמנת {43}",
+    "unitText": "",
+    "description": "גודל 8 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 75,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9057
+  },
+  {
+    "id": 9020,
+    "name": "עגילים בציפוי זהב לב פנינה (גודל 5 מ\"מ) {03}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 69,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9020
+  },
+  {
+    "id": 9021,
+    "name": "עגילים בציפוי רודיום לב פנינה (גודל 5 מ\"מ) {04}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 69,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9021
+  },
+  {
+    "id": 9058,
+    "name": "עגילים בציפוי זהב לב פנינה (גודל 8 מ\"מ) {41}",
+    "unitText": "",
+    "description": "גודל 8 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 82,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9058
+  },
+  {
+    "id": 9059,
+    "name": "עגילים בציפוי רודיום לב פנינה (גודל 8 מ\"מ) {42}",
+    "unitText": "",
+    "description": "גודל 8 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 82,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9059
+  },
+  {
+    "id": 9089,
+    "name": "עגיל חישוק אדום בציפוי רודיום (היקף 1.2 ס\"מ) {71}",
+    "unitText": "",
+    "description": "היקף החישוק 1.2 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 113,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9089
+  },
+  {
+    "id": 9088,
+    "name": "עגיל חישוק אדום בציפוי זהב (היקף 1.2 ס\"מ) {72}",
+    "unitText": "",
+    "description": "היקף החישוק 1.2 ס\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 113,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9088
+  },
+  {
+    "id": 9065,
+    "name": "צמיד סוויטי בציפוי זהב/רודיום עם תליונים באורכים שונים",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 114,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4306
+  },
+  {
+    "id": 9068,
+    "name": "צמיד לב בציפוי זהב בצבע ורוד תכלת {50}",
+    "unitText": "",
+    "description": "אורך הצמיד 9.5+3 ס\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 94,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9068
+  },
+  {
+    "id": 9067,
+    "name": "צמיד לב בציפוי רודיום בצבע ורוד תכלת {51}",
+    "unitText": "",
+    "description": "אורך הצמיד 9.5+3 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 94,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9067
+  },
+  {
+    "id": 9069,
+    "name": "צמיד לב בציפוי זהב בצבע ורוד שמנת {52}",
+    "unitText": "",
+    "description": "אורך הצמיד 12.5+4, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 128,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9069
+  },
+  {
+    "id": 11033,
+    "name": "צמיד לב בציפוי רודיום בצבע ורוד שמנת {201A}",
+    "unitText": "",
+    "description": "אורך הצמיד 12.5+4, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 128,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11033
+  },
+  {
+    "id": 12449,
+    "name": "עגילים בציפוי זהב הילה זהבה {189}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 130,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12449
+  },
+  {
+    "id": 12448,
+    "name": "עגילים בציפוי רודיום הילה זהבה {190}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 130,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12448
+  },
+  {
+    "id": 9038,
+    "name": "עגילי חישוק בציפוי זהב עם לב פנינה תלוי {80}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 127,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9038
+  },
+  {
+    "id": 11036,
+    "name": "עגילי חישוק אדום בציפוי רודיום (היקף 1.4 ס\"מ) {75}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 133,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11036
+  },
+  {
+    "id": 11037,
+    "name": "עגילי חישוק אדום בציפוי זהב (היקף 1.4 ס\"מ) {76}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 133,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11037
+  },
+  {
+    "id": 12451,
+    "name": "עגילים בציפוי זהב לב אבן אדום {191}",
+    "unitText": "",
+    "description": "גודל 4 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 67,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12451
+  },
+  {
+    "id": 12450,
+    "name": "עגילים בציפוי רודיום לב אבן אדום {192}",
+    "unitText": "",
+    "description": "גודל 4 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 67,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12450
+  },
+  {
+    "id": 12453,
+    "name": "עגילים בציפוי זהב פרח אבנים אדומים {193}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12453
+  },
+  {
+    "id": 12452,
+    "name": "עגילים בציפוי רודיום פרח אבנים אדומים {194}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12452
+  },
+  {
+    "id": 12455,
+    "name": "עגילים בציפוי זהב פרח אדום זירקון {195}",
+    "unitText": "",
+    "description": "גודל 6 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 98,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12455
+  },
+  {
+    "id": 12454,
+    "name": "עגילים בציפוי רודיום פרח אדום זירקון {196}",
+    "unitText": "",
+    "description": "גודל 6 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 98,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12454
+  },
+  {
+    "id": 9028,
+    "name": "עגילים בציפוי זהב עם זירקון ולב אדום תלוי  {11}",
+    "unitText": "",
+    "description": "גודל הלב 6 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 95,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9028
+  },
+  {
+    "id": 9022,
+    "name": "עגילים בציפוי זהב לב אדום (גודל 5 מ\"מ) {05}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 69,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9022
+  },
+  {
+    "id": 11034,
+    "name": "עגילים בציפוי רודיום פטריה ולבבות {73}",
+    "unitText": "",
+    "description": "גודל כ7 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11034
+  },
+  {
+    "id": 11035,
+    "name": "עגילים בציפוי זהב פטריה ולבבות {74}",
+    "unitText": "",
+    "description": "גודל כ 7 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 65,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 11035
+  },
+  {
+    "id": 9050,
+    "name": "עגילי חישוק בציפוי זהב עם לב אדום תלוי {33}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 133,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9050
+  },
+  {
+    "id": 12457,
+    "name": "עגילי חישוק בציפוי זהב פרח אדום {197}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12457
+  },
+  {
+    "id": 12456,
+    "name": "עגילי חישוק בציפוי רודיום פרח אדום {198}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12456
+  },
+  {
+    "id": 12463,
+    "name": "צמיד בציפוי זהב/רודיום פרח אדום וזירקון באורכים שונים",
+    "unitText": "",
+    "description": "3 פרחים ו 2 זירקונים, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 145,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4452
+  },
+  {
+    "id": 10094,
+    "name": "צמיד לב אדום בציפוי זהב/רודיום באורכים שונים",
+    "unitText": "3 ל",
+    "description": "3 לבבות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 125,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4278
+  },
+  {
+    "id": 9481,
+    "name": "צמיד לבבות עדין זהב/רודיום באורכים שונים",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 95,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4310
+  },
+  {
+    "id": 11038,
+    "name": "צמיד בציפוי זהב/רודיום פטריה ולבבות באורכים שונים",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 88,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4309
+  },
+  {
+    "id": 11039,
+    "name": "צמיד בציפוי זהב/רודיום פטריה ולבבות באורכים שונים",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 88,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4309
+  },
+  {
+    "id": 12458,
+    "name": "עגילים בציפוי רודיום פרח חלק {199}",
+    "unitText": "",
+    "description": "גודל הפרח 5.5 מ\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 67,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12458
+  },
+  {
+    "id": 12459,
+    "name": "עגילים בציפוי זהב פרח חלק {200}",
+    "unitText": "",
+    "description": "גודל הפרח 5.5 מ\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 67,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12459
+  },
+  {
+    "id": 9024,
+    "name": "עגילי לב מבריק בציפוי זהב {07}",
+    "unitText": "",
+    "description": "גודל 5 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 67,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9024
+  },
+  {
+    "id": 9084,
+    "name": "עגילי חישוק בציפוי זהב משובץ עם לב {67}",
+    "unitText": "",
+    "description": "קוטר 1.2, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 98,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9084
+  },
+  {
+    "id": 9023,
+    "name": "עגילי חישוק בציפוי זהב תליון לב קטן חלק {06}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 122,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9023
+  },
+  {
+    "id": 9052,
+    "name": "עגילי חישוק בציפוי זהב עם לב חלק תלוי {35}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9052
+  },
+  {
+    "id": 9032,
+    "name": "עגילי לב בציפוי זהב לנערות {15}",
+    "unitText": "",
+    "description": "מיוחד לגילאי 12-17, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 115,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9032
+  },
+  {
+    "id": 9033,
+    "name": "עגילי לב בציפוי רודיום לנערות {16}",
+    "unitText": "",
+    "description": "מיוחד לגילאי 12-17, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 115,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9033
+  },
+  {
+    "id": 9026,
+    "name": "עגילים בציפוי זהב עם זירקון ולב תלוי {09}",
+    "unitText": "",
+    "description": "גודל הלב 6 מ\"מ, סוגר מותאם לתינוקות, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 84,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9026
+  },
+  {
+    "id": 9072,
+    "name": "עגילים בציפוי זהב עם זירקון ולב משובץ תלוי {56}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 92,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9072
+  },
+  {
+    "id": 9074,
+    "name": "עגילים בציפוי רודיום עם זירקון ולב משובץ תלוי {57}",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 92,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 9074
+  },
+  {
+    "id": 12461,
+    "name": "עגילים בציפוי זהב לב זהב סוליטר {205}",
+    "unitText": "",
+    "description": "יורד מהאוזן חצי ס\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 98,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12461
+  },
+  {
+    "id": 12460,
+    "name": "עגילים בציפוי רודיום לב זהב סוליטר {206}",
+    "unitText": "",
+    "description": "יורד מהאוזן חצי ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 98,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 12460
+  },
+  {
+    "id": 9079,
+    "name": "צמיד בציפוי זהב/רודיום לב מבריק באורכים שונים",
+    "unitText": "",
+    "description": "כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 135,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4307
+  },
+  {
+    "id": 10132,
+    "name": "עגילים בציפוי זהב לב משובץ ולב תלוי {168}",
+    "unitText": "",
+    "description": "יורד מהאוזן כ 1.5 ס\"מ, כסף 925 מצופה בשכבת זהב, ROYAL CUTE",
+    "price": 97,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10132
+  },
+  {
+    "id": 10133,
+    "name": "עגילים בציפוי רודיום לב משובץ ולב תלוי {170}",
+    "unitText": "",
+    "description": "יורד מהאוזן כ 1.5 ס\"מ, כסף 925 מצופה בשכבת רודיום למראה מבריק, ROYAL CUTE",
+    "price": 97,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 10133
+  },
+  {
+    "id": 9529,
+    "name": "תיק תכשיטים יוקרתי במגוון צבעים",
+    "unitText": "",
+    "description": "מבית ROYAL SILVER, תיק גליל נפתח עם חלוקה פנימית נוחה",
+    "price": 32,
+    "category": "תכשיטים מעוצבים",
+    "subCategory": "",
+    "itemSalesId": 4190
+  },
+  {
+    "id": 9895,
+    "name": "חטיפי פיצה קפואים - מעדנות",
+    "unitText": "650 גרם",
+    "description": "650 גרם, 24 יח, חלבי",
     "price": 27.8,
     "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 11741
-  },
-  {
-    "id": 996,
-    "name": "קרטון סטייק טונה בהירה בד\"ץ העד\"ח - קייטי",
-    "unitText": "",
-    "description": "ארוז אחד אחד בוואקום כ 28 מנות בקרטון, מחושב לפי 42.5 ש\"ח לקילו. הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, ית",
-    "price": 212.5,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 996
-  },
-  {
-    "id": 147,
-    "name": "רולדת וויט פיש אושן גורמה קפוא - העד\"ח",
-    "unitText": "567 גרם",
-    "description": "567 גרם",
-    "price": 29.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 147
-  },
-  {
-    "id": 6192,
-    "name": "תות שדה קפוא {לנדא}",
-    "unitText": "1 ק\"ג",
-    "description": "1 ק\"ג, ייבול חו\"ל, מאושר לטחינה דקה בלבד בהשגחת הרב לנדא",
-    "price": 19.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 6192
-  },
-  {
-    "id": 5908,
-    "name": "קוביות מנגו קפוא {אריזה מוגדלת} - קייטי",
-    "unitText": "850 גרם",
-    "description": "850 גרם, לסלט פירות או לשייקים 100% פרי - יבול חו\"ל",
-    "price": 16,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 5908
-  },
-  {
-    "id": 5907,
-    "name": "קוביות אננס קפוא {אריזה מוגדלת} - קייטי",
-    "unitText": "850 גרם",
-    "description": "850 גרם, לסלט פירות או לשייקים 100% פרי - יבול חו\"ל",
-    "price": 16,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 5907
-  },
-  {
-    "id": 5813,
-    "name": "לקט ירקות מוקפאים - קייטי",
-    "unitText": "1 קילו",
-    "description": "1 קילו, שעועית, אפונה, תירס וגזר",
-    "price": 10.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 5813
-  },
-  {
-    "id": 207,
-    "name": "שעועית ירוקה חתוכה קפואה קייטי",
-    "unitText": "1 קילו",
-    "description": "1 קילו",
-    "price": 10.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 207
-  },
-  {
-    "id": 173,
-    "name": "גרעיני תירס מוקפאים - קייטי",
-    "unitText": "1 קילו",
-    "description": "1 קילו",
-    "price": 10.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 173
-  },
-  {
-    "id": 607,
-    "name": "שקית גרגירי חומוס מוקפאים",
-    "unitText": "1 קילו",
-    "description": "מתאים לבישול, אידוי, אפיה והקפצה, 1 קילו",
-    "price": 9,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 607
-  },
-  {
-    "id": 215,
-    "name": "ברוקולי מוקפא - ליפרש",
-    "unitText": "600 גרם",
-    "description": "600 גרם, בחזקת נקי מחרקים",
-    "price": 21.5,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 215
-  },
-  {
-    "id": 11201,
-    "name": "כרובית קפואה בציפוי פריך - תפוגן",
-    "unitText": "450 גרם",
-    "description": "כרובית מצופה בפירורי לחם, 450 גרם",
-    "price": 19.5,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 11201
-  },
-  {
-    "id": 1431,
-    "name": "בורקס קפוא תפוא",
-    "unitText": "",
-    "description": "",
-    "price": 11.7,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 1431
-  },
-  {
-    "id": 443,
-    "name": "בצק עלים - שחף",
-    "unitText": "",
-    "description": "",
-    "price": 11,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 443
-  },
-  {
-    "id": 11738,
-    "name": "דפי עלים קפואים לסיגר - מהמטבח של נועה (לנדא)",
-    "unitText": "500 גרם",
-    "description": "500 גרם, לסיגרים לאגרול ולעוגות, כ 15 דפים מרובעים, בכשרות הרב לנדא",
-    "price": 13.5,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 11738
-  },
-  {
-    "id": 1491,
-    "name": "מלאוח - שחף {ט. לאחר הפסח}",
-    "unitText": "",
-    "description": "נטחן ונאפה לאחר הפסח",
-    "price": 11.3,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 1491
-  },
-  {
-    "id": 9796,
-    "name": "שלישיית פיצה קפואה - מעדנות {מ. לאחר הפסח}",
-    "unitText": "1.24 קילו",
-    "description": "מיוצר לאחר הפסח, 1.24 קילו, ב. המוציא",
-    "price": 39.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 9796
-  },
-  {
-    "id": 209,
-    "name": "כדורי פלאפל מוכנים קפואים",
-    "unitText": "600 גרם",
-    "description": "600 גרם,",
-    "price": 15.5,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 209
-  },
-  {
-    "id": 158,
-    "name": "נקנקיות סויה - זוגלובק {מ. לאחר הפסח}",
-    "unitText": "",
-    "description": "מיוצר לאחר הפסח",
-    "price": 50,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 158
-  },
-  {
-    "id": 522,
-    "name": "שניצל צמחי (סויה) - קייטי (ריבוע כתום)",
-    "unitText": "1 ק\"ג",
-    "description": "1 ק\"ג,",
-    "price": 24.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 522
-  },
-  {
-    "id": 1558,
-    "name": "שניצל תירס - זוגלובק {מ. לאחר הפסח}",
-    "unitText": "",
-    "description": "מיוצר לאחר הפסח",
-    "price": 50,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 1558
-  },
-  {
-    "id": 12077,
-    "name": "שניצלוני פירה {צורות שונות}",
-    "unitText": "1 קילו",
-    "description": "1 קילו",
-    "price": 22.8,
-    "category": "קפואים",
-    "subCategory": "",
-    "itemSalesId": 12077
+    "itemSalesId": 9895
   },
   {
     "id": 8988,
@@ -2700,6 +3700,96 @@
     "itemSalesId": 8988
   },
   {
+    "id": 10910,
+    "name": "קוביות מחית תות קפואות {אריזה משפחתית}",
+    "unitText": "800 גרם",
+    "description": "800 גרם, תות שדה טחון קפוא",
+    "price": 22.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 10910
+  },
+  {
+    "id": 6269,
+    "name": "קוביות פסיפלורה קפואה אריזה משפחתית - קייטי",
+    "unitText": "500 גרם",
+    "description": "500 גרם, לסלט פירות או לשייקים 100% פרי - יבול חו\"ל",
+    "price": 16,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6269
+  },
+  {
+    "id": 202,
+    "name": "גרגירי אפונה קפואה - קייטי",
+    "unitText": "1 קילו",
+    "description": "1 קילו",
+    "price": 10.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 202
+  },
+  {
+    "id": 8306,
+    "name": "שקית פרחי כרובית מוקפאים עד\"ח",
+    "unitText": "600 גרם",
+    "description": "600 גרם, בחזקת נקי מחרקים",
+    "price": 20.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8306
+  },
+  {
+    "id": 8843,
+    "name": "צ'יפס קפוא 1.5 קילו",
+    "unitText": "1.5 קילו",
+    "description": "1.5 קילו",
+    "price": 15.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8843
+  },
+  {
+    "id": 6621,
+    "name": "בצק פילו מוקפא - זוגלובק",
+    "unitText": "500 גרם",
+    "description": "500 גרם",
+    "price": 13.9,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6621
+  },
+  {
+    "id": 11739,
+    "name": "סיגרים קפואים במילוי תפוח אדמה - בלינו (לנדא)",
+    "unitText": "500 גרם",
+    "description": "500 גרם, כ 25 יח, ניתן לטגן או לאפות, בכשרות הרב לנדא",
+    "price": 12.9,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11739
+  },
+  {
+    "id": 6622,
+    "name": "נגאטס תירס - קייטי (ריבוע צהוב)",
+    "unitText": "",
+    "description": "",
+    "price": 24.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 6622
+  },
+  {
+    "id": 5036,
+    "name": "טבעות בצל מצופות קפואות - קייטי (ריבוע חום)",
+    "unitText": "700 גרם",
+    "description": "700 גרם, לאפייה וטיגון",
+    "price": 18.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 5036
+  },
+  {
     "id": 927,
     "name": "שקית פרוסות דג סלמון מעושן קפוא",
     "unitText": "100 גרם",
@@ -2710,453 +3800,313 @@
     "itemSalesId": 927
   },
   {
-    "id": 2337,
-    "name": "קרטון צלעות בקר קפוא (מס 2) בד\"צ בית חלקיה",
+    "id": 11740,
+    "name": "אצבעות דג אמנון (מושט) בציפוי פירורי לחם - רוזנערס",
+    "unitText": "600 גרם",
+    "description": "600 גרם, לאפייה או לטיגון",
+    "price": 27.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11740
+  },
+  {
+    "id": 954,
+    "name": "רולדה גפילטע פיש 0.5 קילו",
+    "unitText": "",
+    "description": "טעם הונגרי,",
+    "price": 18.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 954
+  },
+  {
+    "id": 1490,
+    "name": "קרטון מושט (פילה אמנון) עם עור עד\"ח - קייטי",
+    "unitText": "5-7 ג",
+    "description": "גודל 5-7",
+    "price": 148,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 1490
+  },
+  {
+    "id": 105,
+    "name": "קרטון סטייק טונה חומה בד\"ץ העד\"ח - קייטי {צהובת סנפיר}",
+    "unitText": "",
+    "description": "ארוז אחד אחד בוואקום כ 28 מנות בקרטון, מחושב לפי 39 ש\"ח לקילו",
+    "price": 195,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 105
+  },
+  {
+    "id": 5334,
+    "name": "קרטון פילה סלמון נורבגי בד\"ץ העד\"ח - קייטי",
+    "unitText": "",
+    "description": "כ 4 חתיכות פילה, בגודל 1.1-1.4, מחושב לפי 70 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפ",
+    "price": 385,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 5334
+  },
+  {
+    "id": 8854,
+    "name": "נקנקיות עוף בד\"צ בית חלקיה",
+    "unitText": "400 גרם",
+    "description": "400 גרם",
+    "price": 10.7,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 8854
+  },
+  {
+    "id": 447,
+    "name": "קישקע ממולא בשרי קפוא גלאט עוף {מ. לאחר הפסח}",
+    "unitText": "500 גרם",
+    "description": "מיוצר לאחר הפסח, 500 גרם, בדץ העדה החרדית,",
+    "price": 14.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 447
+  },
+  {
+    "id": 178,
+    "name": "כבד צלוי קפוא - בד\"צ בית חלקיה {משקל חדש}",
+    "unitText": "250 גרם",
+    "description": "250 גרם, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה",
+    "price": 28.8,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 178
+  },
+  {
+    "id": 1543,
+    "name": "קרטון עוף שלם קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "8-10 עופות בקרטון, מחושב לפי 24.5 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייב",
+    "price": 367.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 1543
+  },
+  {
+    "id": 773,
+    "name": "קרטון פרגית עוף קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 67 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 670,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 773
+  },
+  {
+    "id": 141,
+    "name": "קרטון חזה עוף קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 38.2 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ול",
+    "price": 573,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 141
+  },
+  {
+    "id": 2155,
+    "name": "קרטון עוף מחולק (מפורק) קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "שישה עופות מפורקים וארוזים כל חלק בנפרד חזה כרעיים כנפיים ושקית של עצם וגרון, מחושב לפי 27.5 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נ",
+    "price": 302.5,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2155
+  },
+  {
+    "id": 374,
+    "name": "קרטון כרעיים עוף קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 33.3 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ול",
+    "price": 366.3,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 374
+  },
+  {
+    "id": 448,
+    "name": "קרטון שוקיים עוף קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 37 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 444,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 448
+  },
+  {
+    "id": 2154,
+    "name": "קרטון ירכיים עוף קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 32 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 416,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2154
+  },
+  {
+    "id": 882,
+    "name": "קרטון כנפיים עוף קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 9.8 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולא",
+    "price": 147,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 882
+  },
+  {
+    "id": 397,
+    "name": "קרטון בשר טחון קפוא בד\"צ בית חלקיה {לא שקיל-מחיר קבוע}",
+    "unitText": "2 קילו",
+    "description": "ב 8 אריזות פנימיות של 1/2 קילו, מחושב לפי 69 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה. הנתונים המדויקים מופיע",
+    "price": 276,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 397
+  },
+  {
+    "id": 11178,
+    "name": "קרטון אצבעות אנטריקוט {ללא עצם} בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 98 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 490,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11178
+  },
+  {
+    "id": 994,
+    "name": "קרטון סטייק אנטריקוט פרוס קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 100 ש\"ח לקילו, משחיטת החבורה המיוחדת הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר ",
+    "price": 500,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 994
+  },
+  {
+    "id": 11798,
+    "name": "קרטון רוסטביף אנטריקוט מעובד קפוא בד\"צ בית חלקיה",
+    "unitText": "3-4 יח'",
+    "description": "כ 3-4 יח', מחושב לפי 100 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל ה",
+    "price": 500,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 11798
+  },
+  {
+    "id": 355,
+    "name": "קרטון קשתית חתוכה עם עצם (קוביות לחמין) קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 82 ש\"ח לקילו, משחיטת החבורה המיוחדת הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר ה",
+    "price": 492,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 355
+  },
+  {
+    "id": 2343,
+    "name": "קרטון קשתית פרוסות אסאדו עגל (עם עצם) קפוא בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 92 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 552,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 2343
+  },
+  {
+    "id": 506,
+    "name": "קרטון צלעות אונטריב בקר בד\"צ בית חלקיה",
+    "unitText": "",
+    "description": "מחושב לפי 78 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 468,
+    "category": "קפואים",
+    "subCategory": "",
+    "itemSalesId": 506
+  },
+  {
+    "id": 2338,
+    "name": "קרטון חזה בקר קפוא (מס 3) בד\"צ בית חלקיה",
     "unitText": "",
     "description": "מחושב לפי 75 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
     "price": 450,
     "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 2337
+    "itemSalesId": 2338
   },
   {
-    "id": 7964,
-    "name": "שישיית גרביונים לילדות 48 דנייר מלון",
+    "id": 2339,
+    "name": "קרטון כתף בקר קפוא (מס 4) בד\"צ בית חלקיה",
     "unitText": "",
-    "description": "מתאים לגילאי 2-3, גזרה צרה, colanta",
-    "price": 56,
-    "category": "גרביונים",
+    "description": "מחושב לפי 84 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 504,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 2613
+    "itemSalesId": 2339
   },
   {
-    "id": 5978,
-    "name": "שישיית גרביונים לילדות 50 דנייר מלון",
+    "id": 2340,
+    "name": "קרטון צלי כתף קפוא (מס 5) בד\"צ בית חלקיה",
     "unitText": "",
-    "description": "(אטום במיוחד), מתאים לגילאי 5-7, גזרה צרה, colanta",
-    "price": 60,
-    "category": "גרביונים",
+    "description": "מחושב לפי 105 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולא",
+    "price": 630,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 2670
+    "itemSalesId": 2340
   },
   {
-    "id": 5617,
-    "name": "שישיית ירכוני נשים 40 דנייר שחור - colanta",
+    "id": 2341,
+    "name": "קרטון פילה מדומה קפוא (מס 6) בד\"צ בית חלקיה",
     "unitText": "",
-    "description": "לתשומת לבכם! הירכון שודרג וכעת מיוצר מבד הפלמינגו ובגיזרה צרה תוצרת איטליה",
-    "price": 65,
-    "category": "גרביונים",
+    "description": "מחושב לפי 92 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 552,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 5617
+    "itemSalesId": 2341
   },
   {
-    "id": 5837,
-    "name": "שישיית ירכוני נשים 40 דנייר ויזון - colanta",
+    "id": 2342,
+    "name": "קרטון שריר בקר קפוא (מס 8) בד\"צ בית חלקיה",
     "unitText": "",
-    "description": "לתשומת לבכם! הירכון שודרג וכעת מיוצר מבד הפלמינגו ובגיזרה צרה תוצרת איטליה",
-    "price": 69,
-    "category": "גרביונים",
+    "description": "מחושב לפי 94 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 564,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 5837
+    "itemSalesId": 2342
   },
   {
-    "id": 5384,
-    "name": "שישיית ירכוני נשים 50 דנייר אטום מלון - colanta",
+    "id": 2344,
+    "name": "קרטון צוואר בקר קפוא (מס 10) בד\"צ בית חלקיה",
     "unitText": "",
-    "description": "(אטום במיוחד), תוצרת איטליה",
-    "price": 78,
-    "category": "גרביונים",
+    "description": "מחושב לפי 72 ש\"ח לקילו, משחיטת החבורה המיוחדת של הרב יחיאל נדל בכשרות בד\"ץ בית חלקיה, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאח",
+    "price": 432,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 5384
+    "itemSalesId": 2344
   },
   {
-    "id": 5753,
-    "name": "שישיית ירכוני נשים 50 דנייר אטום ויזון - colanta",
-    "unitText": "",
-    "description": "(אטום במיוחד), תוצרת איטליה",
-    "price": 78,
-    "category": "גרביונים",
+    "id": 8830,
+    "name": "קרטון עוף טחון קפוא בד\"צ עד\"ח {לא שקיל-מחיר קבוע}",
+    "unitText": "2 קילו",
+    "description": "ב 8 אריזות פנימיות של 1/2 קילו, מחושב לפי 47.5 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הט",
+    "price": 190,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 5753
+    "itemSalesId": 8830
   },
   {
-    "id": 6164,
-    "name": "שישיית ירכוני נשים 50 דנייר אטום שחור - colanta",
+    "id": 8530,
+    "name": "קרטון צלעות בקר קפוא (מס 2) בד\"צ עד\"ח",
     "unitText": "",
-    "description": "(אטום במיוחד), תוצרת איטליה",
-    "price": 78,
-    "category": "גרביונים",
+    "description": "מחושב לפי 89 ש\"ח לקילו, ע\"מ לדייק במשקל, במכירה זו תחוייבו במשקל המקסימלי ולאחר החלוקה יש להתקשר למערכת הטלפונית 0773168080, להקיש את מספר ה",
+    "price": 534,
+    "category": "קפואים",
     "subCategory": "",
-    "itemSalesId": 6164
-  },
-  {
-    "id": 5383,
-    "name": "שישיית ירכוני נשים 60 דנייר מלון - colanta",
-    "unitText": "",
-    "description": "מבריק בגימור משי, תוצרת איטליה",
-    "price": 84,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 5383
-  },
-  {
-    "id": 5754,
-    "name": "שישיית ירכוני נשים 70 דנייר אטום מלון - colanta",
-    "unitText": "",
-    "description": "מבריק בגימור משי, תוצרת איטליה",
-    "price": 86,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 5754
-  },
-  {
-    "id": 2380,
-    "name": "שישיית גרביונים לנשים 40 דנייר מלון - colanta",
-    "unitText": "",
-    "description": "תוצרת איטליה",
-    "price": 66.5,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 2628
-  },
-  {
-    "id": 5609,
-    "name": "שישיית גרביונים לנשים 40 דנייר ויזון - colanta",
-    "unitText": "",
-    "description": "תוצרת איטליה",
-    "price": 66.5,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 2629
-  },
-  {
-    "id": 5613,
-    "name": "שישיית גרביונים לנשים 40 דנייר שחור - colanta",
-    "unitText": "",
-    "description": "תוצרת איטליה",
-    "price": 66.5,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 2630
-  },
-  {
-    "id": 7312,
-    "name": "שישיית גרביונים לנשים 50 דנייר אטום מלון - colanta",
-    "unitText": "",
-    "description": "תוצרת איטליה",
-    "price": 85,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 4068
-  },
-  {
-    "id": 7766,
-    "name": "שישיית גרביונים לנשים 60 דנייר מלון - דונה",
-    "unitText": "",
-    "description": "מבריק בגימור משי, תוצרת איטליה",
-    "price": 80,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 4103
-  },
-  {
-    "id": 6051,
-    "name": "שישיית גרביונים לנשים 70 דנייר אטום מלון - colanta",
-    "unitText": "",
-    "description": "גרביון מבריק בגימור משי, colanta תוצרת איטליה",
-    "price": 99,
-    "category": "גרביונים",
-    "subCategory": "",
-    "itemSalesId": 2683
-  },
-  {
-    "id": 13396,
-    "name": "חולצת צווארון בנים דגם סקוטי שחור שמנת - מידות 4-14",
-    "unitText": "",
-    "description": "חולצת צווארון משובצת, גזרה נוחה, בעיצוב סקוטי בגווני שחור שמנת, 100% כותנה",
-    "price": 45,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4522
-  },
-  {
-    "id": 13404,
-    "name": "חולצת צווארון בנים דגם סקוטי כחול ירוק - מידות 4-14",
-    "unitText": "",
-    "description": "חולצת צווארון משובצת, גזרה נוחה, בעיצוב סקוטי בגווני כחול ירוק, 100% כותנה",
-    "price": 45,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4523
-  },
-  {
-    "id": 13412,
-    "name": "חולצת צווארון בנים דגם סקוטי אדום שמנת - מידות 4-14",
-    "unitText": "",
-    "description": "חולצת צווארון משובצת, גזרה נוחה, בעיצוב סקוטי בגווני אדום שמנת, 100% כותנה",
-    "price": 45,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4524
-  },
-  {
-    "id": 13420,
-    "name": "חולצת צווארון בנים דגם סקוטי כחול שמנת - מידות 4-14",
-    "unitText": "",
-    "description": "חולצת צווארון משובצת, גזרה נוחה, בעיצוב סקוטי בגווני כחול שמנת, 100% כותנה",
-    "price": 45,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4525
-  },
-  {
-    "id": 13497,
-    "name": "סווטשירט קפוצ'ון לילדים דגם קז'ואל שחור - מידות 3-14",
-    "unitText": "",
-    "description": "סווטשירט שחור בסגנון קז'ואל, עם רוכסן קדמי וכיסים בחזית. 60% כותנה, 40% פוליאסטר.",
-    "price": 38,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4533
-  },
-  {
-    "id": 13488,
-    "name": "סווטשירט קפוצ'ון לילדים דגם קז'ואל כחול - מידות 3-14",
-    "unitText": "",
-    "description": "סווטשירט כחול בסגנון קז'ואל, עם רוכסן קדמי וכיסים בחזית. 60% כותנה, 40% פוליאסטר.",
-    "price": 38,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4532
-  },
-  {
-    "id": 13478,
-    "name": "חולצת פוטר בייסיק לילדים דגם כחול נייבי - מידות 2-14",
-    "unitText": "",
-    "description": "חולצת פוטר קלאסית בצבע כחול נייבי, 60% כותנה, 40% פוליאסטר",
-    "price": 27,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4531
-  },
-  {
-    "id": 13428,
-    "name": "חולצת פוטר בייסיק לילדים דגם בורדו - מידות 2-14",
-    "unitText": "",
-    "description": "חולצת פוטר קלאסית בצבע בורדו 60% כותנה, 40% פוליאסטר",
-    "price": 27,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4526
-  },
-  {
-    "id": 13438,
-    "name": "חולצת פוטר בייסיק לילדים דגם אפור - מידות 2-14",
-    "unitText": "",
-    "description": "חולצת פוטר קלאסית בצבע אפור 60% כותנה, 40% פוליאסטר",
-    "price": 27,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4527
-  },
-  {
-    "id": 13448,
-    "name": "חולצת פוטר בייסיק לילדים דגם ירוק - מידות 2-14",
-    "unitText": "",
-    "description": "חולצת פוטר קלאסית בצבע ירוק 60% כותנה, 40% פוליאסטר",
-    "price": 27,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4528
-  },
-  {
-    "id": 13455,
-    "name": "חולצת פוטר בייסיק לילדים דגם ירוק - מידות 2-14",
-    "unitText": "",
-    "description": "חולצת פוטר קלאסית בצבע ירוק 60% כותנה, 40% פוליאסטר",
-    "price": 27,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4528
-  },
-  {
-    "id": 13458,
-    "name": "חולצת פוטר בייסיק לילדים דגם רויאל - מידות 2-14",
-    "unitText": "",
-    "description": "חולצת פוטר קלאסית בצבע כחול רויאל, 60% כותנה, 40% פוליאסטר",
-    "price": 27,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4529
-  },
-  {
-    "id": 13220,
-    "name": "חולצת ריב חצי גולף בנות · צבע שחור - מידות 2-22",
-    "unitText": "",
-    "description": "חולצת ריב עם צווארון חצי גולף מבד רך וגמיש, 92% ריון, 8% ספנדקס",
-    "price": 22,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4507
-  },
-  {
-    "id": 13234,
-    "name": "חולצת ריב חצי גולף בנות · צבע כחול - מידות 2-22",
-    "unitText": "",
-    "description": "חולצת ריב עם צווארון חצי גולף מבד רך וגמיש, 92% ריון, 8% ספנדקס",
-    "price": 22,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4508
-  },
-  {
-    "id": 13248,
-    "name": "חולצת ריב חצי גולף בנות · צבע שמנת - מידות 2-22",
-    "unitText": "",
-    "description": "חולצת ריב עם צווארון חצי גולף מבד רך וגמיש, 92% ריון, 8% ספנדקס",
-    "price": 22,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4509
-  },
-  {
-    "id": 13672,
-    "name": "חצאית ארוכה לנשים דגם פלואו שחור - מידות XS-XXL",
-    "unitText": "",
-    "description": "חצאית ארוכה בגזרה מתרחבת ונוחה עם כיווץ במותן ופפיון. 100% כותנה.",
-    "price": 68,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4556
-  },
-  {
-    "id": 13747,
-    "name": "כותונת חורף לילדות דגם דובי - ורוד מעושן - מידות 6-16",
-    "unitText": "",
-    "description": "כותונת פוטר נעימה וחמימה, עם עיטור דובי קטן בחזית.60% כותנה, 40% פוליאסטר.",
-    "price": 37,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4567
-  },
-  {
-    "id": 13740,
-    "name": "פיג'מת חורף לילדות דגם דובי - ורוד מעושן - מידות 2-8",
-    "unitText": "",
-    "description": "פיג'מת 2 חלקים מבד פוטר נעים וחמים, עם חולצה ומכנסיים ארוכים ועיטור דובי קטן בחזית.60% כותנה, 40% פוליאסטר.",
-    "price": 36.5,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4566
-  },
-  {
-    "id": 13731,
-    "name": "פיג'מת חורף לילדים דגם דובי - תכלת מעושן - מידות 2-12",
-    "unitText": "",
-    "description": "פיג'מת 2 חלקים מבד פוטר נעים וחמים, עם חולצה ומכנסיים ארוכים ועיטור דובי קטן בחזית.60% כותנה, 40% פוליאסטר.",
-    "price": 36.5,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4565
-  },
-  {
-    "id": 13148,
-    "name": "קפוצ'ון פליז ילדות שזיף דגם דוטס - מידות 12M-8",
-    "unitText": "",
-    "description": "קפוצ'ון רך עם נקודות, וכובע עם אוזניים וכיסים קדמיים, 100% פוליאסטר",
-    "price": 32,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4498
-  },
-  {
-    "id": 13158,
-    "name": "קפוצ'ון פליז ילדים טורקיז דגם דוטס - מידות 12M-8",
-    "unitText": "",
-    "description": "קפוצ'ון רך עם נקודות, וכובע עם אוזניים וכיסים קדמיים, 100% פוליאסטר",
-    "price": 32,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4499
-  },
-  {
-    "id": 13764,
-    "name": "שלישיית גרביוני כותנה לילדות דגם חלק - שחור - מידות 0/6M-14/16",
-    "unitText": "",
-    "description": "גרביוני כותנה איכותיים, רכים ונוחים, במראה חלק בצבע שחור. 85% כותנה, 15% ספנדקס.",
-    "price": 25,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4570
-  },
-  {
-    "id": 13770,
-    "name": "שלישיית גרביוני כותנה לילדות דגם חלק - שחור - מידות 0/6M-14/16",
-    "unitText": "",
-    "description": "גרביוני כותנה איכותיים, רכים ונוחים, במראה חלק בצבע שחור. 85% כותנה, 15% ספנדקס.",
-    "price": 25,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4570
-  },
-  {
-    "id": 13776,
-    "name": "שלישיית גרביוני כותנה לילדות דגם חלק - אפור - מידות 0/6M-14/16",
-    "unitText": "",
-    "description": "גרביוני כותנה איכותיים, רכים ונוחים, במראה חלק בצבע אפור. 85% כותנה, 15% ספנדקס.",
-    "price": 25,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4571
-  },
-  {
-    "id": 13788,
-    "name": "שלישיית גרביוני כותנה לילדות דגם חלק - כחול - מידות 0/6M-14/16",
-    "unitText": "",
-    "description": "גרביוני כותנה איכותיים, רכים ונוחים, במראה חלק בצבע כחול. 85% כותנה, 15% ספנדקס.",
-    "price": 25,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4572
-  },
-  {
-    "id": 13800,
-    "name": "שלישיית ירכוני כותנה דגם קלאסיק לבן - מידות 35/38-39/41",
-    "unitText": "",
-    "description": "גרבי ירך מכותנה איכותית, רכים ונוחים, במראה חלק וקלאסי. 85% כותנה, 15% ספנדקס",
-    "price": 24,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4573
-  },
-  {
-    "id": 13753,
-    "name": "שלישיית גרבי דנטל weston בצבע שחור - מידות 0/6M-31/34",
-    "unitText": "",
-    "description": "גרבי כותנה עם דנטל למראה חגיגי ואלגנטי 85% כותנה, 15% ספנדקס.",
-    "price": 25,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4568
-  },
-  {
-    "id": 10788,
-    "name": "שלישיית גרבי דנטל weston בצבע שמנת מידות 0/6-23-26",
-    "unitText": "",
-    "description": "גרבי כותנה עם דנטל למראה חגיגי ואלגנטי 85% כותנה, 15% ספנדקס.",
-    "price": 25,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4298
-  },
-  {
-    "id": 13841,
-    "name": "תיק פאוץ' במגוון דגמים",
-    "unitText": "",
-    "description": "פאוץ' קומפקטי בעיצוב נקי עם רצועה מתכווננת ועיטור לוגו בחזית, מידות הפאוץ: אורך: 20 ס\"מ, גובה: 13 ס\"מ, היקף הרצועה: 45-90 ס\"מ.",
-    "price": 17,
-    "category": "ביגוד",
-    "subCategory": "",
-    "itemSalesId": 4584
+    "itemSalesId": 8530
   }
 ]

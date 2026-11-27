@@ -76,17 +76,18 @@
       "ביצים m",
       "ביצים גודל M"
     ],
-    "supermarketPrice": 33.03,
+    "supermarketPrice": 33.45,
     "chains": {
       "osherAd": 33.4,
       "ramiLevy": null,
       "yeshHesed": 33.5,
       "netoChisachon": null,
-      "shaareiRevaha": 32.2,
+      "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "ביצים M, 30 יחידות"
+    "lastVerified": "2026-11-27",
+    "matchedName": "ביצים לסר M בינוני, 30 יחידות",
+    "isEquivalentBrand": true
   },
   {
     "id": "eggs_l12",
@@ -135,16 +136,16 @@
       "קוטג 250",
       "קוטג' 250 גר' - טרה"
     ],
-    "supermarketPrice": 5.93,
+    "supermarketPrice": 5.94,
     "chains": {
       "osherAd": 5.9,
       "ramiLevy": 5.9,
       "yeshHesed": 6,
-      "netoChisachon": null,
+      "netoChisachon": 6,
       "shaareiRevaha": 5.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "קוטג' 5%, 250 גרם"
   },
   {
@@ -265,19 +266,22 @@
     "name": "שוקו תנובה 1 ליטר",
     "aliases": [
       "שוקו 1 ליטר",
-      "שוקו תנובה"
+      "שוקו תנובה",
+      "שוקו בבקבוק 1 ליטר טרה {מ.מ}"
     ],
-    "supermarketPrice": 9.9,
+    "supermarketPrice": 7.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 9.9,
+      "ramiLevy": 7.9,
       "yeshHesed": null,
       "netoChisachon": null,
       "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "שוקו תנובה 2.7% שומן קרטון, 1 ליטר"
+    "lastVerified": "2026-11-27",
+    "matchedName": "שוקו תנובה 2.7% שומן קרטון 1 ליטר",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / זולצ'יפ"
   },
   {
     "id": "oil_canola",
@@ -295,7 +299,7 @@
       "shaareiRevaha": 14.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "שמן קנולה מזוכך, 1 ליטר"
   },
   {
@@ -319,7 +323,8 @@
     "name": "שמן זית כתית מעולה 750 מ\"ל",
     "aliases": [
       "שמן זית",
-      "כתית מעולה 750"
+      "כתית מעולה 750",
+      "שמן זית כתית מעולה - טעמן {מ.מ.}"
     ],
     "supermarketPrice": 31.53,
     "chains": {
@@ -330,7 +335,7 @@
       "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "שמן זית כתית מעולה קלאסי, 750 מ\"ל"
   },
   {
@@ -534,17 +539,17 @@
       "פתיתים כוכבים",
       "פתיתים אסם"
     ],
-    "supermarketPrice": 5.05,
+    "supermarketPrice": 5.3,
     "chains": {
       "osherAd": 4.9,
       "ramiLevy": 4.9,
       "yeshHesed": 4.9,
       "netoChisachon": 6.9,
       "shaareiRevaha": 4.9,
-      "mechiraLaKehila": 3.8
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "פתיתים אפויים אורז, 500 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "פתיתים אפויים קוסקוס, 500 גרם"
   },
   {
     "id": "tuna_fillet_4",
@@ -665,14 +670,16 @@
       "קטשופ אסם",
       "קטשופ 750"
     ],
-    "supermarketPrice": 11.15,
+    "supermarketPrice": 11.1,
     "chains": {
       "osherAd": 10.9,
       "ramiLevy": 10.9,
       "yeshHesed": 10.9,
-      "netoChisachon": 11.9
+      "netoChisachon": 11.9,
+      "shaareiRevaha": 10.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "קטשופ, 750 גרם"
   },
   {
@@ -744,12 +751,17 @@
       "לחם פרוס - דגנית עין בר",
       "לחם פרוס מחיטה מלאה - דגנית עין בר"
     ],
-    "supermarketPrice": 15.9,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "לחם חיטה מלאה 100% פרוס דגנית עין בר 750 גרם",
-    "source": "google_search",
-    "sourceLabel": "ויקטורי / פרייסז",
+    "supermarketPrice": 11.65,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": 12.9,
+      "yeshHesed": 9.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 13.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "אין E דוידוביץ לחם 100% קמח חיטה מלא, 750 גרם",
     "isEquivalentBrand": true
   },
   {
@@ -845,7 +857,7 @@
       "shaareiRevaha": 3.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "חטיף במבה, 80 גרם"
   },
   {
@@ -880,12 +892,17 @@
       "ביסלי מיקס",
       "ביסלי פארטי מיקס אריזה גדולה - אסם"
     ],
-    "supermarketPrice": 7.9,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "חטיף ביסלי פארטי מיקס אסם 150 גרם",
-    "source": "google_search",
-    "sourceLabel": "שופרסל / רמי לוי"
+    "supermarketPrice": 7.42,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 6.9,
+      "yeshHesed": 7.5,
+      "netoChisachon": 8.9,
+      "shaareiRevaha": 6.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "חטיף ביסלי פארטי מיקס מתובלים, 150 גרם"
   },
   {
     "id": "shahar_hashahar",
@@ -1226,7 +1243,8 @@
       "שמפו הואי",
       "מרכך פינוק",
       "פינוק 700",
-      "שמפו פינוק - כחול"
+      "שמפו פינוק - כחול",
+      "שמפו פינוק - כחול {מ.מ}"
     ],
     "supermarketPrice": 13.7,
     "chains": {
@@ -1237,8 +1255,9 @@
       "shaareiRevaha": 13.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "שמפו ומרכך לשיער רגיל, 700 מ\"ל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "שמפו ומרכך לשיער רגיל, 700 מ\"ל",
+    "isEquivalentBrand": true
   },
   {
     "id": "peas_frozen_sunfrost",
@@ -1284,17 +1303,18 @@
       "תפודים ציפס",
       "צ'יפס קפוא 1.5 קילו"
     ],
-    "supermarketPrice": 16.9,
+    "supermarketPrice": 24.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 16.9,
+      "ramiLevy": 24.9,
       "yeshHesed": null,
       "netoChisachon": null,
       "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "צ'יפס אמריקאי פריניר קפוא, 1.5 ק\"ג"
+    "lastVerified": "2026-11-27",
+    "matchedName": "צ'יפס אמריקאי, 1.5 ק\"ג",
+    "isEquivalentBrand": true
   },
   {
     "id": "bourekas_potato",
@@ -1435,19 +1455,20 @@
     "aliases": [
       "סנו מקסימה",
       "מרכך סנו מקסימה",
-      "מקסימה מרוכז"
+      "מקסימה מרוכז",
+      "מרכך כביסה מרוכז סנו מקסימה (מ.מ.)"
     ],
-    "supermarketPrice": 18.35,
+    "supermarketPrice": 18.46,
     "chains": {
       "osherAd": 18.35,
       "ramiLevy": 18.8,
       "yeshHesed": 17.9,
-      "netoChisachon": 17.9,
+      "netoChisachon": null,
       "shaareiRevaha": 18.8,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "מרכך כביסה מרוכז אולטרא פרש, 1 ליטר"
+    "lastVerified": "2026-11-27",
+    "matchedName": "מרכך כביסה מרוכז פריחה כחולה, 1 ליטר"
   },
   {
     "id": "persil_gel_3_8l",
@@ -1535,15 +1556,16 @@
       "שקדי מרק",
       "שקדי מרק אסם"
     ],
-    "supermarketPrice": 9.24,
+    "supermarketPrice": 9.88,
     "chains": {
       "osherAd": 9.9,
       "ramiLevy": 9.8,
       "yeshHesed": 9.9,
       "netoChisachon": 9.9,
-      "mechiraLaKehila": 6.7
+      "shaareiRevaha": 9.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-19",
+    "lastVerified": "2026-11-27",
     "matchedName": "שקדי מרק, 400 גרם"
   },
   {
@@ -1591,17 +1613,17 @@
       "דבש בבקבוק לחיץ",
       "דבש לחיץ"
     ],
-    "supermarketPrice": 25,
+    "supermarketPrice": 21.8,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 25,
+      "ramiLevy": 21.7,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": 21.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "דבש טהור מפרחי בר לחיץ 400 גרם יד מרדכי",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "דבש טהור מפרחי בר לחיץ, 400 גרם"
   },
   {
     "id": "sano_clear_windows",
@@ -1704,17 +1726,20 @@
     "aliases": [
       "שוקולד צ'יפס",
       "שוקולד ציפס אמיתי",
-      "נטיפי שוקולד מריר"
+      "נטיפי שוקולד מריר",
+      "שוקולד-ציפס מיקס"
     ],
-    "supermarketPrice": 14.23,
+    "supermarketPrice": 13.8,
     "chains": {
-      "osherAd": 11.9,
-      "ramiLevy": 14.9,
+      "osherAd": null,
+      "ramiLevy": 13.7,
       "yeshHesed": null,
-      "netoChisachon": 15.9
+      "netoChisachon": 13.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-15",
-    "matchedName": "שוקולד צ'יפס, 150 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "נטיפי צ'יפס בטעם שוקולד, 250 גרם",
     "isEquivalentBrand": true
   },
   {
@@ -1726,15 +1751,17 @@
       "חטיפי פיצה קפואים",
       "חטיפי פיצה קפואים - מעדנות"
     ],
-    "supermarketPrice": 30.9,
+    "supermarketPrice": 30.59,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 30.9,
-      "yeshHesed": null,
-      "netoChisachon": null
+      "ramiLevy": 32.65,
+      "yeshHesed": 29.9,
+      "netoChisachon": 32.9,
+      "shaareiRevaha": 26.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "חטיפי פיצה בתוספת זיתים, 710 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "חטיפי פיצה גבינה, 650 גרם"
   },
   {
     "id": "green_beans_cut",
@@ -1842,16 +1869,13 @@
       "קוביות מחית תות קפואות {אריזה משפחתית}",
       "תות שדה קפוא {לנדא}"
     ],
-    "supermarketPrice": 14.9,
-    "chains": {
-      "osherAd": 14.9,
-      "ramiLevy": null,
-      "yeshHesed": null,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-16",
-    "matchedName": "תות שדה קפוא בסט פרו, 1 ק\"ג",
-    "isEquivalentBrand": true
+    "supermarketPrice": 27,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "תות שדה קפוא נקי 1 ק\"ג",
+    "isEquivalentBrand": true,
+    "source": "google_search",
+    "sourceLabel": "בלנדרז / חנויות טבע"
   },
   {
     "id": "canned_peach_halves",
@@ -1861,16 +1885,16 @@
       "אפרסק שימורים",
       "חצאי אפרסק גדול {שימורים}"
     ],
-    "supermarketPrice": 11.4,
+    "supermarketPrice": 10.22,
     "chains": {
       "osherAd": 10.9,
       "ramiLevy": 10.9,
       "yeshHesed": 12.9,
       "netoChisachon": null,
       "shaareiRevaha": 10.9,
-      "mechiraLaKehila": null
+      "mechiraLaKehila": 5.5
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "חצאי אפרסק בסירופ טעמן, 820 גרם"
   },
   {
@@ -1883,10 +1907,10 @@
     ],
     "supermarketPrice": 29.9,
     "chains": {},
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "שוקולד מריר כרמית מארז רביעייה 400 גרם",
     "source": "google_search",
-    "sourceLabel": "זאפ / חנויות רשת"
+    "sourceLabel": "לצ'ה / חנויות אפייה"
   },
   {
     "id": "cucumber_fresh",
@@ -1897,14 +1921,16 @@
       "מלפפון ירוק",
       "מלפפון שדה"
     ],
-    "supermarketPrice": 5.57,
+    "supermarketPrice": 7.9,
     "chains": {
-      "osherAd": 4.9,
+      "osherAd": null,
       "ramiLevy": 7.9,
       "yeshHesed": null,
-      "netoChisachon": 3.9
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "מלפפון טרי 1 ק\"ג",
     "source": "google_search",
     "sourceLabel": "רמי לוי / שופרסל",
@@ -1919,18 +1945,17 @@
       "עגבניות חממה",
       "עגבניה שדה"
     ],
-    "supermarketPrice": 7.9,
+    "supermarketPrice": 8.65,
     "chains": {
-      "osherAd": 7.9,
-      "ramiLevy": 7.9,
-      "yeshHesed": 7.9,
-      "netoChisachon": null
+      "osherAd": 8.65,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "עגבניות טריות 1 ק\"ג",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגבניה, מחיר לפי משקל"
   },
   {
     "id": "onion_dry",
@@ -1941,18 +1966,17 @@
       "בצל צהוב",
       "בצל שקית"
     ],
-    "supermarketPrice": 4.9,
+    "supermarketPrice": 5.03,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 5.9,
-      "yeshHesed": null,
-      "netoChisachon": 3.9
+      "ramiLevy": null,
+      "yeshHesed": 5.15,
+      "netoChisachon": null,
+      "shaareiRevaha": 4.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "בצל יבש 1 ק\"ג",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "בצל יבש, מחיר לפי משקל"
   },
   {
     "id": "potato_fresh",
@@ -1986,14 +2010,16 @@
       "גזר ארוז",
       "גזר שקית"
     ],
-    "supermarketPrice": 3.9,
+    "supermarketPrice": 4.65,
     "chains": {
       "osherAd": null,
       "ramiLevy": null,
-      "yeshHesed": 3.9,
-      "netoChisachon": null
+      "yeshHesed": 4.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 4.4,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "גזר ארוז, מחיר לפי משקל"
   },
   {
@@ -2005,15 +2031,19 @@
       "גמבה אדומה",
       "פלפל גמבה"
     ],
-    "supermarketPrice": 7.4,
+    "supermarketPrice": 8.9,
     "chains": {
-      "osherAd": 6.9,
-      "ramiLevy": null,
-      "yeshHesed": 7.9,
-      "netoChisachon": null
+      "osherAd": null,
+      "ramiLevy": 8.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "פלפל אדום, מחיר לפי משקל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "פלפל אדום 1 ק\"ג",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל"
   },
   {
     "id": "sweet_potato_fresh",
@@ -2022,16 +2052,16 @@
       "בטטה",
       "בטטות"
     ],
-    "supermarketPrice": 6.4,
+    "supermarketPrice": 6.53,
     "chains": {
-      "osherAd": 7.15,
+      "osherAd": null,
       "ramiLevy": null,
-      "yeshHesed": 6.15,
+      "yeshHesed": 7.15,
       "netoChisachon": null,
       "shaareiRevaha": 5.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "בטטה, מחיר לפי משקל"
   },
   {
@@ -2043,17 +2073,17 @@
       "קישוא ירוק",
       "קישואים (ירוק)"
     ],
-    "supermarketPrice": 10.5,
+    "supermarketPrice": 8.59,
     "chains": {
       "osherAd": 7.9,
-      "ramiLevy": 13.1,
-      "yeshHesed": null,
-      "netoChisachon": null
+      "ramiLevy": 7.35,
+      "yeshHesed": 8.9,
+      "netoChisachon": 9.9,
+      "shaareiRevaha": 8.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "קישוא ירוק / זוקיני 1 ק\"ג",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "קישואים, מחיר לפי משקל"
   },
   {
     "id": "lemon_fresh",
@@ -2063,14 +2093,16 @@
       "לימונים",
       "לימון (אריזה צהובה)"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 7.65,
     "chains": {
       "osherAd": 6.9,
       "ramiLevy": null,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": 8.4,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "לימון, מחיר לפי משקל"
   },
   {
@@ -2081,15 +2113,17 @@
       "בננות",
       "אשכול בננות"
     ],
-    "supermarketPrice": 9.15,
+    "supermarketPrice": 8.9,
     "chains": {
-      "osherAd": 8.9,
+      "osherAd": null,
       "ramiLevy": 8.9,
-      "yeshHesed": 7.9,
-      "netoChisachon": 10.9
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "בננה טריה 1 ק\"ג",
+    "lastVerified": "2026-11-27",
+    "matchedName": "בננות 1 ק\"ג",
     "source": "google_search",
     "sourceLabel": "רמי לוי / שופרסל"
   },
@@ -2102,17 +2136,17 @@
       "ראש כרוב אדום גדול {לנדא} {שקית}",
       "ראש כרוב לבן גדול {לנדא} {שקית}"
     ],
-    "supermarketPrice": 17.4,
+    "supermarketPrice": 12.9,
     "chains": {
-      "osherAd": 14.9,
-      "ramiLevy": null,
-      "yeshHesed": 17.9,
-      "netoChisachon": 17.9,
-      "shaareiRevaha": 18.9,
+      "osherAd": null,
+      "ramiLevy": 12.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-21",
-    "matchedName": "כרוב לבן קצוץ, 1 ק\"ג"
+    "lastVerified": "2026-11-27",
+    "matchedName": "כרוב לבן שלם, מחיר לפי משקל"
   },
   {
     "id": "pasta_osem_general",
@@ -2154,7 +2188,7 @@
       "shaareiRevaha": 11.3,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "גבינה לבנה 5% טרה, 500 גרם"
   },
   {
@@ -2175,7 +2209,7 @@
       "shaareiRevaha": 31.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "גבינה צהובה עמק סמי מעדניה 28%, 600 גרם"
   },
   {
@@ -2188,15 +2222,19 @@
       "קרלו 8 גביעים",
       "מעדן קרלו שוקו"
     ],
-    "supermarketPrice": 16.4,
+    "supermarketPrice": 17.3,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 17.6,
-      "yeshHesed": 15.7,
-      "netoChisachon": 15.9
+      "ramiLevy": 17.3,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "קרלו מיני מעדן חלב בטעם שוקולד 1.5%, שמיניה 8 * 100 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "מאגדת קרלו מיני שוקולד 8 יח' * 100 ג'",
+    "source": "google_search",
+    "sourceLabel": "שופרסל / רמי לוי"
   },
   {
     "id": "cookies_tirosh_half_moon_175g",
@@ -2329,17 +2367,18 @@
     "aliases": [
       "בורקס קפוא במילוי גבינה"
     ],
-    "supermarketPrice": 22.9,
+    "supermarketPrice": 19.7,
     "chains": {
-      "osherAd": null,
+      "osherAd": 16.9,
       "ramiLevy": 22.9,
       "yeshHesed": 21.9,
-      "netoChisachon": 23.9,
-      "shaareiRevaha": null,
+      "netoChisachon": 19.9,
+      "shaareiRevaha": 16.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "בורקס במילוי גבינה, 800 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "בורקס במילוי גבינה, 800 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_742",
@@ -2400,15 +2439,19 @@
     "aliases": [
       "דלורית"
     ],
-    "supermarketPrice": 3.4,
+    "supermarketPrice": 3.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": null,
-      "yeshHesed": 3.4,
-      "netoChisachon": null
+      "ramiLevy": 3.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "דלורית, מחיר לפי משקל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "דלורית 1 ק\"ג",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / ויקטורי"
   },
   {
     "id": "my_392",
@@ -2416,12 +2459,19 @@
     "aliases": [
       "פטרוזליה {לנדא}"
     ],
-    "supermarketPrice": 6.8,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "פטרוזיליה מהדרין ארוזה",
+    "supermarketPrice": 4.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 4.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "פטרוזיליה ארוזה יחידה",
     "source": "google_search",
-    "sourceLabel": "רשתות שיווק / סופרמרקטים",
+    "sourceLabel": "רמי לוי / שופרסל",
     "isEquivalentBrand": true
   },
   {
@@ -2458,8 +2508,9 @@
       "shaareiRevaha": 13.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-21",
-    "matchedName": "נפוליאון גבינת שמנת בטעם טבעי 25%, 225 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "נפוליאון גבינת שמנת בטעם טבעי 25%, 225 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_403",
@@ -2584,16 +2635,16 @@
     "aliases": [
       "תפוח אדמה אדום 5 קילו"
     ],
-    "supermarketPrice": 33.4,
+    "supermarketPrice": 32.9,
     "chains": {
-      "osherAd": 33.4,
+      "osherAd": 32.9,
       "ramiLevy": null,
       "yeshHesed": null,
       "netoChisachon": null,
       "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "תפוח אדמה אדום, 5 ק\"ג"
   },
   {
@@ -2602,14 +2653,16 @@
     "aliases": [
       "קולרבי"
     ],
-    "supermarketPrice": 5.9,
+    "supermarketPrice": 7.15,
     "chains": {
-      "osherAd": 6.9,
+      "osherAd": null,
       "ramiLevy": null,
-      "yeshHesed": 4.9,
-      "netoChisachon": null
+      "yeshHesed": 6.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 7.4,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "קולורבי, מחיר לפי משקל"
   },
   {
@@ -2618,18 +2671,17 @@
     "aliases": [
       "חצילים"
     ],
-    "supermarketPrice": 8.9,
+    "supermarketPrice": 5.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 8.9,
-      "yeshHesed": null,
-      "netoChisachon": null
+      "ramiLevy": null,
+      "yeshHesed": 4.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 6.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "חצילים טריים במשקל (לק\"ג)",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל",
-    "isEquivalentBrand": true
+    "lastVerified": "2026-11-27",
+    "matchedName": "חצילים, מחיר לפי משקל"
   },
   {
     "id": "my_14",
@@ -2637,18 +2689,17 @@
     "aliases": [
       "סלק"
     ],
-    "supermarketPrice": 5.9,
+    "supermarketPrice": 3.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 5.9,
-      "yeshHesed": null,
-      "netoChisachon": null
+      "ramiLevy": null,
+      "yeshHesed": 3.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 3.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "סלק אדום טרי לק\"ג",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל",
-    "isEquivalentBrand": true
+    "lastVerified": "2026-11-27",
+    "matchedName": "סלק, מחיר לפי משקל"
   },
   {
     "id": "my_31",
@@ -2658,10 +2709,10 @@
     ],
     "supermarketPrice": 39.9,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "ענבים אדומים סקרלוטה ענבי טלי ק\"ג",
+    "lastVerified": "2026-11-27",
+    "matchedName": "ענבים אדומים סקרלוטה טלי 1 ק\"ג",
     "source": "google_search",
-    "sourceLabel": "רשתות שיווק / אתרי פירות"
+    "sourceLabel": "רשתות מזון / אתרי פירות"
   },
   {
     "id": "my_391",
@@ -2675,11 +2726,12 @@
       "ramiLevy": 7.9,
       "yeshHesed": null,
       "netoChisachon": null,
-      "shaareiRevaha": null,
+      "shaareiRevaha": 7.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "סלרי עלים בשקית יחידה שדות בעמק"
+    "lastVerified": "2026-11-27",
+    "matchedName": "סלרי עלים בשקית יחידה שדות בעמק",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_12478",
@@ -2723,15 +2775,18 @@
     "aliases": [
       "פיצרלה מגורדת - יבנה"
     ],
-    "supermarketPrice": 23.4,
+    "supermarketPrice": 23.23,
     "chains": {
       "osherAd": null,
       "ramiLevy": 22.9,
       "yeshHesed": null,
-      "netoChisachon": 23.9
+      "netoChisachon": 23.9,
+      "shaareiRevaha": 22.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "פיצרלה כפיר, 500 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "פיצרלה כפיר, 500 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_7596",
@@ -2739,29 +2794,39 @@
     "aliases": [
       "מאגדת יוגורט Bio 3% - תנובה "
     ],
-    "supermarketPrice": 16.87,
+    "supermarketPrice": 17.1,
     "chains": {
       "osherAd": 15.9,
       "ramiLevy": 16.9,
       "yeshHesed": 17.8,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": 17.8,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-15",
+    "lastVerified": "2026-11-27",
     "matchedName": "יוגורט ביו 3% תנובה, 1.2 ק\"ג"
   },
   {
     "id": "my_433",
     "name": "מלפפון חמוץ במלח {מ.מ.}",
     "aliases": [
-      "מלפפון חמוץ במלח {מ.מ.}"
+      "מלפפון חמוץ במלח {מ.מ.}",
+      "מלפפון חמוץ במלח 18-25 בני דרום"
     ],
-    "supermarketPrice": 10.5,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "מלפפון במלח בינוני 10-12 קבוצת יבנה 540 גרם",
+    "supermarketPrice": 7.2,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 7.2,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מלפפונים במלח גדולים 7-9 / טעם ביתי 320-500 גרם",
     "isEquivalentBrand": true,
     "source": "google_search",
-    "sourceLabel": "שופרסל / רמי לוי"
+    "sourceLabel": "רמי לוי / רשתות מזון"
   },
   {
     "id": "my_14064",
@@ -2832,7 +2897,7 @@
       "shaareiRevaha": 19.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "קורנפלקס של אלופים, 850 גרם"
   },
   {
@@ -2841,18 +2906,18 @@
     "aliases": [
       "פרכיות אורז - אריזת ג'מבו"
     ],
-    "supermarketPrice": 13.9,
+    "supermarketPrice": 8.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 13.9,
+      "ramiLevy": null,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": 8.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "פריכיות אורז מלא אריזת חיסכון / ענק 310 גרם",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / סופרמרקט"
+    "lastVerified": "2026-11-27",
+    "matchedName": "פריכונים מאורז מלא, 140 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_1345",
@@ -2860,18 +2925,18 @@
     "aliases": [
       "וופלים"
     ],
-    "supermarketPrice": 4,
+    "supermarketPrice": 5.35,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 4,
-      "yeshHesed": null,
-      "netoChisachon": null
+      "ramiLevy": 5.5,
+      "yeshHesed": 5.5,
+      "netoChisachon": 5.5,
+      "shaareiRevaha": 4.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "וופלים בטעם לימון / שוקולד 200 גרם",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / סופרמרקט"
+    "lastVerified": "2026-11-27",
+    "matchedName": "וופלים בטעם שוקולד, 200 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_7824",
@@ -2879,12 +2944,13 @@
     "aliases": [
       "חטיף קראנצ'וס (דמוי ביסלי)"
     ],
-    "supermarketPrice": 3.5,
+    "supermarketPrice": 5,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "חטיף קראנצ'וס 55 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "חטיף חיטה קראנצ'וס טעם גריל 55 גרם",
     "source": "google_search",
-    "sourceLabel": "ויקטורי / סופרמרקט"
+    "sourceLabel": "שסטוביץ / רשתות שיווק",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_8879",
@@ -2933,8 +2999,9 @@
       "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "מגבונים לחים סופטנס שמאי, 72 יחידות"
+    "lastVerified": "2026-11-27",
+    "matchedName": "מגבונים לחים סופטנס שמאי, 72 יחידות",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_1783",
@@ -3067,10 +3134,13 @@
       "osherAd": null,
       "ramiLevy": 33.9,
       "yeshHesed": 33.9,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": 33.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "אצבעות דג אמנון בציפוי פירורי לחם, 600 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "אצבעות דג אמנון בציפוי פירורי לחם, 600 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_25",
@@ -3083,13 +3153,15 @@
       "osherAd": null,
       "ramiLevy": 14.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "קיווי משקל (לק\"ג)",
+    "lastVerified": "2026-11-27",
+    "matchedName": "קיווי טרי במשקל 1 ק\"ג",
     "isEquivalentBrand": true,
     "source": "google_search",
-    "sourceLabel": "רמי לוי / שוק העיר / פריסז"
+    "sourceLabel": "רמי לוי / שופרסל"
   },
   {
     "id": "my_8698",
@@ -3111,18 +3183,20 @@
     "aliases": [
       "אפרסמון {מ.מ.}"
     ],
-    "supermarketPrice": 17.2,
+    "supermarketPrice": 9.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 17.2,
+      "ramiLevy": 9.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "אפרסמון לקילו",
+    "lastVerified": "2026-11-27",
+    "matchedName": "אפרסמון טרי במשקל 1 ק\"ג",
     "isEquivalentBrand": true,
     "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "sourceLabel": "רמי לוי / מחסני השוק"
   },
   {
     "id": "my_57",
@@ -3130,16 +3204,17 @@
     "aliases": [
       "פומלית  - רשת ירוקה"
     ],
-    "supermarketPrice": 7.9,
+    "supermarketPrice": 4.4,
     "chains": {
-      "osherAd": null,
-      "ramiLevy": 7.9,
+      "osherAd": 4.9,
+      "ramiLevy": 3.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "פומלית לקילו",
-    "isEquivalentBrand": true,
+    "lastVerified": "2026-11-27",
+    "matchedName": "פומלית לפי קילו",
     "source": "google_search",
     "sourceLabel": "רמי לוי / שופרסל"
   },
@@ -3149,18 +3224,18 @@
     "aliases": [
       "תפוזים (רשת כתומה) {מ.מ.}"
     ],
-    "supermarketPrice": 5.9,
+    "supermarketPrice": 4.4,
     "chains": {
-      "osherAd": 5.9,
-      "ramiLevy": 5.9,
-      "yeshHesed": 5.9,
-      "netoChisachon": 5.9
+      "osherAd": 3.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": 4.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "תפוזים בתפזורת לקילו",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "תפוזים ברשת, מחיר לפי משקל",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_61",
@@ -3168,16 +3243,17 @@
     "aliases": [
       "קלמנטינה"
     ],
-    "supermarketPrice": 5.9,
+    "supermarketPrice": 3.9,
     "chains": {
-      "osherAd": 5.9,
-      "ramiLevy": 5.9,
-      "yeshHesed": 5.9,
-      "netoChisachon": 5.9
+      "osherAd": null,
+      "ramiLevy": 3.9,
+      "yeshHesed": null,
+      "netoChisachon": 3.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "קלמנטינה לקילו",
-    "isEquivalentBrand": true,
+    "lastVerified": "2026-11-27",
+    "matchedName": "קלמנטינה לפי קילו",
     "source": "google_search",
     "sourceLabel": "רמי לוי / שופרסל"
   },
@@ -3187,18 +3263,17 @@
     "aliases": [
       "אגס"
     ],
-    "supermarketPrice": 11.95,
+    "supermarketPrice": 13.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 14,
-      "yeshHesed": 9.9,
-      "netoChisachon": null
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": 13.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "אגס לקילו",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל",
-    "isEquivalentBrand": true
+    "lastVerified": "2026-11-27",
+    "matchedName": "אגס, מחיר לפי משקל"
   },
   {
     "id": "my_1104",
@@ -3206,17 +3281,19 @@
     "aliases": [
       "תפוח עץ סמיט (ירוק)"
     ],
-    "supermarketPrice": 8.9,
+    "supermarketPrice": 10.4,
     "chains": {
-      "osherAd": 8.9,
-      "ramiLevy": null,
+      "osherAd": 10.9,
+      "ramiLevy": 9.9,
       "yeshHesed": null,
       "netoChisachon": null,
       "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-21",
-    "matchedName": "תפוח עץ סמיט ברשת, מחיר לפי משקל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "תפוח עץ ירוק גרנד סמיט לקילו",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל"
   },
   {
     "id": "my_386",
@@ -3224,18 +3301,18 @@
     "aliases": [
       "חסה גידולי אדמה {לנדא}"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 11.3,
     "chains": {
-      "osherAd": null,
-      "ramiLevy": 6.9,
+      "osherAd": 10.9,
+      "ramiLevy": 11.7,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "חסה יחידה",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "צמד לבבות חסה בשקית א אדמה",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_387",
@@ -3243,17 +3320,19 @@
     "aliases": [
       "בצל ירוק {לנדא}"
     ],
-    "supermarketPrice": 7.9,
+    "supermarketPrice": 3.78,
     "chains": {
-      "osherAd": 7.9,
-      "ramiLevy": 7.9,
-      "yeshHesed": null,
-      "netoChisachon": null,
-      "shaareiRevaha": 7.9,
-      "mechiraLaKehila": null
+      "osherAd": 3.9,
+      "ramiLevy": 2.9,
+      "yeshHesed": 3.9,
+      "netoChisachon": 3.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": 4.3
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "בצל ירוק חסלט בשקית"
+    "lastVerified": "2026-11-27",
+    "matchedName": "בצל ירוק יחידה",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל"
   },
   {
     "id": "my_388",
@@ -3266,11 +3345,14 @@
       "osherAd": null,
       "ramiLevy": 5.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "כוסברה בשקית שדות בעמק, 100 גרם",
-    "isEquivalentBrand": true
+    "lastVerified": "2026-11-27",
+    "matchedName": "כוסברה מהדרין יחידה",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל"
   },
   {
     "id": "my_393",
@@ -3278,18 +3360,18 @@
     "aliases": [
       "שמיר {לנדא}"
     ],
-    "supermarketPrice": 6.8,
+    "supermarketPrice": 5.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 6.8,
+      "ramiLevy": 5.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "שמיר שקית חסלט 70 גרם",
-    "isEquivalentBrand": true,
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל"
+    "lastVerified": "2026-11-27",
+    "matchedName": "שמיר בשקית שדות בעמק, 100 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_7039",
@@ -3314,14 +3396,16 @@
     "aliases": [
       "פיתות מקמח כוסמין"
     ],
-    "supermarketPrice": 16.94,
+    "supermarketPrice": 16.9,
     "chains": {
       "osherAd": 16.9,
-      "ramiLevy": 17.05,
+      "ramiLevy": 16.9,
       "yeshHesed": 16.9,
-      "netoChisachon": 16.9
+      "netoChisachon": 16.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-15",
+    "lastVerified": "2026-11-27",
     "matchedName": "פיתות כוסמין, 400 גרם",
     "isEquivalentBrand": true
   },
@@ -3331,15 +3415,17 @@
     "aliases": [
       "עוגת בוקר רוגעל'ה שוקולד - שפיצר"
     ],
-    "supermarketPrice": 3.7,
+    "supermarketPrice": 2.9,
     "chains": {
       "osherAd": null,
       "ramiLevy": null,
-      "yeshHesed": 3.5,
-      "netoChisachon": 3.9
+      "yeshHesed": 2.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 2.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-15",
-    "matchedName": "מאפה אישי רוגלך עוגת בוקר, 120 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "רוגעלך באריזה אישית אחוה, 120 גרם",
     "isEquivalentBrand": true
   },
   {
@@ -3379,17 +3465,18 @@
     "aliases": [
       "טונה במים רביעיה - קייטי"
     ],
-    "supermarketPrice": 19.23,
+    "supermarketPrice": 18.9,
     "chains": {
-      "osherAd": 18.9,
+      "osherAd": null,
       "ramiLevy": null,
-      "yeshHesed": null,
+      "yeshHesed": 17.9,
       "netoChisachon": 19.9,
       "shaareiRevaha": 18.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-21",
-    "matchedName": "טונה במים טעמן, רביעיה 4 * 140 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "טונה במים טעמן, רביעיה 4 * 140 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_73",
@@ -3397,14 +3484,16 @@
     "aliases": [
       "טחינה 0.5 קילו - אחווה"
     ],
-    "supermarketPrice": 11.9,
+    "supermarketPrice": 10.9,
     "chains": {
       "osherAd": null,
       "ramiLevy": null,
       "yeshHesed": null,
-      "netoChisachon": 11.9
+      "netoChisachon": 11.9,
+      "shaareiRevaha": 9.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "טחינה גולמית משומשום טבעי, 500 גרם"
   },
   {
@@ -3502,12 +3591,17 @@
     "aliases": [
       "חטיף תן צ'אפ מיה"
     ],
-    "supermarketPrice": 4.5,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "מיה 50 גרם תן צ'אפ כריות בטעם טבעי",
-    "source": "google_search",
-    "sourceLabel": "אתרי חנויות מזון"
+    "supermarketPrice": 3.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 3.9,
+      "yeshHesed": 3.9,
+      "netoChisachon": 3.9,
+      "shaareiRevaha": 3.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "תן צ'אפ טבעות בטעם טבעי, 50 גרם"
   },
   {
     "id": "my_1761",
@@ -3550,17 +3644,20 @@
     "aliases": [
       "חמישיית טישו"
     ],
-    "supermarketPrice": 10.4,
+    "supermarketPrice": 12.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": null,
-      "yeshHesed": 14.9,
+      "ramiLevy": 12.9,
+      "yeshHesed": null,
       "netoChisachon": null,
-      "shaareiRevaha": 5.9,
+      "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "טישו שמאי פרימיום, חמישיה"
+    "lastVerified": "2026-11-27",
+    "matchedName": "ממחטות טישו דו שכבתיות מארז חמישייה",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שיווק השקמה",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_10246",
@@ -3691,15 +3788,17 @@
     "aliases": [
       "רולדה גפילטע פיש 0.5 קילו"
     ],
-    "supermarketPrice": 22.4,
+    "supermarketPrice": 22.1,
     "chains": {
       "osherAd": 22.9,
-      "ramiLevy": null,
+      "ramiLevy": 21.9,
       "yeshHesed": 21.9,
-      "netoChisachon": null
+      "netoChisachon": 21.9,
+      "shaareiRevaha": 21.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "רולדה גפילטע פיש ירושלמי, 500 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "רולדה גפילטע רוזנרס פיש הונגרי, 500 גרם",
     "isEquivalentBrand": true
   },
   {
@@ -3708,15 +3807,17 @@
     "aliases": [
       "כבד צלוי קפוא - בד\"צ בית חלקיה {משקל חדש}"
     ],
-    "supermarketPrice": 29.9,
+    "supermarketPrice": 32.4,
     "chains": {
       "osherAd": null,
       "ramiLevy": null,
       "yeshHesed": null,
-      "netoChisachon": 29.9
+      "netoChisachon": 29.9,
+      "shaareiRevaha": 34.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "כבד עוף צלוי קפוא קה, 250 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "כבד צלוי קפוא 25, 250 גרם",
     "isEquivalentBrand": true
   },
   {
@@ -3725,15 +3826,20 @@
     "aliases": [
       "חלב 2 ליטר - קייטי/טרה"
     ],
-    "supermarketPrice": 14.55,
+    "supermarketPrice": 14.4,
     "chains": {
       "osherAd": 14.4,
       "ramiLevy": 14.4,
-      "yeshHesed": 14.7,
-      "netoChisachon": 14.7
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "חלב 3% בקרטון, 2 ליטר"
+    "lastVerified": "2026-11-27",
+    "matchedName": "חלב טרי בקרטון 3% טרה 2 ליטר",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / אושר עד",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_740",
@@ -3741,16 +3847,17 @@
     "aliases": [
       "אטריות"
     ],
-    "supermarketPrice": 6.07,
+    "supermarketPrice": 6.01,
     "chains": {
       "osherAd": 5.8,
       "ramiLevy": 5.8,
       "yeshHesed": 5.8,
-      "netoChisachon": 6.9
+      "netoChisachon": 6.9,
+      "shaareiRevaha": 5.75,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "אטריות דקות, 400 גרם",
-    "isEquivalentBrand": true
+    "lastVerified": "2026-11-27",
+    "matchedName": "אטריות דקות, 400 גרם"
   },
   {
     "id": "my_1655",
@@ -3819,7 +3926,7 @@
       "shaareiRevaha": 9.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "דג דג חטיף אפוי מלוח, 250 גרם"
   },
   {
@@ -3846,14 +3953,16 @@
     "aliases": [
       "כוסות (8B) נייר איכותיות 50 יח'"
     ],
-    "supermarketPrice": 5.25,
+    "supermarketPrice": 5.43,
     "chains": {
-      "osherAd": 4.9,
+      "osherAd": null,
       "ramiLevy": 5.95,
       "yeshHesed": 4.9,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "כוסות נייר 8 B לשתיה חמה, 50 יחידות",
     "isEquivalentBrand": true
   },
@@ -3897,14 +4006,15 @@
     "aliases": [
       "נרות חנוכה לילדים"
     ],
-    "supermarketPrice": 3.9,
+    "supermarketPrice": 2.7,
     "chains": {
       "osherAd": null,
       "ramiLevy": 3.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "mechiraLaKehila": 1.5
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "נרות חנוכה צבעוניים רמי לוי",
     "isEquivalentBrand": true
   },
@@ -3979,17 +4089,20 @@
     "aliases": [
       "רביעיית שום יבש XL"
     ],
-    "supermarketPrice": 6.9,
+    "supermarketPrice": 3.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": null,
+      "ramiLevy": 3.9,
       "yeshHesed": null,
       "netoChisachon": null,
-      "shaareiRevaha": 6.9,
+      "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "שום יבש ש ר, רביעיה"
+    "lastVerified": "2026-11-27",
+    "matchedName": "מארז שום 4 יחידות",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / רשתות מזון",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_177",
@@ -3997,17 +4110,12 @@
     "aliases": [
       "פלפלונים בייבי {ללא גרעינים}"
     ],
-    "supermarketPrice": 9.3,
-    "chains": {
-      "osherAd": null,
-      "ramiLevy": 9.3,
-      "yeshHesed": null,
-      "netoChisachon": null
-    },
-    "lastVerified": "2026-11-16",
-    "matchedName": "פלפלונים אריזה כ-220-250 גרם",
+    "supermarketPrice": 14.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "פלפלונים-טינקרבל אריזה משפחתית",
     "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל",
+    "sourceLabel": "ויקטורי / רשתות מזון",
     "isEquivalentBrand": true
   },
   {
@@ -4018,15 +4126,15 @@
     ],
     "supermarketPrice": 5.9,
     "chains": {
-      "osherAd": 5.9,
-      "ramiLevy": 5.9,
+      "osherAd": null,
+      "ramiLevy": null,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": 5.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "אבוקדו טרי לפי משקל (לקילו)",
-    "source": "google_search",
-    "sourceLabel": "שופרסל / רמי לוי",
+    "lastVerified": "2026-11-27",
+    "matchedName": "אבוקדו, מחיר לפי משקל",
     "isEquivalentBrand": true
   },
   {
@@ -4054,17 +4162,17 @@
     "aliases": [
       "תפוח עץ זהוב (צהוב)"
     ],
-    "supermarketPrice": 13,
+    "supermarketPrice": 10.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 13,
+      "ramiLevy": null,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": 10.9,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "תפוח עץ מוזהב לפי משקל (לקילו)",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל",
+    "lastVerified": "2026-11-27",
+    "matchedName": "תפוח עץ זהוב, מחיר לפי משקל",
     "isEquivalentBrand": true
   },
   {
@@ -4074,17 +4182,17 @@
       "תפוח עץ אדום",
       "תפוח עץ פינק ליידי (אדום)"
     ],
-    "supermarketPrice": 13.1,
+    "supermarketPrice": 12.9,
     "chains": {
       "osherAd": null,
-      "ramiLevy": 13.1,
+      "ramiLevy": 12.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-16",
-    "matchedName": "תפוח עץ גאלה לפי משקל (לקילו)",
-    "source": "google_search",
-    "sourceLabel": "רמי לוי / שופרסל",
+    "lastVerified": "2026-11-27",
+    "matchedName": "כבד עוף ארוז קפוא חתם סופר, מחיר לפי משקל",
     "isEquivalentBrand": true
   },
   {
@@ -4093,12 +4201,12 @@
     "aliases": [
       "סלסלה חסה קריספית (לאליק) {לנדא}"
     ],
-    "supermarketPrice": 11.9,
+    "supermarketPrice": 13.5,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "עלי חסה לאליק שטופים כ-180 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "חסה לליק-ליפראש (הידרופוני לנדא)",
     "source": "google_search",
-    "sourceLabel": "שופרסל / רשתות מזון"
+    "sourceLabel": "טבע הבריאה / חנויות מהדרין"
   },
   {
     "id": "my_51",
@@ -4106,12 +4214,18 @@
     "aliases": [
       "נבטים אמריקאים (דקים - אלפלפא) {אריזה שחורה מוגדלת}"
     ],
-    "supermarketPrice": 7.9,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "נבטי אלפלפא מארז כ-150 גרם",
-    "source": "google_search",
-    "sourceLabel": "עלה הביתה / חנויות ירק"
+    "supermarketPrice": 8.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": 8.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "נבטי אלפלפה",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_50",
@@ -4119,12 +4233,18 @@
     "aliases": [
       "נבטים סיניים (עבים) - {אריזת לבנה מוגדלת}"
     ],
-    "supermarketPrice": 8.9,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "נבטים סיניים יחידה / מארז",
-    "source": "google_search",
-    "sourceLabel": "ברכת האדמה / שוק קח-תן"
+    "supermarketPrice": 6.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": 6.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "נבטים סיניים",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_52",
@@ -4148,7 +4268,8 @@
     "id": "my_238",
     "name": "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%  {נ. לאחר הפסח}",
     "aliases": [
-      "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%  {נ. לאחר הפסח}"
+      "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%  {נ. לאחר הפסח}",
+      "לחמניות מחמצת עגולות קלות מקמח כוסמין 100%"
     ],
     "supermarketPrice": 19.9,
     "chains": {},
@@ -4210,14 +4331,15 @@
     "aliases": [
       "חומץ טבעי 5%"
     ],
-    "supermarketPrice": 5.9,
+    "supermarketPrice": 5.35,
     "chains": {
       "osherAd": null,
       "ramiLevy": 5.9,
       "yeshHesed": null,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "mechiraLaKehila": 4.8
     },
-    "lastVerified": "2026-11-16",
+    "lastVerified": "2026-11-27",
     "matchedName": "חומץ 5% 1 ליטר",
     "source": "google_search",
     "sourceLabel": "רמי לוי / שופרסל",
@@ -4301,8 +4423,9 @@
       "shaareiRevaha": 19.9,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "קורנפלקס דבש דגני בוקר, 448 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "קורנפלקס דבש דגני בוקר, 448 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_14065",
@@ -4633,12 +4756,12 @@
     "aliases": [
       "מכשיר להכנת פנקייק/חביתיות - טפאל"
     ],
-    "supermarketPrice": 229,
+    "supermarketPrice": 249,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "מכשיר פנקייק/חביתיות Tefal PY559312 טפאל",
+    "lastVerified": "2026-11-27",
+    "matchedName": "מכשיר הכנת פנקייק Tefal 1000W PY-559312",
     "source": "google_search",
-    "sourceLabel": "זאפ / חנויות רשת"
+    "sourceLabel": "זאפ / KSP"
   },
   {
     "id": "my_2138",
@@ -8010,11 +8133,13 @@
       "ramiLevy": 14.9,
       "yeshHesed": null,
       "netoChisachon": null,
-      "shaareiRevaha": 14.9,
+      "shaareiRevaha": null,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
-    "matchedName": "בצק פילו בד\"צ זוגלובק, 500 גרם"
+    "lastVerified": "2026-11-27",
+    "matchedName": "בצק פילאס / פילו זוגלובק 500 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / יוחננוף"
   },
   {
     "id": "my_447",
@@ -8022,12 +8147,13 @@
     "aliases": [
       "קישקע ממולא בשרי קפוא גלאט עוף {מ. לאחר הפסח}"
     ],
-    "supermarketPrice": 19.9,
+    "supermarketPrice": 14.9,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "קישקע ממולא גלאט עוף 600 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "קישקע ממולא קפוא 500 גרם",
     "source": "google_search",
-    "sourceLabel": "פרייסז / שוק המזון"
+    "sourceLabel": "שופרסל / רשתות מזון",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_374",
@@ -8300,16 +8426,16 @@
     "aliases": [
       "פלפל חריף"
     ],
-    "supermarketPrice": 8.65,
+    "supermarketPrice": 9,
     "chains": {
-      "osherAd": null,
-      "ramiLevy": null,
+      "osherAd": 8.9,
+      "ramiLevy": 8.9,
       "yeshHesed": 8.9,
-      "netoChisachon": null,
+      "netoChisachon": 9.9,
       "shaareiRevaha": 8.4,
       "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-22",
+    "lastVerified": "2026-11-27",
     "matchedName": "פלפל חריף ירוק, מחיר לפי משקל"
   },
   {
@@ -8318,16 +8444,16 @@
     "aliases": [
       "אשכולית אדומה (רשת אדומה)"
     ],
-    "supermarketPrice": 6.72,
+    "supermarketPrice": 7.7,
     "chains": {
-      "osherAd": 6.1,
-      "ramiLevy": 6,
-      "yeshHesed": 6.1,
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
       "netoChisachon": null,
       "shaareiRevaha": 5.4,
       "mechiraLaKehila": 10
     },
-    "lastVerified": "2026-11-21",
+    "lastVerified": "2026-11-27",
     "matchedName": "אשכולית אדומה, מחיר לפי משקל"
   },
   {
@@ -8923,5 +9049,2171 @@
     },
     "lastVerified": "2026-11-22",
     "matchedName": "פרחים בודק 6 ברוקולי מוקפאים, 600 גרם"
+  },
+  {
+    "id": "my_48",
+    "name": "שורש פטרוזיליה (ארוך)",
+    "aliases": [
+      "שורש פטרוזיליה (ארוך)"
+    ],
+    "supermarketPrice": 6.15,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": null,
+      "yeshHesed": 4.9,
+      "netoChisachon": 6.9,
+      "shaareiRevaha": 7.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שורש פטרוזיליה",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_405",
+    "name": "חסה אייסברג קצוצה (350 גרם)",
+    "aliases": [
+      "חסה אייסברג קצוצה (350 גרם)"
+    ],
+    "supermarketPrice": 14.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 14.9,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "חסה אייסברג, 350 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_404",
+    "name": "כרוב לבן קצוץ 400 גרם",
+    "aliases": [
+      "כרוב לבן קצוץ 400 גרם"
+    ],
+    "supermarketPrice": 12.54,
+    "chains": {
+      "osherAd": 11.9,
+      "ramiLevy": 13.1,
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.9,
+      "shaareiRevaha": 11.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "כרוב לבן קצוץ, 400 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14121",
+    "name": "שומר",
+    "aliases": [
+      "שומר"
+    ],
+    "supermarketPrice": 5.4,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": null,
+      "yeshHesed": 4.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 6.4,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שומר, מחיר לפי משקל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11854",
+    "name": "עשיריית לחמניות - דגנית עין בר 750 גרם",
+    "aliases": [
+      "עשיריית לחמניות - דגנית עין בר"
+    ],
+    "supermarketPrice": 12.53,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 12.9,
+      "netoChisachon": 13.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": 10.8
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "לחמניות אצבע, 10 * 75 גרם"
+  },
+  {
+    "id": "my_5742",
+    "name": "חטיף שוקולד קראנץ במילוי קרם אגוזים - עלית {מ.מ} 100 גרם",
+    "aliases": [
+      "חטיף שוקולד קראנץ במילוי קרם אגוזים - עלית {מ.מ}"
+    ],
+    "supermarketPrice": 8.5,
+    "chains": {
+      "osherAd": 8.5,
+      "ramiLevy": null,
+      "yeshHesed": 8.5,
+      "netoChisachon": 8.5,
+      "shaareiRevaha": 8.5,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "פרה קראנצ' במילוי קרם אגוזים, 100 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12237",
+    "name": "טבלת שוקולד חלב קורנפלקס ופצפוצים - קליק 85 גרם",
+    "aliases": [
+      "טבלת שוקולד חלב קורנפלקס ופצפוצים - קליק"
+    ],
+    "supermarketPrice": 6.73,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 6.9,
+      "yeshHesed": 6.9,
+      "netoChisachon": 6.9,
+      "shaareiRevaha": 6.2,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "קליק שוקולד חלב קורנפלקס ופצפוצים, 85 גרם"
+  },
+  {
+    "id": "my_14154",
+    "name": "שקית קליק כריות (כחול) 65 גרם",
+    "aliases": [
+      "שקית קליק כריות (כחול)"
+    ],
+    "supermarketPrice": 7.2,
+    "chains": {
+      "osherAd": 6.6,
+      "ramiLevy": 7.3,
+      "yeshHesed": 7.3,
+      "netoChisachon": 7.5,
+      "shaareiRevaha": 7.3,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "קליק כריות, 65 גרם"
+  },
+  {
+    "id": "my_7934",
+    "name": "מטבעות שוקולד ברשת כרמית {מ.מ} 36 גר'",
+    "aliases": [
+      "מטבעות שוקולד ברשת כרמית {מ.מ}"
+    ],
+    "supermarketPrice": 4.54,
+    "chains": {
+      "osherAd": 4.5,
+      "ramiLevy": 4.5,
+      "yeshHesed": 4.9,
+      "netoChisachon": 4.9,
+      "shaareiRevaha": 3.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מטבעות שוקולד חלב כרמית, 36 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_711",
+    "name": "ריצ' בסיס להכנת קצפת צמחית {מ.מ} 212 מ\"ל",
+    "aliases": [
+      "ריצ' בסיס להכנת קצפת צמחית {מ.מ}"
+    ],
+    "supermarketPrice": 7.7,
+    "chains": {
+      "osherAd": 6.9,
+      "ramiLevy": 6.9,
+      "yeshHesed": 7.9,
+      "netoChisachon": 8.9,
+      "shaareiRevaha": 7.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "ריצ' בסיס להכנת קצפת צמחית, 212 מ\"ל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1424",
+    "name": "סלט חזרת ביתי - סלטי היום 200 גרם",
+    "aliases": [
+      "סלט חזרת ביתי - סלטי היום"
+    ],
+    "supermarketPrice": 11.57,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 11.9,
+      "yeshHesed": 10.9,
+      "netoChisachon": 11.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "חזרת ביתית, 200 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1547",
+    "name": "סלט חומוס 850 גרם צבר",
+    "aliases": [
+      "סלט חומוס 850 גרם צבר"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 12.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 12.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "צבר חומוס ש פ, 850 גרם"
+  },
+  {
+    "id": "my_9169",
+    "name": "משקה בטעם בננה בבקבוק 1 ליטר - טרה {מ.מ}",
+    "aliases": [
+      "משקה בטעם בננה בבקבוק 1 ליטר - טרה {מ.מ}"
+    ],
+    "supermarketPrice": 13.51,
+    "chains": {
+      "osherAd": 13.25,
+      "ramiLevy": 13.3,
+      "yeshHesed": 13.9,
+      "netoChisachon": 13.9,
+      "shaareiRevaha": 13.2,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "משקה חלב בטעם בננה, 1 ליטר"
+  },
+  {
+    "id": "my_8383",
+    "name": "גבינה מלוחה פיראוס 16% חרמון - תנובה 250 גרם",
+    "aliases": [
+      "גבינה מלוחה פיראוס 16% חרמון - תנובה"
+    ],
+    "supermarketPrice": 20,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 20.9,
+      "yeshHesed": 20.2,
+      "netoChisachon": null,
+      "shaareiRevaha": 18.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "גבינת חרמון 16% פיראוס, 250 גרם"
+  },
+  {
+    "id": "my_8789",
+    "name": "גבינת חלומי 28% - משק צוריאל 200 גרם",
+    "aliases": [
+      "גבינת חלומי 28% - משק צוריאל"
+    ],
+    "supermarketPrice": 23.65,
+    "chains": {
+      "osherAd": 23.9,
+      "ramiLevy": 23.9,
+      "yeshHesed": 23.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 22.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "גבינת חלומי 28%, 200 גרם"
+  },
+  {
+    "id": "my_898",
+    "name": "שמנת מתוקה להקצפה 32% טרה {מ.מ} 250 מ\"ל",
+    "aliases": [
+      "שמנת מתוקה להקצפה 32% טרה {מ.מ}"
+    ],
+    "supermarketPrice": 7.72,
+    "chains": {
+      "osherAd": 5.9,
+      "ramiLevy": 7.9,
+      "yeshHesed": 8.4,
+      "netoChisachon": 8.5,
+      "shaareiRevaha": 7.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שמנת מתוקה להקצפה 32%, 250 מ\"ל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12906",
+    "name": "מאגדת מעדני סימפלי פרוט 3% שומן - מולר {פירות יער וקיווי} 8*150 מ\"ל",
+    "aliases": [
+      "מאגדת מעדני סימפלי פרוט 3% שומן - מולר {פירות יער וקיווי}"
+    ],
+    "supermarketPrice": 33.63,
+    "chains": {
+      "osherAd": 31.15,
+      "ramiLevy": 34.9,
+      "yeshHesed": 35.3,
+      "netoChisachon": 36.9,
+      "shaareiRevaha": 29.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "סימפלי יוגורט פירות יער וקיווי 3%, שמיניה 8 * 150 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_5734",
+    "name": "יין מוסקטו לבן {מ.מ} 750 מ\"ל",
+    "aliases": [
+      "יין מוסקטו לבן {מ.מ}"
+    ],
+    "supermarketPrice": 44.1,
+    "chains": {
+      "osherAd": 42.9,
+      "ramiLevy": 44.9,
+      "yeshHesed": 44.9,
+      "netoChisachon": 44.9,
+      "shaareiRevaha": 42.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "יין טפרברג מוסקטו לבן, 750 מ\"ל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_401",
+    "name": "ספגטי (מקלות) {מ.מ.} 500 גר'",
+    "aliases": [
+      "ספגטי (מקלות) {מ.מ.}"
+    ],
+    "supermarketPrice": 3.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 4.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": 2.9
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "ספגטי מקוול תומר תומס, 500 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7573",
+    "name": "טורטייה מקמח חיטה (המוציא) - קייטי 8 יח",
+    "aliases": [
+      "טורטייה מקמח חיטה (המוציא) - קייטי"
+    ],
+    "supermarketPrice": 9.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "טורטיה מקמח חיטה, שמיניה 8 * 320 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1036",
+    "name": "חומוס בוואקום 900 גרם",
+    "aliases": [
+      "חומוס בוואקום 900 גרם"
+    ],
+    "supermarketPrice": 23.9,
+    "chains": {
+      "osherAd": 23.9,
+      "ramiLevy": 23.9,
+      "yeshHesed": null,
+      "netoChisachon": 23.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "חומוס לבן ענק סלקטד, 900 גרם"
+  },
+  {
+    "id": "my_1502",
+    "name": "ממרח טונה - רביעייה (צהוב) 158 גר'",
+    "aliases": [
+      "ממרח טונה - רביעייה (צהוב)"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {
+      "osherAd": 19.9,
+      "ramiLevy": null,
+      "yeshHesed": 19.9,
+      "netoChisachon": 19.9,
+      "shaareiRevaha": 19.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "ממרח טונה, רביעיה 4 * 160 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_96",
+    "name": "שמן זית למאור {מ.מ} 1 ליטר",
+    "aliases": [
+      "שמן זית למאור {מ.מ}"
+    ],
+    "supermarketPrice": 19.1,
+    "chains": {
+      "osherAd": 17.5,
+      "ramiLevy": 24.9,
+      "yeshHesed": 19.9,
+      "netoChisachon": 21.9,
+      "shaareiRevaha": 17.5,
+      "mechiraLaKehila": 12.9
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שמן זית למאור, 1 ליטר",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_294",
+    "name": "פודינג וניל 800 גרם - מיה {מ.מ]",
+    "aliases": [
+      "פודינג וניל 800 גרם - מיה {מ.מ]"
+    ],
+    "supermarketPrice": 13.9,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 13.9,
+      "yeshHesed": 13.9,
+      "netoChisachon": 14.9,
+      "shaareiRevaha": 13.9,
+      "mechiraLaKehila": 12.9
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "פודינג וניל, 800 גרם"
+  },
+  {
+    "id": "my_102",
+    "name": "שמרים יבשי-ם - פאקא 500 גרם",
+    "aliases": [
+      "שמרים יבשי-ם - פאקא"
+    ],
+    "supermarketPrice": 13.3,
+    "chains": {
+      "osherAd": 12.9,
+      "ramiLevy": 12.9,
+      "yeshHesed": 13.9,
+      "netoChisachon": 13.9,
+      "shaareiRevaha": 12.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שמרים יבשים, 500 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_86",
+    "name": "סוכר חום דמררה 1 קילו",
+    "aliases": [
+      "סוכר חום דמררה"
+    ],
+    "supermarketPrice": 12.22,
+    "chains": {
+      "osherAd": 11.9,
+      "ramiLevy": 12.5,
+      "yeshHesed": 11.9,
+      "netoChisachon": 12.9,
+      "shaareiRevaha": 11.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "סוכר דמררה קלאסי, 1 ק\"ג",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10377",
+    "name": "קרמבו מוקה יאמבו - מארז 8 יח' 200 גרם",
+    "aliases": [
+      "קרמבו מוקה יאמבו - מארז 8 יח'"
+    ],
+    "supermarketPrice": 18.46,
+    "chains": {
+      "osherAd": 18.9,
+      "ramiLevy": 18.9,
+      "yeshHesed": 18.9,
+      "netoChisachon": 18.9,
+      "shaareiRevaha": 16.7,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "קרמבו מוקה, 8 יחידות"
+  },
+  {
+    "id": "my_8395",
+    "name": "כריות נוגט - תלמה {מ.מ} 686 גרם",
+    "aliases": [
+      "כריות נוגט - תלמה {מ.מ}"
+    ],
+    "supermarketPrice": 27.9,
+    "chains": {
+      "osherAd": 27.9,
+      "ramiLevy": 27.9,
+      "yeshHesed": 27.9,
+      "netoChisachon": 27.9,
+      "shaareiRevaha": 27.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "כריות נוגט, 686 גרם"
+  },
+  {
+    "id": "my_549",
+    "name": "עוגיות ממולאות תות ברמן {מ.מ} 200 גרם",
+    "aliases": [
+      "עוגיות ממולאות תות ברמן {מ.מ}"
+    ],
+    "supermarketPrice": 5.8,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 5.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 5.7,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "עוגיות ממולאות בטעם בתות, 200 גרם"
+  },
+  {
+    "id": "my_12169",
+    "name": "בייגלה רשת עם מלח - מאנצ'י 300 גרם",
+    "aliases": [
+      "בייגלה רשת עם מלח - מאנצ'י"
+    ],
+    "supermarketPrice": 3.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": 3.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "בייגלה רשתות מלח הדר מאנצ'י, 300 גרם"
+  },
+  {
+    "id": "my_1766",
+    "name": "בייגלה שטוחלה - מאיר בייגל 330 גרם",
+    "aliases": [
+      "בייגלה שטוחלה - מאיר בייגל"
+    ],
+    "supermarketPrice": 10.95,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 10.9,
+      "yeshHesed": 11.5,
+      "netoChisachon": 11.5,
+      "shaareiRevaha": 9.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מאיר בייגל שטוחלה מלח, 330 גרם"
+  },
+  {
+    "id": "my_1416",
+    "name": "וופלים מצופים 40 יח",
+    "aliases": [
+      "וופלים מצופים 40 יח"
+    ],
+    "supermarketPrice": 19.57,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 16.9,
+      "netoChisachon": 19.9,
+      "shaareiRevaha": 21.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "וופלים מצופים \"יש\", 40 יחידות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1035",
+    "name": "גליליות ממולאות קרם אגוזים - עלמה 100 גרם",
+    "aliases": [
+      "גליליות ממולאות קרם אגוזים - עלמה"
+    ],
+    "supermarketPrice": 3.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 3.9,
+      "netoChisachon": 3.9,
+      "shaareiRevaha": 3.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "רולים אגוז עלמה, 100 גרם"
+  },
+  {
+    "id": "my_10148",
+    "name": "מארז לקקנים בצורת דונאטס 10 ל",
+    "aliases": [
+      "מארז לקקנים בצורת דונאטס"
+    ],
+    "supermarketPrice": 9.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": 9.9,
+      "shaareiRevaha": 9.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מעיין לקקן טבעת יהלום פירות, 10 יחידות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_669",
+    "name": "טרופיות עם פקק 20 יח'",
+    "aliases": [
+      "טרופיות עם פקק 20 יח'"
+    ],
+    "supermarketPrice": 22.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": 22.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "טרופית קש פקק, 20 יחידות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7802",
+    "name": "חיתולים מידה 4+  בייביסיטר {מ.מ.} 40 יח'",
+    "aliases": [
+      "חיתולים מידה 4+  בייביסיטר {מ.מ.}"
+    ],
+    "supermarketPrice": 33.23,
+    "chains": {
+      "osherAd": 32.9,
+      "ramiLevy": 32.9,
+      "yeshHesed": null,
+      "netoChisachon": 33.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "חיתול דק עם גמישות כפולה מידה 4+, 40 יחידות"
+  },
+  {
+    "id": "my_452",
+    "name": "תחליב רחצה - פינוק {מ.מ.} 700 מ\"ל",
+    "aliases": [
+      "תחליב רחצה - פינוק {מ.מ.}"
+    ],
+    "supermarketPrice": 13.5,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 13.9,
+      "yeshHesed": 12.9,
+      "netoChisachon": 12.9,
+      "shaareiRevaha": 13.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "תחליב רחצה בניחוח פינוק קלאסי בתוספת תמצית רוזמרין, 700 מ\"ל"
+  },
+  {
+    "id": "my_10845",
+    "name": "ספריי לניקוי והברקת נירוסטה - סנו 500 מ\"ל",
+    "aliases": [
+      "ספריי לניקוי והברקת נירוסטה - סנו"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 19.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "ספריי לניקוי והברקת נירוסטה, 500 מ\"ל"
+  },
+  {
+    "id": "my_2482",
+    "name": "כפפות נטריל L {קרטונית שחור/כחול} 100 יח",
+    "aliases": [
+      "כפפות נטריל L {קרטונית שחור/כחול}"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 19.9,
+      "yeshHesed": null,
+      "netoChisachon": 19.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "כפפות ניטריל שחורות L, 100 יחידות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_308",
+    "name": "מפות 45 מטר עבה מאוד",
+    "aliases": [
+      "מפות 45 מטר עבה מאוד"
+    ],
+    "supermarketPrice": 29.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": 29.9,
+      "shaareiRevaha": 29.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מפות עבה מאוד כחול קריסטלי שמאי, 45 מטר",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_248",
+    "name": "מפות ניילון לשולחן {גודל שמינייה} אריזת מוגדלת 14 גלילים - קייטי",
+    "aliases": [
+      "מפות ניילון לשולחן {גודל שמינייה} אריזת מוגדלת 14 גלילים - קייטי"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": 19.9,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מפות ניילון שקופות, 8 יחידות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7931",
+    "name": "צינוריות גדולות + פתילות כותנה ארוכות",
+    "aliases": [
+      "צינוריות גדולות + פתילות כותנה ארוכות"
+    ],
+    "supermarketPrice": 13.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 13.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "צינורת הזהב הצינורית גדול + פתילות כותנה חדש",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7500",
+    "name": "צנצנת שום קלוף 1 קילו בד\"ץ עד\"ח",
+    "aliases": [
+      "צנצנת שום קלוף 1 קילו בד\"ץ עד\"ח"
+    ],
+    "supermarketPrice": 28.4,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 28.4,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שיני שום קלוף 1 ק\"ג",
+    "source": "google_search",
+    "sourceLabel": "רשתות שיווק / סופרמרקטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1336",
+    "name": "שלישיית קלחי תירס טריים {לנדא-ב. חלקיה}",
+    "aliases": [
+      "שלישיית קלחי תירס טריים {לנדא-ב. חלקיה}"
+    ],
+    "supermarketPrice": 16.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "תירס מבושל בואקום - 3 יח",
+    "source": "google_search",
+    "sourceLabel": "שופרסל / סופרמרקטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_32",
+    "name": "ענבים ירוקים בסלסלה - חו\"ל {מ.מ} 500 גרם",
+    "aliases": [
+      "ענבים ירוקים בסלסלה - חו\"ל {מ.מ}"
+    ],
+    "supermarketPrice": 19.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "ענבים ירוקים בסלסלה 500 גרם",
+    "source": "google_search",
+    "sourceLabel": "שופרסל / אתרי פירות וירקות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10519",
+    "name": "עשיריית פיתות",
+    "aliases": [
+      "עשיריית פיתות"
+    ],
+    "supermarketPrice": 12.3,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 12.3,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "פיתות 10 יחידות",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל / ויקטורי",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_897",
+    "name": "גביע יוגורט Bio קרמי - מולר {עם תוספת מעל}",
+    "aliases": [
+      "גביע יוגורט Bio קרמי - מולר {עם תוספת מעל}"
+    ],
+    "supermarketPrice": 8.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מולר יוגורט מיקס / BIO קרמי בתוספת 170 גרם",
+    "source": "google_search",
+    "sourceLabel": "טיב טעם / Yango Deli"
+  },
+  {
+    "id": "my_757",
+    "name": "גריסי פנינה בוואקום ",
+    "aliases": [
+      "גריסי פנינה בוואקום "
+    ],
+    "supermarketPrice": 8.5,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 8.5,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "גריסי פנינה אריזת ואקום סלקטד 500 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי ලוי / שופרסל / סופרים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_490",
+    "name": "שומשום בוואקום אריזה מוגדלת 400 גרם",
+    "aliases": [
+      "שומשום בוואקום אריזה מוגדלת"
+    ],
+    "supermarketPrice": 14.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 14.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "שומשום בוואקום 400 גרם מיה",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל / סופרים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9921",
+    "name": "פטריות שמפניון שלמות בשימורים - קייטי {מ.מ.} 240 גרם",
+    "aliases": [
+      "פטריות שמפניון שלמות בשימורים - קייטי {מ.מ.}"
+    ],
+    "supermarketPrice": 5.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 5.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "פטריות שמפניון שלמות/חתוכות בשימורים 240 גרם אחרי סינון",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_93",
+    "name": "אבקת פלאפל {מ.מ}",
+    "aliases": [
+      "אבקת פלאפל {מ.מ}"
+    ],
+    "supermarketPrice": 9.9,
+    "chains": {
+      "osherAd": 9.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "אבקת פלאפל 1 ק\"ג",
+    "source": "google_search",
+    "sourceLabel": "אושר עד / שופרסל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_656",
+    "name": "אבקת סוכר {מ.מ.}",
+    "aliases": [
+      "אבקת סוכר {מ.מ.}"
+    ],
+    "supermarketPrice": 1.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 1.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "אבקת סוכר 100 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1316",
+    "name": "ערמונים קלופים וקלוים 100 גרם",
+    "aliases": [
+      "ערמונים קלופים וקלוים"
+    ],
+    "supermarketPrice": 4.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "ערמונים קלופים וקלויים 100 גרם",
+    "source": "google_search",
+    "sourceLabel": "שופרסל / רשתות מזון",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_89",
+    "name": "גרעיני חמניות קלוף",
+    "aliases": [
+      "גרעיני חמניות קלוף"
+    ],
+    "supermarketPrice": 5.3,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 5.3,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "גרעיני חמנייה קלופים רמי לוי 200 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_70",
+    "name": "חלווה - בלוק",
+    "aliases": [
+      "חלווה - בלוק"
+    ],
+    "supermarketPrice": 13.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "חלווה בלוק אחוה 500 גרם",
+    "source": "google_search",
+    "sourceLabel": "שופרסל / רשתות מזון"
+  },
+  {
+    "id": "my_10905",
+    "name": "גרנולה עם אגוזים וחמוציות - בצנצנת 450 גרם",
+    "aliases": [
+      "גרנולה עם אגוזים וחמוציות - בצנצנת"
+    ],
+    "supermarketPrice": 22.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "גרנולה קלאסית עם אגוזים וחמוציות 450 גרם",
+    "source": "google_search",
+    "sourceLabel": "אתרי מזון / חנויות טבע",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7598",
+    "name": "קרטון עוגיות סנדוויץ - הדר {ט. לאחר הפסח} {מ.מ.} 900 גר'",
+    "aliases": [
+      "קרטון עוגיות סנדוויץ - הדר {ט. לאחר הפסח} {מ.מ.}"
+    ],
+    "supermarketPrice": 11,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": 11,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מאגדת עוגיות סנדוויץ וניל הדר 900 גרם",
+    "source": "google_search",
+    "sourceLabel": "שערי רווחה / חנויות רשת"
+  },
+  {
+    "id": "my_6544",
+    "name": "גריסיני - מאיר בייגל 200 גרם",
+    "aliases": [
+      "גריסיני - מאיר בייגל"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "גריסיני קלאסי מאיר בייגל 200 גרם",
+    "source": "google_search",
+    "sourceLabel": "רשתות מזון / סופרמרקטים"
+  },
+  {
+    "id": "my_528",
+    "name": "[שימו לב זה בשקית]קרקר - בשקית 200 גרם",
+    "aliases": [
+      "[שימו לב זה בשקית]קרקר - בשקית"
+    ],
+    "supermarketPrice": 8,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 8,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "קריט קרם קרקר 200 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10776",
+    "name": "שישיית חטיפי צ'יפס קראנץ' - קייטי {מ.מ.} 210 גרם",
+    "aliases": [
+      "שישיית חטיפי צ'יפס קראנץ' - קייטי {מ.מ.}"
+    ],
+    "supermarketPrice": 8.5,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "תפוצ'יפס קראנץ' 200 גרם",
+    "source": "google_search",
+    "sourceLabel": "כוורת / רשתות שיווק",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7897",
+    "name": "מארז סוכריות ג'לי בצורות חנוכה - מיה 25 גרם",
+    "aliases": [
+      "מארז סוכריות ג'לי בצורות חנוכה - מיה"
+    ],
+    "supermarketPrice": 10.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 10.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מארז סוכריות ג'לי חנוכה שמינייה 25 גרם (200 גרם)",
+    "source": "google_search",
+    "sourceLabel": "ויקטורי / נתיב החסדה"
+  },
+  {
+    "id": "my_9091",
+    "name": "טופי צבעוני {אריזה מוגדלת} - קייטי 400 גרם",
+    "aliases": [
+      "טופי צבעוני {אריזה מוגדלת} - קייטי"
+    ],
+    "supermarketPrice": 17.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 17.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "טופי מקלות מיה 400 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי אונליין",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_531",
+    "name": "טיטולים פרימיום מידה 5 - חוגלה {מ.מ.} 30 יח'",
+    "aliases": [
+      "טיטולים פרימיום מידה 5 - חוגלה {מ.מ.}"
+    ],
+    "supermarketPrice": 34.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "טיטולים פרימיום שלב 5 30 יחידות",
+    "source": "google_search",
+    "sourceLabel": "סופר-פארם / אקופארם"
+  },
+  {
+    "id": "my_10537",
+    "name": "קרם לחות הקסם לעיצוב תלתלים מושלמים - נטורל 350 מ\"ל",
+    "aliases": [
+      "קרם לחות הקסם לעיצוב תלתלים מושלמים - נטורל"
+    ],
+    "supermarketPrice": 23.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "נטורל פורמולה לחות הקסם לעיצוב תלתלים מושלמים 350 מ\"ל",
+    "source": "google_search",
+    "sourceLabel": "סופר-פארם / סנו עד הבית"
+  },
+  {
+    "id": "my_190",
+    "name": "כוסות יהלום שקופות 50 יח",
+    "aliases": [
+      "כוסות יהלום שקופות 50 יח"
+    ],
+    "supermarketPrice": 12,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "50 כוסות יהלום שקוף",
+    "source": "google_search",
+    "sourceLabel": "הילולה / חנויות חד פעמי",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10251",
+    "name": "טיולון בוגבו דגם בטרפליי - צבע חול מדבר",
+    "aliases": [
+      "טיולון בוגבו דגם בטרפליי - צבע חול מדבר"
+    ],
+    "supermarketPrice": 2790,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "טיולון בוגבו בטרפליי 2 - צבע חול מדבר",
+    "source": "google_search",
+    "sourceLabel": "בוגבו ישראל / שילב"
+  },
+  {
+    "id": "my_14086",
+    "name": "נגן סייקו פרו 2.0 - כשרות לכתחילה 16 ג'",
+    "aliases": [
+      "נגן סייקו פרו 2.0 - כשרות לכתחילה"
+    ],
+    "supermarketPrice": 210,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "נגן MP3 כשר Syko pro סייקו פרו 16GB",
+    "source": "google_search",
+    "sourceLabel": "קינדר טויס / חנויות מובחרות"
+  },
+  {
+    "id": "my_10870",
+    "name": "אזניות בלוטוס בקופסת טעינה ANKER -דגם R50i NC",
+    "aliases": [
+      "אזניות בלוטוס בקופסת טעינה ANKER -דגם R50i NC"
+    ],
+    "supermarketPrice": 169,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "אוזניות אלחוטיות Anker Soundcore R50i NC",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות רשת"
+  },
+  {
+    "id": "my_9203",
+    "name": "כונן קשיח חיצוני Elements Portable  2TB מבית WD 3.2 G",
+    "aliases": [
+      "כונן קשיח חיצוני Elements Portable  2TB מבית WD"
+    ],
+    "supermarketPrice": 489,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "כונן קשיח חיצוני Western Digital Elements Portable 2TB",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות רשת"
+  },
+  {
+    "id": "my_9748",
+    "name": "קרטונית 40 סוללות אלקליין - GP",
+    "aliases": [
+      "קרטונית 40 סוללות אלקליין - GP"
+    ],
+    "supermarketPrice": 37,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "40 סוללות AA או AAA לא נטענות Ultra Alkaline של GP",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות רשת"
+  },
+  {
+    "id": "my_9184",
+    "name": "חנוכייה מוכספת גדולה",
+    "aliases": [
+      "חנוכייה מוכספת גדולה"
+    ],
+    "supermarketPrice": 329.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "חנוכייה מוכספת גדולה / דגם אנגלי",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_5134",
+    "name": "תשיעיית כוסיות רחבות לחנוכיה+צינוריות+פתילות",
+    "aliases": [
+      "תשיעיית כוסיות רחבות לחנוכיה+צינוריות+פתילות"
+    ],
+    "supermarketPrice": 26,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סט חנוכיה כוסות זכוכית + פתילות וצינוריות (תשיעייה)",
+    "source": "google_search",
+    "sourceLabel": "חנויות יודאיקה ברשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10662",
+    "name": "סט 12 טושים אקריליים דו-צדדיים Deli 12 ג",
+    "aliases": [
+      "סט 12 טושים אקריליים דו-צדדיים Deli"
+    ],
+    "supermarketPrice": 25,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סט 12 טושים אקריליים דו צדדי Deli",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות יצירה"
+  },
+  {
+    "id": "my_9561",
+    "name": "מעבד מזון עוצמתי - magimix דגם CS3180XL 2.6 ליטר",
+    "aliases": [
+      "מעבד מזון עוצמתי - magimix דגם CS3180XL"
+    ],
+    "supermarketPrice": 799,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מעבד מזון Magimix CS3180XL 2.6 ליטר",
+    "source": "google_search",
+    "sourceLabel": "זאפ / ניופאן שופ"
+  },
+  {
+    "id": "my_10715",
+    "name": "מיני קוצץ חשמלי למזון - נטען 3 ל",
+    "aliases": [
+      "מיני קוצץ חשמלי למזון - נטען"
+    ],
+    "supermarketPrice": 59,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "קוצץ מזון חשמלי נטען / 3 ליטר",
+    "source": "google_search",
+    "sourceLabel": "קול סטור / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14096",
+    "name": "מכשיר טוסטר אנכי להכנת וופל בלגי - HYUNDAI",
+    "aliases": [
+      "מכשיר טוסטר אנכי להכנת וופל בלגי - HYUNDAI"
+    ],
+    "supermarketPrice": 199,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "טוסטר אנכי להכנת וופל בלגי Hyundai HYT-6652",
+    "source": "google_search",
+    "sourceLabel": "באג / זאפ השוואת מחירים"
+  },
+  {
+    "id": "my_14082",
+    "name": "מכונת סוכר צמר גפן מתוק - בעיצוב עגלת ימבמבם",
+    "aliases": [
+      "מכונת סוכר צמר גפן מתוק - בעיצוב עגלת ימבמבם"
+    ],
+    "supermarketPrice": 179.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגלת ימבמבם – מכונה חשמלית לשערות סבתא צמר גפן מתוק",
+    "source": "google_search",
+    "sourceLabel": "השתלבות אייס / הר המתנות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14095",
+    "name": "סט סכום עם ידיות פלסטיק - סולתם דגם SOL",
+    "aliases": [
+      "סט סכום עם ידיות פלסטיק - סולתם דגם SOL"
+    ],
+    "supermarketPrice": 110,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סט סכו\"ם מנירוסטה עם ידיות פלסטיק 24 חלקים Soltam SOL",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות כלי בית"
+  },
+  {
+    "id": "my_14093",
+    "name": "משחק קופסא סושי פלוס - הקוביה",
+    "aliases": [
+      "משחק קופסא סושי פלוס - הקוביה"
+    ],
+    "supermarketPrice": 89,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "משחק קופסה סושי פלוס Sushi Plus - הקוביה",
+    "source": "google_search",
+    "sourceLabel": "קינדר טויס / חנויות משחקים"
+  },
+  {
+    "id": "my_14102",
+    "name": "משחק סוכן כפול",
+    "aliases": [
+      "משחק סוכן כפול"
+    ],
+    "supermarketPrice": 119.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "משחק סוכן כפול",
+    "source": "google_search",
+    "sourceLabel": "מרכז לגנים ולתלמיד / חנויות משחקים"
+  },
+  {
+    "id": "my_10488",
+    "name": "משחק כדור מבוך המקורי - ביטס",
+    "aliases": [
+      "משחק כדור מבוך המקורי - ביטס"
+    ],
+    "supermarketPrice": 119,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "כדור מבוך ביסט Perplexus",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות צעצועים"
+  },
+  {
+    "id": "my_14091",
+    "name": "קוביה הונגרית המקורית - רוביקס 3*3 ג",
+    "aliases": [
+      "קוביה הונגרית המקורית - רוביקס"
+    ],
+    "supermarketPrice": 36.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "קובייה הונגרית 3X3 מקורית רוביקס (Rubik's)",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות רשת"
+  },
+  {
+    "id": "my_8991",
+    "name": "פליימוביל מרדף משטרתי {דגם 71570}",
+    "aliases": [
+      "פליימוביל מרדף משטרתי {דגם 71570}"
+    ],
+    "supermarketPrice": 145,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "פליימוביל סירת מנוע משטרתית וגנב 71570",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות צעצועים"
+  },
+  {
+    "id": "my_1150",
+    "name": "פליימוביל בית בובות {דגם 70985}",
+    "aliases": [
+      "פליימוביל בית בובות {דגם 70985}"
+    ],
+    "supermarketPrice": 159,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "פליימוביל בית בובות מארז נשיאה 70985",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות רשת"
+  },
+  {
+    "id": "my_14084",
+    "name": "פליימוביל לול תרנגולות {דגם 71510}",
+    "aliases": [
+      "פליימוביל לול תרנגולות {דגם 71510}"
+    ],
+    "supermarketPrice": 95.92,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "פליימוביל החיים שלי - לול תרנגולות 71510",
+    "source": "google_search",
+    "sourceLabel": "אמיגו / חנויות צעצועים"
+  },
+  {
+    "id": "my_14085",
+    "name": "מזוודת פליימוביל מרפאה {דגם 5653}",
+    "aliases": [
+      "מזוודת פליימוביל מרפאה {דגם 5653}"
+    ],
+    "supermarketPrice": 44.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "פליימוביל מזוודת מרפאה וטרינרית 5653",
+    "source": "google_search",
+    "sourceLabel": "בריקלנד / חנויות צעצועים"
+  },
+  {
+    "id": "my_14089",
+    "name": "בובת ניו בורן איכותית מסיליקון - בובה דול",
+    "aliases": [
+      "בובת ניו בורן איכותית מסיליקון - בובה דול"
+    ],
+    "supermarketPrice": 250.5,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "בובת ניו בורן ריאליסטית סיליקון 55 ס\"מ",
+    "source": "google_search",
+    "sourceLabel": "Joom / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14088",
+    "name": "עגלת בובה יוקרתית + תיק תואם",
+    "aliases": [
+      "עגלת בובה יוקרתית + תיק תואם"
+    ],
+    "supermarketPrice": 233,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגלת שכיבה ישיבה לבובה + תיק New York Doll",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11300",
+    "name": "משחק מנוף עגורן ענק על שלט - טימסטרז",
+    "aliases": [
+      "משחק מנוף עגורן ענק על שלט - טימסטרז"
+    ],
+    "supermarketPrice": 129,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מנוף עגורן חשמלי ענק על שלט",
+    "source": "google_search",
+    "sourceLabel": "ספירלה / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14083",
+    "name": "אופנוע מרוצים על שלט - סוללה נטענת",
+    "aliases": [
+      "אופנוע מרוצים על שלט - סוללה נטענת"
+    ],
+    "supermarketPrice": 49.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "אופנוע מרוץ על שלט עם סוללה נטענת USB",
+    "source": "google_search",
+    "sourceLabel": "עולם הצעצוע / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_2135",
+    "name": "משחק מוסך מכבי אש 3 קומות",
+    "aliases": [
+      "משחק מוסך מכבי אש 3 קומות"
+    ],
+    "supermarketPrice": 129,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סט מוסך כיבוי אש 3 קומות I-POP",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12860",
+    "name": "משאית גרר פלוס רכב - Power Planet",
+    "aliases": [
+      "משאית גרר פלוס רכב - Power Planet"
+    ],
+    "supermarketPrice": 89.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "משאית מנוף / גרר Power Planet",
+    "source": "google_search",
+    "sourceLabel": "גרין טוייס / חנויות רשת"
+  },
+  {
+    "id": "my_9001",
+    "name": "משחק מגנטים אותיות א' ב'",
+    "aliases": [
+      "משחק מגנטים אותיות א' ב'"
+    ],
+    "supermarketPrice": 39.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מגנטים אותיות מעץ א - ב",
+    "source": "google_search",
+    "sourceLabel": "אמיגו / חנויות צעצועים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_2368",
+    "name": "משחק יויו ",
+    "aliases": [
+      "משחק יויו "
+    ],
+    "supermarketPrice": 3.2,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "יויו סמיילי מתכת 7 ס\"מ",
+    "source": "google_search",
+    "sourceLabel": "בית הצעצוע / חנויות צעצועים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14081",
+    "name": "זוג מכשירי קשר נטענים איכותיים - 5 ק\"מ",
+    "aliases": [
+      "זוג מכשירי קשר נטענים איכותיים - 5 ק\"מ"
+    ],
+    "supermarketPrice": 230,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "זוג מכשירי קשר Innova T5IL נטענים עד 5 ק\"מ",
+    "source": "google_search",
+    "sourceLabel": "זאפ / באג / רדיו אלקטריק",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11929",
+    "name": "ערכת חוברת צביעה מנדלות + עפרונות לצביעה",
+    "aliases": [
+      "ערכת חוברת צביעה מנדלות + עפרונות לצביעה"
+    ],
+    "supermarketPrice": 32,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "חוברת צביעה 100 דפים - מנדלה + עפרונות צבעוניים",
+    "source": "google_search",
+    "sourceLabel": "הובי חנות יצירה / די-סטור",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_5474",
+    "name": "ספר קומיקס אלו וכאלו - חנוכה",
+    "aliases": [
+      "ספר קומיקס אלו וכאלו - חנוכה"
+    ],
+    "supermarketPrice": 49.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "אילו וכאלו חנוכה - קומיקס",
+    "source": "google_search",
+    "sourceLabel": "אור החיים / ספרי קודש וקריאה"
+  },
+  {
+    "id": "my_14100",
+    "name": "ספר למה כובע - נגמר בעין (2 חל' בכרך 1)",
+    "aliases": [
+      "ספר למה כובע - נגמר בעין (2 חל' בכרך 1)"
+    ],
+    "supermarketPrice": 59,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "למה כובע נגמר בעי\"ן (2 חלקים בכרך אחד) - נעמי פרבשטיין",
+    "source": "google_search",
+    "sourceLabel": "אור החיים / חנויות ספרים"
+  },
+  {
+    "id": "my_14097",
+    "name": "ספר קריאה סברס - מאת עדינה בר לב",
+    "aliases": [
+      "ספר קריאה סברס - מאת עדינה בר לב"
+    ],
+    "supermarketPrice": 88,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סברס - עדינה בר לב (ספר קריאה)",
+    "source": "google_search",
+    "sourceLabel": "יפה נוף פלדהיים / אור החיים"
+  },
+  {
+    "id": "my_11972",
+    "name": "מכשיר שאיבה ושטיפה לניקוי ספות ריפודים ושטיחים - דרימי",
+    "aliases": [
+      "מכשיר שאיבה ושטיפה לניקוי ספות ריפודים ושטיחים - דרימי"
+    ],
+    "supermarketPrice": 1093,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מכונת ניקוי לספות, מזרונים ושטיחים Dreame N20 Steam",
+    "source": "google_search",
+    "sourceLabel": "KSP / אלם / מחסני חשמל"
+  },
+  {
+    "id": "my_5120",
+    "name": "ספאטון בטעם תפוח בד\"ץ העד\"ח מ.מ. {145} - {איסוף כמוצר בודד} 20 מ\"ל",
+    "aliases": [
+      "ספאטון בטעם תפוח בד\"ץ העד\"ח מ.מ. {145} - {איסוף כמוצר בודד}"
+    ],
+    "supermarketPrice": 74.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 74.9,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "ספאטון ברזל נוזלי בטעם תפוח 28 שקיות",
+    "source": "google_search",
+    "sourceLabel": "סופר-פארם / זאפ השוואת מחירים"
+  },
+  {
+    "id": "my_14131",
+    "name": "שרשרת כסף אותיות משובצות",
+    "aliases": [
+      "שרשרת כסף אותיות משובצות"
+    ],
+    "supermarketPrice": 151,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת אות משובצת זרקונים כסף 925",
+    "source": "google_search",
+    "sourceLabel": "אתרי תכשיטים בישראל / זאפ",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8338",
+    "name": "שרשרת כסף סוליטר - {997}",
+    "aliases": [
+      "שרשרת כסף סוליטר - {997}"
+    ],
+    "supermarketPrice": 149,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת סוליטר בכסף 925",
+    "source": "google_search",
+    "sourceLabel": "My Jewelry / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10997",
+    "name": "עגילי כסף זירקון - {1080}",
+    "aliases": [
+      "עגילי כסף זירקון - {1080}"
+    ],
+    "supermarketPrice": 74.5,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי זירקון כסף 925 צמודים",
+    "source": "google_search",
+    "sourceLabel": "דנון תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8320",
+    "name": "עגילי כסף טניס - {906}",
+    "aliases": [
+      "עגילי כסף טניס - {906}"
+    ],
+    "supermarketPrice": 229,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי טניס מכסף 925",
+    "source": "google_search",
+    "sourceLabel": "My Jewelry / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12427",
+    "name": "שרשרת כסף טריו סוליטר {804}",
+    "aliases": [
+      "שרשרת כסף טריו סוליטר {804}"
+    ],
+    "supermarketPrice": 199,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת סוליטר טריו כסף 925",
+    "source": "google_search",
+    "sourceLabel": "Adelina Jewelry / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11005",
+    "name": "שרשרת כסף זירקונים קלאסית - {912}",
+    "aliases": [
+      "שרשרת כסף זירקונים קלאסית - {912}"
+    ],
+    "supermarketPrice": 199,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת סוליטר קלאסית כסף 925",
+    "source": "google_search",
+    "sourceLabel": "Secolo Jewelry / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8319",
+    "name": "שרשרת כסף תליון וי משובץ - {922}",
+    "aliases": [
+      "שרשרת כסף תליון וי משובץ - {922}"
+    ],
+    "supermarketPrice": 199,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת כסף תליון משובץ זירקונים",
+    "source": "google_search",
+    "sourceLabel": "Secolo Jewelry / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10083",
+    "name": "עגילי כסף שתי שרשראות עם שיבוץ {1036}",
+    "aliases": [
+      "עגילי כסף שתי שרשראות עם שיבוץ {1036}"
+    ],
+    "supermarketPrice": 249,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגיל אבנים בשילוב שרשראות שיבוץ עדין לשני חורים",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים ואופנה בישראל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9633",
+    "name": "טבעת כסף וי משובץ זירקונים מידות 6/7/8/9",
+    "aliases": [
+      "טבעת כסף וי משובץ זירקונים מידות 6/7/8/9"
+    ],
+    "supermarketPrice": 119,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "טבעת מכסף טהור המשובצת זרקונים (דגם וי)",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11008",
+    "name": "טבעת כסף זירקון עם שיבוץ מידות 6/7/8/9",
+    "aliases": [
+      "טבעת כסף זירקון עם שיבוץ מידות 6/7/8/9"
+    ],
+    "supermarketPrice": 109,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "טבעת כסף משובצת זירקונים מידות 6/7/8/9",
+    "source": "google_search",
+    "sourceLabel": "לייפסטה / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9506",
+    "name": "טבעת כסף טניס משובצת - דגם חדש - מידות 6/7/8/9",
+    "aliases": [
+      "טבעת כסף טניס משובצת - דגם חדש - מידות 6/7/8/9"
+    ],
+    "supermarketPrice": 139.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "טבעת טניס משובצת זרקונים כסף 925 מידות 6/7/8/9",
+    "source": "google_search",
+    "sourceLabel": "עמדת משקפיים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10999",
+    "name": "עגילי כסף טניס חישוק מרשים - {1084}",
+    "aliases": [
+      "עגילי כסף טניס חישוק מרשים - {1084}"
+    ],
+    "supermarketPrice": 199,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק טניס כסף אמיתי 925 משובצים זירקונים",
+    "source": "google_search",
+    "sourceLabel": "קלולס / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8336",
+    "name": "עגילי כסף עיגול קלאסי משובץ זירקונים (2 ס\"מ) - {942}",
+    "aliases": [
+      "עגילי כסף עיגול קלאסי משובץ זירקונים (2 ס\"מ) - {942}"
+    ],
+    "supermarketPrice": 171.7,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי כסף 925 עיגול משובץ 13 מ\"מ (מקביל)",
+    "source": "google_search",
+    "sourceLabel": "Giolli תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12439",
+    "name": "עגילים בציפוי רודיום לב זירקון {180}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב זירקון {180}"
+    ],
+    "supermarketPrice": 80,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים מכסף וציפוי רודיום - זירקוניה לב",
+    "source": "google_search",
+    "sourceLabel": "פירסינג שופ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12440",
+    "name": "עגילים בציפוי זהב לב זירקון {182}",
+    "aliases": [
+      "עגילים בציפוי זהב לב זירקון {182}"
+    ],
+    "supermarketPrice": 49,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי לב זירקון נוצצים מצופים זהב",
+    "source": "google_search",
+    "sourceLabel": "רולינג סטון / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9019",
+    "name": "עגילים בציפוי רודיום לב משובץ (גודל 5 מ\"מ) {01}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב משובץ (גודל 5 מ\"מ) {01}"
+    ],
+    "supermarketPrice": 79,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים מכסף וציפוי רודיום קריסטל לב 5 מ\"מ",
+    "source": "google_search",
+    "sourceLabel": "פירסינג שופ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9018",
+    "name": "עגילים בציפוי זהב לב משובץ (גודל 5 מ\"מ) {02}",
+    "aliases": [
+      "עגילים בציפוי זהב לב משובץ (גודל 5 מ\"מ) {02}"
+    ],
+    "supermarketPrice": 79,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי ציפוי זהב צמודים - זרקון 5 מ\"מ",
+    "source": "google_search",
+    "sourceLabel": "לורי תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12441",
+    "name": "עגילים בציפוי רודיום לב ולנטינה (גודל 6 מ\"מ) {179}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב ולנטינה (גודל 6 מ\"מ) {179}"
+    ],
+    "supermarketPrice": 80,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים מכסף וציפוי רודיום - זירקוניה לב 7 מ\"מ",
+    "source": "google_search",
+    "sourceLabel": "פירסינג שופ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12442",
+    "name": "עגילים בציפוי זהב לב ולנטינה (גודל 6 מ\"מ) {181}",
+    "aliases": [
+      "עגילים בציפוי זהב לב ולנטינה (גודל 6 מ\"מ) {181}"
+    ],
+    "supermarketPrice": 142,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי סוליטר צמודים 6 מ\"מ מצופה זהב",
+    "source": "google_search",
+    "sourceLabel": "ג'וילי תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9071",
+    "name": "עגילים בציפוי רודיום עם זירקון {53}",
+    "aliases": [
+      "עגילים בציפוי רודיום עם זירקון {53}"
+    ],
+    "supermarketPrice": 80,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים מכסף וציפוי רודיום – זירקוניה לב וקריסטלים לבנים (7 מ\"מ)",
+    "source": "google_search",
+    "sourceLabel": "פירסינג שופ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9038",
+    "name": "עגילי חישוק בציפוי זהב עם לב פנינה תלוי {80}",
+    "aliases": [
+      "עגילי חישוק בציפוי זהב עם לב פנינה תלוי {80}"
+    ],
+    "supermarketPrice": 149,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק ציפוי זהב בשילוב תליון פנינה",
+    "source": "google_search",
+    "sourceLabel": "מגנוליה / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9024",
+    "name": "עגילי לב מבריק בציפוי זהב {07}",
+    "aliases": [
+      "עגילי לב מבריק בציפוי זהב {07}"
+    ],
+    "supermarketPrice": 109,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק עם תליון לב נפוח ומבריק בציפוי זהב",
+    "source": "google_search",
+    "sourceLabel": "תכשיטי יסמין / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9084",
+    "name": "עגילי חישוק בציפוי זהב משובץ עם לב {67}",
+    "aliases": [
+      "עגילי חישוק בציפוי זהב משובץ עם לב {67}"
+    ],
+    "supermarketPrice": 149,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק בציפוי זהב עם אלמנט לב משובץ זירקוניה",
+    "source": "google_search",
+    "sourceLabel": "מגנוליה / אתרי תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9023",
+    "name": "עגילי חישוק בציפוי זהב תליון לב קטן חלק {06}",
+    "aliases": [
+      "עגילי חישוק בציפוי זהב תליון לב קטן חלק {06}"
+    ],
+    "supermarketPrice": 99,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק בציפוי זהב תליון לב קטן",
+    "source": "google_search",
+    "sourceLabel": "LORY / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9052",
+    "name": "עגילי חישוק בציפוי זהב עם לב חלק תלוי {35}",
+    "aliases": [
+      "עגילי חישוק בציפוי זהב עם לב חלק תלוי {35}"
+    ],
+    "supermarketPrice": 149,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק בשילוב תליון לב ציפוי זהב",
+    "source": "google_search",
+    "sourceLabel": "מגנוליה / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9032",
+    "name": "עגילי לב בציפוי זהב לנערות {15}",
+    "aliases": [
+      "עגילי לב בציפוי זהב לנערות {15}"
+    ],
+    "supermarketPrice": 135,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי לב אדום/ורוד לילדות ונערות בציפוי זהב",
+    "source": "google_search",
+    "sourceLabel": "אמירוז / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9033",
+    "name": "עגילי לב בציפוי רודיום לנערות {16}",
+    "aliases": [
+      "עגילי לב בציפוי רודיום לנערות {16}"
+    ],
+    "supermarketPrice": 135,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי לב כסף 925 בציפוי רודיום לילדות ונערות",
+    "source": "google_search",
+    "sourceLabel": "אמירוז / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9026",
+    "name": "עגילים בציפוי זהב עם זירקון ולב תלוי {09}",
+    "aliases": [
+      "עגילים בציפוי זהב עם זירקון ולב תלוי {09}"
+    ],
+    "supermarketPrice": 119,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי ציפוי זהב תלויים - לב נקודה זרקון",
+    "source": "google_search",
+    "sourceLabel": "לורי תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9072",
+    "name": "עגילים בציפוי זהב עם זירקון ולב משובץ תלוי {56}",
+    "aliases": [
+      "עגילים בציפוי זהב עם זירקון ולב משובץ תלוי {56}"
+    ],
+    "supermarketPrice": 229,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי לב תלויים משובצים מכסף 925 בציפוי זהב 18K",
+    "source": "google_search",
+    "sourceLabel": "רולינג סטון / חנויות תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9074",
+    "name": "עגילים בציפוי רודיום עם זירקון ולב משובץ תלוי {57}",
+    "aliases": [
+      "עגילים בציפוי רודיום עם זירקון ולב משובץ תלוי {57}"
+    ],
+    "supermarketPrice": 179,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגיל לב מאי כסף 925 בציפוי רודיום עם תליון לב משובץ זירקון",
+    "source": "google_search",
+    "sourceLabel": "סקולו תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_202",
+    "name": "גרגירי אפונה קפואה - קייטי 1 קילו",
+    "aliases": [
+      "גרגירי אפונה קפואה - קייטי"
+    ],
+    "supermarketPrice": 8,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "אפונת גינה קפואה קיי.טי. 1 קילו",
+    "source": "google_search",
+    "sourceLabel": "פרייסז / חנויות שוק"
+  },
+  {
+    "id": "my_8854",
+    "name": "נקנקיות עוף בד\"צ בית חלקיה 400 גרם",
+    "aliases": [
+      "נקנקיות עוף בד\"צ בית חלקיה"
+    ],
+    "supermarketPrice": 12,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "נקניקיות עוף 400 גרם",
+    "source": "google_search",
+    "sourceLabel": "אחי יעקב / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_448",
+    "name": "קרטון שוקיים עוף קפוא בד\"צ בית חלקיה",
+    "aliases": [
+      "קרטון שוקיים עוף קפוא בד\"צ בית חלקיה"
+    ],
+    "supermarketPrice": 444,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שוקיים עוף קפוא בד\"צ בית חלקיה 12 קילו",
+    "source": "google_search",
+    "sourceLabel": "פרייסז / חנויות רשת"
+  },
+  {
+    "id": "my_2154",
+    "name": "קרטון ירכיים עוף קפוא בד\"צ בית חלקיה",
+    "aliases": [
+      "קרטון ירכיים עוף קפוא בד\"צ בית חלקיה"
+    ],
+    "supermarketPrice": 416,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "ירכיים עוף קפוא בד\"צ בית חלקיה 13 קילו",
+    "source": "google_search",
+    "sourceLabel": "פרייסז / חנויות רשת"
+  },
+  {
+    "id": "my_882",
+    "name": "קרטון כנפיים עוף קפוא בד\"צ בית חלקיה",
+    "aliases": [
+      "קרטון כנפיים עוף קפוא בד\"צ בית חלקיה"
+    ],
+    "supermarketPrice": 147,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "כנפיים עוף קפוא בד\"צ בית חלקיה 15 קילו",
+    "source": "google_search",
+    "sourceLabel": "פרייסז / חנויות רשת"
+  },
+  {
+    "id": "my_397",
+    "name": "קרטון בשר טחון קפוא בד\"צ בית חלקיה {לא שקיל-מחיר קבוע} 2 קילו",
+    "aliases": [
+      "קרטון בשר טחון קפוא בד\"צ בית חלקיה {לא שקיל-מחיר קבוע}"
+    ],
+    "supermarketPrice": 276,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "קרטון בשר טחון קפוא בד\"צ בית חלקיה 2 ק\"ג",
+    "source": "google_search",
+    "sourceLabel": "Savy / חנויות רשת"
   }
 ]
