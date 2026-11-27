@@ -2336,12 +2336,12 @@
     "aliases": [
       "רביעיית גבינה מותכת 18% - משק צוריאל"
     ],
-    "supermarketPrice": 9.4,
+    "supermarketPrice": 14.9,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "גבינה מותכת 18% משק צוריאל 4 * 25 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "גבינה מותכת 18% משק צוריאל 4x25 גרם (100 גרם)",
     "source": "google_search",
-    "sourceLabel": "שופרסל / סופרמרקטים"
+    "sourceLabel": "שופרסל / רמי לוי"
   },
   {
     "id": "my_900",
@@ -3116,12 +3116,18 @@
     "aliases": [
       "טבעות בצל מצופות קפואות - קייטי (ריבוע חום)"
     ],
-    "supermarketPrice": 18.8,
-    "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "טבעות בצל מצופות קפואות קייטי 700 גרם",
-    "source": "google_search",
-    "sourceLabel": "אתרי השוואת מחירים / רשתות מזון"
+    "supermarketPrice": 14.57,
+    "chains": {
+      "osherAd": 13.9,
+      "ramiLevy": 15.9,
+      "yeshHesed": 13.9,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "טבעות בצל ויליגר, 600 גרם",
+    "isEquivalentBrand": true
   },
   {
     "id": "my_11740",
@@ -3543,11 +3549,12 @@
       "osherAd": null,
       "ramiLevy": null,
       "yeshHesed": 17,
-      "netoChisachon": null
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
     },
-    "lastVerified": "2026-11-15",
-    "matchedName": "דגני בוקר מולטי פירות XL, 600 גרם",
-    "isEquivalentBrand": true
+    "lastVerified": "2026-11-27",
+    "matchedName": "דגני בוקר מולטי פירות XL, 600 גרם"
   },
   {
     "id": "my_751",
@@ -4285,12 +4292,12 @@
     "aliases": [
       "רוגלעך אפוי בקופסא {מבית הדר גאולה}"
     ],
-    "supermarketPrice": 26.5,
+    "supermarketPrice": 14.9,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "רוגעלך שוקולד פרווה - הדר גאולה 400 גרם",
+    "lastVerified": "2026-11-27",
+    "matchedName": "רוגלך שוקולד פרווה הדר גאולה 400 גרם",
     "source": "google_search",
-    "sourceLabel": "וולט מרקט / חנויות רשת"
+    "sourceLabel": "שוק / רשתות שיווק"
   },
   {
     "id": "my_10248",
@@ -4975,12 +4982,12 @@
     "aliases": [
       "דובוני ג'לי מולטי ויטמין - אריזת חיסכון {1} - {איסוף כמוצר בודד}"
     ],
-    "supermarketPrice": 68.77,
+    "supermarketPrice": 71.9,
     "chains": {},
-    "lastVerified": "2026-11-16",
-    "matchedName": "יומי מולטי ויטמין בטעם ענבים 100 דובוני ג'לי אלטמן",
+    "lastVerified": "2026-11-27",
+    "matchedName": "דובוני ג'לי מולטי ויטמין לילדים 300 דובונים NAVA",
     "source": "google_search",
-    "sourceLabel": "אלטמן בריאות / פארם"
+    "sourceLabel": "זאפ / חנויות טבע"
   },
   {
     "id": "my_7516",
@@ -11215,5 +11222,754 @@
     "matchedName": "קרטון בשר טחון קפוא בד\"צ בית חלקיה 2 ק\"ג",
     "source": "google_search",
     "sourceLabel": "Savy / חנויות רשת"
+  },
+  {
+    "id": "my_204",
+    "name": "צנונית",
+    "aliases": [
+      "צנונית"
+    ],
+    "supermarketPrice": 4.9,
+    "chains": {
+      "osherAd": 4.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "צנונית ארוזה",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8712",
+    "name": "מאגדת מיקס חטיפי שוקולד עלית - אריזה משפחתית {מ.מ} 390 גרם",
+    "aliases": [
+      "מאגדת מיקס חטיפי שוקולד עלית - אריזה משפחתית {מ.מ}"
+    ],
+    "supermarketPrice": 28.9,
+    "chains": {
+      "osherAd": 28.9,
+      "ramiLevy": 28.9,
+      "yeshHesed": 28.9,
+      "netoChisachon": 29.9,
+      "shaareiRevaha": 27.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מיקס פסק זמן כיף כף ומקופלת, 400 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_7989",
+    "name": "רביעיית יוגורט בטעם תות 1.5% - טרה 125 גרם",
+    "aliases": [
+      "רביעיית יוגורט בטעם תות 1.5% - טרה"
+    ],
+    "supermarketPrice": 3.15,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 3.3,
+      "yeshHesed": 3.1,
+      "netoChisachon": 3.3,
+      "shaareiRevaha": 2.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "באדי יוגורט בטעם תות, 125 גרם"
+  },
+  {
+    "id": "my_524",
+    "name": "זיתים",
+    "aliases": [
+      "זיתים"
+    ],
+    "supermarketPrice": 9.18,
+    "chains": {
+      "osherAd": 7.9,
+      "ramiLevy": 9.3,
+      "yeshHesed": 9.9,
+      "netoChisachon": 9.9,
+      "shaareiRevaha": 8.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "זיתים ירוקים שלמים בינוניים, 340 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11857",
+    "name": "אפונה וגזר שימורים - פריניר 330 גרם",
+    "aliases": [
+      "אפונה וגזר שימורים - פריניר"
+    ],
+    "supermarketPrice": 7.9,
+    "chains": {
+      "osherAd": 7.9,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": 7.9,
+      "shaareiRevaha": 7.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "אפונת גינה וגזר, 325 גרם",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_6924",
+    "name": "בית חנוכיה - ענק",
+    "aliases": [
+      "בית חנוכיה - ענק"
+    ],
+    "supermarketPrice": 249.9,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": null,
+      "yeshHesed": null,
+      "netoChisachon": 249.9,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "בית חנוכיה ענק מתקפל עם ארובה 19 41 60",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8306",
+    "name": "שקית פרחי כרובית מוקפאים עד\"ח 600 גרם",
+    "aliases": [
+      "שקית פרחי כרובית מוקפאים עד\"ח"
+    ],
+    "supermarketPrice": 23.57,
+    "chains": {
+      "osherAd": 21.9,
+      "ramiLevy": null,
+      "yeshHesed": 28.9,
+      "netoChisachon": null,
+      "shaareiRevaha": 19.9,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "פרחי כרובית שדה, 600 גרם"
+  },
+  {
+    "id": "my_895",
+    "name": "מאגדת מעדן וניל - טרה 8*100 גר'",
+    "aliases": [
+      "מאגדת מעדן וניל - טרה"
+    ],
+    "supermarketPrice": 15.1,
+    "chains": {
+      "osherAd": null,
+      "ramiLevy": 15.1,
+      "yeshHesed": null,
+      "netoChisachon": null,
+      "shaareiRevaha": null,
+      "mechiraLaKehila": null
+    },
+    "lastVerified": "2026-11-27",
+    "matchedName": "מאגדת מעדן וניל טרה 8 * 100 גרם",
+    "source": "google_search",
+    "sourceLabel": "רמי לוי / שופרסל אונליין"
+  },
+  {
+    "id": "my_546",
+    "name": "קרטון קמח כוסמין 80% (10 יח בקרטון חום) {ישבר}",
+    "aliases": [
+      "קרטון קמח כוסמין 80% (10 יח בקרטון חום) {ישבר}"
+    ],
+    "supermarketPrice": 79,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "קרטון קמח כוסמין 80% (10 יחידות של 1 ק\"ג)",
+    "source": "google_search",
+    "sourceLabel": "חברות הפצה / חלוקה חרדיות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_547",
+    "name": "קרטון בצבע כחול קמח לבן מנופה (10 יח')",
+    "aliases": [
+      "קרטון בצבע כחול קמח לבן מנופה (10 יח')"
+    ],
+    "supermarketPrice": 35,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "קרטון קמח לבן מנופה (10 יחידות של 1 ק\"ג)",
+    "source": "google_search",
+    "sourceLabel": "אתרי יצרני קמח ורשתות שיווק",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_875",
+    "name": "שקיות הקפאה 250 יח - קרטונית",
+    "aliases": [
+      "שקיות הקפאה 250 יח - קרטונית"
+    ],
+    "supermarketPrice": 9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שקיות הקפאה XXL - ניקול / קיי.אס.פי 250 יחידות",
+    "source": "google_search",
+    "sourceLabel": "KSP / סופרמרקט אונליין",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10038",
+    "name": "מנג'טים מודפסים בקופסא - גודל 4 200 יח'",
+    "aliases": [
+      "מנג'טים מודפסים בקופסא - גודל 4"
+    ],
+    "supermarketPrice": 6.5,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עטרות / מנג'טים לאפייה גודל 4 - 130-200 יחידות",
+    "source": "google_search",
+    "sourceLabel": "פעמית סטור / חנויות חד פעמי",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_117",
+    "name": "כוס קינוחים מרובעת - בראבו 24 יח",
+    "aliases": [
+      "כוס קינוחים מרובעת - בראבו"
+    ],
+    "supermarketPrice": 12.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "כוסות קינוח / כוסיות לחיים מרובעות 24 יחידות",
+    "source": "google_search",
+    "sourceLabel": "הנמל אריזות / חנויות חד פעמי",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_125",
+    "name": "שקיות אשפה 75/90 (אפור/שחור) 25 יח'",
+    "aliases": [
+      "שקיות אשפה 75/90 (אפור/שחור)"
+    ],
+    "supermarketPrice": 16.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שקיות אשפה עבות וחזקות במיוחד 25 יח 75*90 טאצ'",
+    "source": "google_search",
+    "sourceLabel": "אופיס דיפו / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1690",
+    "name": "אנחנו וצאצאינו - קובץ שמע {לקבלה במייל} - \"אנשי המהפיכה\" חנוכה תשפ\"ז (לא לאיסוף)",
+    "aliases": [
+      "אנחנו וצאצאינו - קובץ שמע {לקבלה במייל} - \"אנשי המהפיכה\" חנוכה תשפ\"ז (לא לאיסוף)"
+    ],
+    "supermarketPrice": 10,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "אנשי המהפכה חנוכה תשפ\"ז חוברת + מקבץ שמע",
+    "source": "google_search",
+    "sourceLabel": "אנחנו וצאצאינו / אתר רשמי"
+  },
+  {
+    "id": "my_10744",
+    "name": "רמקול בלוטוס JBL - דגם FLIP 7",
+    "aliases": [
+      "רמקול בלוטוס JBL - דגם FLIP 7"
+    ],
+    "supermarketPrice": 289,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "רמקול נייד JBL Flip 7",
+    "source": "google_search",
+    "sourceLabel": "זאפ השוואת מחירים / חנויות חשמל"
+  },
+  {
+    "id": "my_14063",
+    "name": "מזגן עילי אינוורטר 2 כ\"ס - פמילי (לא לאיסוף)",
+    "aliases": [
+      "מזגן עילי אינוורטר 2 כ\"ס - פמילי (לא לאיסוף)"
+    ],
+    "supermarketPrice": 1820,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מזגן פמילי עילי 2 כ\"ס Genesis Inv WIFI 25",
+    "source": "google_search",
+    "sourceLabel": "זאפ / מחסני איכות",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_6741",
+    "name": "סט צלחות פורצלן ניו בון ציינה 18 חלקים",
+    "aliases": [
+      "סט צלחות פורצלן ניו בון ציינה 18 חלקים"
+    ],
+    "supermarketPrice": 219,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סט צלחות פורצלן ניו בון ציינה 18 חלקים",
+    "source": "google_search",
+    "sourceLabel": "זאפ / הום סנטר / KSP",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_5727",
+    "name": "מחבת נמוך לבלינצ'ס",
+    "aliases": [
+      "מחבת נמוך לבלינצ'ס"
+    ],
+    "supermarketPrice": 66,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מחבת בלינצ'ס/קרפ סדרת Live Induction קוטר 28 ס\"מ Piardinox",
+    "source": "google_search",
+    "sourceLabel": "KSP / חנויות כלי מטבח",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14099",
+    "name": "משחק קלפים  המרוץ למתכון",
+    "aliases": [
+      "משחק קלפים  המרוץ למתכון"
+    ],
+    "supermarketPrice": 59.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "רייס (מרוץ) - משחק קלפים אסטרטגי משחקי שפיר",
+    "source": "google_search",
+    "sourceLabel": "מיינדקס / חנויות צעצועים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_5129",
+    "name": "משחק קלפים ליגרטו",
+    "aliases": [
+      "משחק קלפים ליגרטו"
+    ],
+    "supermarketPrice": 39.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "משחק לוח - ליגרטו כחול / אדום / ירוק",
+    "source": "google_search",
+    "sourceLabel": "קרביץ / צומת ספרים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14103",
+    "name": "משחק תחרות דיסקיות סטגדם - ישראטויס",
+    "aliases": [
+      "משחק תחרות דיסקיות סטגדם - ישראטויס"
+    ],
+    "supermarketPrice": 79,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "סטגדם עץ – משחק דסקיות ישראטויס",
+    "source": "google_search",
+    "sourceLabel": "כפר השעשועים / ישראטויס"
+  },
+  {
+    "id": "my_8181",
+    "name": "משחק שחמט דיגיטאלי",
+    "aliases": [
+      "משחק שחמט דיגיטאלי"
+    ],
+    "supermarketPrice": 149,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שחמט אלקטרוני / ממוחשב נייד עם מסך מגע",
+    "source": "google_search",
+    "sourceLabel": "באג / חנויות גאדג'טים וצעצועים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_14079",
+    "name": "תלת אופן  3 גלגלים לילדים איכותי - בעיצוב רטרו 30 ל",
+    "aliases": [
+      "תלת אופן  3 גלגלים לילדים איכותי - בעיצוב רטרו"
+    ],
+    "supermarketPrice": 299,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "תלת-אופן לילדים בעיצוב וינטג' רטרו כולל סלסלת קש",
+    "source": "google_search",
+    "sourceLabel": "KSP / קידסטור / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_1566",
+    "name": "משחק מגנטים - לונה פארק",
+    "aliases": [
+      "משחק מגנטים - לונה פארק"
+    ],
+    "supermarketPrice": 199.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "Playmager מסלול רכבת ולונה פארק מגנטי 157 חלקים",
+    "source": "google_search",
+    "sourceLabel": "KSP / סופר-פארם / באג",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_8325",
+    "name": "שרשרת כסף טניס קלאסית - {908}",
+    "aliases": [
+      "שרשרת כסף טניס קלאסית - {908}"
+    ],
+    "supermarketPrice": 329,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת טניס כסף 925",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים אונליין בישראל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12438",
+    "name": "שרשרת כסף וי רויאל {1072}",
+    "aliases": [
+      "שרשרת כסף וי רויאל {1072}"
+    ],
+    "supermarketPrice": 156,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת וי כסף אמיתי 925",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים אונליין בישראל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12400",
+    "name": "עגילי כסף פלורנס פרחים {806}",
+    "aliases": [
+      "עגילי כסף פלורנס פרחים {806}"
+    ],
+    "supermarketPrice": 139,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי פרח כסף 925",
+    "source": "google_search",
+    "sourceLabel": "אתרי תכשיטים מובילים בישראל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11014",
+    "name": "עגילי כסף סירקל זירקונים - {1118}",
+    "aliases": [
+      "עגילי כסף סירקל זירקונים - {1118}"
+    ],
+    "supermarketPrice": 77.7,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי סירקל כסף 925 זירקונים",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים אונליין בישראל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12428",
+    "name": "עגילי כסף סירקל תלוי {808}",
+    "aliases": [
+      "עגילי כסף סירקל תלוי {808}"
+    ],
+    "supermarketPrice": 129,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי כסף 925 תלויים",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים אונליין בישראל",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10990",
+    "name": "שרשרת כסף בציפוי זהב אינפיניטי משולבת - {1064}",
+    "aliases": [
+      "שרשרת כסף בציפוי זהב אינפיניטי משולבת - {1064}"
+    ],
+    "supermarketPrice": 239,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "שרשרת אינפיניטי בציפוי זהב",
+    "source": "google_search",
+    "sourceLabel": "אתרי תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10127",
+    "name": "עגילים בציפוי רודיום לב ולנטינה (גודל 8 מ\"מ) {160}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב ולנטינה (גודל 8 מ\"מ) {160}"
+    ],
+    "supermarketPrice": 75,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים בציפוי רודיום 8 מ\"מ",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים באינטרנט",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10126",
+    "name": "עגילים בציפוי זהב לב ולנטינה (גודל 8 מ\"מ) {162}",
+    "aliases": [
+      "עגילים בציפוי זהב לב ולנטינה (גודל 8 מ\"מ) {162}"
+    ],
+    "supermarketPrice": 142,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים בציפוי זהב 8 מ\"מ",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים באינטרנט",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12443",
+    "name": "עגילים בצפוי רודיום זירקון (גודל 4 מ\"מ) {183}",
+    "aliases": [
+      "עגילים בצפוי רודיום זירקון (גודל 4 מ\"מ) {183}"
+    ],
+    "supermarketPrice": 65,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים בציפוי רודיום זירקון 4 מ\"מ",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים באינטרנט",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12444",
+    "name": "עגילים בציפוי זהב זירקון (גודל 4 מ\"מ) {184}",
+    "aliases": [
+      "עגילים בציפוי זהב זירקון (גודל 4 מ\"מ) {184}"
+    ],
+    "supermarketPrice": 120.7,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי זרקון 4 מ\"מ מצופה זהב",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים באינטרנט",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12445",
+    "name": "עגילים בציפוי זהב עם זירקון {207}",
+    "aliases": [
+      "עגילים בציפוי זהב עם זירקון {207}"
+    ],
+    "supermarketPrice": 99,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים בציפוי זהב עם זירקון",
+    "source": "google_search",
+    "sourceLabel": "חנויות תכשיטים באינטרנט",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12446",
+    "name": "עגילים בציפוי רודיום פלורנס טיפה {185}",
+    "aliases": [
+      "עגילים בציפוי רודיום פלורנס טיפה {185}"
+    ],
+    "supermarketPrice": 189,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים תלויים כסף 925 בציפוי רודיום עם תוספת של טיפה",
+    "source": "google_search",
+    "sourceLabel": "מגנוליה / תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12447",
+    "name": "עגילים בציפוי זהב פלורנס טיפה {186}",
+    "aliases": [
+      "עגילים בציפוי זהב פלורנס טיפה {186}"
+    ],
+    "supermarketPrice": 189,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי טיפה צמודים מצופה זהב",
+    "source": "google_search",
+    "sourceLabel": "ג'יולי תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10902",
+    "name": "עגילי חישוק אותיות כסף בציפוי רודיום",
+    "aliases": [
+      "עגילי חישוק אותיות כסף בציפוי רודיום"
+    ],
+    "supermarketPrice": 129,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק כסף 925 בציפוי רודיום",
+    "source": "google_search",
+    "sourceLabel": "HoneyBird תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9030",
+    "name": "עגילי חישוק בציפוי רודיום זירקון לב תלוי {13}",
+    "aliases": [
+      "עגילי חישוק בציפוי רודיום זירקון לב תלוי {13}"
+    ],
+    "supermarketPrice": 142,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק משובצים עם לב תלוי בציפוי רודיום",
+    "source": "google_search",
+    "sourceLabel": "סאפורו / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12466",
+    "name": "צמיד בציפוי זהב/רודיום לב ולנטינה באורכים שונים 3 ל",
+    "aliases": [
+      "צמיד בציפוי זהב/רודיום לב ולנטינה באורכים שונים"
+    ],
+    "supermarketPrice": 189,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "צמיד ציפוי זהב / רודיום בשילוב לבבות",
+    "source": "google_search",
+    "sourceLabel": "מגנוליה / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_11037",
+    "name": "עגילי חישוק אדום בציפוי זהב (היקף 1.4 ס\"מ) {76}",
+    "aliases": [
+      "עגילי חישוק אדום בציפוי זהב (היקף 1.4 ס\"מ) {76}"
+    ],
+    "supermarketPrice": 109,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק בציפוי זהב אדום וזירקונים",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12451",
+    "name": "עגילים בציפוי זהב לב אבן אדום {191}",
+    "aliases": [
+      "עגילים בציפוי זהב לב אבן אדום {191}"
+    ],
+    "supermarketPrice": 120,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים לב בציפוי זהב עם אבן אדומה",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12450",
+    "name": "עגילים בציפוי רודיום לב אבן אדום {192}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב אבן אדום {192}"
+    ],
+    "supermarketPrice": 120,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים לב בציפוי רודיום עם אבן אדומה",
+    "source": "google_search",
+    "sourceLabel": "זאפ / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9022",
+    "name": "עגילים בציפוי זהב לב אדום (גודל 5 מ\"מ) {05}",
+    "aliases": [
+      "עגילים בציפוי זהב לב אדום (גודל 5 מ\"מ) {05}"
+    ],
+    "supermarketPrice": 140.25,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי זרקון 5 מ\"מ מצופה זהב",
+    "source": "google_search",
+    "sourceLabel": "ג'יולי תכשיטים / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_9050",
+    "name": "עגילי חישוק בציפוי זהב עם לב אדום תלוי {33}",
+    "aliases": [
+      "עגילי חישוק בציפוי זהב עם לב אדום תלוי {33}"
+    ],
+    "supermarketPrice": 120,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי חישוק בציפוי זהב עם תליון לב אדום",
+    "source": "google_search",
+    "sourceLabel": "הגר סתת / אתרי אופנה",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12459",
+    "name": "עגילים בציפוי זהב פרח חלק {200}",
+    "aliases": [
+      "עגילים בציפוי זהב פרח חלק {200}"
+    ],
+    "supermarketPrice": 48,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי פרח רוז בציפוי זהב",
+    "source": "google_search",
+    "sourceLabel": "שני יעקובי / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_12460",
+    "name": "עגילים בציפוי רודיום לב זהב סוליטר {206}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב זהב סוליטר {206}"
+    ],
+    "supermarketPrice": 200,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילי סוליטר עגול / לב בציפוי רודיום",
+    "source": "google_search",
+    "sourceLabel": "אור אבנר / חנויות רשת",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_10133",
+    "name": "עגילים בציפוי רודיום לב משובץ ולב תלוי {170}",
+    "aliases": [
+      "עגילים בציפוי רודיום לב משובץ ולב תלוי {170}"
+    ],
+    "supermarketPrice": 55,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "עגילים צמודים מכסף וציפוי רודיום - קריסטל לבן ותלוי",
+    "source": "google_search",
+    "sourceLabel": "פירסינג שופ / תכשיטים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_6269",
+    "name": "קוביות פסיפלורה קפואה אריזה משפחתית - קייטי 500 גרם",
+    "aliases": [
+      "קוביות פסיפלורה קפואה אריזה משפחתית - קייטי"
+    ],
+    "supermarketPrice": 32.9,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "מארז פסיפלורה קפואה 500 גרם",
+    "source": "google_search",
+    "sourceLabel": "פירות השמש / קפואים",
+    "isEquivalentBrand": true
+  },
+  {
+    "id": "my_355",
+    "name": "קרטון קשתית חתוכה עם עצם (קוביות לחמין) קפוא בד\"צ בית חלקיה",
+    "aliases": [
+      "קרטון קשתית חתוכה עם עצם (קוביות לחמין) קפוא בד\"צ בית חלקיה"
+    ],
+    "supermarketPrice": 492,
+    "chains": {},
+    "lastVerified": "2026-11-27",
+    "matchedName": "קשתית חתוכה עם עצם (קוביות לחמין) קפוא בד\"צ בית חלקיה קיי.טי (קרטון 6 ק\"ג)",
+    "source": "google_search",
+    "sourceLabel": "פרייסז / חנויות מזון"
   }
 ]
